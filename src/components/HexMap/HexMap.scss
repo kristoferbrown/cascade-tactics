@@ -1,0 +1,12 @@
+.hexMap {
+	height: 100%;
+	width: 100%;
+
+	.hexMap_movePath path {
+		fill: none;
+		stroke: #369;
+		stroke-width: 3;
+		stroke-linecap: round;
+		stroke-linejoin: round;
+	}
+}

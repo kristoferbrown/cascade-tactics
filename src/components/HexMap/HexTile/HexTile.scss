@@ -1,0 +1,66 @@
+.hexTile {
+	&.hexTile_blocked polygon {
+		fill-opacity: 0.1;
+	}
+
+	&.hexTile_occupied polygon {
+		fill-opacity: 0;
+	}
+
+	&.hexTile_selected {
+		polygon {
+			fill: #fff;
+			fill-opacity: 1;
+			stroke: #369;
+			stroke-width: 1;
+		}
+		&.hexTile_cpuControlled {
+			polygon {
+				stroke: #c32;
+			}
+			.mapCharacter {
+				animation: rumble 0.1s infinite linear;
+			}
+		}
+	}
+
+	&.hexTile_inRange {
+		polygon {
+			cursor: pointer;
+			fill-opacity: 0.8;
+		}
+		&:hover polygon {
+			fill: #7be3f6;
+		}
+	}
+
+	.mapCharacter {
+		cy: -2;
+		height: 9;
+		r: 4.5;
+		width: 7;
+		x: -3.5;
+		y: -7;
+	}
+
+	text {
+		font-size: 2.5px;
+		fill: #fff;
+		fill-opacity: 0.7;
+		user-select: none;
+	}
+
+	polygon {
+		fill: #fff;
+		fill-opacity: 0.1;
+		transition: .5s;
+	}
+}
+
+@keyframes rumble {
+	0% {transform: rotate(0deg);}
+	25% {transform: translate(0.2px, 0px) rotate(-4deg);}
+	50% {transform: translate(0px, -0.2px) rotate(0deg);}
+	75% {transform: translate(-0.2px, 0px) rotate(4deg);}
+	100% {transform: translate(0px, 0.2px) rotate(0deg);}
+}
