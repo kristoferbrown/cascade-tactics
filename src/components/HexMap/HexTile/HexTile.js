@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Hexagon, Text } from 'react-hexgrid';
+import { Hexagon } from 'react-hexgrid';
 import classNames from 'classnames';
 import './HexTile.scss';
 
@@ -42,10 +42,7 @@ export default class HexTile extends Component {
 					'hexTile_selected': isSelected,
 					'hexTile_inRange': (isInRange && !contents && !isBlocked && !isSelected)
 				})}
-			>
-				{ contents && contents.mapRenderer }
-				{ contents && <Text>{contents.meta.name}</Text> }
-			</Hexagon>
+			/>
 		);
 	}
 }
