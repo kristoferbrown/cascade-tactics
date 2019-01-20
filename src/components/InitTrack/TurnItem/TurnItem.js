@@ -11,7 +11,7 @@ export default class TurnItem extends Component {
 				'turnItem_currentTurn': isCurrentTurn,
 				'turnItem_previousTurn': isPreviousTurn
 			})}>
-				{`${initiative+1}: ${isCurrentTurn ? character.meta.fullName : character.meta.name}`}
+				{`${initiative+1}: ${(isCurrentTurn || isPreviousTurn) ? character.meta.fullName : character.meta.name}`}
 			</div>
 		);
 	}

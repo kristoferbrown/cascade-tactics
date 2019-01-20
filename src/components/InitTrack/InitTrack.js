@@ -7,18 +7,18 @@ export default class InitTrack extends Component {
 		const { characters, currInit, currPhase } = this.props;
 		return (
 			<div className='initTrack'>
-				<InitPhase 
+				<InitPhase
 					characters={characters}
 					currInit={currInit}
 					isCurrentPhase={true}
 					phase={currPhase}
 				/>
-				<InitPhase 
+				<InitPhase
 					characters={characters}
 					currInit={currInit}
 					phase={currPhase+1}
 				/>
-				<InitPhase 
+				<InitPhase
 					characters={characters}
 					currInit={currInit}
 					phase={currPhase+2}

@@ -12,7 +12,7 @@ export default class CombatScreen extends Component {
 			currInit: 0, // Current turn in the current phase
 			currPhase: 0, // Current phase in the current round
 			currRound: 0, // Current combat round
-			isUncontrolledTurn: false
+			isUncontrolledTurn: false, // true while AI or delay is handling turn
 		}
 	}
 

@@ -27,8 +27,8 @@ export default class HexMap extends Component {
 				f3: 1.7320508075688772,
 				startAngle: 0,
 			},
-			origin: { x: -46, y: 5 },
-			size: { x: 7, y: 3.5 },
+			origin: { x: -16, y: 10 },
+			size: { x: 8, y: 4 },
 			spacing: 1.03
 		};
 
@@ -126,29 +126,31 @@ export default class HexMap extends Component {
 		const { hexList, hoveredHex, mapChars, selectedHex } = this.state;
 		return (
 			<div className="hexMap">
-				<HexGrid className="hexMap_gridSvgElement" width={1900} height={900} viewBox="0 0 100 100">
+				<HexGrid className="hexMap_gridSvgElement" width={'100%'} height={'100%'} viewBox="0 0 100 100">
 					<Layout {...this.layoutProps}>
 
-						{ hoveredHex && 
-							<g className="hexMap_movePath">
-								<Path start={selectedHex} end={hoveredHex} />
-							</g>
-						}
+						<g>
+							{ hoveredHex && 
+								<g className="hexMap_movePath">
+									<Path start={selectedHex} end={hoveredHex} />
+								</g>
+							}
 
-						{ hexList.map(hex =>
-							<HexTile
-								clearPath={() => this.setState({hoveredHex: null})}
-								contents={hex.contents}
-								hex={hex}
-								isBlocked={hex.isBlocked}
-								isCpuControlled={hex.contents && hex.contents.meta.isCpuControlled}
-								isInRange={HexUtils.distance(selectedHex, hex) <= currChar.attributes.agi+1}
-								isSelected={HexUtils.equals(hex, selectedHex)}
-								key={`hex-${hex.q}-${hex.r}-${hex.s}`}
-								onViableClick={this.moveOrSelectNewHex}
-								onViableHover={this.computePath}
-							/>
-						)}
+							{ hexList.map(hex =>
+								<HexTile
+									clearPath={() => this.setState({hoveredHex: null})}
+									contents={hex.contents}
+									hex={hex}
+									isBlocked={hex.isBlocked}
+									isCpuControlled={hex.contents && hex.contents.meta.isCpuControlled}
+									isInRange={HexUtils.distance(selectedHex, hex) <= currChar.attributes.agi+1}
+									isSelected={HexUtils.equals(hex, selectedHex)}
+									key={`hex-${hex.q}-${hex.r}-${hex.s}`}
+									onViableClick={this.moveOrSelectNewHex}
+									onViableHover={this.computePath}
+								/>
+							)}
+						</g>
 
 						<ObjectLayer characters={mapChars} currChar={currChar} />
 

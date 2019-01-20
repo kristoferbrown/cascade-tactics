@@ -9,16 +9,21 @@ export default class ObjectLayer extends Component {
 		return (
 			<g className="objectLayer">
 				{characters.map(character =>
-					<g 
-						key={`mapRenderer-${character.meta.charId}`}
+					<g
 						className={classNames({
 							'objectLayer_character': true,
 							'objectLayer_cpuCharacter': character.meta.isCpuControlled,
 							'objectLayer_isSelected': character.meta.charId === currChar.meta.charId,
 						})}
+						key={`mapRenderer-${character.meta.charId}`}
+						style={{
+							transform: `translateX(${character.pixelLoc.x + character.mapOffset.x}px) translateY(${character.pixelLoc.y  + character.mapOffset.y}px)`
+						}}
 					>
-						{ character.mapRenderer(character.pixelLoc) }
-						{ <Text x={character.pixelLoc.x} y={character.pixelLoc.y} className="objectLayer_nameText">{character.meta.name}</Text> }
+						{ character.mapRenderer(character.pixelLoc, character.meta.charId === currChar.meta.charId) }
+						{ false &&  character.meta.charId === currChar.meta.charId &&
+							<Text className="objectLayer_nameText">{character.meta.name}</Text>
+						}
 					</g>
 				)}
 			</g>

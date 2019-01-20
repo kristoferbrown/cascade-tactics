@@ -4,13 +4,9 @@ import classNames from 'classnames';
 import './HexTile.scss';
 
 export default class HexTile extends Component {
-	//shouldComponentUpdate(nextProps) {
-		//if (this.props.isInRange || nextProps.isInRange) {
-	//		return true;
-		//} else {
-		//	return false;
-		//}
-	//}
+	shouldComponentUpdate(nextProps) {
+		return (this.props.isInRange !== nextProps.isInRange || this.props.isSelected !== nextProps.isSelected);
+	}
 
 	onHexClick(event, element, hex) {
 		const { contents, isBlocked, isInRange, isSelected, onViableClick } = this.props;
@@ -33,7 +29,7 @@ export default class HexTile extends Component {
 				q={hex.q} r={hex.r} s={hex.s}
 				onClick={(event, hexElement) => this.onHexClick(event, hexElement, hex)}
 				onMouseEnter={(event, hexElement) => this.onHexHover(event, hexElement, hex)}
-				onMouseLeave={() => clearPath()}
+				//onMouseLeave={() => clearPath()}
 				className={classNames({
 					'hexTile': true,
 					'hexTile_blocked': isBlocked,

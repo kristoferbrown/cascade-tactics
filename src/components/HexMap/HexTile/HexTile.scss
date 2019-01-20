@@ -34,7 +34,8 @@
 	polygon {
 		fill: #fff;
 		fill-opacity: 0.1;
-		transition: .5s;
+		transition: opacity .3s ease;
+		transition-delay: opacity .6s;
 	}
 }
 
