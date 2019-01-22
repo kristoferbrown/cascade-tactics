@@ -13,6 +13,7 @@ export default class ObjectLayer extends Component {
 						className={classNames({
 							'objectLayer_character': true,
 							'objectLayer_cpuCharacter': character.meta.isCpuControlled,
+							'objectLayer_hostile': character.meta.isHostile,
 							'objectLayer_isSelected': character.meta.charId === currChar.meta.charId,
 						})}
 						key={`mapRenderer-${character.meta.charId}`}

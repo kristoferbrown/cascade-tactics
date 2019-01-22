@@ -11,7 +11,7 @@ export default class HexMap extends Component {
 		this.uncontrolledTurnTimer = null;
 
 		// Generate hex map and layout
-		const hexagonList = GridGenerator.orientedRectangle(15,12);
+		const hexagonList = GridGenerator.orientedRectangle(18,15);
 		hexagonList[19].isBlocked = true;
 		hexagonList[12].isBlocked = true;
 		this.layoutProps = {
@@ -27,8 +27,8 @@ export default class HexMap extends Component {
 				f3: 1.7320508075688772,
 				startAngle: 0,
 			},
-			origin: { x: -16, y: 10 },
-			size: { x: 8, y: 4 },
+			origin: { x: -29, y: 15 },
+			size: { x: 6, y: 3 },
 			spacing: 1.03
 		};
 
@@ -68,7 +68,7 @@ export default class HexMap extends Component {
 		if (!prevProps.currChar.meta.isCpuControlled && currChar.meta.isCpuControlled) {
 			this.uncontrolledTurnTimer = setTimeout(() => {
 				this.moveOrSelectNewHex(null, null, this.state.selectedHex, true);
-			}, 1000);
+			}, 2400);
 		}
 	}
 
@@ -92,7 +92,6 @@ export default class HexMap extends Component {
 			} else if (!selectOnly && HexUtils.equals(newHex, newHexClicked)) {
 				newHexClicked.contents = selectedHex.contents;
 				newHex.contents = selectedHex.contents; // Move contents to target hex
-				console.log(element);
 				newMapChars.map(char => {
 					if (char.meta.charId === selectedHex.contents.meta.charId) {
 						const newPixelLoc = HexUtils.hexToPixel(newHex, this.layoutProps);
@@ -126,7 +125,8 @@ export default class HexMap extends Component {
 		const { hexList, hoveredHex, mapChars, selectedHex } = this.state;
 		return (
 			<div className="hexMap">
-				<HexGrid className="hexMap_gridSvgElement" width={'100%'} height={'100%'} viewBox="0 0 100 100">
+				<div className="hexMap_background">
+				<HexGrid width={'2100px'} height={'1200px'} viewBox="0 0 100 100">
 					<Layout {...this.layoutProps}>
 
 						<g>
@@ -143,7 +143,8 @@ export default class HexMap extends Component {
 									hex={hex}
 									isBlocked={hex.isBlocked}
 									isCpuControlled={hex.contents && hex.contents.meta.isCpuControlled}
-									isInRange={HexUtils.distance(selectedHex, hex) <= currChar.attributes.agi+1}
+									isHostile={hex.contents && hex.contents.meta.isHostile}
+									isInRange={HexUtils.distance(selectedHex, hex) <= currChar.attributes.Agility+1}
 									isSelected={HexUtils.equals(hex, selectedHex)}
 									key={`hex-${hex.q}-${hex.r}-${hex.s}`}
 									onViableClick={this.moveOrSelectNewHex}
@@ -156,6 +157,7 @@ export default class HexMap extends Component {
 
 					</Layout>
 				</HexGrid>
+				</div>
 			</div>
 		);
 	}

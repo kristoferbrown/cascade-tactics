@@ -23,17 +23,18 @@ export default class HexTile extends Component {
 	}
 
 	render() {
-		const { clearPath, contents, hex, isBlocked, isCpuControlled, isInRange, isSelected } = this.props;
+		const { clearPath, contents, hex, isBlocked, isCpuControlled, isHostile, isInRange, isSelected } = this.props;
 		return (
 			<Hexagon 
 				q={hex.q} r={hex.r} s={hex.s}
 				onClick={(event, hexElement) => this.onHexClick(event, hexElement, hex)}
 				onMouseEnter={(event, hexElement) => this.onHexHover(event, hexElement, hex)}
-				//onMouseLeave={() => clearPath()}
+				onMouseLeave={() => clearPath()}
 				className={classNames({
 					'hexTile': true,
 					'hexTile_blocked': isBlocked,
 					'hexTile_cpuControlled': isCpuControlled,
+					'hexTile_hostile': isHostile,
 					'hexTile_occupied': contents,
 					'hexTile_selected': isSelected,
 					'hexTile_inRange': (isInRange && !contents && !isBlocked && !isSelected)

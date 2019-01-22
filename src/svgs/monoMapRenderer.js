@@ -6,25 +6,25 @@ export default class MonoMapRenderer extends Component {
 		const { height, width } = this.props;
 		return (
 			<svg width={width} height={height} className='svgGroup-monoMapRenderer' viewBox="0 0 350 500">
-				<g class='mapCharacter'>
-					<path fill="#191816" d="M294.214 7L69.004 60.556v350.339l21.454-5.102v25.562l225.209-53.554V27.462z"/>
+				<g className='mapCharacter'>
+					<path className="mapCharacter-highlight" d="M294.214 7L69.004 60.556v350.339l21.454-5.102v25.562l225.209-53.554V27.462z"/>
 					<linearGradient id="a" x1="182.9546" x2="182.9546" y1="-42.0649" y2="356.252" gradientUnits="userSpaceOnUse">
-						<stop offset="0" stop-color="#a3a3a3"/>
-						<stop offset=".2387" stop-color="#717171"/>
-						<stop offset=".4775" stop-color="#464646"/>
-						<stop offset=".6923" stop-color="#272727"/>
-						<stop offset=".8738" stop-color="#141414"/>
-						<stop offset="1" stop-color="#0d0d0d"/>
+						<stop offset="0" stopColor="#a3a3a3"/>
+						<stop offset=".2387" stopColor="#717171"/>
+						<stop offset=".4775" stopColor="#464646"/>
+						<stop offset=".6923" stopColor="#272727"/>
+						<stop offset=".8738" stopColor="#141414"/>
+						<stop offset="1" stopColor="#0d0d0d"/>
 					</linearGradient>
 					<path fill="url(#a)" d="M288.871 15.269L77.038 68.085v345.5l211.833-52.815z"/>
 					<linearGradient id="b" x1="203.1328" x2="203.1328" y1="29.1812" y2="450.5693" gradientUnits="userSpaceOnUse">
-						<stop offset="0" stop-color="#a3a3a3"/>
-						<stop offset="1" stop-color="#0d0d0d"/>
+						<stop offset="0" stopColor="#a3a3a3"/>
+						<stop offset="1" stopColor="#0d0d0d"/>
 					</linearGradient>
 					<path fill="url(#b)" d="M309.05 35.448L97.216 88.265v345.499l211.834-52.816z"/>
 					<linearGradient id="c" x1="189.6924" x2="196.3963" y1="32.7573" y2="70.7773" gradientUnits="userSpaceOnUse">
-						<stop offset="0" stop-color="#fff"/>
-						<stop offset="1" stop-color="#363636"/>
+						<stop offset="0" stopColor="#fff"/>
+						<stop offset="1" stopColor="#363636"/>
 					</linearGradient>
 					<path fill="url(#c)" d="M309.05 35.448l-20.179-20.179L77.038 68.085l20.178 20.18z"/>
 					<g>

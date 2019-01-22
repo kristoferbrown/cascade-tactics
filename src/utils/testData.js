@@ -8,35 +8,40 @@ import NeilMapRenderer from '../svgs/neilMapRenderer';
 export const testCharacters = [
 	{
 		meta: { charId: 0, name: 'Neil', fullName: 'Neil Armstrong', isCpuControlled: false },
-		attributes: { str: 2, fin: 2, per: 1, stm: 2, agi: 1, wil: 3, int: 1, cha: 3 },
+		attributes: { Strength: 2, Finesse: 2, Perception: 1, Stamina: 2, Agility: 1, Wits: 1, Willpower: 3, Intelligence: 1, Charisma: 3 },
+		status: { health: { upper: [3,4], lower: [4,4], main: [1,4], off: [3,4], legs: [4,4] } },
 		startingHex: { q: 2, r: 2, s: -4},
-		mapOffset: {x: -50, y: -12},
-		mapRenderer: (pixelLoc, isSelected) => <NeilMapRenderer isSelected={isSelected} height={15} className={'mapCharacter neilArm'} />,
+		mapOffset: {x: -49, y: -11.5},
+		mapRenderer: (pixelLoc, isSelected) => <NeilMapRenderer isSelected={isSelected} height={14} className={'mapCharacter neilArm'} />,
 		portraitRenderer: (<rect className={'characterPortrait'}></rect>)
 	},{
 		meta: { charId: 1, name: 'Buzz', fullName: 'Buzz Aldrin', isCpuControlled: false },
-		attributes: { str: 1, fin: 2, per: 1, stm: 1, agi: 2, wil: 2, int: 3, cha: 2 },
+		attributes: { Strength: 1, Finesse: 2, Perception: 1, Stamina: 1, Agility: 2, Wits: 1, Willpower: 2, Intelligence: 3, Charisma: 2 },
+		status: { health: { upper: [3,4], lower: [4,4], main: [1,4], off: [3,4], legs: [4,4] } },
 		startingHex: { q: 1, r: 3, s: -4},
 		mapOffset: {x: -50, y: -12},
-		mapRenderer: (pixelLoc, isSelected)  => <BuzzMapRenderer isSelected={isSelected} height={15} className={'mapCharacter buzzAld'} />,
+		mapRenderer: (pixelLoc, isSelected)  => <BuzzMapRenderer isSelected={isSelected} height={14} className={'mapCharacter buzzAld'} />,
 		portraitRenderer: (<rect className={'characterPortrait'}></rect>)
 	},{
-		meta: { charId: 2, name: 'Monolith', fullName: 'Monolith', isCpuControlled: true },
-		attributes: { str: 1, fin: 1, per: 1, stm: 1, agi: -1, wil: 1, int: 1, cha: 1 },
-		startingHex: { q: 9, r: 5, s: -14},
+		meta: { charId: 2, name: 'Monolith', fullName: 'Monolith', isCpuControlled: true, isHostile: true },
+		attributes: { Strength: 1, Finesse: 1, Perception: 1, Stamina: 1, Agility: -1, Wits: 1, Willpower: 1, Intelligence: 1, Charisma: 1 },
+		status: { health: { upper: [3,4], lower: [4,4], main: [1,4], off: [3,4], legs: [4,4] } },
+		startingHex: { q: 9, r: 3, s: -12},
 		mapOffset: {x: -51, y: -21},
 		mapRenderer: (pixelLoc, isSelected)  => <MonoMapRenderer isSelected={isSelected} height={25} className={'mapCharacter monolith'} />,
 		portraitRenderer: (<rect className={'characterPortrait'}></rect>)
 	},{
 		meta: { charId: 3, name: 'Mike', fullName: 'Michael Collins', isCpuControlled: false },
-		attributes: { str: 1, fin: 1, per: 3, stm: 2, agi: 2, wil: 1, int: 2, cha: 1 },
+		attributes: { Strength: 1, Finesse: 1, Perception: 3, Stamina: 2, Agility: 2, Wits: 2, Willpower: 1, Intelligence: 2, Charisma: 1 },
+		status: { health: { upper: [3,4], lower: [4,4], main: [1,4], off: [3,4], legs: [4,4] } },
 		startingHex: { q: 1, r: 1, s: -2},
-		mapOffset: {x: -50, y: -13},
-		mapRenderer: (pixelLoc, isSelected) => <MikeMapRenderer isSelected={isSelected} height={15} className={'mapCharacter mikeColl'} />,
+		mapOffset: {x: -51, y: -12},
+		mapRenderer: (pixelLoc, isSelected) => <MikeMapRenderer isSelected={isSelected} height={14} className={'mapCharacter mikeColl'} />,
 		portraitRenderer: (<rect className={'characterPortrait'}></rect>)
 	},{
 		meta: { charId: 4, name: 'Capcom', fullName: 'Capsule Command', isCpuControlled: true },
-		attributes: { str: 0, fin: 0, per: 3, stm: 0, agi: -1, wil: 2, int: 3, cha: 1 },
+		attributes: { Strength: 0, Finesse: 0, Perception: 3, Stamina: 0, Agility: -1, Wits: 3, Willpower: 2, Intelligence: 3, Charisma: 1 },
+		status: { health: { upper: [3,4], lower: [4,4], main: [1,4], off: [3,4], legs: [4,4] } },
 		startingHex: { q: 0, r: 0, s: 0},
 		mapOffset: {x: -50, y: -15},
 		mapRenderer: (pixelLoc, isSelected)  => <LemMapRenderer isSelected={isSelected} height={20} className={'mapCharacter capcom'} />,

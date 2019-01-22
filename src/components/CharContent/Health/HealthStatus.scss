@@ -1,0 +1,27 @@
+.healthStatus {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	max-height: 40px;
+	width: 90px;
+
+	.healthTrack {
+		background: #ccc;
+		height: 6px;
+		margin: 0 0 3px 0;
+		overflow: hidden;
+		width: 100%;
+	}
+
+	.healthTrack_halfTrack {
+		width: 45%;
+	}
+
+	.healthTrack_healthBar {
+		background: #c33;
+		height: 100%;
+		left: -5px;
+		position: relative;
+		transform: skewX(-45deg)
+	}
+}

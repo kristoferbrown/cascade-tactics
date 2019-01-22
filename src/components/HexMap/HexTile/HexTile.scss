@@ -14,7 +14,7 @@
 			stroke: #369;
 			stroke-width: 1;
 		}
-		&.hexTile_cpuControlled {
+		&.hexTile_hostile {
 			polygon {
 				stroke: #c32;
 			}
@@ -24,7 +24,7 @@
 	&.hexTile_inRange {
 		polygon {
 			cursor: pointer;
-			fill-opacity: 0.8;
+			fill-opacity: 0.6;
 		}
 		&:hover polygon {
 			fill: #7be3f6;

@@ -2,23 +2,74 @@
 	align-items: center;
 	background: #eee;
 	border-right: 1px solid #ccc;
-	box-shadow: 0px -6px 12px #000;
-	display: inline-flex;
+	display: flex;
+	flex-direction: column;
 	height: 150px;
-	justify-content: center;
+	position: relative;
 	transition: 0.6s ease-in-out;
 	transition-delay: 0.6s;
 	width: 120px;
 
 	&.turnItem_currentTurn {
-		color: #f00;
-		font-weight: bold;
 		height: 300px;
+		padding: 0 0 30px 0;
+		transform: skewY(-9deg);
 		width: 240px;
+		.turnItem_detailRow {
+			justify-content: space-around;
+		}
+		.turnItem_name {
+			color: #f00;
+			margin: 96px 0 0;
+		}
+		.turnItem_portrait {
+			height: 240px;
+			left: 30px;
+			top: -150px;
+			width: 180px;
+		}
 	}
 
 	&.turnItem_previousTurn {
-		height: 0px;
+		height: 300px;
 		width: 0px;
+		opacity: 0;
+		.turnItem_detailRow {
+			justify-content: space-around;
+		}
+		.turnItem_name {
+			opacity: 0;
+		}
+		.turnItem_portrait {
+			opacity: 0;
+			width: 0px;
+		}
+	}
+
+	.turnItem_detailRow {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: nowrap;
+		justify-content: center;
+		width: 100%;
+	}
+
+	.turnItem_name {
+		height: 24px;
+		margin: 33px 0 0;
+		transition: 0.6s ease-in-out;
+		transition-delay: 0.6s;
+	}
+
+	.turnItem_portrait {
+		background: #369;
+		border-radius: 33%;
+		height: 120px;
+		left: 15px;
+		position: absolute;
+		top: -90px;
+		transition: 0.6s ease-in-out;
+		transition-delay: 0.6s;
+		width: 90px;
 	}
 }
