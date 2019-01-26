@@ -4,7 +4,7 @@ import './InitTrack.scss';
 
 export default class InitTrack extends Component {
 	render() {
-		const { characters, currInit, currPhase } = this.props;
+		const { characters, currInit, currPhase, currSpeedCost } = this.props;
 		return (
 			<div className='initTrack'>
 				<InitPhase
@@ -12,6 +12,7 @@ export default class InitTrack extends Component {
 					currInit={currInit}
 					isCurrentPhase={true}
 					phase={currPhase}
+					currSpeedCost={currSpeedCost}
 				/>
 				<InitPhase
 					characters={characters}

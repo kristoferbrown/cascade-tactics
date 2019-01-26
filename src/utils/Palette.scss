@@ -1,5 +1,17 @@
-$strength: #FF0000;
-$finesse: #ce6700;
+// Neutrals
+$white: #FFFFFF;
+$nearWhite: #EEEEEE;
+$lightGray: #CCCCCC;
+$nearBlack: #333333;
+$black: #333333;
+
+// Accents
+$malusRed: #CC0000;
+$bonusGreen: #00CC22;
+
+// Attributes
+$strength: #A3042A;
+$finesse: #CE6700;
 $perception: #601D62;
 $stamina: #30394C;
 $agility: #B59718;
@@ -7,3 +19,25 @@ $wits: #1E9062;
 $willpower: #2D1182;
 $intelligence: #377C21;
 $charisma: #025EB2;
+
+// Shaded Attributes
+$strengthDark: #700F27;
+$finesseDark: #8A490D;
+$perceptionDark: #471E48;
+$staminaDark: #292F3A;
+$agilityDark: #7A651A;
+$witsDark: #206347;
+$willpowerDark: #2E0F71;
+$intelligenceDark: #2F5721;
+$charismaDark: #0F4578;
+
+// Tinted Attributes
+$strengthLight: #BF506C;
+$finesseLight: #DD954D;
+$perceptionLight: #8F6191;
+$staminaLight: #666E7D;
+$agilityLight: #CBB55E;
+$witsLight: #62B291;
+$willpowerLight: #7350C4;
+$intelligenceLight: #74A464;
+$charismaLight: #4E90C9;

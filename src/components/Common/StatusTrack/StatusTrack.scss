@@ -1,0 +1,64 @@
+@import '../../../utils/Palette.scss';
+
+.stausTrack {
+	background: $lightGray;
+	height: 9px;
+	margin: 0 0 3px 0;
+	overflow: hidden;
+	width: 100%;
+
+	&.isHalfTrack_halfTrack { width: 45%; }
+	&.stausTrack_strength {
+		.stausTrack_costBar { background: $strengthDark; }
+		.stausTrack_currentBar { background: $strength; }
+	}
+	&.stausTrack_finesse {
+		.stausTrack_costBar { background: $finesseDark; }
+		.stausTrack_currentBar { background: $finesse; }
+	}
+	&.stausTrack_perception {
+		.stausTrack_costBar { background: $perceptionDark; }
+		.stausTrack_currentBar { background: $perception; }
+	}
+	&.stausTrack_stamina {
+		.stausTrack_costBar { background: $staminaDark; }
+		.stausTrack_currentBar { background: $stamina; }
+	}
+	&.stausTrack_agility {
+		.stausTrack_costBar { background: $agilityDark; }
+		.stausTrack_currentBar { background: $agility; }
+	}
+	&.stausTrack_wits {
+		.stausTrack_costBar { background: $witsDark; }
+		.stausTrack_currentBar { background: $wits; }
+	}
+	&.stausTrack_willpower {
+		.stausTrack_costBar { background: $willpowerDark; }
+		.stausTrack_currentBar { background: $willpower; }
+	}
+	&.stausTrack_intelligence {
+		.stausTrack_costBar { background: $intelligenceDark; }
+		.stausTrack_currentBar { background: $intelligence; }
+	}
+	&.stausTrack_charisma {
+		.stausTrack_costBar { background: $charismaDark; }
+		.stausTrack_currentBar { background: $charisma; }
+	}
+
+	.stausTrack_costBar { background: $black; }
+	.stausTrack_currentBar { background: $nearBlack; }
+
+	.stausTrack_costBar,
+	.stausTrack_currentBar {
+		display: inline-block;
+		height: 100%;
+		transform: skewX(-45deg);
+	}
+
+	.stausTrack_innerBar {
+		display: flex;
+		height: 100%;
+		transform: scaleX(1.1);
+		width: 100%;
+	}
+}

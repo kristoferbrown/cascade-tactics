@@ -20,7 +20,7 @@
 		}
 		.turnItem_name {
 			color: #f00;
-			margin: 96px 0 0;
+			margin: 93px 0 6px 0;
 		}
 		.turnItem_portrait {
 			height: 240px;
@@ -46,6 +46,11 @@
 		}
 	}
 
+	.turnItem_detailLabel {
+		font-size: 12px;
+		text-align: center;
+	}
+
 	.turnItem_detailRow {
 		display: flex;
 		flex-direction: row;
@@ -55,6 +60,7 @@
 	}
 
 	.turnItem_name {
+		font-size: 22px;
 		height: 24px;
 		margin: 33px 0 0;
 		transition: 0.6s ease-in-out;

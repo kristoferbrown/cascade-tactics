@@ -3,6 +3,10 @@ import classNames from 'classnames';
 import './AttributeSquare.scss';
 
 export default class AttributeSquare extends Component {
+	shouldComponentUpdate(nextProps) {
+		return this.props.attributeScore !== nextProps.attributeScore;
+	}
+
 	render() {
 		const { attributeName, attributeScore } = this.props;
 		let dotArray = [];

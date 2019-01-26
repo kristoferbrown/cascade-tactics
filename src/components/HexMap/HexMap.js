@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { GridGenerator, HexGrid, HexUtils, Layout, Path } from 'react-hexgrid';
 import HexTile from './HexTile/HexTile';
+import MapMenu from '../MapMenu/MapMenu';
 import ObjectLayer from '../ObjectLayer/ObjectLayer';
 import './HexMap.scss';
 
@@ -12,6 +13,7 @@ export default class HexMap extends Component {
 
 		// Generate hex map and layout
 		const hexagonList = GridGenerator.orientedRectangle(18,15);
+		this.mapDefaults = { terrain: "Regolith" };
 		hexagonList[19].isBlocked = true;
 		hexagonList[12].isBlocked = true;
 		this.layoutProps = {
@@ -113,16 +115,21 @@ export default class HexMap extends Component {
 	}
 
 	computePath = (event, element, hex) => {
+		const { setSpeedCost } = this.props;
 		const { selectedHex } = this.state;
+		const newPathLength = HexUtils.distance(selectedHex, hex);
+		const hoveredHexLoc = event.currentTarget.getBoundingClientRect(0);
+		setSpeedCost(newPathLength);
 		this.setState({
 			hoveredHex: hex,
-			pathLength: HexUtils.distance(selectedHex, hex)
+			hoveredHexLoc: hoveredHexLoc,
+			pathLength: newPathLength,
 		});
 	}
 
 	render() {
 		const { currChar } = this.props;
-		const { hexList, hoveredHex, mapChars, selectedHex } = this.state;
+		const { hexList, hoveredHex, hoveredHexLoc, mapChars, pathLength, selectedHex } = this.state;
 		return (
 			<div className="hexMap">
 				<div className="hexMap_background">
@@ -138,7 +145,7 @@ export default class HexMap extends Component {
 
 							{ hexList.map(hex =>
 								<HexTile
-									clearPath={() => this.setState({hoveredHex: null})}
+									clearPath={() => this.setState({hoveredHex: null, hoveredHexLoc: null})}
 									contents={hex.contents}
 									hex={hex}
 									isBlocked={hex.isBlocked}
@@ -157,6 +164,7 @@ export default class HexMap extends Component {
 
 					</Layout>
 				</HexGrid>
+				<MapMenu currSpeedCost={pathLength} mapDefaults={this.mapDefaults} menuOrigin={ hoveredHexLoc } />
 				</div>
 			</div>
 		);

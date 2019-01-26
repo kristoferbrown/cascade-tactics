@@ -1,5 +1,6 @@
+@import '../../../utils/Palette.scss';
+
 .healthStatus {
-	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-between;
 	max-height: 40px;
@@ -18,7 +19,7 @@
 	}
 
 	.healthTrack_healthBar {
-		background: #c33;
+		background: $stamina;
 		height: 100%;
 		left: -5px;
 		position: relative;

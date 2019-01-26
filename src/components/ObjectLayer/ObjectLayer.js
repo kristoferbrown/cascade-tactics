@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Text } from 'react-hexgrid';
 import classNames from 'classnames';
 import './ObjectLayer.scss';
 
@@ -22,9 +21,6 @@ export default class ObjectLayer extends Component {
 						}}
 					>
 						{ character.mapRenderer(character.pixelLoc, character.meta.charId === currChar.meta.charId) }
-						{ false &&  character.meta.charId === currChar.meta.charId &&
-							<Text className="objectLayer_nameText">{character.meta.name}</Text>
-						}
 					</g>
 				)}
 			</g>

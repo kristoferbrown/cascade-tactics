@@ -11,7 +11,6 @@ export default class Nonogram extends Component {
 				'nonogram_container': true,
 				'nonogram_container_hidden': !isVisible
 			})}>
-				{console.log( )}
 				{Object.entries(attributes).map(attribute => (
 					<AttributeSquare key={`nonogram_${attribute[0]}`} attributeName={attribute[0]} attributeScore={attribute[1]} />
 				))}
