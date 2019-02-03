@@ -7,7 +7,7 @@
 	overflow: hidden;
 	width: 100%;
 
-	&.isHalfTrack_halfTrack { width: 45%; }
+	&.stausTrack_halfTrack { width: 45%; }
 	&.stausTrack_strength {
 		.stausTrack_costBar { background: $strengthDark; }
 		.stausTrack_currentBar { background: $strength; }
@@ -45,20 +45,41 @@
 		.stausTrack_currentBar { background: $charisma; }
 	}
 
-	.stausTrack_costBar { background: $black; }
-	.stausTrack_currentBar { background: $nearBlack; }
-
-	.stausTrack_costBar,
 	.stausTrack_currentBar {
-		display: inline-block;
+		background: $nearBlack;
 		height: 100%;
+		position: relative;
 		transform: skewX(-45deg);
+	}
+
+	.stausTrack_costBar {
+		animation: opacityPulse 0.6s infinite linear;
+		background: $black;
+		height: 100%;
+		position: absolute;
+		right: 0;
+	}
+
+	.stausTrack_costValue {
+		left: 40%;
+	}
+
+	.stausTrack_costValue,
+	.stausTrack_currentValue {
+		color: $white;
+		font-size: 9px;
+		position: absolute;
+		transform: skewX(45deg);
 	}
 
 	.stausTrack_innerBar {
 		display: flex;
 		height: 100%;
-		transform: scaleX(1.1);
+		transform: scaleX(1.2);
 		width: 100%;
 	}
+}
+
+@keyframes opacityPulse {
+	50% { background: $nearBlack;}
 }

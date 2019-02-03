@@ -10,6 +10,7 @@ export default class HexMap extends Component {
 		super(props);
 		const { characters } = this.props;
 		this.uncontrolledTurnTimer = null;
+		this.hexMapRef = React.createRef();
 
 		// Generate hex map and layout
 		const hexagonList = GridGenerator.orientedRectangle(18,15);
@@ -118,11 +119,16 @@ export default class HexMap extends Component {
 		const { setSpeedCost } = this.props;
 		const { selectedHex } = this.state;
 		const newPathLength = HexUtils.distance(selectedHex, hex);
-		const hoveredHexLoc = event.currentTarget.getBoundingClientRect(0);
+		const hoveredHexLocPreScroll = event.currentTarget.getBoundingClientRect(0);
+		const hoveredHexLocWithScroll = { 
+			height: hoveredHexLocPreScroll.height,
+			right: hoveredHexLocPreScroll.right + this.hexMapRef.current.scrollLeft,
+			top: hoveredHexLocPreScroll.top + this.hexMapRef.current.scrollTop
+		};
 		setSpeedCost(newPathLength);
 		this.setState({
 			hoveredHex: hex,
-			hoveredHexLoc: hoveredHexLoc,
+			hoveredHexLoc: hoveredHexLocWithScroll,
 			pathLength: newPathLength,
 		});
 	}
@@ -131,7 +137,7 @@ export default class HexMap extends Component {
 		const { currChar } = this.props;
 		const { hexList, hoveredHex, hoveredHexLoc, mapChars, pathLength, selectedHex } = this.state;
 		return (
-			<div className="hexMap">
+			<div className="hexMap" ref={this.hexMapRef}>
 				<div className="hexMap_background">
 				<HexGrid width={'2100px'} height={'1200px'} viewBox="0 0 100 100">
 					<Layout {...this.layoutProps}>
@@ -164,7 +170,9 @@ export default class HexMap extends Component {
 
 					</Layout>
 				</HexGrid>
+
 				<MapMenu currSpeedCost={pathLength} mapDefaults={this.mapDefaults} menuOrigin={ hoveredHexLoc } />
+
 				</div>
 			</div>
 		);

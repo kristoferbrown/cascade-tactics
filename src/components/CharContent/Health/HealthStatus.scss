@@ -1,6 +1,7 @@
 @import '../../../utils/Palette.scss';
 
 .healthStatus {
+	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-between;
 	max-height: 40px;
@@ -8,7 +9,7 @@
 
 	.healthTrack {
 		background: #ccc;
-		height: 6px;
+		height: 9px;
 		margin: 0 0 3px 0;
 		overflow: hidden;
 		width: 100%;

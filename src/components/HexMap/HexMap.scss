@@ -1,6 +1,7 @@
 .hexMap {
 	height: 100%;
 	overflow: scroll;
+	position: relative;
 	width: 100%;
 	&::-webkit-scrollbar {
 		display: none;
