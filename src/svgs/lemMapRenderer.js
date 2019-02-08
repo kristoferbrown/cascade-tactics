@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 export default class LemMapRenderer extends Component {
-	shouldComponentUpdate() { return false; }
+	shouldComponentUpdate(nextProps) { return this.props.isSelected !== nextProps.isSelected; }
 	render() {
 		const { height, width } = this.props;
 		return (

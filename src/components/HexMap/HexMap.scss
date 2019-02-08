@@ -1,3 +1,5 @@
+@import '../../utils/Palette.scss';
+
 .hexMap {
 	height: 100%;
 	overflow: scroll;
@@ -18,11 +20,35 @@
 		margin: 0 0 100px 0;
 	}
 
-	.hexMap_movePath path {
-		fill: none;
-		stroke: #369;
-		stroke-width: 3;
-		stroke-linecap: round;
-		stroke-linejoin: round;
+	.hexMap_movePath {
+		&.hexMap_movePath_animating {
+			path {
+				animation: movePathFill 0.6s linear forwards;
+				stroke-dasharray: 90;
+				stroke-dashoffset: 90;
+			}
+		}
+		path {
+			fill: none;
+			stroke: $allyBlue;
+			stroke-width: 2;
+			stroke-linecap: flat;
+			stroke-linejoin: round;
+			animation: movePathDashes 6s infinite linear;
+			stroke-dasharray: 5 2;
+			stroke-dashoffset: 200;
+		}
+	}
+}
+
+@keyframes movePathDashes {
+	to {
+		stroke-dashoffset: 100;
+	}
+}
+
+@keyframes movePathFill {
+	to {
+		stroke-dashoffset: 0;
 	}
 }

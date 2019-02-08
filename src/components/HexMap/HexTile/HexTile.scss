@@ -1,3 +1,5 @@
+@import '../../../utils/Palette.scss';
+
 .hexTile {
 	&.hexTile_blocked polygon {
 		fill-opacity: 0.1;
@@ -9,26 +11,33 @@
 
 	&.hexTile_selected {
 		polygon {
-			fill: #fff;
+			cursor: pointer;
+			fill: $white;
 			fill-opacity: 1;
-			stroke: #369;
-			stroke-width: 1;
+			stroke: $allyBlue;
+			stroke-width: 0.75;
 		}
 		&.hexTile_hostile {
 			polygon {
-				stroke: #c32;
+				stroke: $malusRed;
 			}
 		}
 	}
 
+
+
 	&.hexTile_inRange {
+
+		&.hexTile_hovered {
+			polygon {
+				fill: $white;
+				fill-opacity: 0.9;
+			}
+		}
+
 		polygon {
 			cursor: pointer;
 			fill-opacity: 0.5;
-		}
-		&:hover polygon {
-			fill: #fff;
-			fill-opacity: 1;
 		}
 	}
 

@@ -61,8 +61,10 @@ export default class HexMap extends Component {
 			mapChars: mapCharacters,
 			hexList: hexagonList, // Array of all hexes
 			hoveredHex: null, // Coords of last hovered hex
+			hoveredHexLoc: null,
 			pathLength: 0, // Length of path from selected hex to target hex
 			selectedHex: firstSelectedHex, // Currently active hex
+			targetedHex: null
 		}
 	}
 
@@ -77,6 +79,24 @@ export default class HexMap extends Component {
 
 	componentWillUnmount() {
 		clearTimeout(this.uncontrolledTurnTimer);
+	}
+
+	computePath = (event, element, hex) => {
+		const { setSpeedCost } = this.props;
+		const { selectedHex } = this.state;
+		const newPathLength = HexUtils.distance(selectedHex, hex);
+		const hoveredHexLocPreScroll = event.currentTarget.getBoundingClientRect(0);
+		const hoveredHexLocWithScroll = { 
+			height: hoveredHexLocPreScroll.height,
+			right: hoveredHexLocPreScroll.right + this.hexMapRef.current.scrollLeft,
+			top: hoveredHexLocPreScroll.top + this.hexMapRef.current.scrollTop
+		};
+		setSpeedCost(newPathLength);
+		this.setState({
+			hoveredHex: hex,
+			hoveredHexLoc: hoveredHexLocWithScroll,
+			pathLength: newPathLength,
+		});
 	}
 
 	moveOrSelectNewHex = (event, element, hex, selectOnly) => {
@@ -111,67 +131,73 @@ export default class HexMap extends Component {
 		this.setState({
 			hexList: newHexList,
 			hoveredHex: null,
-			selectedHex: newSelectedHex
+			hoveredHexLoc: null,
+			selectedHex: newSelectedHex,
+			targetedHex: null
 		});
 	}
 
-	computePath = (event, element, hex) => {
-		const { setSpeedCost } = this.props;
-		const { selectedHex } = this.state;
-		const newPathLength = HexUtils.distance(selectedHex, hex);
-		const hoveredHexLocPreScroll = event.currentTarget.getBoundingClientRect(0);
-		const hoveredHexLocWithScroll = { 
-			height: hoveredHexLocPreScroll.height,
-			right: hoveredHexLocPreScroll.right + this.hexMapRef.current.scrollLeft,
-			top: hoveredHexLocPreScroll.top + this.hexMapRef.current.scrollTop
-		};
-		setSpeedCost(newPathLength);
+	targetHex = (event, element, hex) => {
+		this.computePath(event, element, hex);
 		this.setState({
-			hoveredHex: hex,
-			hoveredHexLoc: hoveredHexLocWithScroll,
-			pathLength: newPathLength,
+			targetedHex: hex
 		});
 	}
 
 	render() {
 		const { currChar } = this.props;
-		const { hexList, hoveredHex, hoveredHexLoc, mapChars, pathLength, selectedHex } = this.state;
+		const { hexList, hoveredHex, hoveredHexLoc, mapChars, pathLength, selectedHex, targetedHex } = this.state;
 		return (
 			<div className="hexMap" ref={this.hexMapRef}>
 				<div className="hexMap_background">
 				<HexGrid width={'2100px'} height={'1200px'} viewBox="0 0 100 100">
 					<Layout {...this.layoutProps}>
 
-						<g>
-							{ hoveredHex && 
-								<g className="hexMap_movePath">
-									<Path start={selectedHex} end={hoveredHex} />
-								</g>
-							}
+						{ hoveredHex && !targetedHex &&
+							<g className="hexMap_movePath">
+								<Path start={selectedHex} end={hoveredHex} />
+							</g>
+						}
 
+						<g>
 							{ hexList.map(hex =>
 								<HexTile
-									clearPath={() => this.setState({hoveredHex: null, hoveredHexLoc: null})}
+									clearPath={() => this.setState({hoveredHex: null, hoveredHexLoc: null, targetedHex: null})}
 									contents={hex.contents}
 									hex={hex}
 									isBlocked={hex.isBlocked}
 									isCpuControlled={hex.contents && hex.contents.meta.isCpuControlled}
 									isHostile={hex.contents && hex.contents.meta.isHostile}
 									isInRange={HexUtils.distance(selectedHex, hex) <= currChar.attributes.Agility+1}
-									isSelected={HexUtils.equals(hex, selectedHex)}
+									isHovered={hoveredHex && HexUtils.equals(hex, hoveredHex)}
 									key={`hex-${hex.q}-${hex.r}-${hex.s}`}
-									onViableClick={this.moveOrSelectNewHex}
+									onTarget={this.targetHex}
 									onViableHover={this.computePath}
+									targetedHex={targetedHex}
 								/>
 							)}
 						</g>
+
+						{ targetedHex && 
+							<g className="hexMap_movePath hexMap_movePath_animating">
+								<Path start={selectedHex} end={targetedHex} />
+								<HexTile isTargeted clearPath={() =>{}} hex={targetedHex} onMoveOrSelectNewHex={this.moveOrSelectNewHex} />
+							</g>
+						}
+
+						<HexTile isSelected clearPath={() =>{}} hex={selectedHex} />
 
 						<ObjectLayer characters={mapChars} currChar={currChar} />
 
 					</Layout>
 				</HexGrid>
 
-				<MapMenu currSpeedCost={pathLength} mapDefaults={this.mapDefaults} menuOrigin={ hoveredHexLoc } />
+				<MapMenu
+					currSpeedCost={pathLength}
+					mapDefaults={this.mapDefaults}
+					menuOrigin={hoveredHexLoc}
+					targetedHex={targetedHex}
+				/>
 
 				</div>
 			</div>

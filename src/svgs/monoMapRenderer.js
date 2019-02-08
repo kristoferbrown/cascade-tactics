@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 export default class MonoMapRenderer extends Component {
-	shouldComponentUpdate() { return this.props.isSelected; }
+	shouldComponentUpdate(nextProps) { return this.props.isSelected !== nextProps.isSelected; }
 	render() {
 		const { height, width } = this.props;
 		return (
