@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 
-export default class NeilMapRenderer extends Component {
-	shouldComponentUpdate(nextProps) { return this.props.isSelected !== nextProps.isSelected; }
+export default class NeilMapRenderer extends PureComponent {
+	//shouldComponentUpdate(nextProps) { return this.props.isSelected !== nextProps.isSelected; }
 	render() {
 		const { height, width } = this.props;
 		return (

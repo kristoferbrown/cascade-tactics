@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import classNames from 'classnames';
 import { CSSTransition } from 'react-transition-group';
+import ActionList from './ActionList/ActionList'
 import './MapMenu.scss';
 
 export default class MapMenu extends Component {
@@ -21,8 +22,9 @@ export default class MapMenu extends Component {
 						className='mapMenu'
 						style={{
 							transform: `
-								translate(${menuOrigin.right+5}px)
+								translateX(${menuOrigin.right+5}px)
 								translateY(${menuOrigin.top}px)
+								translateZ(0)
 							`
 						}}
 					>
@@ -46,9 +48,7 @@ export default class MapMenu extends Component {
 						>
 							{ state => (
 								<div className='mapMenuContent'>
-									<div className='mapMenuContent_placeholderAction' />
-									<div className='mapMenuContent_placeholderAction' />
-									<div className='mapMenuContent_placeholderAction' />
+									<ActionList targetedHex={targetedHex} />
 									<div className='mapMenuContent_shadowMask' />
 								</div>
 							)}

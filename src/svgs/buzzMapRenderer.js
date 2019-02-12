@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 
-export default class BuzzMapRenderer extends Component {
-	shouldComponentUpdate(nextProps) { return this.props.isSelected !== nextProps.isSelected; }
+export default class BuzzMapRenderer extends PureComponent {
+	//shouldComponentUpdate(nextProps) { return this.props.isSelected !== nextProps.isSelected; }
 
 	render() {
 		const { height, width } = this.props;

@@ -1,22 +1,18 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { GridGenerator, HexGrid, HexUtils, Layout, Path } from 'react-hexgrid';
+import CharacterContext from '../../context/CharacterContext';
 import HexTile from './HexTile/HexTile';
 import MapMenu from '../MapMenu/MapMenu';
 import ObjectLayer from '../ObjectLayer/ObjectLayer';
 import './HexMap.scss';
 
-export default class HexMap extends Component {
+export default class HexMap extends PureComponent {
+	static contextType = CharacterContext;
 	constructor(props) {
 		super(props);
-		const { characters } = this.props;
+
 		this.uncontrolledTurnTimer = null;
 		this.hexMapRef = React.createRef();
-
-		// Generate hex map and layout
-		const hexagonList = GridGenerator.orientedRectangle(18,15);
-		this.mapDefaults = { terrain: "Regolith" };
-		hexagonList[19].isBlocked = true;
-		hexagonList[12].isBlocked = true;
 		this.layoutProps = {
 			flat: true,
 			orientation: {
@@ -35,11 +31,29 @@ export default class HexMap extends Component {
 			spacing: 1.03
 		};
 
+		this.state = {
+			hexList: null, // Array of all hexes
+			hoveredHex: null, // Last hovered hex
+			hoveredHexLoc: null, // Pixel coords of last hovered hex
+			pathLength: 0, // Length of path from selected hex to target hex
+			selectedHex: null, // Current origin hex, occupied by current character
+			targetedHex: null // Desitation hex targeted by click
+		}
+	}
+
+	componentDidMount() {
+		const { characters, setCharacterLocation } = this.context;
+
+		// Generate map
+		let hexagonList = GridGenerator.orientedRectangle(18,15);
+		this.mapDefaults = { terrain: "Regolith" };
+		hexagonList[19].isBlocked = true;
+		hexagonList[12].isBlocked = true;
+
 		// Assign characters to starting positions
 		let charactersAssigned = 0;
 		let firstSelectedHex = null;
-		let mapCharacters = [];
-		hexagonList.map( hex => {
+		hexagonList = hexagonList.map( hex => {
 			if (characters.length <= charactersAssigned) { return hex; }
 			characters.forEach( (character, index) => {
 				if (character.startingHex && HexUtils.equals(hex, character.startingHex)) {
@@ -47,25 +61,16 @@ export default class HexMap extends Component {
 						firstSelectedHex = hex;
 					}
 					const pixelLoc = HexUtils.hexToPixel(hex, this.layoutProps);
-					mapCharacters.push({
-						pixelLoc: pixelLoc,
-						...character
-					});
-					hex.contents = character;
+					hex.contents = setCharacterLocation(character.meta.charId, pixelLoc);
 					charactersAssigned++;
 				}
 			});
 			return hex;
 		});
-		this.state = {
-			mapChars: mapCharacters,
-			hexList: hexagonList, // Array of all hexes
-			hoveredHex: null, // Coords of last hovered hex
-			hoveredHexLoc: null,
-			pathLength: 0, // Length of path from selected hex to target hex
-			selectedHex: firstSelectedHex, // Currently active hex
-			targetedHex: null
-		}
+		this.setState({
+			hexList: hexagonList,
+			selectedHex: firstSelectedHex
+		});
 	}
 
 	componentDidUpdate(prevProps) {
@@ -99,31 +104,32 @@ export default class HexMap extends Component {
 		});
 	}
 
-	moveOrSelectNewHex = (event, element, hex, selectOnly) => {
-		const { incrementInit } = this.props;
-		const { hexList, mapChars, selectedHex } = this.state;
+	moveAndEndTurn = (event, element, hex) => {
+		//
+	}
 
+	moveToTargetHex = (event, element, hex) => {
+		const { hexList, selectedHex } = this.state;
+		const { currentCharacter, deductSpeed, setCharacterLocation } = this.context;
+
+		const distanceMoved = HexUtils.distance(selectedHex, hex);
 		let newHexList = [...hexList];
 		let newHexClicked = {...hex};
-		let newMapChars = [...mapChars];
-		let nextCharacter = incrementInit();
 		let newSelectedHex = null;
 		newHexList = newHexList.map(hex => {
 			let newHex = {...hex};
-			if (!selectOnly && HexUtils.equals(newHex, selectedHex)) {
-				newHex.contents = null; // Clear source hex contents
-			} else if (!selectOnly && HexUtils.equals(newHex, newHexClicked)) {
+			if (HexUtils.equals(newHex, selectedHex)) {
+				// Clear source hex contents
+				newHex.contents = null;
+			} else if (HexUtils.equals(newHex, newHexClicked)) {
+				// Move contents to target hex
 				newHexClicked.contents = selectedHex.contents;
-				newHex.contents = selectedHex.contents; // Move contents to target hex
-				newMapChars.map(char => {
-					if (char.meta.charId === selectedHex.contents.meta.charId) {
-						const newPixelLoc = HexUtils.hexToPixel(newHex, this.layoutProps);
-						char.pixelLoc = newPixelLoc;
-					}
-					return char;
-				});
-			} else if (newHex.contents && newHex.contents.meta.charId === nextCharacter.meta.charId) {
-				newSelectedHex = newHex; // Find next selected hex
+				newHex.contents = selectedHex.contents;
+				newSelectedHex = newHex;
+				// Calculate position for cur char's sprite
+				const newPixelLoc = HexUtils.hexToPixel(newHex, this.layoutProps);
+				setCharacterLocation(currentCharacter.meta.charId, newPixelLoc);
+				deductSpeed(currentCharacter.meta.charId, distanceMoved);
 			}
 			return newHex;
 		});
@@ -144,9 +150,14 @@ export default class HexMap extends Component {
 		});
 	}
 
+	selectOriginHex = (event, element, hex) => {
+
+	}
+
 	render() {
-		const { currChar } = this.props;
-		const { hexList, hoveredHex, hoveredHexLoc, mapChars, pathLength, selectedHex, targetedHex } = this.state;
+		const { hexList, hoveredHex, hoveredHexLoc, pathLength, selectedHex, targetedHex } = this.state;
+		const { currentCharacter } = this.context;
+
 		return (
 			<div className="hexMap" ref={this.hexMapRef}>
 				<div className="hexMap_background">
@@ -160,7 +171,7 @@ export default class HexMap extends Component {
 						}
 
 						<g>
-							{ hexList.map(hex =>
+							{ !!hexList && hexList.map(hex => 
 								<HexTile
 									clearPath={() => this.setState({hoveredHex: null, hoveredHexLoc: null, targetedHex: null})}
 									contents={hex.contents}
@@ -168,8 +179,7 @@ export default class HexMap extends Component {
 									isBlocked={hex.isBlocked}
 									isCpuControlled={hex.contents && hex.contents.meta.isCpuControlled}
 									isHostile={hex.contents && hex.contents.meta.isHostile}
-									isInRange={HexUtils.distance(selectedHex, hex) <= currChar.attributes.Agility+1}
-									isHovered={hoveredHex && HexUtils.equals(hex, hoveredHex)}
+									isInRange={HexUtils.distance(selectedHex, hex) <= currentCharacter.currentRange}
 									key={`hex-${hex.q}-${hex.r}-${hex.s}`}
 									onTarget={this.targetHex}
 									onViableHover={this.computePath}
@@ -178,16 +188,22 @@ export default class HexMap extends Component {
 							)}
 						</g>
 
-						{ targetedHex && 
+						{ !!targetedHex && 
 							<g className="hexMap_movePath hexMap_movePath_animating">
 								<Path start={selectedHex} end={targetedHex} />
-								<HexTile isTargeted clearPath={() =>{}} hex={targetedHex} onMoveOrSelectNewHex={this.moveOrSelectNewHex} />
+								<HexTile 
+									isTargeted clearPath={() =>{}}
+									hex={targetedHex} 
+									onMoveOrSelectNewHex={this.moveToTargetHex}
+								/>
 							</g>
 						}
 
-						<HexTile isSelected clearPath={() =>{}} hex={selectedHex} />
+						{ !!selectedHex &&
+							<HexTile isSelected clearPath={() =>{}} hex={selectedHex} />
+						}
 
-						<ObjectLayer characters={mapChars} currChar={currChar} />
+						<ObjectLayer />
 
 					</Layout>
 				</HexGrid>

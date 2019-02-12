@@ -41,7 +41,6 @@ export default class CombatScreen extends Component {
 		return (
 			<div className="combatScreen">
 				<HexMap
-					characters={testCharacters}
 					currChar={currChar}
 					incrementInit={this.incrementInit}
 					setSpeedCost={cost => {this.setState({currSpeedCost: cost})}}

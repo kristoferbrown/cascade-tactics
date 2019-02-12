@@ -1,0 +1,12 @@
+@import '../../../utils/Palette.scss';
+
+.actionList {
+	.actionList_actionItem {
+		background: $white;
+		cursor: pointer;
+		height: 30px;
+		margin: 6px;
+		position: relative;
+		z-index: 3;
+	}
+}

@@ -28,7 +28,7 @@
 
 	&.hexTile_inRange {
 
-		&.hexTile_hovered {
+		&:hover {
 			polygon {
 				fill: $white;
 				fill-opacity: 0.9;

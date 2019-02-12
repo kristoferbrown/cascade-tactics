@@ -23,7 +23,7 @@
 	.hexMap_movePath {
 		&.hexMap_movePath_animating {
 			path {
-				animation: movePathFill 0.6s linear forwards;
+				animation: movePathFill 0.6s ease forwards;
 				stroke-dasharray: 90;
 				stroke-dashoffset: 90;
 			}

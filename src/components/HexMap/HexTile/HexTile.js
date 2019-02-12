@@ -6,8 +6,8 @@ import './HexTile.scss';
 
 export default class HexTile extends Component {
 	shouldComponentUpdate(nextProps) {
-		const {isHovered, isInRange, isSelected, isTargeted} = this.props;
-		return (isInRange !== nextProps.isInRange || !!isHovered || !!nextProps.isHovered || isSelected || nextProps.isSelected || !!isTargeted || !!nextProps.isTargeted);
+		const {isInRange, isSelected, isTargeted} = this.props;
+		return (isInRange !== nextProps.isInRange || isSelected || nextProps.isSelected || !!isTargeted || !!nextProps.isTargeted /*|| !!isHovered || !!nextProps.isHovered ||*/);
 	}
 
 	onHexClick(event, element, hex) {
@@ -34,7 +34,7 @@ export default class HexTile extends Component {
 	}
 
 	render() {
-		const { contents, hex, isBlocked, isCpuControlled, isHostile, isHovered, isInRange, isSelected, isTargeted } = this.props;
+		const { contents, hex, isBlocked, isCpuControlled, isHostile, isInRange, isSelected, isTargeted } = this.props;
 		return (
 			<Hexagon
 				q={hex.q} r={hex.r} s={hex.s}
@@ -45,7 +45,6 @@ export default class HexTile extends Component {
 					'hexTile_blocked': isBlocked,
 					'hexTile_cpuControlled': isCpuControlled,
 					'hexTile_hostile': isHostile,
-					'hexTile_hovered': isHovered,
 					'hexTile_occupied': contents,
 					'hexTile_selected': (isSelected || isTargeted),
 					'hexTile_inRange': (isInRange && !contents && !isBlocked && !isSelected && !isTargeted)

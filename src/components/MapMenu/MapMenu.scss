@@ -25,7 +25,6 @@
 	}
 
 	.mapMenu_labelRow {
-		//box-shadow: 0px 0px 9px 3px $black;
 		padding: 6px;
 		transform: skewY(-9deg);
 		z-index: 1;
@@ -33,11 +32,12 @@
 
 	.mapMenu_shadowMask {
 		background: $nearWhite;
+		box-shadow: 0px 0px 9px 3px $black;
 		height: 100px;
 		left: 0;
 		position: absolute;
 		top: 0;
-		transform: scaleY(0.35);
+		transform: scaleY(0.32);
 		transform-origin: 0 0;
 		transition: transform 0.3s ease;
 		transition-delay: 0.5s;
@@ -73,14 +73,6 @@
 		.mapMenuContent_shadowMask {
 			opacity: 1;
 		}
-	}
-
-	.mapMenuContent_placeholderAction {
-		background: $white;
-		height: 30px;
-		margin: 6px;
-		position: relative;
-		z-index: 3;
 	}
 
 	.mapMenuContent_shadowMask {
