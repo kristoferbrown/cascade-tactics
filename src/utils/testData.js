@@ -13,7 +13,7 @@ import NeilPortrait from '../svgs/portraits/neilPortrait';
 export const testCharacters = [
 	{
 		meta: { charId: 0, name: 'Neil', fullName: 'Neil Armstrong', isCpuControlled: false },
-		attributes: { Strength: 2, Finesse: 2, Perception: 1, Stamina: 2, Agility: 1, Wits: 1, Willpower: 3, Intelligence: 1, Charisma: 3 },
+		attributes: { Strength: 2, Finesse: 2, Perception: 1, Stamina: 2, Agility: 3, Wits: 1, Willpower: 3, Intelligence: 1, Charisma: 3 },
 		status: { 
 			health: { upper: [3,4], lower: [4,4], main: [1,4], off: [3,4], legs: [4,4] },
 			speed: { current: 3 }
@@ -29,7 +29,7 @@ export const testCharacters = [
 			health: { upper: [3,4], lower: [4,4], main: [1,4], off: [3,4], legs: [4,4] },
 			speed: { current: 4 }
 		},
-		startingHex: { q: 1, r: 3, s: -4},
+		startingHex: { q: 3, r: -1, s: -2},
 		mapOffset: {x: -50, y: -12},
 		mapRenderer: (pixelLoc, isSelected)  => <BuzzMapRenderer isSelected={isSelected} height={14} className={'mapCharacter buzzAld'} />,
 		portraitRenderer: () => <BuzzPortrait />,
@@ -51,7 +51,7 @@ export const testCharacters = [
 			health: { upper: [3,4], lower: [4,4], main: [1,4], off: [3,4], legs: [4,4] },
 			speed: { current: 6 }
 		},
-		startingHex: { q: 1, r: 1, s: -2},
+		startingHex: { q: 0, r: 3, s: -3},
 		mapOffset: {x: -51, y: -12},
 		mapRenderer: (pixelLoc, isSelected) => <MikeMapRenderer isSelected={isSelected} height={14} className={'mapCharacter mikeColl'} />,
 		portraitRenderer: () => <MikePortrait />

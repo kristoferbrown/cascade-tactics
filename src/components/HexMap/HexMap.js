@@ -32,6 +32,7 @@ export default class HexMap extends PureComponent {
 		};
 
 		this.state = {
+			aiTurnInProgress: false,
 			hexList: null, // Array of all hexes
 			hoveredHex: null, // Last hovered hex
 			hoveredHexLoc: null, // Pixel coords of last hovered hex
@@ -74,10 +75,14 @@ export default class HexMap extends PureComponent {
 	}
 
 	componentDidUpdate(prevProps) {
-		const { currChar } = this.props;
-		if (!prevProps.currChar.meta.isCpuControlled && currChar.meta.isCpuControlled) {
+		const { aiTurnInProgress } = this.state;
+		const { currentCharacter } = this.context;
+
+		if (currentCharacter.meta.isCpuControlled && !aiTurnInProgress) {
+			this.setState({aiTurnInProgress: true});
 			this.uncontrolledTurnTimer = setTimeout(() => {
 				this.moveOrSelectNewHex(null, null, this.state.selectedHex, true);
+				this.setState({aiTurnInProgress: false});
 			}, 2400);
 		}
 	}
@@ -104,11 +109,21 @@ export default class HexMap extends PureComponent {
 		});
 	}
 
+	endTurn = () => {
+		const { currentCharacter, incrementInit } = this.context;
+		console.log('ending turn now...');
+		const nextCharacter = incrementInit();
+		this.selectOriginHex(nextCharacter.currentHexLoc);
+
+	}
+
 	moveAndEndTurn = (event, element, hex) => {
-		//
+		this.moveToTargetHex(event, element, hex);
+		this.endTurn();
 	}
 
 	moveToTargetHex = (event, element, hex) => {
+		const { setSpeedCost } = this.props;
 		const { hexList, selectedHex } = this.state;
 		const { currentCharacter, deductSpeed, setCharacterLocation } = this.context;
 
@@ -126,10 +141,11 @@ export default class HexMap extends PureComponent {
 				newHexClicked.contents = selectedHex.contents;
 				newHex.contents = selectedHex.contents;
 				newSelectedHex = newHex;
-				// Calculate position for cur char's sprite
+				// Calculate position for curr char's sprite
 				const newPixelLoc = HexUtils.hexToPixel(newHex, this.layoutProps);
-				setCharacterLocation(currentCharacter.meta.charId, newPixelLoc);
+				setCharacterLocation(currentCharacter.meta.charId, newPixelLoc, newHexClicked);
 				deductSpeed(currentCharacter.meta.charId, distanceMoved);
+				setSpeedCost(0);
 			}
 			return newHex;
 		});
@@ -150,8 +166,9 @@ export default class HexMap extends PureComponent {
 		});
 	}
 
-	selectOriginHex = (event, element, hex) => {
-
+	selectOriginHex = (hex) => {
+		console.log('selecting origin of...', hex)
+		this.setState({selectedHex: hex});
 	}
 
 	render() {
@@ -209,6 +226,7 @@ export default class HexMap extends PureComponent {
 				</HexGrid>
 
 				<MapMenu
+					moveAndEndTurn={this.moveAndEndTurn}
 					currSpeedCost={pathLength}
 					mapDefaults={this.mapDefaults}
 					menuOrigin={hoveredHexLoc}

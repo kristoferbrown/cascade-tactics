@@ -18,7 +18,7 @@ export default class ActionList extends Component {
 	//}
 
 	calibrateActionList() {
-		const { targetedHex } = this.props;
+		const { moveAndEndTurn, targetedHex } = this.props;
 		let newActionList = [];
 		if (!!targetedHex && !targetedHex.contents) {
 			// Space is empty, show basic movement actions
@@ -28,7 +28,7 @@ export default class ActionList extends Component {
 			});
 			newActionList.push({
 				name: 'End Turn Here',
-				actionMethod: () => {console.log('Ending turn at', targetedHex)}
+				actionMethod: () => {moveAndEndTurn(null, null, targetedHex)}
 			});
 		}
 		this.setState({availableActions: newActionList});

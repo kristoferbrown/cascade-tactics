@@ -6,20 +6,11 @@ import './ObjectLayer.scss';
 export default class ObjectLayer extends PureComponent {
 	static contextType = CharacterContext;
 
-	componentDidMount() {
-		console.log('objectlayer mounted', this.context.characters)
-	}
-
-	componentDidUpdate() {
-		console.log('objectlayer updated', this.context.characters)
-	}
-
 	render() {
 		const { characters, currentCharacter } = this.context;
 		return (
 			<g className="objectLayer">
 				{characters.map(character => {
-					console.log('objectlayer rendering', character)
 					return character.pixelLoc ? (
 						<g
 							className={classNames({

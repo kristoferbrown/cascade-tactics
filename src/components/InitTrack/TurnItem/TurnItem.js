@@ -47,7 +47,7 @@ export default class TurnItem extends Component {
 									<StatusTrack
 										attribute="Agility"
 										cost={currSpeedCost}
-										current={character.status.speed.current}
+										current={character.currentSpeed}
 										maximum={character.attributes.Agility+3}
 									/>
 								</div>
@@ -57,7 +57,6 @@ export default class TurnItem extends Component {
 									<div className='turnItem_detailLabel'>Entanglement</div>
 									<StatusTrack
 										attribute="Willpower"
-										//cost={currSpeedCost}
 										current={character.attributes.Willpower+3}
 										maximum={character.attributes.Willpower+3}
 									/>

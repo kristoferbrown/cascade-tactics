@@ -50,6 +50,7 @@
 		height: 100%;
 		position: relative;
 		transform: skewX(-45deg);
+		transition: 0.3s ease;
 	}
 
 	.stausTrack_costBar {
@@ -58,6 +59,7 @@
 		height: 100%;
 		position: absolute;
 		right: 0;
+		transition: 0.3s ease;
 	}
 
 	.stausTrack_costValue {

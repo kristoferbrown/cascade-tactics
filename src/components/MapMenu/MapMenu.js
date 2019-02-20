@@ -6,7 +6,7 @@ import './MapMenu.scss';
 
 export default class MapMenu extends Component {
 	render() {
-		const { currSpeedCost, mapDefaults, menuOrigin, targetedHex } = this.props;
+		const { currSpeedCost, mapDefaults, menuOrigin, moveAndEndTurn, targetedHex } = this.props;
 		return (
 			 !!menuOrigin ? (
 			<CSSTransition
@@ -48,8 +48,7 @@ export default class MapMenu extends Component {
 						>
 							{ state => (
 								<div className='mapMenuContent'>
-									<ActionList targetedHex={targetedHex} />
-									<div className='mapMenuContent_shadowMask' />
+									<ActionList targetedHex={targetedHex} moveAndEndTurn={moveAndEndTurn} />
 								</div>
 							)}
 						</CSSTransition>
