@@ -7,25 +7,16 @@ export default class CombatScreen extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			currInit: 0, // Current turn in the current phase
-			currPhase: 0, // Current phase in the current round
-			currRound: 0, // Current combat round
 			currSpeedCost: 0, // Speed cost of currently selected action
 		}
 	}
 
 	render() {
-		const { currInit, currPhase, currSpeedCost } = this.state;
+		const { currSpeedCost } = this.state;
 		return (
 			<div className="combatScreen">
-				<HexMap
-					setSpeedCost={cost => {this.setState({currSpeedCost: cost})}}
-				/>
-				<InitTrack
-					currInit={currInit}
-					currPhase={currPhase}
-					currSpeedCost={currSpeedCost}
-				/>
+				<HexMap setSpeedCost={cost => {this.setState({currSpeedCost: cost})}} />
+				<InitTrack currSpeedCost={currSpeedCost} />
 			</div>
 		);
 	}

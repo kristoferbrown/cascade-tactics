@@ -7,8 +7,8 @@ export default class InitPhase extends Component {
 	static contextType = CharacterContext;
 
 	render() {
-		const { currInit, currSpeedCost, isCurrentPhase, phase } = this.props;
-		const { characters } = this.context;
+		const { currSpeedCost, isCurrentPhase, phase } = this.props;
+		const { characters, currInit } = this.context;
 		return (
 			<div className='initPhase'>
 				{characters.map((character, index) =>

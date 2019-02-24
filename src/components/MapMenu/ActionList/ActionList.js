@@ -18,13 +18,13 @@ export default class ActionList extends Component {
 	//}
 
 	calibrateActionList() {
-		const { moveAndEndTurn, targetedHex } = this.props;
+		const { moveToTargetHex, moveAndEndTurn, targetedHex } = this.props;
 		let newActionList = [];
 		if (!!targetedHex && !targetedHex.contents) {
 			// Space is empty, show basic movement actions
 			newActionList.push({
 				name: 'Move Here',
-				actionMethod: () => {console.log('Moving to', targetedHex)}
+				actionMethod: () => {moveToTargetHex(null, null, targetedHex)}
 			});
 			newActionList.push({
 				name: 'End Turn Here',

@@ -10,13 +10,8 @@ export class CharacterProvider extends PureComponent {
 		// Populate characters loaded from data with their transient and derived values
 		const currentCharacters = testCharacters.map(character => {
 			let newCharacter = {...character};
-			let newLocation = {...newCharacter.startingHex}
 			newCharacter.currentRange = newCharacter.attributes.Agility+1;
 			newCharacter.currentSpeed = newCharacter.attributes.Agility+3;
-			newCharacter.currentHexLoc = newLocation;
-			// TODO: make current location work...
-			console.log(newCharacter.currentHexLoc, newCharacter.startingHex);
-			console.log(newCharacter);
 			return newCharacter;
 		});
 		this.state = {
@@ -57,9 +52,8 @@ export class CharacterProvider extends PureComponent {
 			newInit++;
 		}
 		let nextCharacter = characters[newInit];
-		debugger;
 		this.setState({
-			currChar: nextCharacter,
+			currentCharacter: nextCharacter,
 			currInit: newInit,
 			currPhase: newPhase,
 		});
