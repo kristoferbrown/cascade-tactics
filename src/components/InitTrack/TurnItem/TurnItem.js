@@ -6,17 +6,14 @@ import classNames from 'classnames';
 import './TurnItem.scss';
 
 export default class TurnItem extends Component {
-	shouldComponentUpdate(nextProps) {
-		return !!nextProps.isCurrentTurn || !!this.props.isCurrentTurn;
-	}
-
 	render() {
 		const { character, currSpeedCost, isCurrentTurn, isPreviousTurn } = this.props;
 		return (
 			<div className={classNames({
 				'turnItem': true,
 				'turnItem_currentTurn': isCurrentTurn,
-				'turnItem_previousTurn': isPreviousTurn
+				'turnItem_previousTurn': isPreviousTurn,
+				'turnItem_hiddenTurn': character.currentSpeed <= 0
 			})}>
 
 				{ !!character.portraitRenderer ? 

@@ -11,10 +11,9 @@ export default class HexTile extends Component {
 	}
 
 	onHexClick(event, element, hex) {
-		const { clearPath, contents, isBlocked, isInRange, isSelected, isTargeted, onMoveOrSelectNewHex, onTarget } = this.props;
+		const { clearPath, contents, isBlocked, isInRange, isSelected, isTargeted, onTarget } = this.props;
 		if (isTargeted) {
-			// Already targeted, move here
-			onMoveOrSelectNewHex(event, element, hex);
+			// Already targeted, should there be a default action here?
 		} else if (!contents && !isBlocked && !isSelected && isInRange) {
 			// Or target it
 			onTarget(event, element, hex);

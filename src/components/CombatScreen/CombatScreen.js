@@ -15,7 +15,7 @@ export default class CombatScreen extends Component {
 		const { currSpeedCost } = this.state;
 		return (
 			<div className="combatScreen">
-				<HexMap setSpeedCost={cost => {this.setState({currSpeedCost: cost})}} />
+				<HexMap currSpeedCost={currSpeedCost} setSpeedCost={cost => {this.setState({currSpeedCost: cost})}} />
 				<InitTrack currSpeedCost={currSpeedCost} />
 			</div>
 		);

@@ -49,6 +49,7 @@ export default class MapMenu extends Component {
 							{ state => (
 								<div className='mapMenuContent'>
 									<ActionList
+										currSpeedCost={currSpeedCost}
 										moveAndEndTurn={moveAndEndTurn}
 										moveToTargetHex={moveToTargetHex}
 										targetedHex={targetedHex}

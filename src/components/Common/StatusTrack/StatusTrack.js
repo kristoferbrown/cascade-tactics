@@ -6,7 +6,7 @@ export default class StatusTrack extends Component {
 	render() {
 		const { attribute, cost, current, isHalfTrack, maximum } = this.props;
 		let currentPercentage = Math.floor(current/maximum*100);
-		let costPercentage = cost ? Math.floor(cost/maximum*100) : 0;
+		let costPercentage = cost ? Math.floor(cost/current*100) : 0;
 
 		return (
 			<div className={classNames({
@@ -26,8 +26,8 @@ export default class StatusTrack extends Component {
 					<div className='stausTrack_currentBar' style={{width: `${currentPercentage}%`}}>
 						{ !!cost &&
 							<Fragment>
-								<div className='stausTrack_currentValue' style={{left: `${(currentPercentage-costPercentage+10)/2}%`}}>{current - cost}</div>
-								<div className='stausTrack_costBar' style={{width: `${costPercentage+5}%`}}>
+								{cost !== current && <div className='stausTrack_currentValue' style={{left: `${(currentPercentage-costPercentage)/2}%`}}>{current - cost}</div>}
+								<div className='stausTrack_costBar' style={{width: `${costPercentage}%`}}>
 									<div className='stausTrack_costValue'>{cost}</div>
 								</div>
 							</Fragment>

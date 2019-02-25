@@ -76,11 +76,12 @@ export default class HexMap extends PureComponent {
 
 	componentDidUpdate(prevProps) {
 		const { aiTurnInProgress } = this.state;
-		const { currentCharacter } = this.context;
+		const { currentCharacter, deductSpeed } = this.context;
 
 		if (currentCharacter.meta.isCpuControlled && !aiTurnInProgress) {
 			this.setState({aiTurnInProgress: true});
 			this.uncontrolledTurnTimer = setTimeout(() => {
+				deductSpeed(currentCharacter.meta.charId, 1);
 				this.endTurn();
 				this.setState({aiTurnInProgress: false});
 			}, 2400);
@@ -110,7 +111,8 @@ export default class HexMap extends PureComponent {
 	}
 
 	endTurn = () => {
-		const { incrementInit } = this.context;
+		const { currentCharacter, resetRange, incrementInit } = this.context;
+		resetRange(currentCharacter.meta.charId);
 		const nextCharacter = incrementInit();
 		this.selectOriginHex(nextCharacter.currentHexLoc);
 	}
@@ -169,7 +171,8 @@ export default class HexMap extends PureComponent {
 	}
 
 	render() {
-		const { hexList, hoveredHex, hoveredHexLoc, pathLength, selectedHex, targetedHex } = this.state;
+		const { currSpeedCost } = this.props;
+		const { hexList, hoveredHex, hoveredHexLoc, selectedHex, targetedHex } = this.state;
 		const { currentCharacter } = this.context;
 
 		return (
@@ -207,8 +210,7 @@ export default class HexMap extends PureComponent {
 								<Path start={selectedHex} end={targetedHex} />
 								<HexTile 
 									isTargeted clearPath={() =>{}}
-									hex={targetedHex} 
-									onMoveOrSelectNewHex={this.moveToTargetHex}
+									hex={targetedHex}
 								/>
 							</g>
 						}
@@ -223,7 +225,7 @@ export default class HexMap extends PureComponent {
 				</HexGrid>
 
 				<MapMenu
-					currSpeedCost={pathLength}
+					currSpeedCost={currSpeedCost}
 					mapDefaults={this.mapDefaults}
 					menuOrigin={hoveredHexLoc}
 					moveToTargetHex={this.moveToTargetHex}

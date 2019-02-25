@@ -25,7 +25,7 @@ export class CharacterProvider extends PureComponent {
 	deductSpeed = (charId, value) => {
 		const { characters } = this.state;
 		let newCharacters = [...characters];
-		 newCharacters.forEach(character => {
+		newCharacters.forEach(character => {
 			if (character.meta.charId === charId) {
 				character.currentRange = character.currentRange-value;
 				character.currentSpeed = character.currentSpeed-value;
@@ -45,19 +45,50 @@ export class CharacterProvider extends PureComponent {
 		const { characters, currInit, currPhase } = this.state;
 		let newInit = currInit;
 		let newPhase = currPhase;
-		if ((currInit + 1) >= characters.length) {
-			newInit = 0;
-			newPhase++;
-		} else {
+		let nextCharacter = null;
+
+		// loop until we find the next character with speed
+		while (!nextCharacter) {
 			newInit++;
+			if (newInit >= characters.length) {
+				// we need to move to next phase
+				newInit = 0;
+				newPhase++;
+			}
+			if (characters[newInit].currentSpeed > 0) {
+				// we found the next character
+				nextCharacter = characters[newInit];
+			}
+			console.log(newInit, newPhase, currPhase);
+			if (newPhase > (currPhase + 1)) {
+				// no one with speed was found, start a new round!
+				console.log('new round!');
+				newInit = 0;
+				newPhase = 0;
+				nextCharacter = characters[0];
+			}
 		}
-		let nextCharacter = characters[newInit];
+
 		this.setState({
 			currentCharacter: nextCharacter,
 			currInit: newInit,
 			currPhase: newPhase,
 		});
 		return nextCharacter;
+	}
+
+	resetRange = (charId) => {
+		const { characters } = this.state;
+		let newCharacters = [...characters];
+		newCharacters.forEach(character => {
+			if (character.meta.charId === charId) {
+				const baseRange = character.attributes.Agility+1;
+				character.currentRange = character.currentSpeed < baseRange ? character.currentSpeed : baseRange;
+			}
+		});
+		this.setState({
+			characters: newCharacters
+		});
 	}
 
 	setCharacterLocation = (charId, pixelLoc, hexLoc) => {
@@ -86,6 +117,7 @@ export class CharacterProvider extends PureComponent {
 					deductSpeed: this.deductSpeed,
 					getCharById: this.getCharById,
 					incrementInit: this.incrementInit,
+					resetRange: this.resetRange,
 					setCharacterLocation: this.setCharacterLocation
 				}}
 			>
