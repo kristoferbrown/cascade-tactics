@@ -33,7 +33,7 @@ export const testCharacters = [
 		portraitRenderer: () => <BuzzPortrait />,
 	},{
 		meta: { charId: 2, name: 'Monolith', fullName: 'Monolith', isCpuControlled: true, isHostile: true, isInscrutable: true },
-		attributes: { Strength: 1, Finesse: 1, Perception: 1, Stamina: 1, Agility: -1, Wits: 1, Willpower: 1, Intelligence: 1, Charisma: 1 },
+		attributes: { Strength: 1, Finesse: 1, Perception: 1, Stamina: 2, Agility: -1, Wits: 1, Willpower: 1, Intelligence: 1, Charisma: 1 },
 		status: { 
 			health: { upper: [3,4], lower: [4,4], main: [1,4], off: [3,4], legs: [4,4] },
 		},
@@ -43,7 +43,7 @@ export const testCharacters = [
 		portraitRenderer: () => <MonolithPortrait />,
 	},{
 		meta: { charId: 3, name: 'Mike', fullName: 'Michael Collins', isCpuControlled: false },
-		attributes: { Strength: 1, Finesse: 1, Perception: 3, Stamina: 2, Agility: 3, Wits: 2, Willpower: 1, Intelligence: 2, Charisma: 1 },
+		attributes: { Strength: 1, Finesse: 1, Perception: 3, Stamina: 3, Agility: 3, Wits: 2, Willpower: 1, Intelligence: 2, Charisma: 1 },
 		status: { 
 			health: { upper: [3,4], lower: [4,4], main: [1,4], off: [3,4], legs: [4,4] },
 		},

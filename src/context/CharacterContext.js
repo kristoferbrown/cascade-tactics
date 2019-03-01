@@ -18,7 +18,8 @@ export class CharacterProvider extends PureComponent {
 			characters: currentCharacters, // Characters loaded from data and injected with transient values
 			currentCharacter: currentCharacters[0], // Character object at current initiative
 			currInit: 0,
-			currPhase: 0
+			currPhase: 0,
+			currRound: 1
 		}
 	}
 
@@ -55,17 +56,18 @@ export class CharacterProvider extends PureComponent {
 				newInit = 0;
 				newPhase++;
 			}
+
 			if (characters[newInit].currentSpeed > 0) {
 				// we found the next character
 				nextCharacter = characters[newInit];
 			}
-			console.log(newInit, newPhase, currPhase);
+
 			if (newPhase > (currPhase + 1)) {
 				// no one with speed was found, start a new round!
-				console.log('new round!');
 				newInit = 0;
 				newPhase = 0;
 				nextCharacter = characters[0];
+				this.startNewRound();
 			}
 		}
 
@@ -92,7 +94,6 @@ export class CharacterProvider extends PureComponent {
 	}
 
 	setCharacterLocation = (charId, pixelLoc, hexLoc) => {
-		// TODO this also needs to set hexLoc
 		const { characters } = this.state;
 		let updatedCharacter;
 		let newCharacters = [...characters];
@@ -107,6 +108,26 @@ export class CharacterProvider extends PureComponent {
 			characters: newCharacters
 		});
 		return updatedCharacter;
+	}
+
+	startNewRound = () => {
+		const { characters, currRound } = this.state;
+		let newCharacters = [...characters];
+
+		newCharacters.forEach(character => {
+			const baseRange = character.attributes.Agility+1;
+			const maxSpeed = character.attributes.Agility+3;
+			character.currentSpeed = character.currentSpeed + character.attributes.Stamina + 3;
+			if (character.currentSpeed > maxSpeed) {
+				character.currentSpeed = maxSpeed;
+			}
+			character.currentRange = character.currentSpeed < baseRange ? character.currentSpeed : baseRange;
+		});
+
+		this.setState({
+			characters: newCharacters,
+			currRound: currRound+1
+		});
 	}
 
 	render() {
