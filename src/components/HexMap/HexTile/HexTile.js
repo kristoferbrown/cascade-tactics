@@ -7,14 +7,14 @@ import './HexTile.scss';
 export default class HexTile extends Component {
 	shouldComponentUpdate(nextProps) {
 		const {isInRange, isSelected, isTargeted} = this.props;
-		return (isInRange !== nextProps.isInRange || isSelected || nextProps.isSelected || !!isTargeted || !!nextProps.isTargeted /*|| !!isHovered || !!nextProps.isHovered ||*/);
+		return (isInRange !== nextProps.isInRange || isInRange || isSelected || nextProps.isSelected || !!isTargeted || !!nextProps.isTargeted /*|| !!isHovered || !!nextProps.isHovered ||*/);
 	}
 
 	onHexClick(event, element, hex) {
 		const { clearPath, contents, isBlocked, isInRange, isSelected, isTargeted, onTarget } = this.props;
 		if (isTargeted) {
 			// Already targeted, should there be a default action here?
-		} else if (!contents && !isBlocked && !isSelected && isInRange) {
+		} else if (isSelected || (!contents && !isBlocked && isInRange)) {
 			// Or target it
 			onTarget(event, element, hex);
 		} else if (!isInRange) {
@@ -24,8 +24,8 @@ export default class HexTile extends Component {
 	}
 
 	onHexHover(event, element, hex) {
-		const { clearPath, contents, isBlocked, isInRange, isSelected, onViableHover, targetedHex } = this.props;
-		if (!contents && !isBlocked && !isSelected && isInRange && !targetedHex) {
+		const { clearPath, isBlocked, isInRange, isSelected, onViableHover, targetedHex } = this.props;
+		if ((hex.contents && !targetedHex) || (isInRange && !isBlocked && !isSelected && !targetedHex)) {
 			onViableHover(event, element, hex);
 		} else if (!targetedHex) {
 			clearPath();

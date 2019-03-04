@@ -6,7 +6,7 @@ import './MapMenu.scss';
 
 export default class MapMenu extends Component {
 	render() {
-		const { currSpeedCost, mapDefaults, menuOrigin, moveAndEndTurn, moveToTargetHex, targetedHex } = this.props;
+		const { currSpeedCost, label, menuOrigin, moveAndEndTurn, moveToTargetHex, targetedHex } = this.props;
 		return (
 			 !!menuOrigin ? (
 			<CSSTransition
@@ -30,8 +30,8 @@ export default class MapMenu extends Component {
 					>
 						<div className='mapMenu_labelRow'>
 							<div className='mapMenu_label'>
-								<div>{mapDefaults.terrain}</div>
-								<div><span className='mapMenu_speedCost'>{`-${currSpeedCost}`}</span> Speed</div>
+								<div>{label}</div>
+								{!!currSpeedCost && <div><span className='mapMenu_speedCost'>{`-${currSpeedCost}`}</span> Speed</div>}
 							</div>
 							<div className={classNames({
 								'mapMenu_shadowMask': true,

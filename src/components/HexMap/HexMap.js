@@ -38,7 +38,8 @@ export default class HexMap extends PureComponent {
 			hoveredHexLoc: null, // Pixel coords of last hovered hex
 			pathLength: 0, // Length of path from selected hex to target hex
 			selectedHex: null, // Current origin hex, occupied by current character
-			targetedHex: null // Desitation hex targeted by click
+			targetedHex: null, // Desitation hex targeted by click
+			tooltipLabel: '' // Labels of the currently hovered hex, and title of it's menu if it has one.
 		}
 	}
 
@@ -92,21 +93,38 @@ export default class HexMap extends PureComponent {
 		clearTimeout(this.uncontrolledTurnTimer);
 	}
 
-	computePath = (event, element, hex) => {
-		const { setSpeedCost } = this.props;
-		const { selectedHex } = this.state;
-		const newPathLength = HexUtils.distance(selectedHex, hex);
+	computeHover = (event, element, hex) => {
 		const hoveredHexLocPreScroll = event.currentTarget.getBoundingClientRect(0);
 		const hoveredHexLocWithScroll = { 
 			height: hoveredHexLocPreScroll.height,
 			right: hoveredHexLocPreScroll.right + this.hexMapRef.current.scrollLeft,
 			top: hoveredHexLocPreScroll.top + this.hexMapRef.current.scrollTop
 		};
+		if (hex.contents) {
+			this.props.setSpeedCost(0);
+			this.setState({
+				hoveredHex: null,
+				hoveredHexLoc: hoveredHexLocWithScroll,
+				pathLength: 0,
+				tooltipLabel: hex.contents.meta.name
+			});
+		} else {
+			this.setState({
+				hoveredHexLoc: hoveredHexLocWithScroll,
+			});
+			this.computePath(event, element, hex);
+		}
+	}
+
+	computePath = (event, element, hex) => {
+		const { setSpeedCost } = this.props;
+		const { selectedHex } = this.state;
+		const newPathLength = HexUtils.distance(selectedHex, hex);
 		setSpeedCost(newPathLength);
 		this.setState({
 			hoveredHex: hex,
-			hoveredHexLoc: hoveredHexLocWithScroll,
 			pathLength: newPathLength,
+			tooltipLabel: this.mapDefaults.terrain
 		});
 	}
 
@@ -160,7 +178,7 @@ export default class HexMap extends PureComponent {
 	}
 
 	targetHex = (event, element, hex) => {
-		this.computePath(event, element, hex);
+		this.computeHover(event, element, hex);
 		this.setState({
 			targetedHex: hex
 		});
@@ -172,7 +190,7 @@ export default class HexMap extends PureComponent {
 
 	render() {
 		const { currSpeedCost } = this.props;
-		const { hexList, hoveredHex, hoveredHexLoc, selectedHex, targetedHex } = this.state;
+		const { hexList, hoveredHex, hoveredHexLoc, selectedHex, targetedHex, tooltipLabel } = this.state;
 		const { currentCharacter } = this.context;
 
 		return (
@@ -199,7 +217,7 @@ export default class HexMap extends PureComponent {
 									isInRange={HexUtils.distance(selectedHex, hex) <= currentCharacter.currentRange}
 									key={`hex-${hex.q}-${hex.r}-${hex.s}`}
 									onTarget={this.targetHex}
-									onViableHover={this.computePath}
+									onViableHover={this.computeHover}
 									targetedHex={targetedHex}
 								/>
 							)}
@@ -216,7 +234,14 @@ export default class HexMap extends PureComponent {
 						}
 
 						{ !!selectedHex &&
-							<HexTile isSelected clearPath={() =>{}} hex={selectedHex} />
+							<HexTile 
+								isSelected 
+								clearPath={() =>{}} 
+								hex={selectedHex}
+								onTarget={this.targetHex} // TODO: make this work
+								onViableHover={this.computeHover}
+								targetedHex={targetedHex}
+							/>
 						}
 
 						<ObjectLayer />
@@ -226,7 +251,7 @@ export default class HexMap extends PureComponent {
 
 				<MapMenu
 					currSpeedCost={currSpeedCost}
-					mapDefaults={this.mapDefaults}
+					label={tooltipLabel}
 					menuOrigin={hoveredHexLoc}
 					moveToTargetHex={this.moveToTargetHex}
 					moveAndEndTurn={this.moveAndEndTurn}

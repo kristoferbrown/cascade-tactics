@@ -1,11 +1,11 @@
-import React, { Component, Fragment } from 'react';
+import React, { PureComponent, Fragment } from 'react';
 import HealthStatus from '../../CharContent/Health/HealthStatus';
 import Nonogram from '../../CharContent/Nonogram/Nonogram';
 import StatusTrack from '../../Common/StatusTrack/StatusTrack';
 import classNames from 'classnames';
 import './TurnItem.scss';
 
-export default class TurnItem extends Component {
+export default class TurnItem extends PureComponent {
 	render() {
 		const { character, currSpeedCost, isCurrentTurn, isPreviousTurn } = this.props;
 		return (
