@@ -50,7 +50,7 @@ export default class ActionList extends Component {
 					<div 
 						className='actionList_actionItem'
 						key={`${action.name}-${q}-${r}-${s}`}
-						onClick={() => action.actionMethod()}
+						onClick={action.actionMethod}
 					>
 						{action.name}
 					</div>

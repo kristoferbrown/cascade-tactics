@@ -1,15 +1,10 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { Hexagon } from 'react-hexgrid';
 
 import classNames from 'classnames';
 import './HexTile.scss';
 
-export default class HexTile extends Component {
-	shouldComponentUpdate(nextProps) {
-		const {isInRange, isSelected, isTargeted} = this.props;
-		return (isInRange !== nextProps.isInRange || isInRange || isSelected || nextProps.isSelected || !!isTargeted || !!nextProps.isTargeted /*|| !!isHovered || !!nextProps.isHovered ||*/);
-	}
-
+export default class HexTile extends PureComponent {
 	onHexClick(event, element, hex) {
 		const { clearPath, contents, isBlocked, isInRange, isSelected, isTargeted, onTarget } = this.props;
 		if (isTargeted) {

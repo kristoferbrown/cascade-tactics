@@ -93,6 +93,10 @@ export default class HexMap extends PureComponent {
 		clearTimeout(this.uncontrolledTurnTimer);
 	}
 
+	clearPath = () => {
+		this.setState({hoveredHex: null, hoveredHexLoc: null, targetedHex: null});
+	}
+
 	computeHover = (event, element, hex) => {
 		const hoveredHexLocPreScroll = event.currentTarget.getBoundingClientRect(0);
 		const hoveredHexLocWithScroll = { 
@@ -208,7 +212,7 @@ export default class HexMap extends PureComponent {
 						<g>
 							{ !!hexList && hexList.map(hex => 
 								<HexTile
-									clearPath={() => this.setState({hoveredHex: null, hoveredHexLoc: null, targetedHex: null})}
+									clearPath={this.clearPath}
 									contents={hex.contents}
 									hex={hex}
 									isBlocked={hex.isBlocked}
@@ -226,18 +230,19 @@ export default class HexMap extends PureComponent {
 						{ !!targetedHex && 
 							<g className="hexMap_movePath hexMap_movePath_animating">
 								<Path start={selectedHex} end={targetedHex} />
-								<HexTile 
-									isTargeted clearPath={() =>{}}
+								<HexTile
+									clearPath={() =>{}}
 									hex={targetedHex}
+									isTargeted
 								/>
 							</g>
 						}
 
 						{ !!selectedHex &&
-							<HexTile 
-								isSelected 
-								clearPath={() =>{}} 
+							<HexTile
+								clearPath={() =>{}}
 								hex={selectedHex}
+								isSelected
 								onTarget={this.targetHex} // TODO: make this work
 								onViableHover={this.computeHover}
 								targetedHex={targetedHex}
