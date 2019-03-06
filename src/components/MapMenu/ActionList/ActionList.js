@@ -20,9 +20,10 @@ export default class ActionList extends Component {
 	}
 
 	calibrateActionList() {
-		const { currSpeedCost, moveToTargetHex, moveAndEndTurn, targetedHex } = this.props;
-		const { currentCharacter } = this.context;
+		const { currSpeedCost, endTurn, moveToTargetHex, targetedHex } = this.props;
+		const { currentCharacter, currPhase } = this.context;
 		let newActionList = [];
+
 		if (!!targetedHex && !targetedHex.contents) {
 			// The target space is empty, consider showing basic movement actions
 			if (currSpeedCost < currentCharacter.currentRange && currSpeedCost < currentCharacter.currentSpeed) {
@@ -34,9 +35,45 @@ export default class ActionList extends Component {
 			}
 			newActionList.push({
 				name: 'End Turn Here',
-				actionMethod: () => {moveAndEndTurn(null, null, targetedHex)}
+				actionMethod: () => {
+					moveToTargetHex(null, null, targetedHex);
+					endTurn();
+				}
 			});
+
+		} else if (!!targetedHex && targetedHex.contents && targetedHex.contents.meta) {
+			// The target is a character, consider adding self actions or attacks
+			if (targetedHex.contents.meta.charId === currentCharacter.meta.charId) {
+				// Target is self add end turn and maybe rest
+				if (currPhase === 0) {
+					newActionList.push({
+						name: 'Rest',
+						actionMethod: () => {
+							console.log('resting...');
+							endTurn();
+						}
+					});
+				}
+				newActionList.push({
+					name: 'End Turn',
+					actionMethod: () => {endTurn();}
+				});
+			} else if (!targetedHex.contents.meta.isCpuControlled) {
+				// Target is an ally, just add inspect
+				newActionList.push({
+					name: 'View Character',
+					actionMethod: () => {console.log(targetedHex.contents)}
+				});
+			} else {
+				// Target should be an enemy, add attack
+				newActionList.push({
+					name: 'Attack',
+					actionMethod: () => {'attack!!!!'}
+				});
+			}
 		}
+
+
 		this.setState({availableActions: newActionList});
 	}
 

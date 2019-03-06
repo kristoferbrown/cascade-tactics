@@ -137,8 +137,10 @@ export default class HexMap extends PureComponent {
 		resetRange(currentCharacter.meta.charId);
 		const nextCharacter = incrementInit();
 		this.selectOriginHex(nextCharacter.currentHexLoc);
+		this.clearPath();
 	}
 
+	// TODO: are we going to use this?
 	moveAndEndTurn = (event, element, hex) => {
 		this.moveToTargetHex(event, element, hex);
 		this.endTurn();
@@ -256,10 +258,10 @@ export default class HexMap extends PureComponent {
 
 				<MapMenu
 					currSpeedCost={currSpeedCost}
+					endTurn={this.endTurn}
 					label={tooltipLabel}
 					menuOrigin={hoveredHexLoc}
 					moveToTargetHex={this.moveToTargetHex}
-					moveAndEndTurn={this.moveAndEndTurn}
 					targetedHex={targetedHex}
 				/>
 

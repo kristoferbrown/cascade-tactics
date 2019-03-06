@@ -6,6 +6,7 @@
 	}
 
 	&.hexTile_occupied polygon {
+		cursor: pointer;
 		fill-opacity: 0;
 	}
 

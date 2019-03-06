@@ -3,10 +3,16 @@
 .actionList {
 	.actionList_actionItem {
 		background: $white;
+		box-sizing: border-box;
 		cursor: pointer;
 		height: 30px;
 		margin: 6px;
+		padding: 6px;
 		position: relative;
 		z-index: 3;
+
+		&:hover {
+			box-shadow: 0 0 3px $black;
+		}
 	}
 }
