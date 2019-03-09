@@ -37,9 +37,9 @@ export const testCharacters = [
 		status: { 
 			health: { upper: [3,4], lower: [4,4], main: [1,4], off: [3,4], legs: [4,4] },
 		},
-		startingHex: { q: 9, r: 3, s: -12},
-		mapOffset: {x: -51, y: -21},
-		mapRenderer: (pixelLoc, isSelected)  => <MonoMapRenderer isSelected={isSelected} height={25} className={'mapCharacter monolith'} />,
+		startingHex: { q: 6, r: 3, s: -9},
+		mapOffset: {x: -51, y: -15},
+		mapRenderer: (pixelLoc, isSelected)  => <MonoMapRenderer isSelected={isSelected} height={18} className={'mapCharacter monolith'} />,
 		portraitRenderer: () => <MonolithPortrait />,
 	},{
 		meta: { charId: 3, name: 'Mike', fullName: 'Michael Collins', isCpuControlled: false },

@@ -33,12 +33,16 @@ export default class HexMap extends PureComponent {
 
 		this.state = {
 			aiTurnInProgress: false,
+			charLocList: [], // Array of characters to place in hexmap
 			hexList: null, // Array of all hexes
 			hoveredHex: null, // Last hovered hex
 			hoveredHexLoc: null, // Pixel coords of last hovered hex
+			objectList: [], // Array of objects to place in hexmap
 			pathLength: 0, // Length of path from selected hex to target hex
 			selectedHex: null, // Current origin hex, occupied by current character
 			targetedHex: null, // Desitation hex targeted by click
+			targetedHexContains: null, // What the target hex is occupied by
+			targetedHexIndex: null, // Current target's spot in hexlist
 			tooltipLabel: '' // Labels of the currently hovered hex, and title of it's menu if it has one.
 		}
 	}
@@ -49,28 +53,35 @@ export default class HexMap extends PureComponent {
 		// Generate map
 		let hexagonList = GridGenerator.orientedRectangle(18,15);
 		this.mapDefaults = { terrain: "Regolith" };
-		hexagonList[19].isBlocked = true;
-		hexagonList[12].isBlocked = true;
+		const initObjectList = [
+			{ hexIndex: 19, label: "Impassable", mapRenderer: () => {} },
+			{ hexIndex: 19, label: "Impassable", mapRenderer: () => {} },
+			{ hexIndex: 20, label: "Impassable", mapRenderer: () => {} }
+		];
 
 		// Assign characters to starting positions
 		let charactersAssigned = 0;
 		let firstSelectedHex = null;
-		hexagonList = hexagonList.map( hex => {
+		let initCharLocList = [];
+		hexagonList = hexagonList.map( (hex, hexIndex) => {
 			if (characters.length <= charactersAssigned) { return hex; }
-			characters.forEach( (character, index) => {
+			characters.forEach( (character, charIndex) => {
 				if (character.startingHex && HexUtils.equals(hex, character.startingHex)) {
-					if (!firstSelectedHex && index === 0) {
+					if (!firstSelectedHex && charIndex === 0) {
 						firstSelectedHex = hex;
 					}
 					const pixelLoc = HexUtils.hexToPixel(hex, this.layoutProps);
-					hex.contents = setCharacterLocation(character.meta.charId, pixelLoc, hex);
+					const charToPush = setCharacterLocation(character.meta.charId, pixelLoc, hex);
+					initCharLocList.push({ hexIndex: hexIndex, character: charToPush});
 					charactersAssigned++;
 				}
 			});
 			return hex;
 		});
 		this.setState({
+			charLocList: initCharLocList,
 			hexList: hexagonList,
+			objectList: initObjectList,
 			selectedHex: firstSelectedHex
 		});
 	}
@@ -97,20 +108,20 @@ export default class HexMap extends PureComponent {
 		this.setState({hoveredHex: null, hoveredHexLoc: null, targetedHex: null});
 	}
 
-	computeHover = (event, element, hex) => {
+	computeHover = (event, element, hex, contains) => {
 		const hoveredHexLocPreScroll = event.currentTarget.getBoundingClientRect(0);
 		const hoveredHexLocWithScroll = { 
 			height: hoveredHexLocPreScroll.height,
 			right: hoveredHexLocPreScroll.right + this.hexMapRef.current.scrollLeft,
 			top: hoveredHexLocPreScroll.top + this.hexMapRef.current.scrollTop
 		};
-		if (hex.contents) {
+		if (contains) {
 			this.props.setSpeedCost(0);
 			this.setState({
 				hoveredHex: null,
 				hoveredHexLoc: hoveredHexLocWithScroll,
 				pathLength: 0,
-				tooltipLabel: hex.contents.meta.name
+				tooltipLabel: contains.meta.name
 			});
 		} else {
 			this.setState({
@@ -146,36 +157,35 @@ export default class HexMap extends PureComponent {
 		this.endTurn();
 	}
 
-	moveToTargetHex = (event, element, hex) => {
+	moveToTargetHex = (event, element, hex, hexIndex) => {
 		const { setSpeedCost } = this.props;
-		const { hexList, selectedHex } = this.state;
+		const { charLocList, hexList, selectedHex } = this.state;
 		const { currentCharacter, deductSpeed, setCharacterLocation } = this.context;
 
 		const distanceMoved = HexUtils.distance(selectedHex, hex);
-		let newHexList = [...hexList];
+		let newCharLocList = [...charLocList];
 		let newHexClicked = {...hex};
 		let newSelectedHex = null;
-		newHexList = newHexList.map(hex => {
+		hexList.forEach(hex => {
 			let newHex = {...hex};
-			if (HexUtils.equals(newHex, selectedHex)) {
-				// Clear source hex contents
-				newHex.contents = null;
-			} else if (HexUtils.equals(newHex, newHexClicked)) {
-				// Move contents to target hex
-				newHexClicked.contents = selectedHex.contents;
-				newHex.contents = selectedHex.contents;
+			if (HexUtils.equals(newHex, newHexClicked)) {
 				newSelectedHex = newHex;
+
+				// Move occupant to target hex
+				const oldCharLocIndex = newCharLocList.findIndex(charLoc => charLoc.character.meta.charId === currentCharacter.meta.charId);
+				const newCharLoc = { hexIndex: hexIndex, character: currentCharacter };
+				newCharLocList.splice(oldCharLocIndex, 1, newCharLoc);
+
 				// Calculate position for curr char's sprite
 				const newPixelLoc = HexUtils.hexToPixel(newHex, this.layoutProps);
 				setCharacterLocation(currentCharacter.meta.charId, newPixelLoc, newHexClicked);
 				deductSpeed(currentCharacter.meta.charId, distanceMoved);
 				setSpeedCost(0);
 			}
-			return newHex;
 		});
 
 		this.setState({
-			hexList: newHexList,
+			charLocList: newCharLocList,
 			hoveredHex: null,
 			hoveredHexLoc: null,
 			selectedHex: newSelectedHex,
@@ -183,10 +193,12 @@ export default class HexMap extends PureComponent {
 		});
 	}
 
-	targetHex = (event, element, hex) => {
-		this.computeHover(event, element, hex);
+	targetHex = (event, element, hex, contains, hexIndex) => {
+		this.computeHover(event, element, hex, contains);
 		this.setState({
-			targetedHex: hex
+			targetedHex: hex,
+			targetedHexContains: contains,
+			targetedHexIndex: hexIndex,
 		});
 	}
 
@@ -196,7 +208,7 @@ export default class HexMap extends PureComponent {
 
 	render() {
 		const { currSpeedCost } = this.props;
-		const { hexList, hoveredHex, hoveredHexLoc, selectedHex, targetedHex, tooltipLabel } = this.state;
+		const { charLocList, hexList, hoveredHex, hoveredHexLoc, objectList, selectedHex, targetedHex, targetedHexContains, targetedHexIndex, tooltipLabel } = this.state;
 		const { currentCharacter } = this.context;
 
 		return (
@@ -212,21 +224,23 @@ export default class HexMap extends PureComponent {
 						}
 
 						<g>
-							{ !!hexList && hexList.map(hex => 
-								<HexTile
+							{ !!hexList && hexList.map((hex, index) => {
+								const occupiedBy = charLocList.find(charLoc => index === charLoc.hexIndex);
+								return <HexTile
 									clearPath={this.clearPath}
-									contents={hex.contents}
+									contains={occupiedBy ? occupiedBy.character : null}
 									hex={hex}
-									isBlocked={hex.isBlocked}
-									isCpuControlled={hex.contents && hex.contents.meta.isCpuControlled}
-									isHostile={hex.contents && hex.contents.meta.isHostile}
+									hexListIndex={index}
+									isBlocked={objectList.some(object => index === object.hexIndex)}
+									isCpuControlled={occupiedBy && occupiedBy.character.meta.isCpuControlled}
+									isHostile={occupiedBy && occupiedBy.character.meta.isHostile}
 									isInRange={HexUtils.distance(selectedHex, hex) <= currentCharacter.currentRange}
 									key={`hex-${hex.q}-${hex.r}-${hex.s}`}
 									onTarget={this.targetHex}
 									onViableHover={this.computeHover}
 									targetedHex={targetedHex}
 								/>
-							)}
+							})}
 						</g>
 
 						{ !!targetedHex && 
@@ -243,9 +257,10 @@ export default class HexMap extends PureComponent {
 						{ !!selectedHex &&
 							<HexTile
 								clearPath={() =>{}}
+								contains={currentCharacter}
 								hex={selectedHex}
 								isSelected
-								onTarget={this.targetHex} // TODO: make this work
+								onTarget={this.targetHex}
 								onViableHover={this.computeHover}
 								targetedHex={targetedHex}
 							/>
@@ -263,6 +278,8 @@ export default class HexMap extends PureComponent {
 					menuOrigin={hoveredHexLoc}
 					moveToTargetHex={this.moveToTargetHex}
 					targetedHex={targetedHex}
+					targetedHexContains={targetedHexContains}
+					targetedHexIndex={targetedHexIndex}
 				/>
 
 				</div>

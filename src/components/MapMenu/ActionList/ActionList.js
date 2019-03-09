@@ -20,30 +20,29 @@ export default class ActionList extends Component {
 	}
 
 	calibrateActionList() {
-		const { currSpeedCost, endTurn, moveToTargetHex, targetedHex } = this.props;
+		const { currSpeedCost, endTurn, moveToTargetHex, targetedHex, targetedHexContains, targetedHexIndex } = this.props;
 		const { currentCharacter, currPhase } = this.context;
 		let newActionList = [];
-
-		if (!!targetedHex && !targetedHex.contents) {
+		if (!!targetedHex && !targetedHexContains) {
 			// The target space is empty, consider showing basic movement actions
 			if (currSpeedCost < currentCharacter.currentRange && currSpeedCost < currentCharacter.currentSpeed) {
 				// Only add simple move when there will be speed and range remaining
 				newActionList.push({
 					name: 'Move Here',
-					actionMethod: () => {moveToTargetHex(null, null, targetedHex)}
+					actionMethod: () => {moveToTargetHex(null, null, targetedHex, targetedHexIndex)}
 				});
 			}
 			newActionList.push({
 				name: 'End Turn Here',
 				actionMethod: () => {
-					moveToTargetHex(null, null, targetedHex);
+					moveToTargetHex(null, null, targetedHex, targetedHexIndex);
 					endTurn();
 				}
 			});
 
-		} else if (!!targetedHex && targetedHex.contents && targetedHex.contents.meta) {
+		} else if (!!targetedHex && targetedHexContains && targetedHexContains.meta) {
 			// The target is a character, consider adding self actions or attacks
-			if (targetedHex.contents.meta.charId === currentCharacter.meta.charId) {
+			if (targetedHexContains.meta.charId === currentCharacter.meta.charId) {
 				// Target is self add end turn and maybe rest
 				if (currPhase === 0) {
 					newActionList.push({
@@ -58,11 +57,11 @@ export default class ActionList extends Component {
 					name: 'End Turn',
 					actionMethod: () => {endTurn();}
 				});
-			} else if (!targetedHex.contents.meta.isCpuControlled) {
+			} else if (!targetedHexContains.meta.isCpuControlled) {
 				// Target is an ally, just add inspect
 				newActionList.push({
 					name: 'View Character',
-					actionMethod: () => {console.log(targetedHex.contents)}
+					actionMethod: () => {console.log(targetedHexContains)}
 				});
 			} else {
 				// Target should be an enemy, add attack
