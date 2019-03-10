@@ -28,7 +28,7 @@ export default class HexTile extends PureComponent {
 	}
 
 	render() {
-		const { contains, hex, isBlocked, isCpuControlled, isHostile, isInRange, isSelected, isTargeted } = this.props;
+		const { contains, hex, isBlocked, isCpuControlled, isHostile, isInHostileRange, isInRange, isSelected, isTargeted } = this.props;
 		return (
 			<Hexagon
 				q={hex.q} r={hex.r} s={hex.s}
@@ -41,6 +41,7 @@ export default class HexTile extends PureComponent {
 					'hexTile_hostile': isHostile,
 					'hexTile_occupied': contains,
 					'hexTile_selected': (isSelected || isTargeted),
+					'hexTile_inHostileRange': (isInHostileRange && !isBlocked && !isSelected && !isTargeted),
 					'hexTile_inRange': (isInRange && !contains && !isBlocked && !isSelected && !isTargeted)
 				})}
 			/>

@@ -35,6 +35,7 @@ export default class HexMap extends PureComponent {
 			aiTurnInProgress: false,
 			charLocList: [], // Array of characters to place in hexmap
 			hexList: null, // Array of all hexes
+			hostileMeleeRange: [], // List of hex indexes in melee range of an enemy
 			hoveredHex: null, // Last hovered hex
 			hoveredHexLoc: null, // Pixel coords of last hovered hex
 			objectList: [], // Array of objects to place in hexmap
@@ -63,7 +64,7 @@ export default class HexMap extends PureComponent {
 		let charactersAssigned = 0;
 		let firstSelectedHex = null;
 		let initCharLocList = [];
-		hexagonList = hexagonList.map( (hex, hexIndex) => {
+		hexagonList.forEach( (hex, hexIndex) => {
 			if (characters.length <= charactersAssigned) { return hex; }
 			characters.forEach( (character, charIndex) => {
 				if (character.startingHex && HexUtils.equals(hex, character.startingHex)) {
@@ -72,24 +73,34 @@ export default class HexMap extends PureComponent {
 					}
 					const pixelLoc = HexUtils.hexToPixel(hex, this.layoutProps);
 					const charToPush = setCharacterLocation(character.meta.charId, pixelLoc, hex);
-					initCharLocList.push({ hexIndex: hexIndex, character: charToPush});
+					initCharLocList.push({ hex: hex, hexIndex: hexIndex, neighbors: HexUtils.neighbours(hex), character: charToPush});
 					charactersAssigned++;
 				}
 			});
-			return hex;
 		});
+
+		// Precompute hostile melee range
+		const initHostileMeleeRange = this.computeHostileMeleeRange(initCharLocList);
+
 		this.setState({
 			charLocList: initCharLocList,
 			hexList: hexagonList,
+			hostileMeleeRange: initHostileMeleeRange,
 			objectList: initObjectList,
 			selectedHex: firstSelectedHex
 		});
 	}
 
-	componentDidUpdate(prevProps) {
-		const { aiTurnInProgress } = this.state;
+	componentDidUpdate(prevProps, prevState) {
+		const { aiTurnInProgress, charLocList } = this.state;
 		const { currentCharacter, deductSpeed } = this.context;
 
+		if (prevState.charLocList.length && charLocList !== prevState.charLocList) {
+			const newHostileMeleeRange = this.computeHostileMeleeRange(charLocList);
+			this.setState({ hostileMeleeRange: newHostileMeleeRange });
+		}
+
+		// Run and end AI turn
 		if (currentCharacter.meta.isCpuControlled && !aiTurnInProgress) {
 			this.setState({aiTurnInProgress: true});
 			this.uncontrolledTurnTimer = setTimeout(() => {
@@ -106,6 +117,20 @@ export default class HexMap extends PureComponent {
 
 	clearPath = () => {
 		this.setState({hoveredHex: null, hoveredHexLoc: null, targetedHex: null});
+	}
+
+	computeHostileMeleeRange = (charLocList) => {
+		let newHostileMeleeRange = []
+		charLocList.forEach(charLoc => {
+			if (charLoc.character.meta.isHostile) {
+				charLoc.neighbors.forEach(neighborHex => {
+					if (newHostileMeleeRange.every(currentHex => currentHex.q !== neighborHex.q || currentHex.r !== neighborHex.r || currentHex.s !== neighborHex.s)) {
+						newHostileMeleeRange.push(neighborHex);
+					}
+				})
+			}
+		});
+		return newHostileMeleeRange;
 	}
 
 	computeHover = (event, element, hex, contains) => {
@@ -173,7 +198,7 @@ export default class HexMap extends PureComponent {
 
 				// Move occupant to target hex
 				const oldCharLocIndex = newCharLocList.findIndex(charLoc => charLoc.character.meta.charId === currentCharacter.meta.charId);
-				const newCharLoc = { hexIndex: hexIndex, character: currentCharacter };
+				const newCharLoc = { hex: newHex, hexIndex: hexIndex, neighbors: HexUtils.neighbours(newHex), character: currentCharacter };
 				newCharLocList.splice(oldCharLocIndex, 1, newCharLoc);
 
 				// Calculate position for curr char's sprite
@@ -208,7 +233,7 @@ export default class HexMap extends PureComponent {
 
 	render() {
 		const { currSpeedCost } = this.props;
-		const { charLocList, hexList, hoveredHex, hoveredHexLoc, objectList, selectedHex, targetedHex, targetedHexContains, targetedHexIndex, tooltipLabel } = this.state;
+		const { charLocList, hexList, hostileMeleeRange,  hoveredHex, hoveredHexLoc, objectList, selectedHex, targetedHex, targetedHexContains, targetedHexIndex, tooltipLabel } = this.state;
 		const { currentCharacter } = this.context;
 
 		return (
@@ -234,6 +259,7 @@ export default class HexMap extends PureComponent {
 									isBlocked={objectList.some(object => index === object.hexIndex)}
 									isCpuControlled={occupiedBy && occupiedBy.character.meta.isCpuControlled}
 									isHostile={occupiedBy && occupiedBy.character.meta.isHostile}
+									isInHostileRange={hostileMeleeRange.some(hosHex => HexUtils.equals(hosHex, hex))}
 									isInRange={HexUtils.distance(selectedHex, hex) <= currentCharacter.currentRange}
 									key={`hex-${hex.q}-${hex.r}-${hex.s}`}
 									onTarget={this.targetHex}
