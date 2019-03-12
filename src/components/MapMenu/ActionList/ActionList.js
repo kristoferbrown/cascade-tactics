@@ -63,11 +63,14 @@ export default class ActionList extends Component {
 					name: 'View Character',
 					actionMethod: () => {console.log(targetedHexContains)}
 				});
-			} else {
+			} else if (targetedHexContains.meta.isHostile && !currentCharacter.hasMovedThisTurn) {
 				// Target should be an enemy, add attack
 				newActionList.push({
 					name: 'Attack',
-					actionMethod: () => {'attack!!!!'}
+					actionMethod: () => {
+						console.log('attack!!!!');
+						endTurn();
+					}
 				});
 			}
 		}

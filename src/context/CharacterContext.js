@@ -86,6 +86,7 @@ export class CharacterProvider extends PureComponent {
 			if (character.meta.charId === charId) {
 				const baseRange = character.attributes.Agility+1;
 				character.currentRange = character.currentSpeed < baseRange ? character.currentSpeed : baseRange;
+				character.hasMovedThisTurn = false;
 			}
 		});
 		this.setState({
@@ -93,7 +94,7 @@ export class CharacterProvider extends PureComponent {
 		});
 	}
 
-	setCharacterLocation = (charId, pixelLoc, hexLoc) => {
+	setCharacterLocation = (charId, pixelLoc, hexLoc, hasMoved) => {
 		const { characters } = this.state;
 		let updatedCharacter;
 		let newCharacters = [...characters];
@@ -101,6 +102,7 @@ export class CharacterProvider extends PureComponent {
 			if (character.meta.charId === charId) {
 				character.pixelLoc = pixelLoc;
 				character.currentHexLoc = hexLoc;
+				character.hasMovedThisTurn = hasMoved;
 				updatedCharacter = character;
 			}
 		});

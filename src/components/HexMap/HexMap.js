@@ -72,7 +72,7 @@ export default class HexMap extends PureComponent {
 						firstSelectedHex = hex;
 					}
 					const pixelLoc = HexUtils.hexToPixel(hex, this.layoutProps);
-					const charToPush = setCharacterLocation(character.meta.charId, pixelLoc, hex);
+					const charToPush = setCharacterLocation(character.meta.charId, pixelLoc, hex, false);
 					initCharLocList.push({ hex: hex, hexIndex: hexIndex, neighbors: HexUtils.neighbours(hex), character: charToPush});
 					charactersAssigned++;
 				}
@@ -203,7 +203,7 @@ export default class HexMap extends PureComponent {
 
 				// Calculate position for curr char's sprite
 				const newPixelLoc = HexUtils.hexToPixel(newHex, this.layoutProps);
-				setCharacterLocation(currentCharacter.meta.charId, newPixelLoc, newHexClicked);
+				setCharacterLocation(currentCharacter.meta.charId, newPixelLoc, newHexClicked, true);
 				deductSpeed(currentCharacter.meta.charId, distanceMoved);
 				setSpeedCost(0);
 			}
@@ -236,6 +236,7 @@ export default class HexMap extends PureComponent {
 		const { charLocList, hexList, hostileMeleeRange,  hoveredHex, hoveredHexLoc, objectList, selectedHex, targetedHex, targetedHexContains, targetedHexIndex, tooltipLabel } = this.state;
 		const { currentCharacter } = this.context;
 
+		console.log(targetedHexContains)
 		return (
 			<div className="hexMap" ref={this.hexMapRef}>
 				<div className="hexMap_background">
@@ -274,6 +275,8 @@ export default class HexMap extends PureComponent {
 								<Path start={selectedHex} end={targetedHex} />
 								<HexTile
 									clearPath={() =>{}}
+									contains={targetedHexContains}
+									isHostile={targetedHexContains && targetedHexContains.meta.isHostile}
 									hex={targetedHex}
 									isTargeted
 								/>

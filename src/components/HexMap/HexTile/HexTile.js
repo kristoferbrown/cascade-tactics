@@ -9,7 +9,7 @@ export default class HexTile extends PureComponent {
 		const { clearPath, contains, hexListIndex, isBlocked, isInRange, isSelected, isTargeted, onTarget } = this.props;
 		if (isTargeted) {
 			// Already targeted, should there be a default action here?
-		} else if (isSelected || (!contains && !isBlocked && isInRange)) {
+		} else if (isSelected || (!isBlocked && isInRange)) {
 			// Or target it
 			onTarget(event, element, hex, contains, hexListIndex);
 		} else if (!isInRange) {
@@ -42,7 +42,7 @@ export default class HexTile extends PureComponent {
 					'hexTile_occupied': contains,
 					'hexTile_selected': (isSelected || isTargeted),
 					'hexTile_inHostileRange': (isInHostileRange && !isBlocked && !isSelected && !isTargeted),
-					'hexTile_inRange': (isInRange && !contains && !isBlocked && !isSelected && !isTargeted)
+					'hexTile_inRange': (isInRange && ((!isBlocked && !isSelected && !isTargeted) || isHostile))
 				})}
 			/>
 		);

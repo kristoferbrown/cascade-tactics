@@ -61,15 +61,5 @@ export const testCharacters = [
 		mapOffset: {x: -50, y: -15},
 		mapRenderer: (pixelLoc, isSelected)  => <LemMapRenderer isSelected={isSelected} height={20} className={'mapCharacter capcom'} />,
 		portraitRenderer: () => <CapcomPortrait />
-	},{
-		meta: { charId: 5, name: 'Megalith', fullName: 'Megalith', isCpuControlled: true, isHostile: true, isInscrutable: true },
-		attributes: { Strength: 1, Finesse: 1, Perception: 1, Stamina: 2, Agility: -1, Wits: 1, Willpower: 1, Intelligence: 1, Charisma: 1 },
-		status: { 
-			health: { upper: [3,4], lower: [4,4], main: [1,4], off: [3,4], legs: [4,4] },
-		},
-		startingHex: { q: 7, r: 1, s: -8},
-		mapOffset: {x: -51, y: -15},
-		mapRenderer: (pixelLoc, isSelected)  => <MonoMapRenderer isSelected={isSelected} height={18} className={'mapCharacter monolith'} />,
-		portraitRenderer: () => <MonolithPortrait />,
 	}
 ];
