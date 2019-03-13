@@ -236,7 +236,6 @@ export default class HexMap extends PureComponent {
 		const { charLocList, hexList, hostileMeleeRange,  hoveredHex, hoveredHexLoc, objectList, selectedHex, targetedHex, targetedHexContains, targetedHexIndex, tooltipLabel } = this.state;
 		const { currentCharacter } = this.context;
 
-		console.log(targetedHexContains)
 		return (
 			<div className="hexMap" ref={this.hexMapRef}>
 				<div className="hexMap_background">

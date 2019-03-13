@@ -28,12 +28,14 @@ export default class ActionList extends Component {
 			if (currSpeedCost < currentCharacter.currentRange && currSpeedCost < currentCharacter.currentSpeed) {
 				// Only add simple move when there will be speed and range remaining
 				newActionList.push({
-					name: 'Move Here',
+					name: 'Move',
+					description: 'Move here and continue moving.',
 					actionMethod: () => {moveToTargetHex(null, null, targetedHex, targetedHexIndex)}
 				});
 			}
 			newActionList.push({
 				name: 'End Turn Here',
+				description: 'Move here and end your turn.',
 				actionMethod: () => {
 					moveToTargetHex(null, null, targetedHex, targetedHexIndex);
 					endTurn();
@@ -47,6 +49,7 @@ export default class ActionList extends Component {
 				if (currPhase === 0) {
 					newActionList.push({
 						name: 'Rest',
+						description: 'Take no turns this round to regain extra speed.',
 						actionMethod: () => {
 							console.log('resting...');
 							endTurn();
@@ -55,6 +58,7 @@ export default class ActionList extends Component {
 				}
 				newActionList.push({
 					name: 'End Turn',
+					description: 'Take no actions this turn.',
 					actionMethod: () => {endTurn();}
 				});
 			} else if (!targetedHexContains.meta.isCpuControlled) {
@@ -64,9 +68,20 @@ export default class ActionList extends Component {
 					actionMethod: () => {console.log(targetedHexContains)}
 				});
 			} else if (targetedHexContains.meta.isHostile && !currentCharacter.hasMovedThisTurn) {
-				// Target should be an enemy, add attack
+				// Target should be an enemy, determine attack params and add attack
+				const attack = currentCharacter.currentAttack;
+				const isRanged = attack.attribute === 'Perception';
+				const attackDice = currentCharacter.attributes[attack.attribute];
+				const attackSucc = currentCharacter.skills[attack.skill];
+				const damageDice = !isRanged ? currentCharacter.attributes.Strength+attack.damDiceBonus : attack.damDiceBonus;
+				const damageSucc = attack.damSuccBonus;
+				const passiveDef = targetedHexContains.skills.Defense > 0 ? targetedHexContains.skills.Defense : 1;
+				const dodgeDice = (isRanged ? targetedHexContains.attributes.Wits : targetedHexContains.attributes.Agility)+targetedHexContains.skills.Defense;
+				const dodgeSucc = targetedHexContains.skills.Defense;
+
 				newActionList.push({
 					name: 'Attack',
+					description: `To Hit: ${attackSucc}-${attackSucc+attackDice}, Damage: ${damageSucc}-${damageSucc+damageDice}, Defense: ${passiveDef}, Dodge: ${dodgeSucc}-${dodgeSucc+dodgeDice}`,
 					actionMethod: () => {
 						console.log('attack!!!!');
 						endTurn();
@@ -91,7 +106,8 @@ export default class ActionList extends Component {
 						key={`${action.name}-${q}-${r}-${s}`}
 						onClick={action.actionMethod}
 					>
-						{action.name}
+						<div className='actionList_actionTitle'>{action.name}</div>
+						<div className='actionList_actionDesc'>{action.description}</div>
 					</div>
 				))}
 			</div>

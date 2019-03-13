@@ -5,7 +5,7 @@
 		background: $white;
 		box-sizing: border-box;
 		cursor: pointer;
-		height: 30px;
+		min-height: 42px;
 		margin: 6px;
 		padding: 6px;
 		position: relative;
@@ -14,5 +14,10 @@
 		&:hover {
 			box-shadow: 0 0 3px $black;
 		}
+	}
+
+	.actionList_actionDesc {
+		font-size: 9px;
+		color: $darkGray;
 	}
 }
