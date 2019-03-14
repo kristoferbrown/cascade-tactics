@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import CharacterContext from '../../../context/CharacterContext';
+import { roll, rollSingleDie } from '../../../utils/diceUtils'
 import './ActionList.scss';
 
 export default class ActionList extends Component {
@@ -83,8 +84,14 @@ export default class ActionList extends Component {
 					name: 'Attack',
 					description: `To Hit: ${attackSucc}-${attackSucc+attackDice}, Damage: ${damageSucc}-${damageSucc+damageDice}, Defense: ${passiveDef}, Dodge: ${dodgeSucc}-${dodgeSucc+dodgeDice}`,
 					actionMethod: () => {
-						console.log('attack!!!!');
-						endTurn();
+						console.log(
+							'to hit:', roll(attackDice,attackSucc),
+							'vs pssve:', passiveDef,
+							`or dodge ${dodgeDice}${dodgeSucc}:`, roll(dodgeDice,dodgeSucc),
+							'loction:', rollSingleDie(),
+							'damage:', roll(damageDice,damageSucc),
+							);
+						//endTurn();
 					}
 				});
 			}
