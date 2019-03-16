@@ -31,7 +31,6 @@ export default class MapMenu extends Component {
 						<div className='mapMenu_labelRow'>
 							<div className='mapMenu_label'>
 								<div>{label}</div>
-								{!!currSpeedCost && <div><span className='mapMenu_speedCost'>{`-${currSpeedCost}`}</span> Speed</div>}
 							</div>
 							<div className={classNames({
 								'mapMenu_shadowMask': true,

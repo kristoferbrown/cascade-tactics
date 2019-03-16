@@ -21,6 +21,7 @@
 	}
 
 	.hexMap_movePath {
+		pointer-events: none;
 		&.hexMap_movePath_animating {
 			path {
 				animation: movePathFill 0.6s ease forwards;
@@ -29,12 +30,13 @@
 			}
 		}
 		path {
+			animation: movePathDashes 6s infinite linear;
 			fill: none;
+			pointer-events: none;
 			stroke: $allyBlue;
 			stroke-width: 2;
 			stroke-linecap: flat;
 			stroke-linejoin: round;
-			animation: movePathDashes 6s infinite linear;
 			stroke-dasharray: 5 2;
 			stroke-dashoffset: 200;
 		}

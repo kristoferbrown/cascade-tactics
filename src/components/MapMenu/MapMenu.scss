@@ -10,7 +10,7 @@
 	position: absolute;
 	transition: transform 0.1s ease, opacity 0.3s ease;
 	transform: scaleX(0);
-	width: 200px;
+	width: 250px;
 
 	&.mapMenu-enter-done {
 		opacity: 1;
@@ -46,12 +46,6 @@
 
 	.mapMenu_shadowMask_visible {
 		transform: scaleY(1);
-	}
-
-	.mapMenu_speedCost {
-		color: $malusRed;
-		text-stroke: 1px;
-		-webkit-text-stroke: 1px;
 	}
 }
 

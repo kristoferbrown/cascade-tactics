@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ActionItem from './ActionItem';
 import CharacterContext from '../../../context/CharacterContext';
 import { roll, rollSingleDie } from '../../../utils/diceUtils'
 import './ActionList.scss';
@@ -31,12 +32,14 @@ export default class ActionList extends Component {
 				newActionList.push({
 					name: 'Move',
 					description: 'Move here and continue moving.',
+					speedCost: currSpeedCost,
 					actionMethod: () => {moveToTargetHex(null, null, targetedHex, targetedHexIndex)}
 				});
 			}
 			newActionList.push({
 				name: 'End Turn Here',
 				description: 'Move here and end your turn.',
+				speedCost: currSpeedCost,
 				actionMethod: () => {
 					moveToTargetHex(null, null, targetedHex, targetedHexIndex);
 					endTurn();
@@ -45,7 +48,7 @@ export default class ActionList extends Component {
 
 		} else if (!!targetedHex && targetedHexContains && targetedHexContains.meta) {
 			// The target is a character, consider adding self actions or attacks
-			if (targetedHexContains.meta.charId === currentCharacter.meta.charId) {
+			if (!currentCharacter.hasMovedThisTurn && targetedHexContains.meta.charId === currentCharacter.meta.charId) {
 				// Target is self add end turn and maybe rest
 				if (currPhase === 0) {
 					newActionList.push({
@@ -83,6 +86,9 @@ export default class ActionList extends Component {
 				newActionList.push({
 					name: 'Attack',
 					description: `To Hit: ${attackSucc}-${attackSucc+attackDice}, Damage: ${damageSucc}-${damageSucc+damageDice}, Defense: ${passiveDef}, Dodge: ${dodgeSucc}-${dodgeSucc+dodgeDice}`,
+					isAttack: true,
+					attack: attack, 
+					speedCost: attack.speedCost,
 					actionMethod: () => {
 						console.log(
 							'to hit:', roll(attackDice,attackSucc),
@@ -90,8 +96,8 @@ export default class ActionList extends Component {
 							`or dodge ${dodgeDice}${dodgeSucc}:`, roll(dodgeDice,dodgeSucc),
 							'loction:', rollSingleDie(),
 							'damage:', roll(damageDice,damageSucc),
-							);
-						//endTurn();
+						);
+						endTurn();
 					}
 				});
 			}
@@ -108,14 +114,7 @@ export default class ActionList extends Component {
 		return (
 			<div className='actionList'>
 				{ availableActions.map(action => (
-					<div 
-						className='actionList_actionItem'
-						key={`${action.name}-${q}-${r}-${s}`}
-						onClick={action.actionMethod}
-					>
-						<div className='actionList_actionTitle'>{action.name}</div>
-						<div className='actionList_actionDesc'>{action.description}</div>
-					</div>
+					<ActionItem action={action} key={`${action.name}-${q}-${r}-${s}`} />
 				))}
 			</div>
 		);

@@ -260,7 +260,7 @@ export default class HexMap extends PureComponent {
 									isCpuControlled={occupiedBy && occupiedBy.character.meta.isCpuControlled}
 									isHostile={occupiedBy && occupiedBy.character.meta.isHostile}
 									isInHostileRange={hostileMeleeRange.some(hosHex => HexUtils.equals(hosHex, hex))}
-									isInRange={HexUtils.distance(selectedHex, hex) <= currentCharacter.currentRange}
+									isInRange={!currentCharacter.meta.isCpuControlled && HexUtils.distance(selectedHex, hex) <= currentCharacter.currentRange}
 									key={`hex-${hex.q}-${hex.r}-${hex.s}`}
 									onTarget={this.targetHex}
 									onViableHover={this.computeHover}

@@ -1,23 +1,56 @@
 @import '../../../utils/Palette.scss';
 
 .actionList {
-	.actionList_actionItem {
+	.actionItem {
 		background: $white;
 		box-sizing: border-box;
 		cursor: pointer;
 		min-height: 42px;
 		margin: 6px;
-		padding: 6px;
 		position: relative;
 		z-index: 3;
 
 		&:hover {
 			box-shadow: 0 0 3px $black;
 		}
+
+		.actionItem_actionDesc {
+			color: $darkGray;
+			flex: 0 0 100%;
+			font-size: 9px;
+		}
+
+		.actionItem_actionLabel {
+			display: flex;
+			flex-direction: row;
+			flex-wrap: wrap;
+			justify-content: space-between;
+			padding: 6px;
+		}
+
+		.actionItem_speedCost {
+			color: $malusRed;
+			text-stroke: 1px;
+			-webkit-text-stroke: 1px;
+		}
 	}
 
-	.actionList_actionDesc {
-		font-size: 9px;
-		color: $darkGray;
+	.actionItem_attackLabel,
+	.actionItem_defenseLabel {
+		color: $white;
+		min-height: 30px;
+		padding: 6px;
+
+		&.actionItem_attackLabel_str { background-color: $strength; }
+		&.actionItem_attackLabel_fin { background-color: $finesse; }
+		&.actionItem_attackLabel_per { background-color: $perception; }
+		
+		&.actionItem_defenseLabel_agi { background-color: $agility; }
+		&.actionItem_defenseLabel_wit { background-color: $wits; }
+
+		.actionItem_attackDesc,
+		.actionItem_defenseDesc {
+			font-size: 9px;
+		}
 	}
 }
