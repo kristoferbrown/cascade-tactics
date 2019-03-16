@@ -5,8 +5,12 @@
 		background: $white;
 		box-sizing: border-box;
 		cursor: pointer;
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
 		min-height: 42px;
 		margin: 6px;
+		overflow: hidden;
 		position: relative;
 		z-index: 3;
 
@@ -21,7 +25,9 @@
 		}
 
 		.actionItem_actionLabel {
+			box-sizing: border-box;
 			display: flex;
+			flex: 0 0 100%;
 			flex-direction: row;
 			flex-wrap: wrap;
 			justify-content: space-between;
@@ -37,7 +43,9 @@
 
 	.actionItem_attackLabel,
 	.actionItem_defenseLabel {
+		box-sizing: border-box;
 		color: $white;
+		flex: 0 0 50%;
 		min-height: 30px;
 		padding: 6px;
 
@@ -50,7 +58,10 @@
 
 		.actionItem_attackDesc,
 		.actionItem_defenseDesc {
-			font-size: 9px;
+			font-size: 12px;
+			&:first-child {
+				margin: 0 0 6px 0;
+			}
 		}
 	}
 }

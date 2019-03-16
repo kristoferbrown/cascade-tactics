@@ -84,10 +84,9 @@ export default class ActionList extends Component {
 				const dodgeSucc = targetedHexContains.skills.Defense;
 
 				newActionList.push({
-					name: 'Attack',
+					name: attack.name,
 					description: `To Hit: ${attackSucc}-${attackSucc+attackDice}, Damage: ${damageSucc}-${damageSucc+damageDice}, Defense: ${passiveDef}, Dodge: ${dodgeSucc}-${dodgeSucc+dodgeDice}`,
-					isAttack: true,
-					attack: attack, 
+					attack: { attackObj: attack, attackDice, attackSucc, damageDice, damageSucc, dodgeDice, dodgeSucc, passiveDef },
 					speedCost: attack.speedCost,
 					actionMethod: () => {
 						console.log(
