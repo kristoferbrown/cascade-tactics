@@ -6,7 +6,6 @@
 	}
 
 	&.hexTile_occupied polygon {
-		cursor: pointer;
 		fill-opacity: 0;
 	}
 
@@ -26,7 +25,7 @@
 		}
 	}
 
-	&.hexTile_inRange {
+	&.hexTile_clickable {
 		&:hover {
 			polygon {
 				fill: $white;

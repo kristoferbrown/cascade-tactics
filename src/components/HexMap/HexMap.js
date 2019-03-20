@@ -251,16 +251,22 @@ export default class HexMap extends PureComponent {
 						<g>
 							{ !!hexList && hexList.map((hex, index) => {
 								const occupiedBy = charLocList.find(charLoc => index === charLoc.hexIndex);
+								const inMovementRange = currentCharacter && !currentCharacter.meta.isCpuControlled && HexUtils.distance(selectedHex, hex) <= currentCharacter.currentRange
+								const inAttackRange = currentCharacter && !currentCharacter.meta.isCpuControlled && HexUtils.distance(selectedHex, hex) <= currentCharacter.currentAttack.range
+								const isHostile = occupiedBy && occupiedBy.character.meta.isHostile;
+								const blocked = objectList.some(object => index === object.hexIndex);
 								return <HexTile
 									clearPath={this.clearPath}
 									contains={occupiedBy ? occupiedBy.character : null}
 									hex={hex}
 									hexListIndex={index}
-									isBlocked={objectList.some(object => index === object.hexIndex)}
+									isBlocked={blocked}
+									isClickable={(inAttackRange && isHostile) || (inMovementRange && !blocked && !occupiedBy)}
 									isCpuControlled={occupiedBy && occupiedBy.character.meta.isCpuControlled}
 									isHostile={occupiedBy && occupiedBy.character.meta.isHostile}
 									isInHostileRange={hostileMeleeRange.some(hosHex => HexUtils.equals(hosHex, hex))}
-									isInRange={!currentCharacter.meta.isCpuControlled && HexUtils.distance(selectedHex, hex) <= currentCharacter.currentRange}
+									isInAttackRange={inAttackRange}
+									isInMovementRange={inMovementRange}
 									key={`hex-${hex.q}-${hex.r}-${hex.s}`}
 									onTarget={this.targetHex}
 									onViableHover={this.computeHover}
