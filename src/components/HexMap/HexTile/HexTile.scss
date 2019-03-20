@@ -49,6 +49,32 @@
 				fill-opacity: 0.5;
 			}
 		}
+
+		&.hexTile_inAttackRange {
+			&:hover {
+				polygon {
+					fill: $allyBlue;
+					fill-opacity: 0.9;
+				}
+			}
+			polygon {
+				fill: $allyBlue;
+				fill-opacity: 0.5;
+			}
+			&.hexTile_inHostileRange {
+				&:hover {
+					polygon {
+						fill: $halfwayPurple;
+						fill-opacity: 0.9;
+					}
+				}
+				polygon {
+					fill: $halfwayPurple;
+					fill-opacity: 0.5;
+				}
+			}
+		}
+
 	}
 
 	polygon {
