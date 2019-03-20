@@ -38,7 +38,7 @@ export const testCharacters = [
 	},{
 		meta: { charId: 2, name: 'Monolith', fullName: 'Monolith', isCpuControlled: true, isHostile: true, isInscrutable: true },
 		attributes: { Strength: 1, Finesse: 1, Perception: 1, Stamina: 2, Agility: 1, Wits: 1, Willpower: 1, Intelligence: 1, Charisma: 1 },
-		skills: { Unarmed: 0, Melee: 0, Firearms: 0, Ballistics: 0, Defense: 0, Initiative: 0, Toughness: 0, Athletics: 0, Guts: 0 },
+		skills: { Unarmed: 0, Melee: 0, Firearms: 0, Ballistics: 0, Defense: 2, Initiative: 0, Toughness: 0, Athletics: 0, Guts: 0 },
 		currentAttack: { name: 'Unarmed', attribute: 'Strength', skill: 'Unarmed', speedCost: 2, damDiceBonus: 0, damSuccBonus: 0, atkDiceBonus: 0, atkSuccBonus: 0 },
 		status: { 
 			health: { upper: [3,4], lower: [4,4], main: [1,4], off: [3,4], legs: [4,4] },

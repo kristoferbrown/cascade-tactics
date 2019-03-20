@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ActionItem from './ActionItem';
 import CharacterContext from '../../../context/CharacterContext';
-import { roll, rollSingleDie } from '../../../utils/diceUtils'
+import { attackRoll } from '../../../utils/diceUtils'
 import './ActionList.scss';
 
 export default class ActionList extends Component {
@@ -89,13 +89,9 @@ export default class ActionList extends Component {
 					attack: { attackObj: attack, attackDice, attackSucc, damageDice, damageSucc, dodgeDice, dodgeSucc, passiveDef },
 					speedCost: attack.speedCost,
 					actionMethod: () => {
-						console.log(
-							'to hit:', roll(attackDice,attackSucc),
-							'vs pssve:', passiveDef,
-							`or dodge ${dodgeDice}${dodgeSucc}:`, roll(dodgeDice,dodgeSucc),
-							'loction:', rollSingleDie(),
-							'damage:', roll(damageDice,damageSucc),
-						);
+						const attackResult = attackRoll(attackDice,attackSucc,damageDice,damageSucc);
+						const didHit = attackResult.toHit >= passiveDef;
+						console.log(didHit ? 'HIT!!!!' : 'Miss...', attackResult);
 						endTurn();
 					}
 				});

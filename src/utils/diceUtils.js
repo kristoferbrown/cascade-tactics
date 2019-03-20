@@ -6,12 +6,26 @@ export function roll(dice, succ) {
   return successesRolled;
 }
 
-export function attackRoll(dice, succ) {
-  console.log('attack rolled', dice, succ);
+export function attackRoll(dice, succ, damDice, damSucc) {
+  const toHit = roll(dice, succ);
+  const location = locationRoll();
+  const baseDamage = roll(damDice, damSucc);
+  const damage = baseDamage + location.critLevel;
+  return { toHit, damage, location};
 }
 
 export function locationRoll() {
-  console.log('loc rolled');
+  let critLevel = 0;
+  let locationHit = 0;
+  while (!locationHit) {
+    const result = rollSingleDie();
+    if (result === 6) {
+      critLevel++;
+    } else {
+      locationHit = result;
+    }
+  }
+  return { critLevel, locationHit };
 }
 
 export function rollSingleDie() {
