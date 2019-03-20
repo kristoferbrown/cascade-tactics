@@ -22,8 +22,8 @@ export default class ActionList extends Component {
 	}
 
 	calibrateActionList() {
-		const { currSpeedCost, endTurn, moveToTargetHex, targetedHex, targetedHexContains, targetedHexIndex } = this.props;
-		const { currentCharacter, currPhase } = this.context;
+		const { currSpeedCost, endTurn, moveToTargetHex, setSpeedCost, targetedHex, targetedHexContains, targetedHexIndex } = this.props;
+		const { currentCharacter, currPhase, deductSpeed } = this.context;
 		let newActionList = [];
 		if (!!targetedHex && !targetedHexContains) {
 			// The target space is empty, consider showing basic movement actions
@@ -65,12 +65,6 @@ export default class ActionList extends Component {
 					description: 'Take no actions this turn.',
 					actionMethod: () => {endTurn();}
 				});
-			} else if (!targetedHexContains.meta.isCpuControlled) {
-				// Target is an ally, just add inspect
-				newActionList.push({
-					name: 'View Character',
-					actionMethod: () => {console.log(targetedHexContains)}
-				});
 			} else if (targetedHexContains.meta.isHostile && !currentCharacter.hasMovedThisTurn) {
 				// Target should be an enemy, determine attack params and add attack
 				const attack = currentCharacter.currentAttack;
@@ -92,8 +86,10 @@ export default class ActionList extends Component {
 						const attackResult = attackRoll(attackDice,attackSucc,damageDice,damageSucc);
 						const didHit = attackResult.toHit >= passiveDef;
 						console.log(didHit ? 'HIT!!!!' : 'Miss...', attackResult);
+						deductSpeed(currentCharacter.meta.charId, attack.speedCost);
 						endTurn();
-					}
+					},
+					hoverMethod: () => {setSpeedCost(attack.speedCost)}
 				});
 			}
 		}

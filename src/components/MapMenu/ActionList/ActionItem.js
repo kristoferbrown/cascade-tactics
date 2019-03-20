@@ -16,6 +16,7 @@ export default class ActionList extends PureComponent {
 					'actionItem_attack_per': action.attack && action.attack.attackObj.attribute === 'Perception'
 				})}
 				onClick={action.actionMethod}
+				onMouseOver={action.hoverMethod}
 			>
 				<div className='actionItem_actionLabel'>
 					<div className='actionItem_actionTitle'>{action.name}</div>

@@ -232,7 +232,7 @@ export default class HexMap extends PureComponent {
 	}
 
 	render() {
-		const { currSpeedCost } = this.props;
+		const { currSpeedCost, setSpeedCost } = this.props;
 		const { charLocList, hexList, hostileMeleeRange,  hoveredHex, hoveredHexLoc, objectList, selectedHex, targetedHex, targetedHexContains, targetedHexIndex, tooltipLabel } = this.state;
 		const { currentCharacter } = this.context;
 
@@ -311,6 +311,7 @@ export default class HexMap extends PureComponent {
 					label={tooltipLabel}
 					menuOrigin={hoveredHexLoc}
 					moveToTargetHex={this.moveToTargetHex}
+					setSpeedCost={setSpeedCost}
 					targetedHex={targetedHex}
 					targetedHexContains={targetedHexContains}
 					targetedHexIndex={targetedHexIndex}
