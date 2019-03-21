@@ -23,7 +23,7 @@ export default class ActionList extends Component {
 
 	calibrateActionList() {
 		const { currSpeedCost, endTurn, moveToTargetHex, setSpeedCost, targetedHex, targetedHexContains, targetedHexIndex } = this.props;
-		const { currentCharacter, currPhase, deductSpeed } = this.context;
+		const { animateAttack, currentCharacter, currPhase, deductSpeed } = this.context;
 		let newActionList = [];
 		if (!!targetedHex && !targetedHexContains) {
 			// The target space is empty, consider showing basic movement actions
@@ -83,17 +83,18 @@ export default class ActionList extends Component {
 					attack: { attackObj: attack, attackDice, attackSucc, damageDice, damageSucc, dodgeDice, dodgeSucc, passiveDef },
 					speedCost: attack.speedCost,
 					actionMethod: () => {
+						animateAttack(attack.range === 1, currentCharacter, targetedHexContains)
 						const attackResult = attackRoll(attackDice,attackSucc,damageDice,damageSucc);
 						const didHit = attackResult.toHit >= passiveDef;
 						console.log(didHit ? 'HIT!!!!' : 'Miss...', attackResult);
 						deductSpeed(currentCharacter.meta.charId, attack.speedCost);
+						setSpeedCost(0);
 						endTurn();
 					},
 					hoverMethod: () => {setSpeedCost(attack.speedCost)}
 				});
 			}
 		}
-
 
 		this.setState({availableActions: newActionList});
 	}

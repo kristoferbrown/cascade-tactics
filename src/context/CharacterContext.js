@@ -14,12 +14,25 @@ export class CharacterProvider extends PureComponent {
 			newCharacter.currentSpeed = newCharacter.attributes.Agility+3;
 			return newCharacter;
 		});
+		this.attackAnimTimer = null;
 		this.state = {
 			characters: currentCharacters, // Characters loaded from data and injected with transient values
 			currentCharacter: currentCharacters[0], // Character object at current initiative
 			currInit: 0,
 			currPhase: 0,
 			currRound: 1
+		}
+	}
+
+	animateAttack = (isMelee, source, target) => {
+		if (isMelee) {
+			const originPix = source.pixelLoc;
+			let animCharacter = {...source};
+			animCharacter.pixelLoc = target.pixelLoc;
+			animCharacter.hasMoved = true;
+			animCharacter.mapClass = 'mapCharacter_isAnimating';
+			debugger
+			this.editCharacter(source.meta.charId, animCharacter);
 		}
 	}
 
@@ -40,6 +53,19 @@ export class CharacterProvider extends PureComponent {
 	getCharById = (charId) => {
 		const { characters } = this.state;
 		return characters.find(character => character.meta.charId === charId);
+	}
+
+	editCharacter = (charId, newCharacter) => {
+		const { characters } = this.state;
+		let newCharacters = [...characters];
+		newCharacters = newCharacters.map(character => {
+			if (character.meta.charId === charId) {
+				return newCharacter;
+			} else {
+				return character;
+			}
+		});
+		this.setState({characters: newCharacters}, () => console.log(this.state));
 	}
 
 	incrementInit = () => {
@@ -137,6 +163,7 @@ export class CharacterProvider extends PureComponent {
 			<CharacterContext.Provider
 				value={{
 					...this.state,
+					animateAttack: this.animateAttack,
 					deductSpeed: this.deductSpeed,
 					getCharById: this.getCharById,
 					incrementInit: this.incrementInit,
