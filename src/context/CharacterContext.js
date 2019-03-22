@@ -24,15 +24,25 @@ export class CharacterProvider extends PureComponent {
 		}
 	}
 
-	animateAttack = (isMelee, source, target) => {
-		if (isMelee) {
+	animateAttack = (attack, source, target, result) => {
+		if (attack.range === 1) {
 			const originPix = source.pixelLoc;
-			let animCharacter = {...source};
-			animCharacter.pixelLoc = target.pixelLoc;
-			animCharacter.hasMoved = true;
-			animCharacter.mapClass = 'mapCharacter_isAnimating';
+			let sourceChar = {...source};
+			let targetChar = {...target}
+			sourceChar.pixelLoc = target.pixelLoc;
+			sourceChar.hasMoved = true;
+			sourceChar.mapClass = 'mapCharacter_isAnimating';
+			sourceChar.currentRange = sourceChar.currentRange-attack.speedCost;
+			sourceChar.currentSpeed = sourceChar.currentSpeed-attack.speedCost;
 			debugger
-			this.editCharacter(source.meta.charId, animCharacter);
+			this.editCharacter(sourceChar.meta.charId, sourceChar);
+			this.attackAnimTimer = setTimeout(
+				() => {
+					sourceChar.pixelLoc = originPix;
+					this.editCharacter(sourceChar.meta.charId, sourceChar);
+				},
+				1000
+			);
 		}
 	}
 
@@ -60,12 +70,12 @@ export class CharacterProvider extends PureComponent {
 		let newCharacters = [...characters];
 		newCharacters = newCharacters.map(character => {
 			if (character.meta.charId === charId) {
-				return newCharacter;
+				return {...newCharacter};
 			} else {
 				return character;
 			}
 		});
-		this.setState({characters: newCharacters}, () => console.log(this.state));
+		this.setState({characters: newCharacters});
 	}
 
 	incrementInit = () => {

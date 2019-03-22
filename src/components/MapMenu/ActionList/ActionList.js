@@ -83,13 +83,13 @@ export default class ActionList extends Component {
 					attack: { attackObj: attack, attackDice, attackSucc, damageDice, damageSucc, dodgeDice, dodgeSucc, passiveDef },
 					speedCost: attack.speedCost,
 					actionMethod: () => {
-						animateAttack(attack.range === 1, currentCharacter, targetedHexContains)
 						const attackResult = attackRoll(attackDice,attackSucc,damageDice,damageSucc);
+						animateAttack(attack, currentCharacter, targetedHexContains, attackResult);
 						const didHit = attackResult.toHit >= passiveDef;
 						console.log(didHit ? 'HIT!!!!' : 'Miss...', attackResult);
-						deductSpeed(currentCharacter.meta.charId, attack.speedCost);
+						//deductSpeed(currentCharacter.meta.charId, attack.speedCost);
 						setSpeedCost(0);
-						endTurn();
+						//endTurn();
 					},
 					hoverMethod: () => {setSpeedCost(attack.speedCost)}
 				});
