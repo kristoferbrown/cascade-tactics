@@ -18,6 +18,7 @@ export default class ObjectLayer extends PureComponent {
 								'objectLayer_cpuCharacter': character.meta.isCpuControlled,
 								'objectLayer_hostile': character.meta.isHostile,
 								'objectLayer_isSelected': character.meta.charId === currentCharacter.meta.charId,
+								[character.mapClass]: !!character.mapClass
 							})}
 							key={`mapRenderer-${character.meta.charId}`}
 							style={{

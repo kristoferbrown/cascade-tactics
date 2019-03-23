@@ -12,7 +12,7 @@ export class CharacterProvider extends PureComponent {
 			let newCharacter = {...character};
 			newCharacter.currentRange = newCharacter.attributes.Agility+1;
 			newCharacter.currentSpeed = newCharacter.attributes.Agility+3;
-			return newCharacter;
+			return newCharacter; 
 		});
 		this.attackAnimTimer = null;
 		this.state = {
@@ -24,25 +24,30 @@ export class CharacterProvider extends PureComponent {
 		}
 	}
 
-	animateAttack = (attack, source, target, result) => {
+	animateAttack = (attack, source, target, result, callback) => {
 		if (attack.range === 1) {
 			const originPix = source.pixelLoc;
 			let sourceChar = {...source};
 			let targetChar = {...target}
-			sourceChar.pixelLoc = target.pixelLoc;
+			let halfway = {...source.pixelLoc};
+			halfway.x = (sourceChar.pixelLoc.x + targetChar.pixelLoc.x) / 2;
+			halfway.y = (sourceChar.pixelLoc.y + targetChar.pixelLoc.y) / 2;
+			sourceChar.pixelLoc = halfway;
 			sourceChar.hasMoved = true;
 			sourceChar.mapClass = 'mapCharacter_isAnimating';
 			sourceChar.currentRange = sourceChar.currentRange-attack.speedCost;
 			sourceChar.currentSpeed = sourceChar.currentSpeed-attack.speedCost;
-			debugger
+			// TODO add dealing damage to target here
 			this.editCharacter(sourceChar.meta.charId, sourceChar);
 			this.attackAnimTimer = setTimeout(
 				() => {
 					sourceChar.pixelLoc = originPix;
-					this.editCharacter(sourceChar.meta.charId, sourceChar);
+					this.editCharacter(sourceChar.meta.charId, sourceChar, callback);
 				},
-				1000
+				120
 			);
+		} else {
+			callback();
 		}
 	}
 
@@ -65,7 +70,7 @@ export class CharacterProvider extends PureComponent {
 		return characters.find(character => character.meta.charId === charId);
 	}
 
-	editCharacter = (charId, newCharacter) => {
+	editCharacter = (charId, newCharacter, callback) => {
 		const { characters } = this.state;
 		let newCharacters = [...characters];
 		newCharacters = newCharacters.map(character => {
@@ -75,7 +80,7 @@ export class CharacterProvider extends PureComponent {
 				return character;
 			}
 		});
-		this.setState({characters: newCharacters});
+		this.setState({characters: newCharacters}, callback);
 	}
 
 	incrementInit = () => {
