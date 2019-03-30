@@ -2,7 +2,7 @@ import React, { PureComponent, Fragment } from 'react';
 import classNames from 'classnames';
 import './ActionList.scss';
 
-export default class ActionList extends PureComponent {
+export default class ActionItem extends PureComponent {
 
 	render() {
 		const { action } = this.props;

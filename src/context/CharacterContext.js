@@ -24,6 +24,10 @@ export class CharacterProvider extends PureComponent {
 		}
 	}
 
+	componentWillUnmount() {
+		clearTimeout(this.attackAnimTimer);
+	}
+
 	animateAttack = (attack, source, target, result, callback) => {
 		if (attack.range === 1) {
 			const originPix = source.pixelLoc;

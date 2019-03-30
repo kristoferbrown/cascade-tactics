@@ -2,11 +2,33 @@ import React, { Component } from 'react';
 import classNames from 'classnames';
 import { CSSTransition } from 'react-transition-group';
 import ActionList from './ActionList/ActionList'
+import AttackResults from './AttackResults/AttackResults'
 import './MapMenu.scss';
 
 export default class MapMenu extends Component {
+	state = {
+		rollResults: {},
+		showResults: false,
+	}
+
+	resultDisplayTimer = null;
+
+	cullResults = () => {
+		this.setState({showResults: false, rollResults: {}})
+		this.props.endTurn();
+	}
+
+	showResults = (attackResult, attackUsed, defenseResult) => {
+		this.setState(
+			{showResults: true, rollResults: {attackResult, attackUsed, defenseResult}},
+			() => setTimeout(this.cullResults, 1200)
+		);
+	}
+
 	render() {
 		const { currSpeedCost, endTurn, label, menuOrigin, moveToTargetHex, setSpeedCost, targetedHex, targetedHexContains, targetedHexIndex } = this.props;
+		const { rollResults, showResults } = this.state;
+		const { attackResult, attackUsed, defenseResult } = rollResults;
 		return (
 			 !!menuOrigin ? (
 			<CSSTransition
@@ -47,15 +69,24 @@ export default class MapMenu extends Component {
 						>
 							{ state => (
 								<div className='mapMenuContent'>
-									<ActionList
-										currSpeedCost={currSpeedCost}
-										endTurn={endTurn}
-										moveToTargetHex={moveToTargetHex}
-										setSpeedCost={setSpeedCost}
-										targetedHex={targetedHex}
-										targetedHexContains={targetedHexContains}
-										targetedHexIndex={targetedHexIndex}
-									/>
+									{ showResults ? (
+										<AttackResults
+											attackResult={attackResult}
+											attackUsed={attackUsed}
+											defenseResult={defenseResult}
+										/>
+									) : (
+										<ActionList
+											currSpeedCost={currSpeedCost}
+											endTurn={endTurn}
+											moveToTargetHex={moveToTargetHex}
+											setSpeedCost={setSpeedCost}
+											showAttackResults={this.showResults}
+											targetedHex={targetedHex}
+											targetedHexContains={targetedHexContains}
+											targetedHexIndex={targetedHexIndex}
+										/>
+									)}
 								</div>
 							)}
 						</CSSTransition>

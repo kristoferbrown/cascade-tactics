@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import ActionItem from './ActionItem';
 import CharacterContext from '../../../context/CharacterContext';
 import { attackRoll } from '../../../utils/diceUtils'
 import './ActionList.scss';
 
-export default class ActionList extends Component {
+export default class ActionList extends PureComponent {
 	static contextType = CharacterContext;
 
 	state = {
@@ -22,22 +22,23 @@ export default class ActionList extends Component {
 	}
 
 	calibrateActionList() {
-		const { currSpeedCost, endTurn, moveToTargetHex, setSpeedCost, targetedHex, targetedHexContains, targetedHexIndex } = this.props;
+		const { currSpeedCost, endTurn, moveToTargetHex, setSpeedCost, showAttackResults, targetedHex, targetedHexContains, targetedHexIndex } = this.props;
 		const { animateAttack, currentCharacter, currPhase } = this.context;
 		let newActionList = [];
 		if (!!targetedHex && !targetedHexContains) {
 			// The target space is empty, consider showing basic movement actions
-			if (currSpeedCost < currentCharacter.currentRange && currSpeedCost < currentCharacter.currentSpeed) {
-				// Only add simple move when there will be speed and range remaining
-				newActionList.push({
-					name: 'Move',
-					description: 'Move here and continue moving.',
-					speedCost: currSpeedCost,
-					actionMethod: () => {moveToTargetHex(null, null, targetedHex, targetedHexIndex)}
-				});
-			}
+			// #TODO consider if move and continue moving should be an allowed action, uncomment this if it should
+			// if (currSpeedCost < currentCharacter.currentRange && currSpeedCost < currentCharacter.currentSpeed) {
+			// 	// Only add simple move when there will be speed and range remaining
+			// 	newActionList.push({
+			// 		name: 'Move',
+			// 		description: 'Move here and continue moving.',
+			// 		speedCost: currSpeedCost,
+			// 		actionMethod: () => {moveToTargetHex(null, null, targetedHex, targetedHexIndex)}
+			// 	});
+			// }
 			newActionList.push({
-				name: 'End Turn Here',
+				name: 'Move',
 				description: 'Move here and end your turn.',
 				speedCost: currSpeedCost,
 				actionMethod: () => {
@@ -84,9 +85,8 @@ export default class ActionList extends Component {
 					speedCost: attack.speedCost,
 					actionMethod: () => {
 						const attackResult = attackRoll(attackDice,attackSucc,damageDice,damageSucc);
-						animateAttack(attack, currentCharacter, targetedHexContains, attackResult, endTurn);
-						const didHit = attackResult.toHit >= passiveDef;
-						console.log(didHit ? 'HIT!!!!' : 'Miss...', attackResult);
+						const defenseResult = passiveDef;
+						animateAttack(attack, currentCharacter, targetedHexContains, attackResult, () => showAttackResults(attackResult, attack, defenseResult));
 						setSpeedCost(0);
 					},
 					hoverMethod: () => {setSpeedCost(attack.speedCost)}
