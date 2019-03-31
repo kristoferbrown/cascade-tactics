@@ -1,92 +1,56 @@
 @import '../../../utils/Palette.scss';
 
-.actionList {
-	.actionItem {
-		background: $white;
-		box-sizing: border-box;
-		color: $darkGray;
-		cursor: pointer;
+.attackResults {
+	box-sizing: border-box;
+	color: $white;
+	position: relative;
+
+	&.attackResults_str { background-color: $strength; }
+	&.attackResults_fin { background-color: $finesse; }
+	&.attackResults_per { background-color: $perception; }
+	.attackResults_title_str { background-color: $strength; }
+	.attackResults_defenseRoll_agi:after { background-color: $agility; }
+	.attackResults_defenseRoll_wit:after { background-color: $wits; }
+
+	.attackResults_attackRolls {
 		display: flex;
 		flex-direction: row;
-		flex-wrap: wrap;
-		min-height: 42px;
-		margin: 6px;
-		overflow: hidden;
+	}
+
+	.attackResults_defenseRoll,
+	.attackResults_toHitRoll {
+		padding: 6px;
+		flex-basis: 50%;
+		font-size: 12px;
 		position: relative;
-		z-index: 3;
-
-		&:hover {
-			box-shadow: 0 0 3px $black;
-		}
-
-		&.actionItem_attack { color: $white; }
-		&.actionItem_attack_str { background-color: $strength; }
-		&.actionItem_attack_fin { background-color: $finesse; }
-		&.actionItem_attack_per { background-color: $perception; }
-
-		.actionItem_actionDesc {
-			flex: 0 0 100%;
-			font-size: 9px;
-		}
-
-		.actionItem_actionLabel {
-			box-sizing: border-box;
-			display: flex;
-			flex: 0 0 100%;
-			flex-direction: row;
-			flex-wrap: wrap;
-			justify-content: space-between;
-			padding: 6px;
-		}
-		
-		.actionItem_attackDetailStat,
-		.actionItem_speedCost {
-			text-stroke: 1px;
-			-webkit-text-stroke: 1px;
-		}
+		z-index: 1;
 	}
 
-	.actionItem_attackLabel {
-		flex: 0 0 53%;
-		padding: 6px 24px 6px 6px;
+	.attackResults_defenseRoll:after {
+		content: "";
+		display: block;
+		height: 100%;
+		left: 0;
+		position: absolute;
+		top: 0;
+		-webkit-transform: skewX(-45deg);
+		transform: skewX(-45deg);
+		width: 125%;
+		z-index: 0;
 	}
 
-	.actionItem_attackLabel,
-	.actionItem_defenseLabel {
-		box-sizing: border-box;
-		color: $white;
-		min-height: 30px;
+	.attackResults_defenseRollDetail {
+		padding: 0 0 0 12px;
 		position: relative;
-
-		.actionItem_attackDesc,
-		.actionItem_defenseDesc {
-			display: flex;
-			font-size: 12px;
-			justify-content: space-between;
-			position: relative;
-			z-index: 2;
-			&:first-child {
-				margin: 0 0 6px 0;
-			}
-		}
+		z-index: 1;
 	}
 
-	.actionItem_defenseLabel {
-		flex: 0 0 47%;
-		padding: 6px 6px 6px 24px;
-		&:after {
-			content: "";
-			display: block;
-			height: 100%;
-			left: 0;
-			position: absolute;
-			top: 0;
-			transform: skewX(-45deg);
-			width: 125%;
-			z-index: 0;
-		}
+	.attackResults_detailStat {
+		text-stroke: 1px;
+		-webkit-text-stroke: 1px;
+	}
 
-		&.actionItem_defenseLabel_agi:after { background-color: $agility; }
-		&.actionItem_defenseLabel_wit:after { background-color: $wits; }
+	.attackResults_title {
+		padding: 6px;
 	}
 }
