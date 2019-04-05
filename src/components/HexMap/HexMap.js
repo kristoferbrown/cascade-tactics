@@ -294,7 +294,6 @@ export default class HexMap extends PureComponent {
 								contains={currentCharacter}
 								hex={selectedHex}
 								isSelected
-								onTarget={this.targetHex}
 								onViableHover={this.computeHover}
 								targetedHex={targetedHex}
 							/>

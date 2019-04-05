@@ -66,7 +66,7 @@ export default class ActionList extends PureComponent {
 					description: 'Take no actions this turn.',
 					actionMethod: () => {endTurn();}
 				});
-			} else if (targetedHexContains.meta.isHostile && !currentCharacter.hasMovedThisTurn) {
+			} else if (targetedHexContains.meta.isHostile && !currentCharacter.hasMovedThisTurn && currentCharacter.currentSpeed >= currentCharacter.currentAttack.speedCost) {
 				// Target should be an enemy, determine attack params and add attack
 				const attack = currentCharacter.currentAttack;
 				const isRanged = attack.attribute === 'Perception';
