@@ -1,12 +1,27 @@
-import React, { PureComponent } from 'react';
+import React, { PureComponent, Fragment } from 'react';
 import classNames from 'classnames';
+import DiceResultRow from '../../Common/DiceResultRow/DiceResultRow'
 import './AttackResults.scss';
 
 export default class AttackResults extends PureComponent {
+	getLocationString = locNumber => {
+		if (locNumber === 1) {
+			return 'Legs';
+		} else if (locNumber === 2) {
+			return 'Off Arm';
+		} else if (locNumber === 3) {
+			return 'Main Arm';
+		} else if (locNumber === 4) {
+			return 'Lower Body';
+		} else {
+			return 'Upper Body';
+		}
+	}
 
 	render() {
 		const { attackResult, attackUsed, defenseResult } = this.props;
-		const didHit = attackResult.toHit >= defenseResult;
+		const didHit = attackResult.toHit.successes >= defenseResult;
+		const locationString = this.getLocationString(attackResult.location.locationHit);
 		console.log(didHit ? 'HIT!!!!' : 'Miss...', attackUsed, attackResult, defenseResult);
 		return (
 			<div 
@@ -17,10 +32,25 @@ export default class AttackResults extends PureComponent {
 					'attackResults_per': attackUsed.attribute === 'Perception'
 				})}
 			>
-				<div className="attackResults_title">{didHit ? 'Hit' : 'Miss'}</div>
+				<div className={classNames({
+					'attackResults_title': true,
+					'attackResults_title_str': attackUsed.attribute !== 'Perception',
+				})}>
+					{didHit ? (
+						<Fragment>
+							<span className="attackResults_detailStat">{attackResult.damage.successes}</span>
+							{` damage to ${locationString}`}
+							<DiceResultRow results={attackResult.damage.diceRolled}/>
+							</Fragment>
+					):(
+						<Fragment>Miss</Fragment>
+					)}
+				</div>
+
 				<div className="attackResults_attackRolls">
 					<div className="attackResults_toHitRoll">
-						Attack: <span className="attackResults_detailStat"> {attackResult.toHit}</span>
+						Attack: <span className="attackResults_detailStat"> {attackResult.toHit.successes}</span>
+						<DiceResultRow results={attackResult.toHit.diceRolled}/>
 					</div>
 					<div className={classNames({
 						'attackResults_defenseRoll': true,
@@ -32,13 +62,7 @@ export default class AttackResults extends PureComponent {
 						</div>
 					</div>
 				</div>
-				{ didHit && 
-					<div className={classNames({
-						'attackResults_title': true,
-						'attackResults_title_str': attackUsed.attribute !== 'Perception',
-					})}>
-						<span className="attackResults_detailStat">{attackResult.damage}</span> Damage
-					</div> }
+
 			</div>
 		);
 	}

@@ -43,8 +43,9 @@ export const testCharacters = [
 		status: { 
 			health: { upper: [3,4], lower: [4,4], main: [1,4], off: [3,4], legs: [4,4] },
 		},
-		//startingHex: { q: 6, r: 3, s: -9},
-		startingHex: { q: 4, r: 3, s: -7},
+		startingHex: { q: 3, r: 2, s: -5},
+		// far startingHex: { q: 6, r: 3, s: -9},
+		// close startingHex: { q: 4, r: 3, s: -7},
 		mapOffset: {x: -51, y: -15},
 		mapRenderer: (pixelLoc, isSelected)  => <MonoMapRenderer isSelected={isSelected} height={18} className={'mapCharacter monolith'} />,
 		portraitRenderer: () => <MonolithPortrait />,

@@ -21,7 +21,7 @@ export default class MapMenu extends Component {
 	showResults = (attackResult, attackUsed, defenseResult) => {
 		this.setState(
 			{showResults: true, rollResults: {attackResult, attackUsed, defenseResult}},
-			() => setTimeout(this.cullResults, 1200)
+			() => setTimeout(this.cullResults, 2400)
 		);
 	}
 

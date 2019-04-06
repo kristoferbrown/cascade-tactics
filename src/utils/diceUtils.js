@@ -1,16 +1,19 @@
 export function roll(dice, succ) {
-  let successesRolled = succ;
+  let successes = succ;
+  let diceRolled = [];
   for (let i = 0; i < dice; i++) {
-    if (rollSingleDie() > 3) {successesRolled++;}
+    const rolled = rollSingleDie();
+    diceRolled.push(rolled);
+    if (rolled > 3) {successes++;}
   }
-  return successesRolled;
+  return {successes, diceRolled};
 }
 
 export function attackRoll(dice, succ, damDice, damSucc) {
   const toHit = roll(dice, succ);
   const location = locationRoll();
-  const baseDamage = roll(damDice, damSucc);
-  const damage = baseDamage + location.critLevel;
+  let damage = roll(damDice, damSucc);
+  damage.successes = damage.successes + location.critLevel;
   return { toHit, damage, location};
 }
 
