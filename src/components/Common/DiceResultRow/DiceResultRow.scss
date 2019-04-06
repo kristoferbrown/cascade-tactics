@@ -1,4 +1,9 @@
 @import '../../../utils/Palette.scss';
 
 .diceResultRow {
+  align-items: center;
+  display: flex;
+  .diceResultRow-bonusLabel {
+    font-size: 12px;
+  }
 }

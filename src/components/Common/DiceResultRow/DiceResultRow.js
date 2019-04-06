@@ -9,7 +9,7 @@ import './DiceResultRow.scss';
 
 export default class DiceResultRow extends Component {
 	render() {
-		const { results } = this.props;
+		const { results, bonus } = this.props;
 		return (
 			<div className="diceResultRow">
 				{results.map((die, index) => {
@@ -27,6 +27,7 @@ export default class DiceResultRow extends Component {
 						return <DieSix height={16} width={16} key={`die-result-${index}`} />
 					}
 				})}
+				<span className="diceResultRow-bonusLabel">{` + ${bonus}`}</span>
 			</div>
 		);
 	}
