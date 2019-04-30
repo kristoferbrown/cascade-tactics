@@ -40,7 +40,7 @@ export default class AttackResults extends PureComponent {
 						<Fragment>
 							<span className="attackResults_detailStat">{attackResult.damage.successes}</span>
 							{` damage to ${locationString}`}
-							<DiceResultRow results={attackResult.damage.diceRolled} bonus={attackUsed.damSuccBonus+attackResult.location.critLevel}/>
+							<DiceResultRow results={attackResult.damage.diceRolled} bonus={attackResult.damage.bonusSuccesses+attackResult.location.critLevel}/>
 							</Fragment>
 					):(
 						<Fragment>Miss</Fragment>
@@ -50,7 +50,7 @@ export default class AttackResults extends PureComponent {
 				<div className="attackResults_attackRolls">
 					<div className="attackResults_toHitRoll">
 						Attack: <span className="attackResults_detailStat"> {attackResult.toHit.successes}</span>
-						<DiceResultRow results={attackResult.toHit.diceRolled} bonus={attackUsed.atkSuccBonus}/>
+						<DiceResultRow results={attackResult.toHit.diceRolled} bonus={attackResult.toHit.bonusSuccesses}/>
 					</div>
 					<div className={classNames({
 						'attackResults_defenseRoll': true,

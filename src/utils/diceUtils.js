@@ -2,21 +2,22 @@ export function roll(dice, succ) {
   let diceRolled = [];
   let explosions = 0;
   let rollCount = 0;
-  let successes = succ;
+  let successesRolled = 0;
   while (rollCount < dice) {
     let rolled = rollSingleDie();
     diceRolled.push(rolled);
     if (rolled === 6) {
       explosions++;
-      successes++;
+      successesRolled++;
     } else if (rolled > 3) {
       rollCount++;
-      successes++;
+      successesRolled++;
     } else {
       rollCount++;
     }
   }
-  return {successes, diceRolled, explosions};
+  const successes = successesRolled + succ;
+  return {successes, diceRolled, explosions, successesRolled, bonusSuccesses: succ};
 }
 
 export function attackRoll(dice, succ, damDice, damSucc) {
