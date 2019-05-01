@@ -20,7 +20,9 @@ export class CharacterProvider extends PureComponent {
 			currentCharacter: currentCharacters[0], // Character object at current initiative
 			currInit: 0,
 			currPhase: 0,
-			currRound: 1
+			currRound: 1,
+			menuCharacter: currentCharacters[0],
+			showCharacterMenu: false
 		}
 	}
 
@@ -175,6 +177,10 @@ export class CharacterProvider extends PureComponent {
 		});
 	}
 
+	toggleCharacterMenu = (open, character) => {
+		this.setState({showCharacterMenu: open, menuCharacter: character});
+	}
+
 	render() {
 		return (
 			<CharacterContext.Provider
@@ -185,7 +191,8 @@ export class CharacterProvider extends PureComponent {
 					getCharById: this.getCharById,
 					incrementInit: this.incrementInit,
 					resetRange: this.resetRange,
-					setCharacterLocation: this.setCharacterLocation
+					setCharacterLocation: this.setCharacterLocation,
+					toggleCharacterMenu: this.toggleCharacterMenu
 				}}
 			>
 				{this.props.children}

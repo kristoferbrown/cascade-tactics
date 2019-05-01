@@ -1,0 +1,20 @@
+@import '../../utils/Palette.scss';
+
+.characterMenu {
+	background: $nearWhite;
+	height: 100%;
+	left: 0;
+	opacity: 0;
+	position: fixed;
+	transition: 0.5s;
+	top: 0;
+	width: 100%;
+	z-index: 2;
+	transform: scaleY(0);
+	transform-origin: bottom;
+
+	&.characterMenu-enter-done {
+		opacity: 1;
+		transform: scaleY(1);
+	}
+}

@@ -7,14 +7,17 @@ import './TurnItem.scss';
 
 export default class TurnItem extends PureComponent {
 	render() {
-		const { character, currSpeedCost, isCurrentTurn, isPreviousTurn } = this.props;
+		const { character, currSpeedCost, isCurrentTurn, isPreviousTurn, toggleCharacterMenu } = this.props;
 		return (
-			<div className={classNames({
-				'turnItem': true,
-				'turnItem_currentTurn': isCurrentTurn,
-				'turnItem_previousTurn': isPreviousTurn,
-				'turnItem_hiddenTurn': character.currentSpeed <= 0
-			})}>
+			<div 
+				onClick={() => toggleCharacterMenu(true, character)}
+				className={classNames({
+					'turnItem': true,
+					'turnItem_currentTurn': isCurrentTurn,
+					'turnItem_previousTurn': isPreviousTurn,
+					'turnItem_hiddenTurn': character.currentSpeed <= 0
+				})}
+			>
 
 				{ !!character.portraitRenderer ? 
 					<div className='turnItem_portrait'>{character.portraitRenderer()}</div> :

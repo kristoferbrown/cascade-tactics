@@ -8,7 +8,7 @@ export default class InitPhase extends Component {
 
 	render() {
 		const { currSpeedCost, isCurrentPhase, phase } = this.props;
-		const { characters, currInit } = this.context;
+		const { characters, currInit, toggleCharacterMenu } = this.context;
 		return (
 			<div className='initPhase'>
 				{characters.map((character, index) =>
@@ -19,6 +19,7 @@ export default class InitPhase extends Component {
 						initiative={index}
 						isCurrentTurn={isCurrentPhase && index === currInit}
 						isPreviousTurn={isCurrentPhase && index < currInit}
+						toggleCharacterMenu={toggleCharacterMenu}
 					/>
 				)}
 			</div>

@@ -4,6 +4,7 @@
 	align-items: center;
 	background: $nearWhite;
 	border-right: 1px solid $lightGray;
+	cursor: pointer;
 	display: flex;
 	flex-direction: column;
 	height: 150px;
@@ -28,6 +29,7 @@
 		.turnItem_portrait {
 			height: 240px;
 			left: 30px;
+			pointer-events: none;
 			top: -180px;
 			width: 180px;
 		}
