@@ -29,30 +29,28 @@ export class CharacterProvider extends PureComponent {
 	}
 
 	animateAttack = (attack, source, target, result, callback) => {
+		let sourceChar = {...source};
+		let targetChar = {...target};
+		const originPix = source.pixelLoc;
 		if (attack.range === 1) {
-			const originPix = source.pixelLoc;
-			let sourceChar = {...source};
-			let targetChar = {...target}
 			let halfway = {...source.pixelLoc};
 			halfway.x = (sourceChar.pixelLoc.x + targetChar.pixelLoc.x) / 2;
 			halfway.y = (sourceChar.pixelLoc.y + targetChar.pixelLoc.y) / 2;
 			sourceChar.pixelLoc = halfway;
-			sourceChar.hasMoved = true;
-			sourceChar.mapClass = 'mapCharacter_isAnimating';
-			sourceChar.currentRange = sourceChar.currentRange-attack.speedCost;
-			sourceChar.currentSpeed = sourceChar.currentSpeed-attack.speedCost;
-			// TODO add dealing damage to target here
-			this.editCharacter(sourceChar.meta.charId, sourceChar);
-			this.attackAnimTimer = setTimeout(
-				() => {
-					sourceChar.pixelLoc = originPix;
-					this.editCharacter(sourceChar.meta.charId, sourceChar, callback);
-				},
-				120
-			);
-		} else {
-			callback();
 		}
+		sourceChar.hasMoved = true;
+		sourceChar.mapClass = 'mapCharacter_isAnimating';
+		sourceChar.currentRange = sourceChar.currentRange-attack.speedCost;
+		sourceChar.currentSpeed = sourceChar.currentSpeed-attack.speedCost;
+		// TODO add dealing damage to target here
+		this.editCharacter(sourceChar.meta.charId, sourceChar);
+		this.attackAnimTimer = setTimeout(
+			() => {
+				sourceChar.pixelLoc = originPix;
+				this.editCharacter(sourceChar.meta.charId, sourceChar, callback);
+			},
+			120
+		);
 	}
 
 	deductSpeed = (charId, value) => {
