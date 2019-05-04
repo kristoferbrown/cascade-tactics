@@ -234,7 +234,7 @@ export default class HexMap extends PureComponent {
 	render() {
 		const { currSpeedCost, setSpeedCost } = this.props;
 		const { charLocList, hexList, hostileMeleeRange,  hoveredHex, hoveredHexLoc, objectList, selectedHex, targetedHex, targetedHexContains, targetedHexIndex, tooltipLabel } = this.state;
-		const { currentCharacter } = this.context;
+		const { currentCharacter, projectile } = this.context;
 
 		return (
 			<div className="hexMap" ref={this.hexMapRef}>
@@ -300,6 +300,17 @@ export default class HexMap extends PureComponent {
 						}
 
 						<ObjectLayer />
+
+						{ !!projectile &&
+							<g className="hexMap_projectileTrace">
+								<line 
+									x1={projectile.source.x}
+									y1={projectile.source.y}
+									x2={projectile.target.x}
+									y2={projectile.target.y}
+								/>
+							</g>
+						}
 
 					</Layout>
 				</HexGrid>

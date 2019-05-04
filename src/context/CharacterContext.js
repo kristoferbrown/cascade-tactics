@@ -22,6 +22,7 @@ export class CharacterProvider extends PureComponent {
 			currPhase: 0,
 			currRound: 1,
 			menuCharacter: currentCharacters[0],
+			projectile: null,
 			showCharacterMenu: false
 		}
 	}
@@ -34,25 +35,37 @@ export class CharacterProvider extends PureComponent {
 		let sourceChar = {...source};
 		let targetChar = {...target};
 		const originPix = source.pixelLoc;
+		sourceChar.hasMoved = true;
+		sourceChar.mapClass = 'mapCharacter_isAnimating';
+		sourceChar.currentRange = sourceChar.currentRange-attack.speedCost;
+		sourceChar.currentSpeed = sourceChar.currentSpeed-attack.speedCost;
 		if (attack.range === 1) {
 			let halfway = {...source.pixelLoc};
 			halfway.x = (sourceChar.pixelLoc.x + targetChar.pixelLoc.x) / 2;
 			halfway.y = (sourceChar.pixelLoc.y + targetChar.pixelLoc.y) / 2;
 			sourceChar.pixelLoc = halfway;
+			this.editCharacter(sourceChar.meta.charId, sourceChar);
+			this.attackAnimTimer = setTimeout(
+				() => {
+					sourceChar.pixelLoc = originPix;
+					this.editCharacter(sourceChar.meta.charId, sourceChar, callback);
+				},
+				120
+			);
+		} else {
+			this.setState(
+				{projectile: {source: sourceChar.pixelLoc, target: targetChar.pixelLoc}},
+				() => {
+					this.attackAnimTimer = setTimeout(
+					() => {
+						this.setState({projectile: null});
+						this.editCharacter(sourceChar.meta.charId, sourceChar, callback);
+					}, 200 )}
+				);
 		}
-		sourceChar.hasMoved = true;
-		sourceChar.mapClass = 'mapCharacter_isAnimating';
-		sourceChar.currentRange = sourceChar.currentRange-attack.speedCost;
-		sourceChar.currentSpeed = sourceChar.currentSpeed-attack.speedCost;
+
 		// TODO add dealing damage to target here
-		this.editCharacter(sourceChar.meta.charId, sourceChar);
-		this.attackAnimTimer = setTimeout(
-			() => {
-				sourceChar.pixelLoc = originPix;
-				this.editCharacter(sourceChar.meta.charId, sourceChar, callback);
-			},
-			120
-		);
+
 	}
 
 	deductSpeed = (charId, value) => {
