@@ -169,11 +169,12 @@ export default class HexMap extends PureComponent {
 	}
 
 	endTurn = () => {
-		const { currentCharacter, resetRange, incrementInit } = this.context;
+		const { currentCharacter, resetRange, incrementInit, toggleMapIsAnimating } = this.context;
 		resetRange(currentCharacter.meta.charId);
 		const nextCharacter = incrementInit();
 		this.selectOriginHex(nextCharacter.currentHexLoc);
 		this.clearPath();
+		toggleMapIsAnimating(false);
 	}
 
 	// TODO: are we going to use this?
@@ -185,8 +186,8 @@ export default class HexMap extends PureComponent {
 	moveToTargetHex = (event, element, hex, hexIndex) => {
 		const { setSpeedCost } = this.props;
 		const { charLocList, hexList, selectedHex } = this.state;
-		const { currentCharacter, deductSpeed, setCharacterLocation } = this.context;
-
+		const { currentCharacter, deductSpeed, setCharacterLocation, toggleMapIsAnimating } = this.context;
+		toggleMapIsAnimating(true);
 		const distanceMoved = HexUtils.distance(selectedHex, hex);
 		let newCharLocList = [...charLocList];
 		let newHexClicked = {...hex};
@@ -234,8 +235,7 @@ export default class HexMap extends PureComponent {
 	render() {
 		const { currSpeedCost, setSpeedCost } = this.props;
 		const { charLocList, hexList, hostileMeleeRange,  hoveredHex, hoveredHexLoc, objectList, selectedHex, targetedHex, targetedHexContains, targetedHexIndex, tooltipLabel } = this.state;
-		const { currentCharacter, projectile } = this.context;
-
+		const { currentCharacter, mapIsAnimating, projectile } = this.context;
 		return (
 			<div className="hexMap" ref={this.hexMapRef}>
 				<div className="hexMap_background">
@@ -261,7 +261,7 @@ export default class HexMap extends PureComponent {
 									hex={hex}
 									hexListIndex={index}
 									isBlocked={blocked}
-									isClickable={(inAttackRange && isHostile) || (inMovementRange && !blocked && !occupiedBy)}
+									isClickable={!mapIsAnimating && ((inAttackRange && isHostile) || (inMovementRange && !blocked && !occupiedBy))}
 									isCpuControlled={occupiedBy && occupiedBy.character.meta.isCpuControlled}
 									isHostile={occupiedBy && occupiedBy.character.meta.isHostile}
 									isInHostileRange={hostileMeleeRange.some(hosHex => HexUtils.equals(hosHex, hex))}
@@ -277,7 +277,7 @@ export default class HexMap extends PureComponent {
 
 						{ !!targetedHex && 
 							<g className="hexMap_movePath hexMap_movePath_animating">
-								<Path start={selectedHex} end={targetedHex} />
+								{!targetedHexContains && <Path start={selectedHex} end={targetedHex} />}
 								<HexTile
 									clearPath={() =>{}}
 									contains={targetedHexContains}
@@ -305,9 +305,9 @@ export default class HexMap extends PureComponent {
 							<g className="hexMap_projectileTrace">
 								<line 
 									x1={projectile.source.x}
-									y1={projectile.source.y}
+									y1={projectile.source.y-4}
 									x2={projectile.target.x}
-									y2={projectile.target.y}
+									y2={projectile.target.y-4}
 								/>
 							</g>
 						}

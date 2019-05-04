@@ -1,12 +1,24 @@
-import React, { PureComponent } from 'react';
+import React, { PureComponent, Fragment } from 'react';
 import { CSSTransition } from 'react-transition-group';
-import classNames from 'classnames';
 import CharacterContext from '../../context/CharacterContext';
+import CharacterMenuTabs from './CharacterMenuTabs/CharacterMenuTabs';
+import CharacterSelectBar from './CharacterSelectBar/CharacterSelectBar';
+import Nonogram from '../CharContent/Nonogram/Nonogram';
 import './CharacterMenu.scss';
 
 export default class CharacterMenu extends PureComponent {
 	static contextType = CharacterContext;
+
+	state = {
+		currentTab: 'Attributes'
+	}
+	
+	changeTab = (newTab) => {
+		this.setState({currentTab: newTab});
+	}
+
 	render() {
+		const { currentTab } = this.state;
 		const { menuCharacter, showCharacterMenu, toggleCharacterMenu } = this.context;
 		return (
 			<CSSTransition
@@ -14,17 +26,25 @@ export default class CharacterMenu extends PureComponent {
 				timeout={1}
 				classNames="characterMenu"
 				appear
-				mountOnEnter
-				unmountOnExit
+				//mountOnEnter
+				//unmountOnExit
 			>
 				{ state => (
-					<div 
-						onClick={() => toggleCharacterMenu(false)}
-						className={classNames({
-							'characterMenu': true,
-						})}
-					>
-						<div>{`This is the character screen for: ${menuCharacter.meta.name}`}</div>
+					<div className={'characterMenu'} >
+						<div className={'characterMenu_closeButton'} onClick={() => toggleCharacterMenu(false)}>X</div>
+
+						{ menuCharacter &&
+							<Fragment>
+								
+								<CharacterSelectBar />
+								<CharacterMenuTabs changeTab={this.changeTab} currentTab={currentTab} />
+
+								<div className={'characterMenu_body'} >
+									<div>{`This is the character screen for: ${menuCharacter.meta.name}`}</div>
+									<Nonogram attributes={menuCharacter.attributes} isVisible={true} />
+								</div>
+							</Fragment>
+						}
 					</div>
 				)}
 			</CSSTransition>

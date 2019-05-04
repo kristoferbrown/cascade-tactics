@@ -21,6 +21,7 @@ export class CharacterProvider extends PureComponent {
 			currInit: 0,
 			currPhase: 0,
 			currRound: 1,
+			mapIsAnimating: false,
 			menuCharacter: currentCharacters[0],
 			projectile: null,
 			showCharacterMenu: false
@@ -32,6 +33,7 @@ export class CharacterProvider extends PureComponent {
 	}
 
 	animateAttack = (attack, source, target, result, callback) => {
+		this.toggleMapIsAnimating(true);
 		let sourceChar = {...source};
 		let targetChar = {...target};
 		const originPix = source.pixelLoc;
@@ -194,6 +196,10 @@ export class CharacterProvider extends PureComponent {
 		this.setState({showCharacterMenu: open, menuCharacter: character});
 	}
 
+	toggleMapIsAnimating = (isAnimating) => {
+		this.setState({mapIsAnimating: isAnimating});
+	}
+
 	render() {
 		return (
 			<CharacterContext.Provider
@@ -205,7 +211,8 @@ export class CharacterProvider extends PureComponent {
 					incrementInit: this.incrementInit,
 					resetRange: this.resetRange,
 					setCharacterLocation: this.setCharacterLocation,
-					toggleCharacterMenu: this.toggleCharacterMenu
+					toggleCharacterMenu: this.toggleCharacterMenu,
+					toggleMapIsAnimating: this.toggleMapIsAnimating
 				}}
 			>
 				{this.props.children}
