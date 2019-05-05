@@ -1,0 +1,50 @@
+@import '../../../utils/Palette.scss';
+
+
+
+.attackItem_attackLabel {
+	flex: 0 0 53%;
+	padding: 6px;
+	&.attackItem_attackLabel_hasDef {
+		padding: 6px 24px 6px 6px;
+	}
+}
+
+.attackItem_attackLabel,
+.attackItem_defenseLabel {
+	box-sizing: border-box;
+	color: $white;
+	min-height: 30px;
+	position: relative;
+
+	.attackItem_attackDesc,
+	.attackItem_defenseDesc {
+		display: flex;
+		font-size: 12px;
+		justify-content: space-between;
+		position: relative;
+		z-index: 2;
+		&:first-child {
+			margin: 0 0 6px 0;
+		}
+	}
+}
+
+.attackItem_defenseLabel {
+	flex: 0 0 47%;
+	padding: 6px 6px 6px 24px;
+	&:after {
+		content: "";
+		display: block;
+		height: 100%;
+		left: 0;
+		position: absolute;
+		top: 0;
+		transform: skewX(-45deg);
+		width: 125%;
+		z-index: 0;
+	}
+
+	&.attackItem_defenseLabel_agi:after { background-color: $agility; }
+	&.attackItem_defenseLabel_wit:after { background-color: $wits; }
+}

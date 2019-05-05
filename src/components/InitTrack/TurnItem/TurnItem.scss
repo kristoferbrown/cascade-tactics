@@ -13,6 +13,20 @@
 	transition-delay: 0.6s;
 	width: 120px;
 
+	.turnItem_attack {
+		color: $white;
+		width: 110px;
+		&.turnItem_attack_str { background-color: $strength; }
+		&.turnItem_attack_fin { background-color: $finesse; }
+		&.turnItem_attack_per { background-color: $perception; }
+	}
+
+	.turnItem_attackLabel {
+		overflow: hidden;
+		padding: 6px 6px 0;
+		text-overflow: ellipsis;
+	}
+
 	&.turnItem_currentTurn {
 		height: 300px;
 		padding: 0 0 30px 0;

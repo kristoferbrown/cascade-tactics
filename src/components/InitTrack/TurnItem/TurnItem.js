@@ -1,8 +1,9 @@
 import React, { PureComponent, Fragment } from 'react';
-import HealthStatus from '../../CharContent/Health/HealthStatus';
-import Nonogram from '../../CharContent/Nonogram/Nonogram';
-import StatusTrack from '../../Common/StatusTrack/StatusTrack';
 import classNames from 'classnames';
+import AttackItem from '../../Common/AttackItem/AttackItem'
+import { getAttackValues } from '../../../utils/attackUtils'
+import HealthStatus from '../../CharContent/Health/HealthStatus';
+import StatusTrack from '../../Common/StatusTrack/StatusTrack';
 import './TurnItem.scss';
 
 export default class TurnItem extends PureComponent {
@@ -36,8 +37,19 @@ export default class TurnItem extends PureComponent {
 					<div className='turnItem_detailRow'>
 
 						<div className='turnItem_detailColumn'>
-							{(isCurrentTurn || isPreviousTurn) && <div className='turnItem_detailLabel turnItem_attributeLabel'>Attributes</div>}
-							<Nonogram attributes={character.attributes} isVisible={(isCurrentTurn || isPreviousTurn)} />
+							{(isCurrentTurn || isPreviousTurn) && <div className='turnItem_detailLabel turnItem_attributeLabel'>Attack</div>}
+							{(isCurrentTurn || isPreviousTurn) && 
+								<div
+									className={classNames({
+										'turnItem_attack': true,
+										'turnItem_attack_str': character.currentAttack.attribute === 'Strength',
+										'turnItem_attack_fin': character.currentAttack.attribute === 'Finesse',
+										'turnItem_attack_per': character.currentAttack.attribute === 'Perception'
+								})}>
+									<div className='turnItem_attackLabel'>{character.currentAttack.name}</div>
+									<AttackItem attack={getAttackValues(character)} />
+								</div>
+							}
 						</div>
 
 						<div className='turnItem_detailColumn'>

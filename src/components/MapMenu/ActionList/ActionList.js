@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import ActionItem from './ActionItem';
 import CharacterContext from '../../../context/CharacterContext';
 import { attackRoll } from '../../../utils/diceUtils'
+import { getAttackValues } from '../../../utils/attackUtils'
 import './ActionList.scss';
 
 export default class ActionList extends PureComponent {
@@ -68,28 +69,20 @@ export default class ActionList extends PureComponent {
 				});
 			} else if (targetedHexContains.meta.isHostile && !currentCharacter.hasMovedThisTurn && currentCharacter.currentSpeed >= currentCharacter.currentAttack.speedCost) {
 				// Target should be an enemy, determine attack params and add attack
-				const attack = currentCharacter.currentAttack;
-				const isRanged = attack.attribute === 'Perception';
-				const attackDice = currentCharacter.attributes[attack.attribute];
-				const attackSucc = currentCharacter.skills[attack.skill];
-				const damageDice = !isRanged ? currentCharacter.attributes.Strength+attack.damDiceBonus : attack.damDiceBonus;
-				const damageSucc = attack.damSuccBonus;
-				const passiveDef = targetedHexContains.skills.Defense > 0 ? targetedHexContains.skills.Defense : 1;
-				const dodgeDice = (isRanged ? targetedHexContains.attributes.Wits : targetedHexContains.attributes.Agility)+targetedHexContains.skills.Defense;
-				const dodgeSucc = targetedHexContains.skills.Defense;
+				const currentAttack = getAttackValues(currentCharacter, targetedHexContains);
 
 				newActionList.push({
-					name: attack.name,
-					description: `To Hit: ${attackSucc}-${attackSucc+attackDice}, Damage: ${damageSucc}-${damageSucc+damageDice}, Defense: ${passiveDef}, Dodge: ${dodgeSucc}-${dodgeSucc+dodgeDice}`,
-					attack: { attackObj: attack, attackDice, attackSucc, damageDice, damageSucc, dodgeDice, dodgeSucc, passiveDef },
-					speedCost: attack.speedCost,
+					name: currentAttack.attackObj.name,
+					description: `A basic attack.`,
+					attack: currentAttack,
+					speedCost: currentAttack.attackObj.speedCost,
 					actionMethod: () => {
-						const attackResult = attackRoll(attackDice,attackSucc,damageDice,damageSucc);
-						const defenseResult = passiveDef;
-						animateAttack(attack, currentCharacter, targetedHexContains, attackResult, () => showAttackResults(attackResult, attack, defenseResult));
+						const attackResult = attackRoll(currentAttack.attackDice,currentAttack.attackSucc,currentAttack.damageDice,currentAttack.damageSucc);
+						const defenseResult = currentAttack.passiveDef;
+						animateAttack(currentAttack.attackObj, currentCharacter, targetedHexContains, attackResult, () => showAttackResults(attackResult, currentAttack.attackObj, defenseResult));
 						setSpeedCost(0);
 					},
-					hoverMethod: () => {setSpeedCost(attack.speedCost)}
+					hoverMethod: () => {setSpeedCost(currentAttack.attackObj.speedCost)}
 				});
 			}
 		}

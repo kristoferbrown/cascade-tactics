@@ -1,5 +1,6 @@
-import React, { PureComponent, Fragment } from 'react';
+import React, { PureComponent } from 'react';
 import classNames from 'classnames';
+import AttackItem from '../../Common/AttackItem/AttackItem'
 import './ActionList.scss';
 
 export default class ActionItem extends PureComponent {
@@ -24,32 +25,7 @@ export default class ActionItem extends PureComponent {
 					{ !action.attack && <div className='actionItem_actionDesc'>{action.description}</div> }
 				</div>
 				{ !!action.attack && 
-					<Fragment>
-						<div className='actionItem_attackLabel'>
-							<div className='actionItem_attackDesc'>
-								<div className='actionItem_attackDetailTitle'>To Hit:</div>
-								<div className='actionItem_attackDetailStat'>{action.attack.attackSucc}-{action.attack.attackSucc+action.attack.attackDice}</div>
-							</div>
-							<div className='actionItem_attackDesc'>
-								<div className='actionItem_attackDetailTitle'>Damage:</div>
-								<div className='actionItem_attackDetailStat'>{action.attack.damageSucc}-{action.attack.damageSucc+action.attack.damageDice}</div>
-							</div>
-						</div>
-						<div className={classNames({
-							'actionItem_defenseLabel': true,
-							'actionItem_defenseLabel_agi': action.attack.attackObj.attribute !== 'Perception',
-							'actionItem_defenseLabel_wit': action.attack.attackObj.attribute === 'Perception',
-						})}>
-							<div className='actionItem_defenseDesc'>
-								<div className='actionItem_attackDetailTitle'>Defense:</div>
-								<div className='actionItem_attackDetailStat'>{action.attack.passiveDef}</div>
-							</div>
-							<div className='actionItem_defenseDesc'>
-								<div className='actionItem_attackDetailTitle'>Dodge:</div>
-								<div className='actionItem_attackDetailStat'>{action.attack.dodgeSucc}-{action.attack.dodgeSucc+action.attack.dodgeDice}</div>
-								</div>
-						</div>
-					</Fragment>
+					<AttackItem attack={action.attack} defense />
 				}
 			</div>
 		);
