@@ -8,6 +8,9 @@ export default class CharacterSelectBar extends PureComponent {
 		const { menuCharacter, characters } = this.context;
 		return (
 			<div className={'CharacterSelectBar'}>
+				<div className={'CharacterSelectBar_navArrow CharacterSelectBar_previous'}>&lt;</div>
+				<div className={'CharacterSelectBar_currentCharacter'}>{menuCharacter.meta.fullName}</div>
+				<div className={'CharacterSelectBar_navArrow CharacterSelectBar_next'}>&gt;</div>
 			</div>
 		);
 	}

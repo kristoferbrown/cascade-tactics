@@ -40,7 +40,6 @@ export default class CharacterMenu extends PureComponent {
 								<CharacterMenuTabs changeTab={this.changeTab} currentTab={currentTab} />
 
 								<div className={'characterMenu_body'} >
-									<div>{`This is the character screen for: ${menuCharacter.meta.name}`}</div>
 									<Nonogram attributes={menuCharacter.attributes} isVisible={true} />
 								</div>
 							</Fragment>
