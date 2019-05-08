@@ -9,6 +9,7 @@ import './TurnItem.scss';
 export default class TurnItem extends PureComponent {
 	render() {
 		const { character, currSpeedCost, isCurrentTurn, isPreviousTurn, toggleCharacterMenu } = this.props;
+		const currentAttack = getAttackValues(character);
 		return (
 			<div 
 				onClick={() => toggleCharacterMenu(true, character)}
@@ -47,7 +48,7 @@ export default class TurnItem extends PureComponent {
 										'turnItem_attack_per': character.currentAttack.attribute === 'Perception'
 								})}>
 									<div className='turnItem_attackLabel'>{character.currentAttack.name}</div>
-									<AttackItem attack={getAttackValues(character)} />
+									<AttackItem attack={currentAttack} />
 								</div>
 							}
 						</div>

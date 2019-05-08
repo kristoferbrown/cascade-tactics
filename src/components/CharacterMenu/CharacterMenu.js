@@ -26,8 +26,6 @@ export default class CharacterMenu extends PureComponent {
 				timeout={1}
 				classNames="characterMenu"
 				appear
-				//mountOnEnter
-				//unmountOnExit
 			>
 				{ state => (
 					<div className={'characterMenu'} >
@@ -40,7 +38,10 @@ export default class CharacterMenu extends PureComponent {
 								<CharacterMenuTabs changeTab={this.changeTab} currentTab={currentTab} />
 
 								<div className={'characterMenu_body'} >
-									<Nonogram attributes={menuCharacter.attributes} isVisible={true} />
+									{ currentTab === 'Attributes' && <Nonogram attributes={menuCharacter.attributes} isVisible={true} /> }
+									{ currentTab === 'Combat' && <div>This is the combat screen for {menuCharacter.meta.name}</div> }
+									{ currentTab === 'Styles' && <Nonogram attributes={menuCharacter.attributes} isVisible={true} /> }
+									{ currentTab === 'Artifacts' && <div>This is the artifact screen for {menuCharacter.meta.name}</div> }
 								</div>
 							</Fragment>
 						}

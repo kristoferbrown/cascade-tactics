@@ -5,12 +5,12 @@ import './CharacterSelectBar.scss';
 export default class CharacterSelectBar extends PureComponent {
 	static contextType = CharacterContext;
 	render() {
-		const { menuCharacter, characters } = this.context;
+		const { menuCharacter, incrementMenuChar } = this.context;
 		return (
 			<div className={'CharacterSelectBar'}>
-				<div className={'CharacterSelectBar_navArrow CharacterSelectBar_previous'}>&lt;</div>
+				<div onClick={() => incrementMenuChar(false)} className={'CharacterSelectBar_navArrow CharacterSelectBar_previous'}>&lt;</div>
 				<div className={'CharacterSelectBar_currentCharacter'}>{menuCharacter.meta.fullName}</div>
-				<div className={'CharacterSelectBar_navArrow CharacterSelectBar_next'}>&gt;</div>
+				<div onClick={() => incrementMenuChar(true)} className={'CharacterSelectBar_navArrow CharacterSelectBar_next'}>&gt;</div>
 			</div>
 		);
 	}

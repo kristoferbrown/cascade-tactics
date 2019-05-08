@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import CharacterContext from '../../context/CharacterContext';
 import InitPhase from './InitPhase/InitPhase';
 import './InitTrack.scss';
 
-export default class InitTrack extends Component {
+export default class InitTrack extends PureComponent {
 	static contextType = CharacterContext;
 
 	render() {

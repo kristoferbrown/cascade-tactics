@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import CharacterContext from '../../../context/CharacterContext';
 import TurnItem from '../TurnItem/TurnItem';
 import './InitPhase.scss';
 
-export default class InitPhase extends Component {
+export default class InitPhase extends PureComponent {
 	static contextType = CharacterContext;
 
 	render() {

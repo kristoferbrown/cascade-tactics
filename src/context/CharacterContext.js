@@ -139,6 +139,18 @@ export class CharacterProvider extends PureComponent {
 		return nextCharacter;
 	}
 
+	incrementMenuChar = (isIncrementing) => {
+		const { characters, menuCharacter } = this.state;
+		let currentCharacterIndex = characters.findIndex(character => character.meta.charId === menuCharacter.meta.charId);
+		let newMenuCharacter = isIncrementing ? characters[currentCharacterIndex+1] : characters[currentCharacterIndex-1];
+		if (isIncrementing && currentCharacterIndex >= characters.length-1) {
+			newMenuCharacter = characters[0];
+		} else if (!isIncrementing && currentCharacterIndex <= 0) {
+			newMenuCharacter = characters[characters.length-1];
+		}
+		this.setState({ menuCharacter: newMenuCharacter });
+	}
+
 	resetRange = (charId) => {
 		const { characters } = this.state;
 		let newCharacters = [...characters];
@@ -209,6 +221,7 @@ export class CharacterProvider extends PureComponent {
 					deductSpeed: this.deductSpeed,
 					getCharById: this.getCharById,
 					incrementInit: this.incrementInit,
+					incrementMenuChar: this.incrementMenuChar,
 					resetRange: this.resetRange,
 					setCharacterLocation: this.setCharacterLocation,
 					toggleCharacterMenu: this.toggleCharacterMenu,
