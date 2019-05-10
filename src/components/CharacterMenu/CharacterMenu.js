@@ -1,5 +1,6 @@
 import React, { PureComponent, Fragment } from 'react';
 import { CSSTransition } from 'react-transition-group';
+import AttributesScreen from './AttributesScreen/AttributesScreen';
 import CharacterContext from '../../context/CharacterContext';
 import CharacterMenuTabs from './CharacterMenuTabs/CharacterMenuTabs';
 import CharacterSelectBar from './CharacterSelectBar/CharacterSelectBar';
@@ -38,7 +39,7 @@ export default class CharacterMenu extends PureComponent {
 								<CharacterMenuTabs changeTab={this.changeTab} currentTab={currentTab} />
 
 								<div className={'characterMenu_body'} >
-									{ currentTab === 'Attributes' && <Nonogram attributes={menuCharacter.attributes} isVisible={true} /> }
+									{ currentTab === 'Attributes' && <AttributesScreen /> }
 									{ currentTab === 'Combat' && <div>This is the combat screen for {menuCharacter.meta.name}</div> }
 									{ currentTab === 'Styles' && <Nonogram attributes={menuCharacter.attributes} isVisible={true} /> }
 									{ currentTab === 'Artifacts' && <div>This is the artifact screen for {menuCharacter.meta.name}</div> }
