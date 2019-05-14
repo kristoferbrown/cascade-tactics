@@ -34,7 +34,15 @@ export default class StylesScreen extends PureComponent {
 						<div className={'StylesScreen_Row StylesScreen_HeaderRow'}>
 							<div className={'StylesScreen_HeaderText'}>Permanent Styles</div>
 						</div>
-						<div className={'StylesScreen_BasicText'}>Assign floating styles within an attribute to start earning experience points in that attribute.</div>
+						{ !menuCharacter.styles.permanent.totalXp ? (
+							<div className={'StylesScreen_BasicText'}>Assign floating styles within an attribute to start earning experience points in that attribute.</div>
+						) : (
+							menuCharacter.styles.permanent.classes.filter( style =>
+								style.classValues.availableXp || style.classValues.spentXp
+							).map( style => (
+								<div className={`StylesScreen_Row fill_${style.label}`}>{style.label}</div>
+							))
+						)}
 					</div>
 
 				</div>
