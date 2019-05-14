@@ -10,12 +10,13 @@ export default class CharacterMenuTabs extends PureComponent {
 				<div 
 				className={classNames({
 					'CharacterMenuTabs_tab': true,
-					'CharacterMenuTabs_currentTab': currentTab === 'Attributes',
+					'CharacterMenuTabs_currentTab': currentTab === 'Styles',
 				})}
-				onClick={() => changeTab('Attributes')}
+				onClick={() => changeTab('Styles')}
 				>
-					Attributes
+					Styles
 				</div>
+
 				<div 
 				className={classNames({
 					'CharacterMenuTabs_tab': true,
@@ -25,15 +26,7 @@ export default class CharacterMenuTabs extends PureComponent {
 				>
 					Combat
 				</div>
-				<div 
-				className={classNames({
-					'CharacterMenuTabs_tab': true,
-					'CharacterMenuTabs_currentTab': currentTab === 'Styles',
-				})}
-				onClick={() => changeTab('Styles')}
-				>
-					Styles
-				</div>
+
 				<div 
 				className={classNames({
 					'CharacterMenuTabs_tab': true,

@@ -19,6 +19,13 @@ export const testCharacters = [
 		status: { 
 			health: { upper: [3,4], lower: [4,4], main: [1,4], off: [3,4], legs: [4,4] },
 		},
+		styles: {
+			floating: {
+				available: 1,
+				assigned: [ {label: 'Finesse Core', attribute: 'Finesse'}, {label: 'Stamina Core', attribute: 'Stamina'}, ]
+			},
+			classes: {},
+		},
 		startingHex: { q: 2, r: 2, s: -4},
 		mapOffset: {x: -49, y: -11.5},
 		mapRenderer: (pixelLoc, isSelected) => <NeilMapRenderer isSelected={isSelected} height={14} className={'mapCharacter neilArm'} />,
@@ -31,6 +38,13 @@ export const testCharacters = [
 		status: { 
 			health: { upper: [3,4], lower: [4,4], main: [1,4], off: [3,4], legs: [4,4] },
 		},
+		styles: {
+			floating: {
+				available: 0,
+				assigned: [ {label: 'Strength Core', attribute: 'Strength'}, {label: 'Unarmed Combat', attribute: 'Strength'}, {label: 'Intelligence Core', attribute: 'Intelligence'}, ]
+			},
+			classes: {},
+		},
 		startingHex: { q: 3, r: -1, s: -2},
 		mapOffset: {x: -50, y: -12},
 		mapRenderer: (pixelLoc, isSelected)  => <BuzzMapRenderer isSelected={isSelected} height={14} className={'mapCharacter buzzAld'} />,
@@ -42,6 +56,13 @@ export const testCharacters = [
 		currentAttack: { name: 'Unarmed', attribute: 'Strength', skill: 'Unarmed', range: 1, speedCost: 2, damDiceBonus: 0, damSuccBonus: 0, atkDiceBonus: 0, atkSuccBonus: 0 },
 		status: { 
 			health: { upper: [3,4], lower: [4,4], main: [1,4], off: [3,4], legs: [4,4] },
+		},
+		styles: {
+			floating: {
+				available: 3,
+				assigned: [ ]
+			},
+			classes: {},
 		},
 		startingHex: { q: 3, r: 2, s: -5},
 		// far startingHex: { q: 6, r: 3, s: -9},
@@ -57,6 +78,13 @@ export const testCharacters = [
 		status: { 
 			health: { upper: [3,4], lower: [4,4], main: [1,4], off: [3,4], legs: [4,4] },
 		},
+		styles: {
+			floating: {
+				available: 2,
+				assigned: [ {label: 'Wits Core', attribute: 'Wits'} ]
+			},
+			classes: {},
+		},
 		startingHex: { q: 0, r: 3, s: -3},
 		mapOffset: {x: -51, y: -12},
 		mapRenderer: (pixelLoc, isSelected) => <MikeMapRenderer isSelected={isSelected} height={14} className={'mapCharacter mikeColl'} />,
@@ -68,6 +96,13 @@ export const testCharacters = [
 		currentAttack: { name: 'Unarmed', attribute: 'Strength', skill: 'Unarmed',  range: 1, speedCost: 2, damDiceBonus: 0, damSuccBonus: 0, atkDiceBonus: 0, atkSuccBonus: 0 },
 		status: {
 			health: { upper: [3,4], lower: [4,4], main: [1,4], off: [3,4], legs: [4,4] },
+		},
+		styles: {
+			floating: {
+				available: 3,
+				assigned: [ ]
+			},
+			classes: {},
 		},
 		startingHex: { q: 0, r: 0, s: 0},
 		mapOffset: {x: -50, y: -15},

@@ -1,0 +1,65 @@
+@import '../../../utils/Palette.scss';
+
+.StylesScreen {
+	box-sizing: border-box;
+	display: flex;
+	height: 100%;
+	width: 100%;
+
+	.StylesScreen_AlertText {
+		color: $malusRed;
+	}
+
+	.StylesScreen_BasicText {
+		color: $darkGray;
+		font-size: 12px;
+	}
+
+	.StylesScreen_HeaderDetail {
+		font-size: 22px;
+	}
+
+	.StylesScreen_HeaderText {
+		color: $nearBlack;
+		font-size: 22px;
+	}
+
+	.StylesScreen_ListColumn {
+		width: 100%;
+		height: 100%;
+		margin: 0 30px 0 220px;
+		box-sizing: border-box;
+	}
+
+	.StylesScreen_NonogramColumn {
+		align-items: center;
+		display: flex;
+		min-height: 700px;
+	}
+
+	.StylesScreen_Row {
+		color: $white;
+		background: $midGray;
+		display: flex;
+		justify-content: space-between;
+		margin: 0 0 6px 0;
+		padding: 9px;
+		&.StylesScreen_HeaderRow {
+			background: none;
+			padding: 0;
+		}
+		&.fill_Strength { background-color: $strength; }
+		&.fill_Finesse { background-color: $finesse; }
+		&.fill_Perception { background-color: $perception; }
+		&.fill_Stamina { background-color: $stamina; }
+		&.fill_Agility { background-color: $agility; }
+		&.fill_Wits { background-color: $wits; }
+		&.fill_Willpower { background-color: $willpower; }
+		&.fill_Intelligence { background-color: $intelligence; }
+		&.fill_Charisma { background-color: $charisma; }
+	}
+
+	.StylesScreen_Section {
+		margin: 0 0 36px 0;
+	}
+}
