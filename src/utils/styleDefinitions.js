@@ -96,10 +96,32 @@ export const styleTree = [
       spec3: { name: 'Extropy', description: 'Style description...' }, 
       auxOptions: {
         skills: [
-          { name: 'Guts', description: 'Each rank adds 1 to all rolls involving this skill.' }, 
-          { name: 'Toughness', description: 'Each rank adds 1 to all rolls involving this skill.' }, 
+          { name: 'Guts', description: 'Each rank adds 1 to all rolls involving this skill.' },
+          { name: 'Toughness', description: 'Each rank adds 1 to all rolls involving this skill.' },
         ],
-        arcana: []
+        arcana: [
+          { arcaneClass: 'Abjuration', 
+            description: 'Arcane style class description...',
+            styles: [
+              { name: 'Filter', description: 'Style description...' }, 
+              { name: 'Retrogradient', description: 'Style description...' },
+              { name: 'Ward', description: 'Style description...' },
+          ]},
+          { arcaneClass: 'Evocation', 
+            description: 'Arcane style class description...',
+            styles: [
+              { name: 'Cascade Discharge', description: 'Style description...' }, 
+              { name: 'Combat Evocation', description: 'Style description...' },
+              { name: 'Evocation Extensibility', description: 'Style description...' },
+          ]},
+          { arcaneClass: 'Sublimation',
+            description: 'Arcane style class description...',
+            styles: [
+              { name: 'Sublime Storage', description: 'Style description...' }, 
+              { name: 'Yau Combat', description: 'Style description...' },
+              { name: 'Yau Traversal', description: 'Style description...' },
+          ]},
+        ]
       }
     }
   },
@@ -113,7 +135,29 @@ export const styleTree = [
           { name: 'Hardware', description: 'Each rank adds 1 to all rolls involving this skill.' }, 
           { name: 'Investigate', description: 'Each rank adds 1 to all rolls involving this skill.' }, 
         ],
-        arcana: []
+        arcana: [
+          { arcaneClass: 'Chromodynamism', 
+            description: 'Arcane style class description...',
+            styles: [
+              { name: 'Condense Matter', description: 'Style description...' }, 
+              { name: 'Entropic Combat', description: 'Style description...' },
+              { name: 'Transmute Matter', description: 'Style description...' },
+          ]},
+          { arcaneClass: 'Electromagnetism', 
+            description: 'Arcane style class description...',
+            styles: [
+              { name: 'Modulate Waveform', description: 'Style description...' }, 
+              { name: 'Redirect Waveform', description: 'Style description...' },
+              { name: 'Transmute Waveform', description: 'Style description...' },
+          ]},
+          { arcaneClass: 'Gravitonertia',
+            description: 'Arcane style class description...',
+            styles: [
+              { name: 'Alter Mass', description: 'Style description...' }, 
+              { name: 'Redirect Momenta', description: 'Style description...' },
+              { name: 'Telekinesis', description: 'Style description...' },
+          ]},
+        ]
       }
     }
   },
@@ -127,7 +171,29 @@ export const styleTree = [
           { name: 'Guts', description: 'Each rank adds 1 to all rolls involving this skill.' }, 
           { name: 'Investigate', description: 'Each rank adds 1 to all rolls involving this skill.' }, 
         ],
-        arcana: []
+        arcana: [
+          { arcaneClass: 'Pneumaplegia', 
+            description: 'Arcane style class description...',
+            styles: [
+              { name: 'Bolstering Event', description: 'Style description...' }, 
+              { name: 'Draining Event', description: 'Style description...' },
+              { name: 'Halting Event', description: 'Style description...' },
+          ]},
+          { arcaneClass: 'Schizosomata', 
+            description: 'Arcane style class description...',
+            styles: [
+              { name: 'Emulate', description: 'Style description...' }, 
+              { name: 'Fade', description: 'Style description...' },
+              { name: 'Shift', description: 'Style description...' },
+          ]},
+          { arcaneClass: 'Telethesia',
+            description: 'Arcane style class description...',
+            styles: [
+              { name: 'Clairvoyance', description: 'Style description...' }, 
+              { name: 'Suggestion', description: 'Style description...' },
+              { name: 'Telepathy', description: 'Style description...' },
+          ]},
+        ]
       }
     }
   },
