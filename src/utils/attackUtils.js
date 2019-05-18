@@ -13,6 +13,5 @@ export function getAttackValues(attacker, target) {
 		dodgeDice = (isRanged ? target.attributes.Wits : target.attributes.Agility)+target.skills.Defense;
 		dodgeSucc = target.skills.Defense;
 	}
-console.log('grabbing attack for ', attacker, target)
 	return { attackObj, attackDice, attackSucc, damageDice, damageSucc, dodgeDice, dodgeSucc, passiveDef };
 }

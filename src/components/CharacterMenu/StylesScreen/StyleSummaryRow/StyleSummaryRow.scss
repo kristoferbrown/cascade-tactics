@@ -1,0 +1,30 @@
+@import '../../../../utils/Palette.scss';
+
+.StyleSummaryRow {
+	box-sizing: border-box;
+	color: $white;
+	margin: 0 0 6px 0;
+
+	.StyleSummaryRow_halfRow {
+		display: flex;
+		justify-content: space-between;
+		width: 48%;
+	}
+
+	.StyleSummaryRow_subRow {
+		display: flex;
+		font-size: 16px;
+		justify-content: space-between;
+		margin: 0 0 0 0;
+		padding: 9px;
+		&.StyleSummaryRow_headerRow {
+			font-size: 20px;
+		}
+	}
+
+	.StyleSummaryRow_subRow_tierLabel {
+		font-size: 12px;
+		padding: 9px;
+		text-align: center;
+	}
+}

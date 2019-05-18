@@ -1,12 +1,20 @@
 import React, { PureComponent } from 'react';
 import CharacterContext from '../../../context/CharacterContext';
+import FloatingRow from './FloatingRow/FloatingRow';
 import Nonogram from '../../CharContent/Nonogram/Nonogram';
+import StyleSummaryRow from './StyleSummaryRow/StyleSummaryRow';
+import { styleTree } from '../../../utils/styleDefinitions';
 import './StylesScreen.scss';
 
 export default class StylesScreen extends PureComponent {
 	static contextType = CharacterContext;
+
 	render() {
 		const { menuCharacter } = this.context;
+		const filteredPermaStyles = styleTree.filter( style => {
+			const currentCharStyle = menuCharacter.styles.permanent.classes[style.name];
+			return (!!currentCharStyle.availableXp || !!currentCharStyle.spentXp);
+		});
 		return (
 			<div className={'StylesScreen'}>
 				<div className={'StylesScreen_NonogramColumn'}>
@@ -26,7 +34,7 @@ export default class StylesScreen extends PureComponent {
 							<div className={'StylesScreen_BasicText'}>Select an attribute to start assigning floating styles.</div>
 						}
 						{ menuCharacter.styles.floating.assigned.map( style => (
-							<div className={`StylesScreen_Row fill_${style.attribute}`}>{style.label}</div>
+							<FloatingRow style={style} key={`char${menuCharacter.meta.charId}-float-${style.label}`} />
 						))}
 					</div>
 
@@ -37,10 +45,12 @@ export default class StylesScreen extends PureComponent {
 						{ !menuCharacter.styles.permanent.totalXp ? (
 							<div className={'StylesScreen_BasicText'}>Assign floating styles within an attribute to start earning experience points in that attribute.</div>
 						) : (
-							menuCharacter.styles.permanent.classes.filter( style =>
-								style.classValues.availableXp || style.classValues.spentXp
-							).map( style => (
-								<div className={`StylesScreen_Row fill_${style.label}`}>{style.label}</div>
+							filteredPermaStyles.map( style => (
+								<StyleSummaryRow 
+									definition={style} 
+									characterValues={menuCharacter.styles.permanent.classes[style.name]}
+									key={`char${menuCharacter.meta.charId}-permaSumm-${style.name}`}
+								/>
 							))
 						)}
 					</div>

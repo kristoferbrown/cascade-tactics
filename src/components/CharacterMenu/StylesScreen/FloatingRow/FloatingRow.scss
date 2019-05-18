@@ -1,0 +1,28 @@
+@import '../../../../utils/Palette.scss';
+
+.floatingRow {
+	box-sizing: border-box;
+	color: $white;
+	display: flex;
+	font-size: 20px;
+	justify-content: space-between;
+	margin: 0 0 6px 0;
+	padding: 9px;
+
+	.floatingRow_unassignButton {
+		background: $white;
+		border-radius: 6px;
+		box-shadow: 0 0 6px $black;
+		color: $nearBlack;
+		cursor: pointer;
+		display: flex;
+		font-size: 14px;
+		padding: 6px;
+		&:hover {
+			box-shadow: 0 0 6px 3px $black;
+		}
+		&:active {
+			box-shadow: 0 0 1px 1px $black;
+		}
+	}
+}
