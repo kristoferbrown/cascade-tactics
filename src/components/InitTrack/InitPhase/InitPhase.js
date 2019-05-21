@@ -13,7 +13,7 @@ export default class InitPhase extends PureComponent {
 			<div className='initPhase'>
 				{characters.map((character, index) =>
 					<TurnItem
-						key={`init${phase}-${character.meta.name}`}
+						key={`init${phase}-${character.meta.charId}`}
 						character={character}
 						currSpeedCost={currSpeedCost}
 						initiative={index}
