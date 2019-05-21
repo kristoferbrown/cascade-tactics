@@ -7,9 +7,21 @@ export default class ObjectLayer extends PureComponent {
 	static contextType = CharacterContext;
 
 	render() {
+		const { terrainObjects } = this.props;
 		const { characters, currentCharacter } = this.context;
 		return (
 			<g className="objectLayer">
+				{terrainObjects.map((tObject, index) => (
+					<g
+						className={'objectLayer_terrainObject'}
+						key={`objectLayer_tObject${index}`}
+						style={{
+							transform: `translateX(${tObject.pixelLoc.x + tObject.mapOffset.x}px) translateY(${tObject.pixelLoc.y + tObject.mapOffset.y}px)`
+						}}
+					>
+						{ tObject.mapRenderer() }
+					</g>
+				))}
 				{characters.map(character => {
 					return character.pixelLoc ? (
 						<g

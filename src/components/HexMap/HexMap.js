@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import { GridGenerator, HexGrid, HexUtils, Layout, Path } from 'react-hexgrid';
 import CharacterContext from '../../context/CharacterContext';
+import CraterMapRenderer from '../../svgs/craterMapRenderer';
 import HexTile from './HexTile/HexTile';
 import MapMenu from '../MapMenu/MapMenu';
 import ObjectLayer from '../ObjectLayer/ObjectLayer';
@@ -55,9 +56,9 @@ export default class HexMap extends PureComponent {
 		let hexagonList = GridGenerator.orientedRectangle(18,15);
 		this.mapDefaults = { terrain: "Regolith" };
 		const initObjectList = [
-			{ hexIndex: 19, label: "Impassable", mapRenderer: () => {} },
-			{ hexIndex: 19, label: "Impassable", mapRenderer: () => {} },
-			{ hexIndex: 20, label: "Impassable", mapRenderer: () => {} }
+			{ hexIndex: 19, label: "Impassable", mapOffset: {x: -50, y: -13 }, pixelLoc: HexUtils.hexToPixel(hexagonList[19], this.layoutProps), mapRenderer: () => <CraterMapRenderer height={16} className={'mapCharacter crater'} /> },
+			{ hexIndex: 20, label: "Impassable", mapOffset: {x: -50, y: -13 }, pixelLoc: HexUtils.hexToPixel(hexagonList[20], this.layoutProps), mapRenderer: () => <CraterMapRenderer height={16} className={'mapCharacter crater'} /> },
+			{ hexIndex: 76, label: "Impassable", mapOffset: {x: -50, y: -13 }, pixelLoc: HexUtils.hexToPixel(hexagonList[76], this.layoutProps), mapRenderer: () => <CraterMapRenderer height={16} className={'mapCharacter crater'} /> },
 		];
 
 		// Assign characters to starting positions
@@ -299,7 +300,7 @@ export default class HexMap extends PureComponent {
 							/>
 						}
 
-						<ObjectLayer />
+						<ObjectLayer terrainObjects={objectList} />
 
 						{ !!projectile &&
 							<g className="hexMap_projectileTrace">

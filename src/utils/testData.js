@@ -97,8 +97,8 @@ export const testCharacters = [
 			}},
 		},
 		startingHex: { q: 3, r: 2, s: -5},
-		mapOffset: {x: -50, y: -18},
-		mapRenderer: (pixelLoc, isSelected) => <AcyotaActiveMapRenderer isSelected={isSelected} height={20} className={'mapCharacter activeAcyota'} />,
+		mapOffset: {x: -50, y: -16},
+		mapRenderer: (pixelLoc, isSelected) => <AcyotaActiveMapRenderer isSelected={isSelected} height={18} className={'mapCharacter activeAcyota'} />,
 		portraitRenderer: () => <div />
 	},{
 		meta: { charId: 3, name: 'Mike', fullName: 'Michael Collins', isCpuControlled: false },
@@ -184,8 +184,8 @@ export const testCharacters = [
 			}},
 		},
 		startingHex: { q: 4, r: 3, s: -7},
-		mapOffset: {x: -50, y: -18},
-		mapRenderer: (pixelLoc, isSelected)  => <AcyotaMapRenderer isSelected={isSelected} height={20} className={'mapCharacter acyota'} />,
+		mapOffset: {x: -50, y: -16},
+		mapRenderer: (pixelLoc, isSelected)  => <AcyotaMapRenderer isSelected={isSelected} height={18} className={'mapCharacter acyota'} />,
 		portraitRenderer: () => <div />
 	},{
 		meta: { charId: 6, name: 'Monolith', fullName: 'Monolith', isCpuControlled: true, isHostile: true, isInscrutable: true },
