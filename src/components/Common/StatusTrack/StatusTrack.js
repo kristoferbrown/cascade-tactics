@@ -5,30 +5,33 @@ import './StatusTrack.scss';
 export default class StatusTrack extends Component {
 	render() {
 		const { attribute, cost, current, isHalfTrack, maximum } = this.props;
-		let currentPercentage = Math.floor(current/maximum*100);
-		let costPercentage = cost ? Math.floor(cost/current*100) : 0;
+		const isNegative = current < 0;
+		const absCurrent = Math.abs(current);
+		let currentPercentage = Math.floor(absCurrent/maximum*100);
+		let costPercentage = cost ? Math.floor(cost/absCurrent*100) : 0;
 
 		return (
 			<div className={classNames({
-				'stausTrack': true,
-				'stausTrack_halfTrack': isHalfTrack,
-				'stausTrack_strength': attribute === 'Strength',
-				'stausTrack_finesse': attribute === 'Finesse',
-				'stausTrack_perception': attribute === 'Perception',
-				'stausTrack_stamina': attribute === 'Stamina',
-				'stausTrack_agility': attribute === 'Agility',
-				'stausTrack_wits': attribute === 'Wits',
-				'stausTrack_willpower': attribute === 'Willpower',
-				'stausTrack_intelligence': attribute === 'Intelligence',
-				'stausTrack_charisma': attribute === 'Charisma',
+				'statusTrack': true,
+				'statusTrack_halfTrack': isHalfTrack,
+				'statusTrack_strength': attribute === 'Strength',
+				'statusTrack_finesse': attribute === 'Finesse',
+				'statusTrack_perception': attribute === 'Perception',
+				'statusTrack_stamina': attribute === 'Stamina',
+				'statusTrack_agility': attribute === 'Agility',
+				'statusTrack_wits': attribute === 'Wits',
+				'statusTrack_willpower': attribute === 'Willpower',
+				'statusTrack_intelligence': attribute === 'Intelligence',
+				'statusTrack_charisma': attribute === 'Charisma',
+				'statusTrack_malus': isNegative
 			})}>
-				<div className='stausTrack_innerBar'>
-					<div className='stausTrack_currentBar' style={{width: `${currentPercentage}%`}}>
+				<div className='statusTrack_innerBar'>
+					<div className='statusTrack_currentBar' style={{width: `${currentPercentage}%`}}>
 						{ !!cost &&
 							<Fragment>
-								{cost !== current && <div className='stausTrack_currentValue' style={{left: `${(currentPercentage-costPercentage)/2}%`}}>{current - cost}</div>}
-								<div className='stausTrack_costBar' style={{width: `${costPercentage}%`}}>
-									<div className='stausTrack_costValue'>{cost}</div>
+								{cost !== absCurrent && <div className='statusTrack_currentValue' style={{left: `${(currentPercentage-costPercentage)/2}%`}}>{absCurrent - cost}</div>}
+								<div className='statusTrack_costBar' style={{width: `${costPercentage}%`}}>
+									<div className='statusTrack_costValue'>{cost}</div>
 								</div>
 							</Fragment>
 						}

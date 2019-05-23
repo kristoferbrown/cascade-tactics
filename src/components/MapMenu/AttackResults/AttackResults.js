@@ -5,13 +5,13 @@ import './AttackResults.scss';
 
 export default class AttackResults extends PureComponent {
 	getLocationString = locNumber => {
-		if (locNumber === 1) {
+		if (locNumber === 0) {
 			return 'Legs';
-		} else if (locNumber === 2) {
+		} else if (locNumber === 1) {
 			return 'Off Arm';
-		} else if (locNumber === 3) {
+		} else if (locNumber === 2) {
 			return 'Main Arm';
-		} else if (locNumber === 4) {
+		} else if (locNumber === 3) {
 			return 'Lower Body';
 		} else {
 			return 'Upper Body';

@@ -70,20 +70,11 @@ export class CharacterProvider extends PureComponent {
 	dealDamage = (charId, damage, location) => {
 		const { characters } = this.state;
 		let newCharacters = [...characters];
-		console.log(newCharacters)
-		// @TODO: replace this dumb mapping with actually using the numbers everywhere
-		let locationHit = 'legs';
-		if (location === 2) {locationHit = 'off'}
-		if (location === 3) {locationHit = 'main'}
-		if (location === 4) {locationHit = 'lower'}
-		if (location === 5) {locationHit = 'upper'}
-
 		newCharacters.forEach(character => {
 			if (character.meta.charId === charId) {
-				character.status.health[locationHit][0] = character.status.health[locationHit][0] - damage;
+				character.status.health[location][0] = character.status.health[location][0] - damage;
 			}
 		});
-		console.log(newCharacters)
 		this.setState({
 			characters: newCharacters
 		});

@@ -19,7 +19,7 @@ export const testCharacters = [
 		skills: { Unarmed: 0, Melee: 1, Firearms: 1, Ballistics: 0, Defense: 2, Initiative: 1, Toughness: 1, Athletics: 1, Guts: 3 },
 		currentAttack: { name: 'Flag Pole', attribute: 'Finesse', skill: 'Melee', range: 1, speedCost: 3, damDiceBonus: 0, damSuccBonus: 3, atkDiceBonus: 0, atkSuccBonus: 0 },
 		status: { 
-			health: { upper: [6,6], lower: [6,6], main: [6,6], off: [6,6], legs: [6,6] },
+			health: { 0: [6,6], 1: [6,6], 2: [5,6], 3: [6,6], 4: [6,6] },
 		},
 		styles: {
 			floating: {
@@ -48,7 +48,7 @@ export const testCharacters = [
 		skills: { Unarmed: 3, Melee: 0, Firearms: 0, Ballistics: 0, Defense: 1, Initiative: 2, Toughness: 2, Athletics: 1, Guts: 1 },
 		currentAttack: { name: 'Unarmed', attribute: 'Strength', skill: 'Unarmed', range: 1, speedCost: 2, damDiceBonus: 0, damSuccBonus: 0, atkDiceBonus: 0, atkSuccBonus: 0 },
 		status: { 
-			health: { upper: [6,6], lower: [6,6], main: [6,6], off: [6,6], legs: [6,6] },
+			health: { 0: [6,6], 1: [6,6], 2: [6,6], 3: [6,6], 4: [6,6] },
 		},
 		styles: {
 			floating: {
@@ -77,7 +77,7 @@ export const testCharacters = [
 		skills: { Unarmed: 0, Melee: 0, Firearms: 0, Ballistics: 0, Defense: 2, Initiative: 0, Toughness: 0, Athletics: 0, Guts: 0 },
 		currentAttack: { name: 'Lash', attribute: 'Strength', skill: 'Unarmed',  range: 1, speedCost: 3, damDiceBonus: 0, damSuccBonus: 0, atkDiceBonus: 0, atkSuccBonus: 0 },
 		status: {
-			health: { upper: [4,4], lower: [4,4], main: [4,4], off: [4,4], legs: [4,4] },
+			health: { 0: [4,4], 1: [4,4], 2: [4,4], 3: [4,4], 4: [4,4] },
 		},
 		styles: {
 			floating: {
@@ -106,7 +106,7 @@ export const testCharacters = [
 		skills: { Unarmed: 0, Melee: 1, Firearms: 2, Ballistics: 1, Defense: 0, Initiative: 0, Toughness: 0, Athletics: 2, Guts: 3 },
 		currentAttack: { name: 'Throw Stone', attribute: 'Perception', skill: 'Firearms', range: 4, speedCost: 3, damDiceBonus: 2, damSuccBonus: 1, atkDiceBonus: 0, atkSuccBonus: 0 },
 		status: { 
-			health: { upper: [6,6], lower: [6,6], main: [6,6], off: [6,6], legs: [6,6] },
+			health: { 0: [6,6], 1: [6,6], 2: [6,6], 3: [6,6], 4: [6,6] },
 		},
 		styles: {
 			floating: {
@@ -135,7 +135,7 @@ export const testCharacters = [
 		skills: { Unarmed: 0, Melee: 0, Firearms: 0, Ballistics: 0, Defense: 0, Initiative: 0, Toughness: 0, Athletics: 0, Guts: 0 },
 		currentAttack: { name: 'Unarmed', attribute: 'Strength', skill: 'Unarmed',  range: 1, speedCost: 2, damDiceBonus: 0, damSuccBonus: 0, atkDiceBonus: 0, atkSuccBonus: 0 },
 		status: {
-			health: { upper: [3,3], lower: [3,3], main: [3,3], off: [3,3], legs: [3,3] },
+			health: { 0: [3,3], 1: [3,3], 2: [3,3], 3: [3,3], 4: [3,3] },
 		},
 		styles: {
 			floating: {
@@ -159,12 +159,12 @@ export const testCharacters = [
 		mapRenderer: (pixelLoc, isSelected)  => <LemMapRenderer isSelected={isSelected} height={20} className={'mapCharacter capcom'} />,
 		portraitRenderer: () => <CapcomPortrait />
 	},{
-		meta: { charId: 5, name: 'A. dessicans', fullName: 'Acyota Dessicans', isCpuControlled: true, isHostile: true, isInscrutable: true },
+		meta: { charId: 5, name: 'A. dessicans', fullName: 'Acyota Dessicans', isCpuControlled: true, isHostile: true, isInscrutable: false },
 		attributes: { Strength: 2, Finesse: 1, Perception: 1, Stamina: 1, Agility: 3, Wits: 2, Willpower: 1, Intelligence: 1, Charisma: 1 },
 		skills: { Unarmed: 0, Melee: 0, Firearms: 0, Ballistics: 0, Defense: 0, Initiative: 0, Toughness: 0, Athletics: 0, Guts: 0 },
 		currentAttack: { name: 'Lash', attribute: 'Strength', skill: 'Unarmed',  range: 1, speedCost: 3, damDiceBonus: 0, damSuccBonus: 0, atkDiceBonus: 0, atkSuccBonus: 0 },
 		status: {
-			health: { upper: [4,4], lower: [4,4], main: [4,4], off: [4,4], legs: [4,4] },
+			health: { 0: [4,4], 1: [4,4], 2: [4,4], 3: [4,4], 4: [4,4] },
 		},
 		styles: {
 			floating: {
@@ -193,7 +193,7 @@ export const testCharacters = [
 		skills: { Unarmed: 0, Melee: 0, Firearms: 0, Ballistics: 0, Defense: 2, Initiative: 0, Toughness: 0, Athletics: 0, Guts: 0 },
 		currentAttack: { name: 'Unarmed', attribute: 'Strength', skill: 'Unarmed', range: 1, speedCost: 2, damDiceBonus: 0, damSuccBonus: 0, atkDiceBonus: 0, atkSuccBonus: 0 },
 		status: { 
-			health: { upper: [99,99], lower: [99,99], main: [99,99], off: [99,99], legs: [99,99] },
+			health: { 0: [99,99], 1: [99,99], 2: [99,99], 3: [99,99], 4: [99,99] },
 		},
 		styles: {
 			floating: {

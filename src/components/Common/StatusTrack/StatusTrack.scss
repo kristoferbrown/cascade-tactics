@@ -1,51 +1,56 @@
 @import '../../../utils/Palette.scss';
 
-.stausTrack {
+.statusTrack {
 	background: $lightGray;
 	height: 9px;
 	margin: 0 0 3px 0;
 	overflow: hidden;
 	width: 100%;
 
-	&.stausTrack_halfTrack { width: 45%; }
-	&.stausTrack_strength {
-		.stausTrack_costBar { background: $strengthDark; }
-		.stausTrack_currentBar { background: $strength; }
+	&.statusTrack_halfTrack { width: 45%; }
+
+	&.statusTrack_strength:not(.statusTrack_malus) {
+		.statusTrack_costBar { background: $strengthDark; }
+		.statusTrack_currentBar { background: $strength; }
 	}
-	&.stausTrack_finesse {
-		.stausTrack_costBar { background: $finesseDark; }
-		.stausTrack_currentBar { background: $finesse; }
+	&.statusTrack_finesse:not(.statusTrack_malus) {
+		.statusTrack_costBar { background: $finesseDark; }
+		.statusTrack_currentBar { background: $finesse; }
 	}
-	&.stausTrack_perception {
-		.stausTrack_costBar { background: $perceptionDark; }
-		.stausTrack_currentBar { background: $perception; }
+	&.statusTrack_perception:not(.statusTrack_malus) {
+		.statusTrack_costBar { background: $perceptionDark; }
+		.statusTrack_currentBar { background: $perception; }
 	}
-	&.stausTrack_stamina {
-		.stausTrack_costBar { background: $staminaDark; }
-		.stausTrack_currentBar { background: $stamina; }
+	&.statusTrack_stamina:not(.statusTrack_malus) {
+		.statusTrack_costBar { background: $staminaDark; }
+		.statusTrack_currentBar { background: $stamina; }
 	}
-	&.stausTrack_agility {
-		.stausTrack_costBar { background: $agilityDark; }
-		.stausTrack_currentBar { background: $agility; }
+	&.statusTrack_agility:not(.statusTrack_malus) {
+		.statusTrack_costBar { background: $agilityDark; }
+		.statusTrack_currentBar { background: $agility; }
 	}
-	&.stausTrack_wits {
-		.stausTrack_costBar { background: $witsDark; }
-		.stausTrack_currentBar { background: $wits; }
+	&.statusTrack_wits:not(.statusTrack_malus) {
+		.statusTrack_costBar { background: $witsDark; }
+		.statusTrack_currentBar { background: $wits; }
 	}
-	&.stausTrack_willpower {
-		.stausTrack_costBar { background: $willpowerDark; }
-		.stausTrack_currentBar { background: $willpower; }
+	&.statusTrack_willpower:not(.statusTrack_malus) {
+		.statusTrack_costBar { background: $willpowerDark; }
+		.statusTrack_currentBar { background: $willpower; }
 	}
-	&.stausTrack_intelligence {
-		.stausTrack_costBar { background: $intelligenceDark; }
-		.stausTrack_currentBar { background: $intelligence; }
+	&.statusTrack_intelligence:not(.statusTrack_malus) {
+		.statusTrack_costBar { background: $intelligenceDark; }
+		.statusTrack_currentBar { background: $intelligence; }
 	}
-	&.stausTrack_charisma {
-		.stausTrack_costBar { background: $charismaDark; }
-		.stausTrack_currentBar { background: $charisma; }
+	&.statusTrack_charisma:not(.statusTrack_malus) {
+		.statusTrack_costBar { background: $charismaDark; }
+		.statusTrack_currentBar { background: $charisma; }
+	}
+	&.statusTrack_malus {
+		.statusTrack_costBar { background: $black; }
+		.statusTrack_currentBar { background: $malusRed; }
 	}
 
-	.stausTrack_currentBar {
+	.statusTrack_currentBar {
 		background: $nearBlack;
 		height: 100%;
 		position: relative;
@@ -53,7 +58,7 @@
 		transition: 0.3s ease;
 	}
 
-	.stausTrack_costBar {
+	.statusTrack_costBar {
 		animation: opacityPulse 0.6s infinite linear;
 		background: $black;
 		height: 100%;
@@ -62,19 +67,19 @@
 		transition: 0.3s ease;
 	}
 
-	.stausTrack_costValue {
+	.statusTrack_costValue {
 		left: 40%;
 	}
 
-	.stausTrack_costValue,
-	.stausTrack_currentValue {
+	.statusTrack_costValue,
+	.statusTrack_currentValue {
 		color: $white;
 		font-size: 9px;
 		position: absolute;
 		transform: skewX(45deg);
 	}
 
-	.stausTrack_innerBar {
+	.statusTrack_innerBar {
 		display: flex;
 		height: 100%;
 		transform: scaleX(1.1);
