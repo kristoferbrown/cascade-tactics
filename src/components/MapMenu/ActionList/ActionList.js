@@ -24,7 +24,7 @@ export default class ActionList extends PureComponent {
 
 	calibrateActionList() {
 		const { currSpeedCost, endTurn, moveToTargetHex, setSpeedCost, showAttackResults, targetedHex, targetedHexContains, targetedHexIndex } = this.props;
-		const { animateAttack, currentCharacter, currPhase } = this.context;
+		const { animateAttack, currentCharacter, currPhase, dealDamage } = this.context;
 		let newActionList = [];
 		if (!!targetedHex && !targetedHexContains) {
 			// The target space is empty, consider showing basic movement actions
@@ -79,7 +79,9 @@ export default class ActionList extends PureComponent {
 					actionMethod: () => {
 						const attackResult = attackRoll(currentAttack.attackDice,currentAttack.attackSucc,currentAttack.damageDice,currentAttack.damageSucc);
 						const defenseResult = currentAttack.passiveDef;
+						const didHit = attackResult.toHit.successes >= defenseResult;
 						animateAttack(currentAttack.attackObj, currentCharacter, targetedHexContains, attackResult, () => showAttackResults(attackResult, currentAttack.attackObj, defenseResult));
+						didHit && dealDamage(targetedHexContains.meta.charId, attackResult.damage.successes, attackResult.location.locationHit);
 						setSpeedCost(0);
 					},
 					hoverMethod: () => {setSpeedCost(currentAttack.attackObj.speedCost)}
