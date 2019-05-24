@@ -3,12 +3,19 @@
 .attributeSquare {
 	align-items: flex-end;
 	background: $nearBlack;
+	cursor: pointer;
 	display: flex;
 	flex-direction: column;
 	height: 30%;
 	justify-content: flex-end;
 	position: relative;
 	width: 30%;
+	&:hover {
+		box-shadow: 0 0 6px 3px $black;
+	}
+	&:active {
+		box-shadow: 0 0 1px 1px $black;
+	}
 
 	.attributeSquare_label {
 		align-self: center;

@@ -7,8 +7,6 @@
 	overflow: hidden;
 	width: 100%;
 
-	&.statusTrack_halfTrack { width: 45%; }
-
 	&.statusTrack_strength:not(.statusTrack_malus) {
 		.statusTrack_costBar { background: $strengthDark; }
 		.statusTrack_currentBar { background: $strength; }
@@ -48,6 +46,13 @@
 	&.statusTrack_malus {
 		.statusTrack_costBar { background: $black; }
 		.statusTrack_currentBar { background: $malusRed; }
+	}
+
+	&.statusTrack_halfTrack { 
+		width: 45%; 
+		.statusTrack_currentBar {
+			transform: scaleX(1.1) skewX(-45deg);
+		}
 	}
 
 	.statusTrack_currentBar {

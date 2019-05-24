@@ -5,14 +5,14 @@ import './Nonogram.scss';
 
 export default class Nonogram extends Component {
 	render() {
-		const { attributes, isVisible } = this.props
+		const { attributes, handleAttributeClick, isVisible } = this.props
 		return (
 			<div className={classNames({
 				'nonogram_container': true,
 				'nonogram_container_hidden': !isVisible
 			})}>
 				{Object.entries(attributes).map(attribute => (
-					<AttributeSquare key={`nonogram_${attribute[0]}`} attributeName={attribute[0]} attributeScore={attribute[1]} />
+					<AttributeSquare key={`nonogram_${attribute[0]}`} attributeName={attribute[0]} attributeScore={attribute[1]} handleClick={handleAttributeClick} />
 				))}
 			</div>
 		);

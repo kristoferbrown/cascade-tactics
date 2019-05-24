@@ -8,7 +8,7 @@ export default class AttributeSquare extends Component {
 	}
 
 	render() {
-		const { attributeName, attributeScore } = this.props;
+		const { attributeName, attributeScore, handleClick } = this.props;
 		let dotArray = [];
 		for (let i = 0; i < 9; i++) {
 			dotArray.push(i < attributeScore ?
@@ -27,7 +27,8 @@ export default class AttributeSquare extends Component {
 				'attributeSquare_wil': attributeName === 'Willpower',
 				'attributeSquare_int': attributeName === 'Intelligence',
 				'attributeSquare_cha': attributeName === 'Charisma',
-			})}>
+			})}
+			onClick={() => handleClick(attributeName)}>
 				<div className='attributeSquare_label'>{attributeName}</div>
 				<div className='attributeSquare_dotTrack'>
 					{dotArray}
