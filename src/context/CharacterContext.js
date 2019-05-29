@@ -70,11 +70,22 @@ export class CharacterProvider extends PureComponent {
 	dealDamage = (charId, damage, location) => {
 		const { characters } = this.state;
 		let newCharacters = [...characters];
-		newCharacters.forEach(character => {
+		let destroyedCharAtIndex = -1;
+		newCharacters.forEach((character, index) => {
 			if (character.meta.charId === charId) {
-				character.status.health[location][0] = character.status.health[location][0] - damage;
+				console.log(character.status.health[location])
+				const maxHealth = character.status.health[location][1];
+				const curHealth = character.status.health[location][0];
+				const newHealth = curHealth - damage;
+				const isDisabled = newHealth < 0;
+				const isOverLimit = Math.abs(newHealth) > maxHealth;
+				destroyedCharAtIndex = (isDisabled && isOverLimit) ? index : -1;
+				character.status.health[location][0] = newHealth;
 			}
 		});
+		if (destroyedCharAtIndex > -1) {
+			newCharacters.splice(destroyedCharAtIndex, 1);
+		}
 		this.setState({
 			characters: newCharacters
 		});
