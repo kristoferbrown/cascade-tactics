@@ -73,7 +73,6 @@ export class CharacterProvider extends PureComponent {
 		let destroyedCharAtIndex = -1;
 		newCharacters.forEach((character, index) => {
 			if (character.meta.charId === charId) {
-				console.log(character.status.health[location])
 				const maxHealth = character.status.health[location][1];
 				const curHealth = character.status.health[location][0];
 				const newHealth = curHealth - damage;

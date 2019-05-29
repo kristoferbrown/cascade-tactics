@@ -12,6 +12,7 @@
 	transition: 0.6s ease-in-out;
 	transition-delay: 0.6s;
 	width: 120px;
+	white-space: normal;
 
 	.turnItem_attack {
 		color: $white;
@@ -94,10 +95,13 @@
 	}
 
 	.turnItem_name {
+		align-items: center;
 		color: $nearBlack;
+		display: flex;
 		font-size: 18px;
 		height: 24px;
 		margin: 33px 0 0;
+		text-align: center;
 		transition: 0.6s ease-in-out;
 		transition-delay: 0.6s;
 	}

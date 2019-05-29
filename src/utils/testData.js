@@ -72,7 +72,7 @@ export const testCharacters = [
 		mapRenderer: (pixelLoc, isSelected)  => <BuzzMapRenderer isSelected={isSelected} height={14} className={'mapCharacter buzzAld'} />,
 		portraitRenderer: () => <BuzzPortrait />,
 	},{
-		meta: { charId: 2, name: 'A. dessicans', fullName: 'Acyota Dessicans', isCpuControlled: true, isHostile: true, isInscrutable: false },
+		meta: { charId: 2, name: 'A. dessicans', fullName: 'Acyota Dessicans (Active)', isCpuControlled: true, isHostile: true, isInscrutable: false },
 		attributes: { Strength: 2, Finesse: 1, Perception: 1, Stamina: 1, Agility: 3, Wits: 2, Willpower: 1, Intelligence: 1, Charisma: 1 },
 		skills: { Unarmed: 0, Melee: 0, Firearms: 0, Ballistics: 0, Defense: 2, Initiative: 0, Toughness: 0, Athletics: 0, Guts: 0 },
 		currentAttack: { name: 'Lash', attribute: 'Strength', skill: 'Unarmed',  range: 1, speedCost: 3, damDiceBonus: 0, damSuccBonus: 0, atkDiceBonus: 0, atkSuccBonus: 0 },
@@ -159,7 +159,7 @@ export const testCharacters = [
 		mapRenderer: (pixelLoc, isSelected)  => <LemMapRenderer isSelected={isSelected} height={20} className={'mapCharacter capcom'} />,
 		portraitRenderer: () => <CapcomPortrait />
 	},{
-		meta: { charId: 5, name: 'A. dessicans', fullName: 'Acyota Dessicans', isCpuControlled: true, isHostile: true, isInscrutable: false },
+		meta: { charId: 5, name: 'A. dessicans', fullName: 'Acyota Dessicans (Dormant)', isCpuControlled: true, isHostile: true, isInscrutable: false },
 		attributes: { Strength: 2, Finesse: 1, Perception: 1, Stamina: 1, Agility: 3, Wits: 2, Willpower: 1, Intelligence: 1, Charisma: 1 },
 		skills: { Unarmed: 0, Melee: 0, Firearms: 0, Ballistics: 0, Defense: 0, Initiative: 0, Toughness: 0, Athletics: 0, Guts: 0 },
 		currentAttack: { name: 'Lash', attribute: 'Strength', skill: 'Unarmed',  range: 1, speedCost: 3, damDiceBonus: 0, damSuccBonus: 0, atkDiceBonus: 0, atkSuccBonus: 0 },

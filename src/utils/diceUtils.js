@@ -37,7 +37,7 @@ export function locationRoll() {
     if (result === 6) {
       critLevel++;
     } else {
-      locationHit = result;
+      locationHit = result-1; // offset -1 because location list is 0 indexed
     }
   }
   return { critLevel, locationHit };
