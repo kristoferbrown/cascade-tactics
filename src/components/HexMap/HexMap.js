@@ -256,13 +256,14 @@ export default class HexMap extends PureComponent {
 								const inAttackRange = currentCharacter && !currentCharacter.meta.isCpuControlled && HexUtils.distance(selectedHex, hex) <= currentCharacter.currentAttack.range
 								const isHostile = occupiedBy && occupiedBy.character.meta.isHostile;
 								const blocked = objectList.some(object => index === object.hexIndex);
+								const isSelected =  HexUtils.equals(hex, selectedHex);
 								return <HexTile
 									clearPath={this.clearPath}
 									contains={occupiedBy ? occupiedBy.character : null}
 									hex={hex}
 									hexListIndex={index}
 									isBlocked={blocked}
-									isClickable={!mapIsAnimating && ((inAttackRange && isHostile) || (inMovementRange && !blocked && !occupiedBy))}
+									isClickable={!mapIsAnimating && (isSelected || (inAttackRange && isHostile) || (inMovementRange && !blocked && !occupiedBy))}
 									isCpuControlled={occupiedBy && occupiedBy.character.meta.isCpuControlled}
 									isHostile={occupiedBy && occupiedBy.character.meta.isHostile}
 									isInHostileRange={hostileMeleeRange.some(hosHex => HexUtils.equals(hosHex, hex))}
@@ -289,15 +290,17 @@ export default class HexMap extends PureComponent {
 							</g>
 						}
 
-						{ !!selectedHex &&
-							<HexTile
-								clearPath={() =>{}}
-								contains={currentCharacter}
-								hex={selectedHex}
-								isSelected
-								onViableHover={this.computeHover}
-								targetedHex={targetedHex}
-							/>
+						{!!selectedHex &&
+							<g className="hexMap_passthrough">
+								<HexTile
+									clearPath={() =>{}}
+									contains={currentCharacter}
+									hex={selectedHex}
+									isSelected
+									onViableHover={this.computeHover}
+									targetedHex={targetedHex}
+								/>
+							</g>
 						}
 
 						<ObjectLayer terrainObjects={objectList} />

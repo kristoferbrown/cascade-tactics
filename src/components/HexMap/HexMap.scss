@@ -48,6 +48,12 @@
 			stroke-width: 1;
 		}
 	}
+
+	.hexMap_passthrough {
+		polygon {
+			pointer-events: none;
+		}
+	}
 }
 
 @keyframes movePathDashes {
