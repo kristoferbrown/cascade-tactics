@@ -101,11 +101,16 @@ export default class HexMap extends PureComponent {
 			this.setState({ hostileMeleeRange: newHostileMeleeRange });
 		}
 
-		// Run and end AI turn
+		// Run and end AI turn, most of this should be moved to a separate AI file
 		if (currentCharacter.meta.isCpuControlled && !aiTurnInProgress) {
 			this.setState({aiTurnInProgress: true});
+			const adjacentCharacters = this.getAdjacentCharacters();
+			if (currentCharacter.meta.isHostile && adjacentCharacters.length) {
+				console.log('attack one of these now:', adjacentCharacters);
+			}
+
 			this.uncontrolledTurnTimer = setTimeout(() => {
-				deductSpeed(currentCharacter.meta.charId, 1);
+				deductSpeed(currentCharacter.meta.charId, 2);
 				this.endTurn();
 				this.setState({aiTurnInProgress: false});
 			}, 2400);
@@ -178,10 +183,13 @@ export default class HexMap extends PureComponent {
 		toggleMapIsAnimating(false);
 	}
 
-	// TODO: are we going to use this?
-	moveAndEndTurn = (event, element, hex) => {
-		this.moveToTargetHex(event, element, hex);
-		this.endTurn();
+	getAdjacentCharacters = () => {
+		const { charLocList } = this.state;
+		const { currentCharacter } = this.context;
+		const currentNeighbors = HexUtils.neighbours(currentCharacter.currentHexLoc);
+		return charLocList.filter(charLoc => (
+			currentNeighbors.some(neighbor => HexUtils.equals(neighbor, charLoc.hex))
+		));
 	}
 
 	moveToTargetHex = (event, element, hex, hexIndex) => {
