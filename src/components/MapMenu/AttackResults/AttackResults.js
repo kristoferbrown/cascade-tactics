@@ -22,7 +22,6 @@ export default class AttackResults extends PureComponent {
 		const { attackResult, attackUsed, defenseResult } = this.props;
 		const didHit = attackResult.toHit.successes >= defenseResult;
 		const locationString = this.getLocationString(attackResult.location.locationHit);
-		console.log(didHit ? 'HIT!!!!' : 'Miss...', attackUsed, attackResult, defenseResult);
 		return (
 			<div 
 				className={classNames({

@@ -1,8 +1,7 @@
 import React, { PureComponent } from 'react';
 import ActionItem from './ActionItem';
 import CharacterContext from '../../../context/CharacterContext';
-import { attackRoll } from '../../../utils/diceUtils'
-import { getAttackValues } from '../../../utils/attackUtils'
+import { executeAttack, getAttackValues } from '../../../utils/attackUtils'
 import './ActionList.scss';
 
 export default class ActionList extends PureComponent {
@@ -77,11 +76,7 @@ export default class ActionList extends PureComponent {
 					attack: currentAttack,
 					speedCost: currentAttack.attackObj.speedCost,
 					actionMethod: () => {
-						const attackResult = attackRoll(currentAttack.attackDice,currentAttack.attackSucc,currentAttack.damageDice,currentAttack.damageSucc);
-						const defenseResult = currentAttack.passiveDef;
-						const didHit = attackResult.toHit.successes >= defenseResult;
-						animateAttack(currentAttack.attackObj, currentCharacter, targetedHexContains, attackResult, () => showAttackResults(attackResult, currentAttack.attackObj, defenseResult));
-						didHit && dealDamage(targetedHexContains.meta.charId, attackResult.damage.successes, attackResult.location.locationHit);
+						executeAttack(currentCharacter, targetedHexContains, animateAttack, showAttackResults, dealDamage);
 						setSpeedCost(0);
 					},
 					hoverMethod: () => {setSpeedCost(currentAttack.attackObj.speedCost)}

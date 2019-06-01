@@ -73,8 +73,8 @@ export const testCharacters = [
 		portraitRenderer: () => <BuzzPortrait />,
 	},{
 		meta: { charId: 2, name: 'A. dessicans', fullName: 'Acyota Dessicans (Active)', isCpuControlled: true, isHostile: true, isInscrutable: false },
-		attributes: { Strength: 2, Finesse: 1, Perception: 1, Stamina: 1, Agility: 3, Wits: 2, Willpower: 1, Intelligence: 1, Charisma: 1 },
-		skills: { Unarmed: 0, Melee: 0, Firearms: 0, Ballistics: 0, Defense: 2, Initiative: 0, Toughness: 0, Athletics: 0, Guts: 0 },
+		attributes: { Strength: 3, Finesse: 3, Perception: 1, Stamina: 1, Agility: 3, Wits: 2, Willpower: 1, Intelligence: 1, Charisma: 1 },
+		skills: { Unarmed: 2, Melee: 2, Firearms: 0, Ballistics: 0, Defense: 2, Initiative: 0, Toughness: 0, Athletics: 0, Guts: 0 },
 		currentAttack: { name: 'Lash', attribute: 'Strength', skill: 'Unarmed',  range: 1, speedCost: 3, damDiceBonus: 0, damSuccBonus: 0, atkDiceBonus: 0, atkSuccBonus: 0 },
 		status: {
 			health: { 0: [4,4], 1: [4,4], 2: [4,4], 3: [4,4], 4: [4,4] },

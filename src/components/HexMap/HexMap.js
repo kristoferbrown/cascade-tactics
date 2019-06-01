@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import { GridGenerator, HexGrid, HexUtils, Layout, Path } from 'react-hexgrid';
 import CharacterContext from '../../context/CharacterContext';
 import CraterMapRenderer from '../../svgs/craterMapRenderer';
+import { executeAttack } from '../../utils/attackUtils';
 import HexTile from './HexTile/HexTile';
 import MapMenu from '../MapMenu/MapMenu';
 import ObjectLayer from '../ObjectLayer/ObjectLayer';
@@ -94,7 +95,7 @@ export default class HexMap extends PureComponent {
 
 	componentDidUpdate(prevProps, prevState) {
 		const { aiTurnInProgress, charLocList } = this.state;
-		const { currentCharacter, deductSpeed } = this.context;
+		const { animateAttack, currentCharacter, dealDamage, deductSpeed } = this.context;
 
 		if (prevState.charLocList.length && charLocList !== prevState.charLocList) {
 			const newHostileMeleeRange = this.computeHostileMeleeRange(charLocList);
@@ -107,13 +108,19 @@ export default class HexMap extends PureComponent {
 			const adjacentCharacters = this.getAdjacentCharacters();
 			if (currentCharacter.meta.isHostile && adjacentCharacters.length) {
 				console.log('attack one of these now:', adjacentCharacters);
+				this.uncontrolledTurnTimer = setTimeout(() => {
+					executeAttack(currentCharacter, adjacentCharacters[0].character, animateAttack, () => {}, dealDamage);
+					this.endTurn();
+					this.setState({aiTurnInProgress: false});
+				}, 1000);
+			} else {
+				console.log('just waiting');
+				this.uncontrolledTurnTimer = setTimeout(() => {
+					deductSpeed(currentCharacter.meta.charId, 2);
+					this.endTurn();
+					this.setState({aiTurnInProgress: false});
+				}, 2400);
 			}
-
-			this.uncontrolledTurnTimer = setTimeout(() => {
-				deductSpeed(currentCharacter.meta.charId, 2);
-				this.endTurn();
-				this.setState({aiTurnInProgress: false});
-			}, 2400);
 		}
 	}
 
