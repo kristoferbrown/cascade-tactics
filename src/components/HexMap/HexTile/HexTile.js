@@ -25,22 +25,23 @@ export default class HexTile extends PureComponent {
 
 	render() {
 		const { contains, hex, isBlocked, isClickable, isCpuControlled, isHostile, isInHostileRange, isInAttackRange, isSelected, isTargeted } = this.props;
+		const classString = classNames({
+			'hexTile': true,
+			'hexTile_blocked': isBlocked,
+			'hexTile_cpuControlled': isCpuControlled,
+			'hexTile_hostile': isHostile,
+			'hexTile_occupied': contains,
+			'hexTile_selected': (isSelected || isTargeted),
+			'hexTile_inAttackRange': (isInAttackRange && isClickable),
+			'hexTile_inHostileRange': (isInHostileRange && isClickable),
+			'hexTile_clickable': isClickable
+		});
 		return (
 			<Hexagon
 				q={hex.q} r={hex.r} s={hex.s}
 				onClick={(event, hexElement) => this.onHexClick(event, hexElement, hex)}
 				onMouseEnter={(event, hexElement) => this.onHexHover(event, hexElement, hex)}
-				className={classNames({
-					'hexTile': true,
-					'hexTile_blocked': isBlocked,
-					'hexTile_cpuControlled': isCpuControlled,
-					'hexTile_hostile': isHostile,
-					'hexTile_occupied': contains,
-					'hexTile_selected': (isSelected || isTargeted),
-					'hexTile_inAttackRange': (isInAttackRange && isClickable),
-					'hexTile_inHostileRange': (isInHostileRange && isClickable),
-					'hexTile_clickable': isClickable
-				})}
+				className={`hexTile_${hex.q}_${hex.r}_${hex.s} ${classString}`}
 			/>
 		);
 	}

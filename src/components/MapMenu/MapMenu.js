@@ -13,6 +13,13 @@ export default class MapMenu extends Component {
 
 	resultDisplayTimer = null;
 
+	componentDidUpdate(prevProps) {
+		const { forcedAttackResults } = this.props;
+		if (forcedAttackResults && !prevProps.forcedAttackResults) {
+			this.showResults(forcedAttackResults.attackResult, forcedAttackResults.attackUsed, forcedAttackResults.defenseResult);
+		}
+	}
+
 	cullResults = () => {
 		this.setState({showResults: false, rollResults: {}})
 		this.props.endTurn();
@@ -21,7 +28,7 @@ export default class MapMenu extends Component {
 	showResults = (attackResult, attackUsed, defenseResult) => {
 		this.setState(
 			{showResults: true, rollResults: {attackResult, attackUsed, defenseResult}},
-			() => setTimeout(this.cullResults, 1500)
+			() => setTimeout(this.cullResults, 2300)
 		);
 	}
 

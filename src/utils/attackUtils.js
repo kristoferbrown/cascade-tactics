@@ -27,4 +27,5 @@ export function executeAttack(attacker, target, animateAttack, showAttackResults
 	animateAttack(currentAttack.attackObj, attacker, target, attackResult, () => showAttackResults(attackResult, currentAttack.attackObj, defenseResult));
 	didHit && dealDamage(target.meta.charId, attackResult.damage.successes, attackResult.location.locationHit);
 	console.log(didHit ? 'HIT!!!!' : 'Miss...', attackResult, defenseResult);
+	return {attackResult, attackUsed: currentAttack.attackObj, defenseResult};
 }

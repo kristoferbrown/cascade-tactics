@@ -34,7 +34,8 @@ export default class HexMap extends PureComponent {
 		};
 
 		this.state = {
-			aiTurnInProgress: false,
+			aiAttackResults: null,
+			aiTurnInProgress: -1,
 			charLocList: [], // Array of characters to place in hexmap
 			hexList: null, // Array of all hexes
 			hostileMeleeRange: [], // List of hex indexes in melee range of an enemy
@@ -103,22 +104,34 @@ export default class HexMap extends PureComponent {
 		}
 
 		// Run and end AI turn, most of this should be moved to a separate AI file
-		if (currentCharacter.meta.isCpuControlled && !aiTurnInProgress) {
-			this.setState({aiTurnInProgress: true});
+		// This also needs to come out of lifecycle so that it doesn't fire multiple times per update
+		if (currentCharacter.meta.isCpuControlled && aiTurnInProgress === -1) {
+			console.log('an ai turn is starting');
+			this.setState({aiTurnInProgress: currentCharacter.meta.charId});
 			const adjacentCharacters = this.getAdjacentCharacters();
 			if (currentCharacter.meta.isHostile && adjacentCharacters.length) {
-				console.log('attack one of these now:', adjacentCharacters);
+				const targetCharacter = adjacentCharacters[0].character;
+				const targetHex = targetCharacter.currentHexLoc;
+				const targetElement = document.getElementsByClassName(`hexTile_${targetHex.q}_${targetHex.r}_${targetHex.s}`)[0];
+				const fakeEvent = { currentTarget: targetElement };
+				this.computeHover(fakeEvent, null, targetHex, targetCharacter);
+				const attackResults = executeAttack(currentCharacter, targetCharacter, animateAttack, () => {}, dealDamage);
+				this.setState({ 
+					aiAttackResults: attackResults,
+					targetedHex: targetHex,
+					targetedHexContains: targetCharacter
+				 })
 				this.uncontrolledTurnTimer = setTimeout(() => {
-					executeAttack(currentCharacter, adjacentCharacters[0].character, animateAttack, () => {}, dealDamage);
-					this.endTurn();
-					this.setState({aiTurnInProgress: false});
-				}, 1000);
+					//this.endTurn(); not needed since mapmenu results do this on timeout
+					console.log('ending ai attack turn')
+					this.setState({aiTurnInProgress: -1, aiAttackResults: null});
+				}, 2400);
 			} else {
-				console.log('just waiting');
 				this.uncontrolledTurnTimer = setTimeout(() => {
+					console.log('just waiting');
 					deductSpeed(currentCharacter.meta.charId, 2);
 					this.endTurn();
-					this.setState({aiTurnInProgress: false});
+					this.setState({aiTurnInProgress: -1});
 				}, 2400);
 			}
 		}
@@ -129,7 +142,7 @@ export default class HexMap extends PureComponent {
 	}
 
 	clearPath = () => {
-		this.setState({hoveredHex: null, hoveredHexLoc: null, targetedHex: null});
+		this.setState({ aiAttackResults: null, hoveredHex: null, hoveredHexLoc: null, targetedHex: null });
 	}
 
 	computeHostileMeleeRange = (charLocList) => {
@@ -250,7 +263,7 @@ export default class HexMap extends PureComponent {
 
 	render() {
 		const { currSpeedCost, setSpeedCost } = this.props;
-		const { charLocList, hexList, hostileMeleeRange,  hoveredHex, hoveredHexLoc, objectList, selectedHex, targetedHex, targetedHexContains, targetedHexIndex, tooltipLabel } = this.state;
+		const { charLocList, aiAttackResults, hexList, hostileMeleeRange,  hoveredHex, hoveredHexLoc, objectList, selectedHex, targetedHex, targetedHexContains, targetedHexIndex, tooltipLabel } = this.state;
 		const { currentCharacter, mapIsAnimating, projectile } = this.context;
 		return (
 			<div className="hexMap" ref={this.hexMapRef}>
@@ -337,6 +350,7 @@ export default class HexMap extends PureComponent {
 				<MapMenu
 					currSpeedCost={currSpeedCost}
 					endTurn={this.endTurn}
+					forcedAttackResults={aiAttackResults}
 					label={tooltipLabel}
 					menuOrigin={hoveredHexLoc}
 					moveToTargetHex={this.moveToTargetHex}
