@@ -57,7 +57,8 @@
 	}
 
 	&.turnItem_hiddenTurn,
-	&.turnItem_previousTurn {
+	&.turnItem_previousTurn,
+	&.turnItem_unconscious {
 		height: 300px;
 		width: 0px;
 		opacity: 0;

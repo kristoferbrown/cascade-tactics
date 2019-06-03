@@ -70,7 +70,6 @@ export class CharacterProvider extends PureComponent {
 	dealDamage = (charId, damage, location) => {
 		const { characters } = this.state;
 		let newCharacters = [...characters];
-		let destroyedCharAtIndex = -1;
 		newCharacters.forEach((character, index) => {
 			if (character.meta.charId === charId) {
 				const maxHealth = character.status.health[location][1];
@@ -78,13 +77,12 @@ export class CharacterProvider extends PureComponent {
 				const newHealth = curHealth - damage;
 				const isDisabled = newHealth < 0;
 				const isOverLimit = Math.abs(newHealth) > maxHealth;
-				destroyedCharAtIndex = (isDisabled && isOverLimit) ? index : -1;
 				character.status.health[location][0] = newHealth;
+				if (isDisabled && isOverLimit) {
+					character.meta.isUnconscious = true;
+				}
 			}
 		});
-		if (destroyedCharAtIndex > -1) {
-			newCharacters.splice(destroyedCharAtIndex, 1);
-		}
 		this.setState({
 			characters: newCharacters
 		});
@@ -128,7 +126,7 @@ export class CharacterProvider extends PureComponent {
 		let newPhase = currPhase;
 		let nextCharacter = null;
 
-		// loop until we find the next character with speed
+		// loop until we find the next conscious character with speed
 		while (!nextCharacter) {
 			newInit++;
 			if (newInit >= characters.length) {
@@ -137,7 +135,7 @@ export class CharacterProvider extends PureComponent {
 				newPhase++;
 			}
 
-			if (characters[newInit].currentSpeed > 0) {
+			if (!characters[newInit].meta.isUnconscious && characters[newInit].currentSpeed > 0) {
 				// we found the next character
 				nextCharacter = characters[newInit];
 			}

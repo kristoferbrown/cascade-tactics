@@ -148,7 +148,7 @@ export default class HexMap extends PureComponent {
 	computeHostileMeleeRange = (charLocList) => {
 		let newHostileMeleeRange = []
 		charLocList.forEach(charLoc => {
-			if (charLoc.character.meta.isHostile) {
+			if (charLoc.character.meta.isHostile && !charLoc.character.meta.isUnconscious) {
 				charLoc.neighbors.forEach(neighborHex => {
 					if (newHostileMeleeRange.every(currentHex => currentHex.q !== neighborHex.q || currentHex.r !== neighborHex.r || currentHex.s !== neighborHex.s)) {
 						newHostileMeleeRange.push(neighborHex);
@@ -283,6 +283,7 @@ export default class HexMap extends PureComponent {
 								const inMovementRange = currentCharacter && !currentCharacter.meta.isCpuControlled && HexUtils.distance(selectedHex, hex) <= currentCharacter.currentRange
 								const inAttackRange = currentCharacter && !currentCharacter.meta.isCpuControlled && HexUtils.distance(selectedHex, hex) <= currentCharacter.currentAttack.range
 								const isHostile = occupiedBy && occupiedBy.character.meta.isHostile;
+								const isUnconscious = occupiedBy && occupiedBy.character.meta.isUnconscious;
 								const blocked = objectList.some(object => index === object.hexIndex);
 								const isSelected =  HexUtils.equals(hex, selectedHex);
 								return <HexTile
@@ -291,7 +292,7 @@ export default class HexMap extends PureComponent {
 									hex={hex}
 									hexListIndex={index}
 									isBlocked={blocked}
-									isClickable={!mapIsAnimating && (isSelected || (inAttackRange && isHostile) || (inMovementRange && !blocked && !occupiedBy))}
+									isClickable={!mapIsAnimating && (isSelected || (inAttackRange && isHostile && !isUnconscious) || (inMovementRange && !blocked && !occupiedBy))}
 									isCpuControlled={occupiedBy && occupiedBy.character.meta.isCpuControlled}
 									isHostile={occupiedBy && occupiedBy.character.meta.isHostile}
 									isInHostileRange={hostileMeleeRange.some(hosHex => HexUtils.equals(hosHex, hex))}

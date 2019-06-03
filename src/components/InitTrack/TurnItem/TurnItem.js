@@ -18,7 +18,8 @@ export default class TurnItem extends PureComponent {
 					'turnItem': true,
 					'turnItem_currentTurn': isCurrentTurn,
 					'turnItem_previousTurn': isPreviousTurn,
-					'turnItem_hiddenTurn': character.currentSpeed <= 0
+					'turnItem_hiddenTurn': character.currentSpeed <= 0,
+					'turnItem_unconscious': character.meta.isUnconscious
 				})}
 			>
 
