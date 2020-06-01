@@ -1,21 +1,25 @@
 .nonogram_container {
-	display: flex;
-	flex-direction: row;
-	flex-wrap: wrap;
-	flex-shrink: 0;
+	display: grid;
+	grid-gap: 20px;
+	grid-template-columns: auto auto auto;
 	height: 500px;
-	justify-content: space-around;
-	left: 80px;
+	left: 250px;
 	opacity: 1;
-	position: relative;
+	position: absolute;
+	top: 250px;
 	transform: rotate(45deg);
-	transition: 0.6s ease;
-	transition-delay: 0.6s;
+	transition: 0.6s;
 	width: 500px;
 
-	&.nonogram_container_hidden {
-		height: 0;
-		opacity: 0;
-		width: 0;
+	&.nonogram_combat {
+		height: 550px;
+		grid-gap: 60px;
+		left: 40%;
+		top: 220px;
+		width: 550px;
+	}
+
+	&.nonogram_artifacts {
+		left: 60%;
 	}
 }

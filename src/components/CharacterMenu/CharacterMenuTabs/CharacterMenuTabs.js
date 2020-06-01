@@ -7,32 +7,43 @@ export default class CharacterMenuTabs extends PureComponent {
 		const { changeTab, currentTab } = this.props;
 		return (
 			<div className={'CharacterMenuTabs'}>
-				<div 
-				className={classNames({
-					'CharacterMenuTabs_tab': true,
-					'CharacterMenuTabs_currentTab': currentTab === 'Styles',
-				})}
-				onClick={() => changeTab('Styles')}
-				>
-					Styles
-				</div>
 
 				<div 
 				className={classNames({
 					'CharacterMenuTabs_tab': true,
-					'CharacterMenuTabs_currentTab': currentTab === 'Combat',
+					'CharacterMenuTabs_currentTab': currentTab === 'Character',
 				})}
-				onClick={() => changeTab('Combat')}
+				onClick={() => changeTab('Character')}
+				>
+					Character
+				</div>
+
+				<div 
+					className={classNames({
+						'CharacterMenuTabs_tab': true,
+						'CharacterMenuTabs_currentTab': currentTab === 'Combat',
+					})}
+					onClick={() => changeTab('Combat')}
 				>
 					Combat
 				</div>
 
 				<div 
-				className={classNames({
-					'CharacterMenuTabs_tab': true,
-					'CharacterMenuTabs_currentTab': currentTab === 'Artifacts',
-				})}
-				onClick={() => changeTab('Artifacts')}
+					className={classNames({
+						'CharacterMenuTabs_tab': true,
+						'CharacterMenuTabs_currentTab': currentTab === 'Styles',
+					})}
+					onClick={() => changeTab('Styles')}
+				>
+					Styles
+				</div>
+
+				<div 
+					className={classNames({
+						'CharacterMenuTabs_tab': true,
+						'CharacterMenuTabs_currentTab': currentTab === 'Artifacts',
+					})}
+					onClick={() => changeTab('Artifacts')}
 				>
 					Artifacts
 				</div>

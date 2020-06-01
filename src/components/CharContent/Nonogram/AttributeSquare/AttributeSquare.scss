@@ -2,14 +2,12 @@
 
 .attributeSquare {
 	align-items: flex-end;
-	background: $nearBlack;
+	background: $lightGray;
 	cursor: pointer;
 	display: flex;
 	flex-direction: column;
-	height: 30%;
 	justify-content: flex-end;
 	position: relative;
-	width: 30%;
 	&:hover {
 		box-shadow: 0 0 6px 3px $black;
 	}

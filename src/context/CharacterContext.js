@@ -24,7 +24,7 @@ export class CharacterProvider extends PureComponent {
 			mapIsAnimating: false,
 			menuCharacter: currentCharacters[0],
 			projectile: null,
-			showCharacterMenu: false
+			showCharacterMenu: true // TODO this should default to false once the menu is done
 		}
 	}
 

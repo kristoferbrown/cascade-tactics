@@ -1,7 +1,6 @@
 import React, { PureComponent } from 'react';
 import CharacterContext from '../../../context/CharacterContext';
 import FloatingRow from './FloatingRow/FloatingRow';
-import Nonogram from '../../CharContent/Nonogram/Nonogram';
 import StyleSummaryRow from './StyleSummaryRow/StyleSummaryRow';
 import { styleTree } from '../../../utils/styleDefinitions';
 import './StylesScreen.scss';
@@ -12,10 +11,11 @@ export default class StylesScreen extends PureComponent {
 	state = {
 		selectedAttribute: ''
 	}
-
-	selectAttribute = attribute => {
-		this.setState({selectedAttribute: attribute});
-	}
+	
+	// TODO attribute selection was driven from nonogram before, it doesn't do anything right now
+	// selectAttribute = attribute => {
+	// 	this.setState({selectedAttribute: attribute});
+	// }
 
 	render() {
 		const { menuCharacter } = this.context;
@@ -27,9 +27,6 @@ export default class StylesScreen extends PureComponent {
 		const selectedStyleDefinition = styleTree.find( style => style.name === selectedAttribute);
 		return (
 			<div className={'StylesScreen'}>
-				<div className={'StylesScreen_NonogramColumn'}>
-					<Nonogram attributes={menuCharacter.attributes} isVisible={true} handleAttributeClick={this.selectAttribute} />
-				</div>
 
 				{ selectedAttribute.length ? (
 					<div className={'StylesScreen_ListColumn'}>
