@@ -4,10 +4,8 @@
 	background: $lightGray;
 	box-shadow: inset 0 0 6px 0 $black;
 	box-sizing: border-box;
-	display: flex;
-	flex-direction: column;
 	height: 102%;
-	padding: 200px 0 0 0;
+	padding: 150px 0 0 0;
 	position: absolute;
 	top: 0;
 	left: -6px;
@@ -16,17 +14,43 @@
 
 	.CharacterMenuTabs_tab {
 		cursor: pointer;
-		padding: 12px 18px;
+		display: flex;
+		align-items: center;
+		height: 150px;
+		justify-content: center;
+		position: relative;
+
 		&:hover {
-			box-shadow: inset 0 0 3px $black;
+			&:before {
+				content: "";
+				box-shadow: inset 0 0 6px $black;
+				height: 100%;
+				position: absolute;
+				transform: skewY(-9deg);
+				width: 100%;
+			}
 		}
 
 		&.CharacterMenuTabs_currentTab {
-			background: $nearWhite;
 			cursor: default;
+			&:before {
+				background: $nearWhite;
+				content: "";
+				height: 100%;
+				position: absolute;
+				transform: skewY(-9deg);
+				width: 100%;
+				z-index: 0;
+			}
 			&:hover {
-				box-shadow: none;
+				&:before {
+					box-shadow: none;
+				}
 			}
 		}
+	}
+
+	.CharacterMenuTabs_tabText {
+		z-index: 1;
 	}
 }

@@ -15,7 +15,7 @@ export default class CharacterMenuTabs extends PureComponent {
 				})}
 				onClick={() => changeTab('Character')}
 				>
-					Character
+					<span className={'CharacterMenuTabs_tabText'}>Character</span>
 				</div>
 
 				<div 
@@ -25,7 +25,7 @@ export default class CharacterMenuTabs extends PureComponent {
 					})}
 					onClick={() => changeTab('Combat')}
 				>
-					Combat
+					<span className={'CharacterMenuTabs_tabText'}>Combat</span>
 				</div>
 
 				<div 
@@ -35,7 +35,7 @@ export default class CharacterMenuTabs extends PureComponent {
 					})}
 					onClick={() => changeTab('Styles')}
 				>
-					Styles
+					<span className={'CharacterMenuTabs_tabText'}>Styles</span>
 				</div>
 
 				<div 
@@ -45,7 +45,7 @@ export default class CharacterMenuTabs extends PureComponent {
 					})}
 					onClick={() => changeTab('Artifacts')}
 				>
-					Artifacts
+					<span className={'CharacterMenuTabs_tabText'}>Artifacts</span>
 				</div>
 			</div>
 		);
