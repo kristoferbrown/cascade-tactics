@@ -2,6 +2,7 @@
 	display: grid;
 	grid-gap: 20px;
 	grid-template-columns: auto auto auto;
+	grid-template-rows: auto auto auto;
 	height: 500px;
 	left: 250px;
 	opacity: 1;
@@ -11,15 +12,30 @@
 	transition: 0.6s;
 	width: 500px;
 
+	&.nonogram_character {
+		grid-template-columns: auto auto auto auto auto auto auto auto auto;
+		grid-template-rows: auto auto auto auto auto auto auto auto auto;
+	}
+
 	&.nonogram_combat {
-		height: 550px;
 		grid-gap: 80px;
+		
+		// todo use transform
+		height: 550px;
+		width: 550px;
 		left: 40%;
 		top: 220px;
-		width: 550px;
 	}
 
 	&.nonogram_artifacts {
-		left: 60%;
+		//align-items: center;
+		grid-gap: 6px;
+		//justify-items: end;
+
+		// todo use transform
+		height: 550px;
+		left: 55%;
+		top: 220px;
+		width: 550px;
 	}
 }

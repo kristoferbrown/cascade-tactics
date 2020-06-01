@@ -7,12 +7,30 @@
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-end;
+	opacity: 1;
 	position: relative;
+	transition: all 0.6s, box-shadow 0.2s;
+	height: 100%;
+	width: 100%;
 	&:hover {
 		box-shadow: 0 0 6px 3px $black;
 	}
 	&:active {
 		box-shadow: 0 0 1px 1px $black;
+	}
+
+	&.attributeSquare_hidden {
+		opacity: 0;
+	}
+
+	&.attributeSquare_majorArtifact {
+		background: $intelligenceDark;
+	}
+
+	&.attributeSquare_minorArtifact {
+		height: 50%;
+		width: 50%;
+		background: $intelligenceLight;
 	}
 
 	.attributeSquare_label {

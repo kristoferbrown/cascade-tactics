@@ -3,12 +3,8 @@ import classNames from 'classnames';
 import './AttributeSquare.scss';
 
 export default class AttributeSquare extends Component {
-	shouldComponentUpdate(nextProps) {
-		return this.props.attributeScore !== nextProps.attributeScore;
-	}
-
 	render() {
-		const { attributeName, attributeScore, handleClick } = this.props;
+		const { attributeName, attributeScore, handleClick, isHidden, isMajorArtifact, isMinorArtifact } = this.props;
 		let dotArray = [];
 		for (let i = 0; i < 9; i++) {
 			dotArray.push(i < attributeScore ?
@@ -19,6 +15,9 @@ export default class AttributeSquare extends Component {
 			<div
 				className={classNames({
 					'attributeSquare': true,
+					'attributeSquare_hidden': isHidden,
+					'attributeSquare_majorArtifact': isMajorArtifact,
+					'attributeSquare_minorArtifact': isMinorArtifact,
 					'attributeSquare_str': attributeName === 'Strength',
 					'attributeSquare_fin': attributeName === 'Finesse',
 					'attributeSquare_per': attributeName === 'Perception',
