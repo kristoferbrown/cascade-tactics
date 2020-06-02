@@ -4,7 +4,15 @@ import './AttributeSquare.scss';
 
 export default class AttributeSquare extends Component {
 	render() {
-		const { attributeName, attributeScore, handleClick, isHidden, isMajorArtifact, isMinorArtifact } = this.props;
+		const { 
+			attributeName,
+			attributeScore,
+			handleClick,
+			isHidden,
+			isMajorArtifact,
+			isMinorArtifact,
+			showContent
+		} = this.props;
 		let dotArray = [];
 		for (let i = 0; i < 9; i++) {
 			dotArray.push(i < attributeScore ?
@@ -16,6 +24,7 @@ export default class AttributeSquare extends Component {
 				className={classNames({
 					'attributeSquare': true,
 					'attributeSquare_hidden': isHidden,
+					'attributeSquare_preview': !showContent,
 					'attributeSquare_majorArtifact': isMajorArtifact,
 					'attributeSquare_minorArtifact': isMinorArtifact,
 					'attributeSquare_str': attributeName === 'Strength',
@@ -30,7 +39,7 @@ export default class AttributeSquare extends Component {
 				})}
 				onClick={() => {handleClick && handleClick(attributeName)}}
 			>
-				{ attributeName && (<React.Fragment>
+				{ showContent && (<React.Fragment>
 					<div className='attributeSquare_label'>{attributeName}</div>
 					<div className='attributeSquare_dotTrack'>{dotArray}</div>
 				</React.Fragment>)}

@@ -5,7 +5,7 @@ import './Nonogram.scss';
 
 export default class Nonogram extends Component {
 	render() {
-		const { attributes, currentTab, handleAttributeClick } = this.props;
+		const { attributes, currentTab, handleAttributeClick, isPreview } = this.props;
 		const isCharacterScreen = currentTab === 'Character';
 		const isCombatScreen = currentTab === 'Combat';
 		const isStylesScreen = currentTab === 'Styles';
@@ -18,6 +18,7 @@ export default class Nonogram extends Component {
 				'nonogram_combat': isCombatScreen,
 				'nonogram_styles': isStylesScreen,
 				'nonogram_artifacts': isArtifactsScreen,
+				'nonogram_preview': isPreview,
 			})}>
 
 				<AttributeSquare
@@ -25,18 +26,21 @@ export default class Nonogram extends Component {
 					attributeScore={isStylesScreen ? attributes.Strength : null}
 					handleClick={handleAttributeClick}
 					isMajorArtifact={isArtifactsScreen}
+					showContent={isStylesScreen && !isPreview}
 				/>
 				<AttributeSquare
 					attributeName={isStylesScreen ? 'Finesse' : null}
 					attributeScore={isStylesScreen ? attributes.Finesse : null}
 					handleClick={handleAttributeClick}
 					isMinorArtifact={isArtifactsScreen}
+					showContent={isStylesScreen && !isPreview}
 				/>
 				<AttributeSquare
 					attributeName={isStylesScreen ? 'Perception' : null}
 					attributeScore={isStylesScreen ? attributes.Perception : null}
 					handleClick={handleAttributeClick}
 					isMinorArtifact={isArtifactsScreen}
+					showContent={isStylesScreen && !isPreview}
 				/>
 
 				<AttributeSquare
@@ -44,12 +48,14 @@ export default class Nonogram extends Component {
 					attributeScore={isStylesScreen ? attributes.Stamina : null}
 					handleClick={handleAttributeClick}
 					isMajorArtifact={isArtifactsScreen}
+					showContent={isStylesScreen && !isPreview}
 				/>
 				<AttributeSquare
 					attributeName={isStylesScreen ? 'Agility' : null}
 					attributeScore={isStylesScreen ? attributes.Agility : null}
 					handleClick={handleAttributeClick}
 					isMinorArtifact={isArtifactsScreen}
+					showContent={isStylesScreen && !isPreview}
 				/>
 				<AttributeSquare
 					attributeName={isStylesScreen ? 'Wits' : null}
@@ -57,6 +63,7 @@ export default class Nonogram extends Component {
 					handleClick={handleAttributeClick}
 					isHidden={isCombatScreen}
 					isMinorArtifact={isArtifactsScreen}
+					showContent={isStylesScreen && !isPreview}
 				/>
 
 				<AttributeSquare
@@ -64,6 +71,7 @@ export default class Nonogram extends Component {
 					attributeScore={isStylesScreen ? attributes.Willpower : null}
 					handleClick={handleAttributeClick}
 					isMajorArtifact={isArtifactsScreen}
+					showContent={isStylesScreen && !isPreview}
 				/>
 				<AttributeSquare
 					attributeName={isStylesScreen ? 'Intelligence' : null}
@@ -71,12 +79,14 @@ export default class Nonogram extends Component {
 					handleClick={handleAttributeClick}
 					isHidden={isCombatScreen}
 					isMinorArtifact={isArtifactsScreen}
+					showContent={isStylesScreen && !isPreview}
 				/>
 				<AttributeSquare
 					attributeName={isStylesScreen ? 'Charisma' : null}
 					attributeScore={isStylesScreen ? attributes.Charisma : null}
 					handleClick={handleAttributeClick}
 					isMinorArtifact={isArtifactsScreen}
+					showContent={isStylesScreen && !isPreview}
 				/>
 			</div>
 		);

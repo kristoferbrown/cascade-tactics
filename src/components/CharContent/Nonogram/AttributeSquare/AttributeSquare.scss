@@ -33,6 +33,13 @@
 		background: $intelligenceLight;
 	}
 
+	&.attributeSquare_preview {
+		&:hover,
+		&:active {
+			box-shadow: none;
+		}
+	}
+
 	.attributeSquare_label {
 		align-self: center;
 		color: $white;

@@ -1,10 +1,17 @@
 import React, { PureComponent } from 'react';
 import classNames from 'classnames';
+import CharacterContext from '../../../context/CharacterContext';
+import Nonogram from '../../CharContent/Nonogram/Nonogram'
 import './CharacterMenuTabs.scss';
 
 export default class CharacterMenuTabs extends PureComponent {
+	static contextType = CharacterContext;
+
 	render() {
 		const { changeTab, currentTab } = this.props;
+		const { menuCharacter } = this.context;
+
+		console.log('a tab', menuCharacter)
 		return (
 			<div className={'CharacterMenuTabs'}>
 
@@ -15,7 +22,8 @@ export default class CharacterMenuTabs extends PureComponent {
 				})}
 				onClick={() => changeTab('Character')}
 				>
-					<span className={'CharacterMenuTabs_tabText'}>Character</span>
+					{menuCharacter.mapRenderer({x:0,y:0}, true)}
+					<div className={'CharacterMenuTabs_tabText'}>Character</div>
 				</div>
 
 				<div 
@@ -25,7 +33,13 @@ export default class CharacterMenuTabs extends PureComponent {
 					})}
 					onClick={() => changeTab('Combat')}
 				>
-					<span className={'CharacterMenuTabs_tabText'}>Combat</span>
+					<Nonogram 
+						attributes={menuCharacter.attributes}
+						currentTab={'Combat'}
+						isVisible
+						isPreview
+					/>
+					<div className={'CharacterMenuTabs_tabText withMargin'}>Combat</div>
 				</div>
 
 				<div 
@@ -35,7 +49,13 @@ export default class CharacterMenuTabs extends PureComponent {
 					})}
 					onClick={() => changeTab('Styles')}
 				>
-					<span className={'CharacterMenuTabs_tabText'}>Styles</span>
+					<Nonogram 
+						attributes={menuCharacter.attributes}
+						currentTab={'Styles'}
+						isVisible
+						isPreview
+					/>
+					<div className={'CharacterMenuTabs_tabText withMargin'}>Styles</div>
 				</div>
 
 				<div 
@@ -45,7 +65,13 @@ export default class CharacterMenuTabs extends PureComponent {
 					})}
 					onClick={() => changeTab('Artifacts')}
 				>
-					<span className={'CharacterMenuTabs_tabText'}>Artifacts</span>
+					<Nonogram 
+						attributes={menuCharacter.attributes}
+						currentTab={'Artifacts'}
+						isVisible
+						isPreview
+					/>
+					<div className={'CharacterMenuTabs_tabText withMargin'}>Artifacts</div>
 				</div>
 			</div>
 		);
