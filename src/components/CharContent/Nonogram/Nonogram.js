@@ -22,44 +22,44 @@ export default class Nonogram extends Component {
 			})}>
 
 				<AttributeSquare
-					attributeName={isStylesScreen ? 'Strength' : null}
-					attributeScore={isStylesScreen ? attributes.Strength : null}
+					attributeName={isCharacterScreen || isStylesScreen ? 'Strength' : null}
+					attributeScore={isCharacterScreen || isStylesScreen ? attributes.Strength : null}
 					handleClick={handleAttributeClick}
 					isMajorArtifact={isArtifactsScreen}
 					showContent={isStylesScreen && !isPreview}
 				/>
 				<AttributeSquare
-					attributeName={isStylesScreen ? 'Finesse' : null}
-					attributeScore={isStylesScreen ? attributes.Finesse : null}
+					attributeName={isCharacterScreen || isStylesScreen ? 'Finesse' : null}
+					attributeScore={isCharacterScreen || isStylesScreen ? attributes.Finesse : null}
 					handleClick={handleAttributeClick}
 					isMinorArtifact={isArtifactsScreen}
 					showContent={isStylesScreen && !isPreview}
 				/>
 				<AttributeSquare
-					attributeName={isStylesScreen ? 'Perception' : null}
-					attributeScore={isStylesScreen ? attributes.Perception : null}
+					attributeName={isCharacterScreen || isStylesScreen ? 'Perception' : null}
+					attributeScore={isCharacterScreen || isStylesScreen ? attributes.Perception : null}
 					handleClick={handleAttributeClick}
 					isMinorArtifact={isArtifactsScreen}
 					showContent={isStylesScreen && !isPreview}
 				/>
 
 				<AttributeSquare
-					attributeName={isStylesScreen ? 'Stamina' : null}
-					attributeScore={isStylesScreen ? attributes.Stamina : null}
+					attributeName={isCharacterScreen || isStylesScreen ? 'Stamina' : null}
+					attributeScore={isCharacterScreen || isStylesScreen ? attributes.Stamina : null}
 					handleClick={handleAttributeClick}
 					isMajorArtifact={isArtifactsScreen}
 					showContent={isStylesScreen && !isPreview}
 				/>
 				<AttributeSquare
-					attributeName={isStylesScreen ? 'Agility' : null}
-					attributeScore={isStylesScreen ? attributes.Agility : null}
+					attributeName={isCharacterScreen || isStylesScreen ? 'Agility' : null}
+					attributeScore={isCharacterScreen || isStylesScreen ? attributes.Agility : null}
 					handleClick={handleAttributeClick}
 					isMinorArtifact={isArtifactsScreen}
 					showContent={isStylesScreen && !isPreview}
 				/>
 				<AttributeSquare
-					attributeName={isStylesScreen ? 'Wits' : null}
-					attributeScore={isStylesScreen ? attributes.Wits : null}
+					attributeName={isCharacterScreen || isStylesScreen ? 'Wits' : null}
+					attributeScore={isCharacterScreen || isStylesScreen ? attributes.Wits : null}
 					handleClick={handleAttributeClick}
 					isHidden={isCombatScreen}
 					isMinorArtifact={isArtifactsScreen}
@@ -67,23 +67,23 @@ export default class Nonogram extends Component {
 				/>
 
 				<AttributeSquare
-					attributeName={isStylesScreen ? 'Willpower' : null}
-					attributeScore={isStylesScreen ? attributes.Willpower : null}
+					attributeName={isCharacterScreen || isStylesScreen ? 'Willpower' : null}
+					attributeScore={isCharacterScreen || isStylesScreen ? attributes.Willpower : null}
 					handleClick={handleAttributeClick}
 					isMajorArtifact={isArtifactsScreen}
 					showContent={isStylesScreen && !isPreview}
 				/>
 				<AttributeSquare
-					attributeName={isStylesScreen ? 'Intelligence' : null}
-					attributeScore={isStylesScreen ? attributes.Intelligence : null}
+					attributeName={isCharacterScreen || isStylesScreen ? 'Intelligence' : null}
+					attributeScore={isCharacterScreen || isStylesScreen ? attributes.Intelligence : null}
 					handleClick={handleAttributeClick}
 					isHidden={isCombatScreen}
 					isMinorArtifact={isArtifactsScreen}
 					showContent={isStylesScreen && !isPreview}
 				/>
 				<AttributeSquare
-					attributeName={isStylesScreen ? 'Charisma' : null}
-					attributeScore={isStylesScreen ? attributes.Charisma : null}
+					attributeName={isCharacterScreen || isStylesScreen ? 'Charisma' : null}
+					attributeScore={isCharacterScreen || isStylesScreen ? attributes.Charisma : null}
 					handleClick={handleAttributeClick}
 					isMinorArtifact={isArtifactsScreen}
 					showContent={isStylesScreen && !isPreview}
