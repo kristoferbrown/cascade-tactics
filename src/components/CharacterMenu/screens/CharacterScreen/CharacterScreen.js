@@ -8,6 +8,11 @@ export default class CharacterScreen extends PureComponent {
 		const { menuCharacter } = this.context;
 		return (
 			<div className={'CharacterScreen'}>
+				{ menuCharacter.portraitRenderer && (
+					<div className={'CharacterScreen_portrait'}>
+						{menuCharacter.portraitRenderer()}
+					</div>
+				)}
 				char screen for {menuCharacter.meta.name}
 			</div>
 		);

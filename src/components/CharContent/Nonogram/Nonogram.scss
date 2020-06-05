@@ -29,6 +29,7 @@
 	}
 
 	&.nonogram_character {
+		left: 35%;
 		.attributeSquare{
 			&:nth-child(1){ left:0; top:0; height:10%; width:10%; }
 			&:nth-child(2){ left:11%; top:0; height:10%; width:10%; }
