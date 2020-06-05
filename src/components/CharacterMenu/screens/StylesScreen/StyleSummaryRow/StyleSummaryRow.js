@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import DotTrack from '../../../CharContent/DotTrack/DotTrack';
+import DotTrack from '../../../../CharContent/DotTrack/DotTrack';
 import './StyleSummaryRow.scss';
 
 export default function StyleSummaryRow(props) {

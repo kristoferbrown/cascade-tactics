@@ -4,7 +4,10 @@ import CharacterContext from '../../context/CharacterContext';
 import CharacterMenuTabs from './CharacterMenuTabs/CharacterMenuTabs';
 import CharacterSelectBar from './CharacterSelectBar/CharacterSelectBar';
 import Nonogram from '../CharContent/Nonogram/Nonogram';
-import StylesScreen from './StylesScreen/StylesScreen';
+import CharacterScreen from './screens/CharacterScreen/CharacterScreen';
+import CombatScreen from './screens/CombatScreen/CombatScreen';
+import StylesScreen from './screens/StylesScreen/StylesScreen';
+import ArtifactsScreen from './screens/ArtifactsScreen/ArtifactsScreen';
 import './CharacterMenu.scss';
 
 export default class CharacterMenu extends PureComponent {
@@ -46,10 +49,10 @@ export default class CharacterMenu extends PureComponent {
 								/>
 
 								<div className={'characterMenu_body'} >
-									{ currentTab === 'Character' && <div>This is the Character screen for {menuCharacter.meta.name}</div> }
-									{ currentTab === 'Combat' && <div>This is the combat screen for {menuCharacter.meta.name}</div> }
+									{ currentTab === 'Character' && <CharacterScreen /> }
+									{ currentTab === 'Combat' && <CombatScreen /> }
 									{ currentTab === 'Styles' && <StylesScreen /> }
-									{ currentTab === 'Artifacts' && <div>This is the artifact screen for {menuCharacter.meta.name}</div> }
+									{ currentTab === 'Artifacts' && <ArtifactsScreen /> }
 								</div>
 							</Fragment>
 						}

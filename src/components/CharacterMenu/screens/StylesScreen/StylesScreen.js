@@ -1,8 +1,8 @@
 import React, { PureComponent } from 'react';
-import CharacterContext from '../../../context/CharacterContext';
+import CharacterContext from '../../../../context/CharacterContext';
 import FloatingRow from './FloatingRow/FloatingRow';
 import StyleSummaryRow from './StyleSummaryRow/StyleSummaryRow';
-import { styleTree } from '../../../utils/styleDefinitions';
+import { styleTree } from '../../../../utils/styleDefinitions';
 import './StylesScreen.scss';
 
 export default class StylesScreen extends PureComponent {
