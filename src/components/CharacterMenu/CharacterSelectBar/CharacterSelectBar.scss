@@ -8,7 +8,7 @@
 	color: $nearWhite;
 	display: flex;
 	flex-direction: row;
-	height: 150px;
+	height: 120px;
 	left: -9px;
 	opacity: 1;
 	padding: 20px;
@@ -21,15 +21,15 @@
 	.CharacterSelectBar_currentCharacter {
 		color: $white;
 		font-size: 22px;
-		width: 400px;
+		width: 300px;
 		text-align: center;
 	}
 
 	.CharacterSelectBar_navArrow {
 		cursor: pointer;
-		font-size: 50px;
-		height: 50px;
-		width: 50px;
+    font-size: 45px;
+    height: 45px;
+    width: 45px;
 		&:hover {
 			color: $white;
 		}

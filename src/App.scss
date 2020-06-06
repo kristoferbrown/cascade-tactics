@@ -1,3 +1,5 @@
+@import './utils/Palette.scss';
+
 body, html, #root {
 	font-family: "burlingame", sans-serif;
 	height: 100%;
@@ -6,3 +8,23 @@ body, html, #root {
 	user-select: none;
 	width: 100%;
 }
+
+.basicText {
+	color: $darkGray;
+	font-size: 12px;
+}
+
+.headerText {
+	color: $nearBlack;
+	font-size: 24px;
+}
+
+.fill_Strength { background-color: $strength; .fill_light { background-color: $strengthLight;} .fill_dark { background-color: $strengthDark;} }
+.fill_Finesse { background-color: $finesse; .fill_light { background-color: $finesseLight;} .fill_dark { background-color: $finesseDark;} }
+.fill_Perception { background-color: $perception; .fill_light { background-color: $perceptionLight;} .fill_dark { background-color: $perceptionDark;} }
+.fill_Stamina { background-color: $stamina; .fill_light { background-color: $staminaLight;} .fill_dark { background-color: $staminaDark;} }
+.fill_Agility { background-color: $agility; .fill_light { background-color: $agilityLight;} .fill_dark { background-color: $agilityDark;} }
+.fill_Wits { background-color: $wits; .fill_light { background-color: $witsLight;} .fill_dark { background-color: $witsDark;} }
+.fill_Willpower { background-color: $willpower; .fill_light { background-color: $willpowerLight;} .fill_dark { background-color: $willpowerDark;} }
+.fill_Intelligence { background-color: $intelligence; .fill_light { background-color: $intelligenceLight;} .fill_dark { background-color: $intelligenceDark;} }
+.fill_Charisma { background-color: $charisma; .fill_light { background-color: $charismaLight;} .fill_dark { background-color: $charismaDark;} }

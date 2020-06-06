@@ -11,7 +11,6 @@ export default class CharacterMenuTabs extends PureComponent {
 		const { changeTab, currentTab } = this.props;
 		const { menuCharacter } = this.context;
 
-		console.log('a tab', menuCharacter)
 		return (
 			<div className={'CharacterMenuTabs'}>
 
