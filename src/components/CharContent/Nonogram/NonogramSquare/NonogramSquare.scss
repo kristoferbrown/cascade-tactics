@@ -62,27 +62,57 @@
 		position: relative;
 		top: -6%;
 		width: 50%;
-	}
-
-	.NonogramSquare_dot {
-		background: $white;
-		border: 3px solid $white;
-		border-radius: 50%;
-		box-sizing: border-box;
-		height: 26%;
-		width: 26%;
-		&.NonogramSquare_dot_filled {
-			background: $nearBlack;
+		.NonogramSquare_dot {
+			background: $white;
+			border: 3px solid $white;
+			border-radius: 50%;
+			box-sizing: border-box;
+			height: 26%;
+			width: 26%;
+			&.NonogramSquare_dot_filled {
+				background: $nearBlack;
+			}
 		}
 	}
 
-	&.NonogramSquare_str { background: $strength;}
-	&.NonogramSquare_fin { background: $finesse;}
-	&.NonogramSquare_per { background: $perception;}
-	&.NonogramSquare_stm { background: $stamina;}
-	&.NonogramSquare_agi { background: $agility;}
-	&.NonogramSquare_wit { background: $wits;}
-	&.NonogramSquare_wil { background: $willpower;}
-	&.NonogramSquare_int { background: $intelligence;}
-	&.NonogramSquare_cha { background: $charisma;}
+
+
+	.NonogramSquare_skillRow {
+		height: 32px;
+		left: 0;
+		position: absolute;
+		top: 0;
+		transform: rotate(-45deg);
+		width: 150px;
+
+		// animation: skillRowExpand 0.9s infinite linear;
+
+
+		&:nth-child(1){
+			left: 0;
+			top: 0;
+			transform-origin: top left;
+		}
+		&:nth-child(2){
+			left: -106px;
+			top: 13px;
+			transform-origin: bottom right;
+		}
+	}
+
+	&.NonogramSquare_str, &.NonogramSquare_str .NonogramSquare_skillRow { background: $strength;}
+	&.NonogramSquare_fin, &.NonogramSquare_fin .NonogramSquare_skillRow { background: $finesse;}
+	&.NonogramSquare_per, &.NonogramSquare_per .NonogramSquare_skillRow { background: $perception;}
+	&.NonogramSquare_stm, &.NonogramSquare_stm .NonogramSquare_skillRow { background: $stamina;}
+	&.NonogramSquare_agi, &.NonogramSquare_agi .NonogramSquare_skillRow { background: $agility;}
+	&.NonogramSquare_wit, &.NonogramSquare_wit .NonogramSquare_skillRow { background: $wits;}
+	&.NonogramSquare_wil, &.NonogramSquare_wil .NonogramSquare_skillRow { background: $willpower;}
+	&.NonogramSquare_int, &.NonogramSquare_int .NonogramSquare_skillRow { background: $intelligence;}
+	&.NonogramSquare_cha, &.NonogramSquare_cha .NonogramSquare_skillRow { background: $charisma;}
 }
+
+
+// @keyframes skillRowExpand {
+// 	0% {transform: scaleX(0) rotate(-45deg);}
+// 	100% {transform: scaleX(1) rotate(-45deg);}
+// }

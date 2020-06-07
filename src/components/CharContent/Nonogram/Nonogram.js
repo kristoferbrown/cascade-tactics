@@ -78,6 +78,7 @@ export default class Nonogram extends Component {
 					handleClick={handleAttributeClick}
 					isMajorArtifact={isArtifactsScreen}
 					showStyleDots={isStylesScreen && !isPreview}
+					showSkillRow={isCharacterScreen && !isPreview}
 				/>
 				<NonogramSquare
 					attributeName={isCharacterScreen || isStylesScreen ? 'Intelligence' : null}
@@ -86,6 +87,7 @@ export default class Nonogram extends Component {
 					isHidden={isCombatScreen}
 					isMinorArtifact={isArtifactsScreen}
 					showStyleDots={isStylesScreen && !isPreview}
+					showSkillRow={isCharacterScreen && !isPreview}
 				/>
 				<NonogramSquare
 					attributeName={isCharacterScreen || isStylesScreen ? 'Charisma' : null}
@@ -93,6 +95,7 @@ export default class Nonogram extends Component {
 					handleClick={handleAttributeClick}
 					isMinorArtifact={isArtifactsScreen}
 					showStyleDots={isStylesScreen && !isPreview}
+					showSkillRow={isCharacterScreen && !isPreview}
 				/>
 			</div>
 		);
