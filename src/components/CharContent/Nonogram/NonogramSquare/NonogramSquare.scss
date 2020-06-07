@@ -1,6 +1,6 @@
 @import '../../../../utils/Palette.scss';
 
-.attributeSquare {
+.NonogramSquare {
 	align-items: flex-end;
 	background: $lightGray;
 	cursor: pointer;
@@ -19,28 +19,28 @@
 		box-shadow: 0 0 1px 1px $black;
 	}
 
-	&.attributeSquare_hidden {
+	&.NonogramSquare_hidden {
 		opacity: 0;
 	}
 
-	&.attributeSquare_majorArtifact {
+	&.NonogramSquare_majorArtifact {
 		background: $intelligenceDark;
 	}
 
-	&.attributeSquare_minorArtifact {
+	&.NonogramSquare_minorArtifact {
 		height: 50%;
 		width: 50%;
 		background: $intelligenceLight;
 	}
 
-	&.attributeSquare_preview {
+	&.NonogramSquare_preview {
 		&:hover,
 		&:active {
 			box-shadow: none;
 		}
 	}
 
-	.attributeSquare_label {
+	.NonogramSquare_label {
 		align-self: center;
 		color: $white;
 		left: -18%;
@@ -49,7 +49,7 @@
 		transform: rotate(-45deg);
 	}
 
-	.attributeSquare_dotTrack {
+	.NonogramSquare_dotTrack {
 		align-content: space-between;
 		box-sizing: border-box;
 		display: flex;
@@ -64,25 +64,25 @@
 		width: 50%;
 	}
 
-	.attributeSquare_dot {
+	.NonogramSquare_dot {
 		background: $white;
 		border: 3px solid $white;
 		border-radius: 50%;
 		box-sizing: border-box;
 		height: 26%;
 		width: 26%;
-		&.attributeSquare_dot_filled {
+		&.NonogramSquare_dot_filled {
 			background: $nearBlack;
 		}
 	}
 
-	&.attributeSquare_str { background: $strength;}
-	&.attributeSquare_fin { background: $finesse;}
-	&.attributeSquare_per { background: $perception;}
-	&.attributeSquare_stm { background: $stamina;}
-	&.attributeSquare_agi { background: $agility;}
-	&.attributeSquare_wit { background: $wits;}
-	&.attributeSquare_wil { background: $willpower;}
-	&.attributeSquare_int { background: $intelligence;}
-	&.attributeSquare_cha { background: $charisma;}
+	&.NonogramSquare_str { background: $strength;}
+	&.NonogramSquare_fin { background: $finesse;}
+	&.NonogramSquare_per { background: $perception;}
+	&.NonogramSquare_stm { background: $stamina;}
+	&.NonogramSquare_agi { background: $agility;}
+	&.NonogramSquare_wit { background: $wits;}
+	&.NonogramSquare_wil { background: $willpower;}
+	&.NonogramSquare_int { background: $intelligence;}
+	&.NonogramSquare_cha { background: $charisma;}
 }

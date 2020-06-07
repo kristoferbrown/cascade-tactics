@@ -4,11 +4,11 @@ import CharacterContext from '../../../../../context/CharacterContext';
 export default class CharacterScreen extends PureComponent {
 	static contextType = CharacterContext;
 	render() {
-		const { menuCharacter } = this.context;
+		// const { menuCharacter } = this.context;
 		return (
 			<div className={'CharacterScreen_skillsSection'}>
 
-				<div className={'CharacterScreen_skillRow fill_Strength'}>
+				{/* <div className={'CharacterScreen_skillRow fill_Strength'}>
 					<div className={'CharacterScreen_skillItem'}>
 						Unarmed Combat: {menuCharacter.skills.Unarmed}-{menuCharacter.skills.Unarmed+menuCharacter.attributes.Strength}
 					</div>
@@ -52,7 +52,7 @@ export default class CharacterScreen extends PureComponent {
 					<div className={'CharacterScreen_skillItem'}>
 						Investigate: {menuCharacter.skills.Investigate}-{menuCharacter.skills.Investigate+menuCharacter.attributes.Wits}
 					</div>
-				</div>
+				</div> */}
 
 
 

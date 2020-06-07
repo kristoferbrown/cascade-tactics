@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import AttributeSquare from './AttributeSquare/AttributeSquare';
+import NonogramSquare from './NonogramSquare/NonogramSquare';
 import classNames from 'classnames';
 import './Nonogram.scss';
 
@@ -21,72 +21,78 @@ export default class Nonogram extends Component {
 				'nonogram_preview': isPreview,
 			})}>
 
-				<AttributeSquare
+				<NonogramSquare
 					attributeName={isCharacterScreen || isStylesScreen ? 'Strength' : null}
 					attributeScore={isCharacterScreen || isStylesScreen ? attributes.Strength : null}
 					handleClick={handleAttributeClick}
 					isMajorArtifact={isArtifactsScreen}
-					showContent={isStylesScreen && !isPreview}
+					showStyleDots={isStylesScreen && !isPreview}
+					showSkillRow={isCharacterScreen && !isPreview}
 				/>
-				<AttributeSquare
+				<NonogramSquare
 					attributeName={isCharacterScreen || isStylesScreen ? 'Finesse' : null}
 					attributeScore={isCharacterScreen || isStylesScreen ? attributes.Finesse : null}
 					handleClick={handleAttributeClick}
 					isMinorArtifact={isArtifactsScreen}
-					showContent={isStylesScreen && !isPreview}
+					showStyleDots={isStylesScreen && !isPreview}
+					showSkillRow={isCharacterScreen && !isPreview}
 				/>
-				<AttributeSquare
+				<NonogramSquare
 					attributeName={isCharacterScreen || isStylesScreen ? 'Perception' : null}
 					attributeScore={isCharacterScreen || isStylesScreen ? attributes.Perception : null}
 					handleClick={handleAttributeClick}
 					isMinorArtifact={isArtifactsScreen}
-					showContent={isStylesScreen && !isPreview}
+					showStyleDots={isStylesScreen && !isPreview}
+					showSkillRow={isCharacterScreen && !isPreview}
 				/>
 
-				<AttributeSquare
+				<NonogramSquare
 					attributeName={isCharacterScreen || isStylesScreen ? 'Stamina' : null}
 					attributeScore={isCharacterScreen || isStylesScreen ? attributes.Stamina : null}
 					handleClick={handleAttributeClick}
 					isMajorArtifact={isArtifactsScreen}
-					showContent={isStylesScreen && !isPreview}
+					showStyleDots={isStylesScreen && !isPreview}
+					showSkillRow={isCharacterScreen && !isPreview}
 				/>
-				<AttributeSquare
+				<NonogramSquare
 					attributeName={isCharacterScreen || isStylesScreen ? 'Agility' : null}
 					attributeScore={isCharacterScreen || isStylesScreen ? attributes.Agility : null}
 					handleClick={handleAttributeClick}
 					isMinorArtifact={isArtifactsScreen}
-					showContent={isStylesScreen && !isPreview}
+					showStyleDots={isStylesScreen && !isPreview}
+					showSkillRow={isCharacterScreen && !isPreview}
 				/>
-				<AttributeSquare
+				<NonogramSquare
 					attributeName={isCharacterScreen || isStylesScreen ? 'Wits' : null}
 					attributeScore={isCharacterScreen || isStylesScreen ? attributes.Wits : null}
 					handleClick={handleAttributeClick}
 					isHidden={isCombatScreen}
 					isMinorArtifact={isArtifactsScreen}
-					showContent={isStylesScreen && !isPreview}
+					showStyleDots={isStylesScreen && !isPreview}
+					showSkillRow={isCharacterScreen && !isPreview}
 				/>
 
-				<AttributeSquare
+				<NonogramSquare
 					attributeName={isCharacterScreen || isStylesScreen ? 'Willpower' : null}
 					attributeScore={isCharacterScreen || isStylesScreen ? attributes.Willpower : null}
 					handleClick={handleAttributeClick}
 					isMajorArtifact={isArtifactsScreen}
-					showContent={isStylesScreen && !isPreview}
+					showStyleDots={isStylesScreen && !isPreview}
 				/>
-				<AttributeSquare
+				<NonogramSquare
 					attributeName={isCharacterScreen || isStylesScreen ? 'Intelligence' : null}
 					attributeScore={isCharacterScreen || isStylesScreen ? attributes.Intelligence : null}
 					handleClick={handleAttributeClick}
 					isHidden={isCombatScreen}
 					isMinorArtifact={isArtifactsScreen}
-					showContent={isStylesScreen && !isPreview}
+					showStyleDots={isStylesScreen && !isPreview}
 				/>
-				<AttributeSquare
+				<NonogramSquare
 					attributeName={isCharacterScreen || isStylesScreen ? 'Charisma' : null}
 					attributeScore={isCharacterScreen || isStylesScreen ? attributes.Charisma : null}
 					handleClick={handleAttributeClick}
 					isMinorArtifact={isArtifactsScreen}
-					showContent={isStylesScreen && !isPreview}
+					showStyleDots={isStylesScreen && !isPreview}
 				/>
 			</div>
 		);
