@@ -46,8 +46,8 @@ export default class NonogramSquare extends Component {
 				</React.Fragment>)}
 
 				{ showSkillRow && (<React.Fragment>
-					{/* <div className='NonogramSquare_skillRow'></div>
-					<div className='NonogramSquare_skillRow'></div> */}
+					<div className='NonogramSquare_skillRow'></div>
+					<div className='NonogramSquare_skillRow'></div>
 				</React.Fragment>)}
 			</div>
 		);
