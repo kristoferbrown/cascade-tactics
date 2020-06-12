@@ -1,6 +1,5 @@
 import React, { PureComponent } from 'react';
 import CharacterContext from '../../../../context/CharacterContext';
-import SkillsSection from './SkillsSection/SkillsSection';
 import './CharacterScreen.scss';
 
 export default class CharacterScreen extends PureComponent {
@@ -19,8 +18,9 @@ export default class CharacterScreen extends PureComponent {
 
 				<div className={'CharacterScreen_rightColumn'}>
 
-					<div className={'CharacterScreen_skillsHeader headerText'}>Skills</div>
-					<SkillsSection />
+					<div className={'CharacterScreen_skillsSection'}>
+						<div className={'CharacterScreen_skillsHeader headerText'}>Skills</div>
+					</div>
 
 					<div className={'CharacterScreen_statusSection'}>
 						<div className={'CharacterScreen_statusHeader headerText'}>Status</div>
