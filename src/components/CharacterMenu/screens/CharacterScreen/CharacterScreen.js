@@ -6,7 +6,6 @@ export default class CharacterScreen extends PureComponent {
 	static contextType = CharacterContext;
 	render() {
 		const { menuCharacter } = this.context;
-		console.log(menuCharacter)
 		return (
 			<div className={'CharacterScreen'}>
 

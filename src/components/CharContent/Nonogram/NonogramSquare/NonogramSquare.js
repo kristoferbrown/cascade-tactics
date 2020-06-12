@@ -15,13 +15,14 @@ export default class NonogramSquare extends Component {
 			showSkillRow,
 			skills
 		} = this.props;
+
 		let dotArray = [];
 		for (let i = 0; i < 9; i++) {
 			dotArray.push(i < attributeScore ?
 				<div key={`${attributeName}_dot_${i}`} className='NonogramSquare_dot NonogramSquare_dot_filled'/> :
 				<div key={`${attributeName}_dot_${i}`} className='NonogramSquare_dot'/>
 		)}
-		console.log('skills', skills)
+
 		return (
 			<div
 				className={classNames({
@@ -50,8 +51,12 @@ export default class NonogramSquare extends Component {
 				{ showSkillRow && (<React.Fragment>
 					{Object.entries(skills).map(skill => 
 						<div className='NonogramSquare_skillRow'>
-							<div className='NonogramSquare_skillDetail'>
-								{`${skill[0]}: ${skill[1]}`}
+							<div className='NonogramSquare_skillLabel'>
+								{skill[0]}
+							</div>
+							<div className='NonogramSquare_skillValue'>
+								{/* {`${skill[1]}-${attributeScore+skill[1]}`} */}
+								{`22-26`}
 							</div>
 						</div>
 					)}
