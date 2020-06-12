@@ -5,7 +5,7 @@ import './Nonogram.scss';
 
 export default class Nonogram extends Component {
 	render() {
-		const { attributes, currentTab, handleAttributeClick, isPreview } = this.props;
+		const { attributes, currentTab, handleAttributeClick, isPreview, skills } = this.props;
 		const isCharacterScreen = currentTab === 'Character';
 		const isCombatScreen = currentTab === 'Combat';
 		const isStylesScreen = currentTab === 'Styles';
@@ -28,6 +28,7 @@ export default class Nonogram extends Component {
 					isMajorArtifact={isArtifactsScreen}
 					showStyleDots={isStylesScreen && !isPreview}
 					showSkillRow={isCharacterScreen && !isPreview}
+					skills={skills['Strength']}
 				/>
 				<NonogramSquare
 					attributeName={isCharacterScreen || isStylesScreen ? 'Finesse' : null}
@@ -36,6 +37,7 @@ export default class Nonogram extends Component {
 					isMinorArtifact={isArtifactsScreen}
 					showStyleDots={isStylesScreen && !isPreview}
 					showSkillRow={isCharacterScreen && !isPreview}
+					skills={skills['Finesse']}
 				/>
 				<NonogramSquare
 					attributeName={isCharacterScreen || isStylesScreen ? 'Perception' : null}
@@ -44,6 +46,7 @@ export default class Nonogram extends Component {
 					isMinorArtifact={isArtifactsScreen}
 					showStyleDots={isStylesScreen && !isPreview}
 					showSkillRow={isCharacterScreen && !isPreview}
+					skills={skills['Perception']}
 				/>
 
 				<NonogramSquare
@@ -53,6 +56,7 @@ export default class Nonogram extends Component {
 					isMajorArtifact={isArtifactsScreen}
 					showStyleDots={isStylesScreen && !isPreview}
 					showSkillRow={isCharacterScreen && !isPreview}
+					skills={skills['Stamina']}
 				/>
 				<NonogramSquare
 					attributeName={isCharacterScreen || isStylesScreen ? 'Agility' : null}
@@ -61,6 +65,7 @@ export default class Nonogram extends Component {
 					isMinorArtifact={isArtifactsScreen}
 					showStyleDots={isStylesScreen && !isPreview}
 					showSkillRow={isCharacterScreen && !isPreview}
+					skills={skills['Agility']}
 				/>
 				<NonogramSquare
 					attributeName={isCharacterScreen || isStylesScreen ? 'Wits' : null}
@@ -70,6 +75,7 @@ export default class Nonogram extends Component {
 					isMinorArtifact={isArtifactsScreen}
 					showStyleDots={isStylesScreen && !isPreview}
 					showSkillRow={isCharacterScreen && !isPreview}
+					skills={skills['Wits']}
 				/>
 
 				<NonogramSquare
@@ -79,6 +85,7 @@ export default class Nonogram extends Component {
 					isMajorArtifact={isArtifactsScreen}
 					showStyleDots={isStylesScreen && !isPreview}
 					showSkillRow={isCharacterScreen && !isPreview}
+					skills={skills['Willpower']}
 				/>
 				<NonogramSquare
 					attributeName={isCharacterScreen || isStylesScreen ? 'Intelligence' : null}
@@ -88,6 +95,7 @@ export default class Nonogram extends Component {
 					isMinorArtifact={isArtifactsScreen}
 					showStyleDots={isStylesScreen && !isPreview}
 					showSkillRow={isCharacterScreen && !isPreview}
+					skills={skills['Intelligence']}
 				/>
 				<NonogramSquare
 					attributeName={isCharacterScreen || isStylesScreen ? 'Charisma' : null}
@@ -96,6 +104,7 @@ export default class Nonogram extends Component {
 					isMinorArtifact={isArtifactsScreen}
 					showStyleDots={isStylesScreen && !isPreview}
 					showSkillRow={isCharacterScreen && !isPreview}
+					skills={skills['Charisma']}
 				/>
 			</div>
 		);

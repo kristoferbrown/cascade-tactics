@@ -43,6 +43,7 @@ export default class CharacterMenu extends PureComponent {
 
 								<Nonogram 
 									attributes={menuCharacter.attributes}
+									skills={menuCharacter.skills}
 									currentTab={currentTab}
 									isVisible={true} 
 									//handleAttributeClick={this.selectAttribute}

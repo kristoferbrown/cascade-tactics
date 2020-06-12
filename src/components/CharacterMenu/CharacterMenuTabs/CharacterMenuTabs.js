@@ -34,6 +34,7 @@ export default class CharacterMenuTabs extends PureComponent {
 				>
 					<Nonogram 
 						attributes={menuCharacter.attributes}
+						skills={menuCharacter.skills}
 						currentTab={'Combat'}
 						isVisible
 						isPreview
@@ -50,6 +51,7 @@ export default class CharacterMenuTabs extends PureComponent {
 				>
 					<Nonogram 
 						attributes={menuCharacter.attributes}
+						skills={menuCharacter.skills}
 						currentTab={'Styles'}
 						isVisible
 						isPreview
@@ -66,6 +68,7 @@ export default class CharacterMenuTabs extends PureComponent {
 				>
 					<Nonogram 
 						attributes={menuCharacter.attributes}
+						skills={menuCharacter.skills}
 						currentTab={'Artifacts'}
 						isVisible
 						isPreview

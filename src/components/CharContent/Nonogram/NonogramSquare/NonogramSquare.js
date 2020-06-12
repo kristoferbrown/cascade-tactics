@@ -12,7 +12,8 @@ export default class NonogramSquare extends Component {
 			isMajorArtifact,
 			isMinorArtifact,
 			showStyleDots,
-			showSkillRow
+			showSkillRow,
+			skills
 		} = this.props;
 		let dotArray = [];
 		for (let i = 0; i < 9; i++) {
@@ -20,6 +21,7 @@ export default class NonogramSquare extends Component {
 				<div key={`${attributeName}_dot_${i}`} className='NonogramSquare_dot NonogramSquare_dot_filled'/> :
 				<div key={`${attributeName}_dot_${i}`} className='NonogramSquare_dot'/>
 		)}
+		console.log('skills', skills)
 		return (
 			<div
 				className={classNames({
@@ -46,8 +48,13 @@ export default class NonogramSquare extends Component {
 				</React.Fragment>)}
 
 				{ showSkillRow && (<React.Fragment>
-					<div className='NonogramSquare_skillRow'></div>
-					<div className='NonogramSquare_skillRow'></div>
+					{Object.entries(skills).map(skill => 
+						<div className='NonogramSquare_skillRow'>
+							<div className='NonogramSquare_skillDetail'>
+								{`${skill[0]}: ${skill[1]}`}
+							</div>
+						</div>
+					)}
 				</React.Fragment>)}
 			</div>
 		);

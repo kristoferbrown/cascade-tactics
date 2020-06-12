@@ -16,7 +16,17 @@ export const testCharacters = [
 	{
 		meta: { charId: 0, name: 'Neil', fullName: 'Neil Armstrong', isCpuControlled: false },
 		attributes: { Strength: 2, Finesse: 2, Perception: 1, Stamina: 2, Agility: 3, Wits: 1, Willpower: 3, Intelligence: 1, Charisma: 3 },
-		skills: { Unarmed: 0, Melee: 1, Ranged: 1, Ballistics: 0, Defense: 2, Initiative: 1, Investigate: 0, Toughness: 1, Athletics: 1, Stealth: 0, Alertness: 0, Guts: 3 },
+		skills: { 
+			Strength: { Athletics: 0, Unarmed: 1 },
+			Finesse: { Melee: 1, Stealth: 1 },
+			Perception: { Alertness: 0, Ranged: 1 },
+			Stamina: { Toughness: 1 },
+			Agility: { Defense: 1 },
+			Wits: { Initiative: 0, Survival: 1 },
+			Willpower: {Guts: 3 },
+			Intelligence: { Academics: 0, Hardware: 1 },
+			Charisma: { Charm: 0, Manipulate: 1 }
+		},
 		currentAttack: { name: 'Flag Pole', attribute: 'Finesse', skill: 'Melee', range: 1, speedCost: 3, damDiceBonus: 0, damSuccBonus: 3, atkDiceBonus: 0, atkSuccBonus: 0 },
 		status: { 
 			health: { 0: [6,6], 1: [6,6], 2: [5,6], 3: [6,6], 4: [6,6] },
@@ -45,7 +55,17 @@ export const testCharacters = [
 	},{
 		meta: { charId: 1, name: 'Buzz', fullName: 'Buzz Aldrin', isCpuControlled: false },
 		attributes: { Strength: 1, Finesse: 2, Perception: 1, Stamina: 1, Agility: 2, Wits: 1, Willpower: 2, Intelligence: 3, Charisma: 2 },
-		skills: { Unarmed: 3, Melee: 0, Ranged: 0, Ballistics: 0, Defense: 1, Initiative: 2, Investigate: 0, Toughness: 2, Athletics: 1, Stealth: 0, Alertness: 0, Guts: 1 },
+		skills: { 
+			Strength: { Athletics: 1, Unarmed: 3 },
+			Finesse: { Melee: 0, Stealth: 1 },
+			Perception: { Alertness: 0, Ranged: 1 },
+			Stamina: { Toughness: 1 },
+			Agility: { Defense: 1 },
+			Wits: { Initiative: 0, Survival: 1 },
+			Willpower: {Guts: 1 },
+			Intelligence: { Academics: 1, Hardware: 0 },
+			Charisma: { Charm: 0, Manipulate: 1 }
+		},
 		currentAttack: { name: 'Unarmed', attribute: 'Strength', skill: 'Unarmed', range: 1, speedCost: 2, damDiceBonus: 0, damSuccBonus: 0, atkDiceBonus: 0, atkSuccBonus: 0 },
 		status: { 
 			health: { 0: [6,6], 1: [6,6], 2: [6,6], 3: [6,6], 4: [6,6] },
@@ -74,7 +94,17 @@ export const testCharacters = [
 	},{
 		meta: { charId: 2, name: 'A. dessicans', fullName: 'Acyota Dessicans (Active)', isCpuControlled: true, isHostile: true, isInscrutable: false },
 		attributes: { Strength: 3, Finesse: 3, Perception: 1, Stamina: 1, Agility: 3, Wits: 2, Willpower: 1, Intelligence: 1, Charisma: 1 },
-		skills: { Unarmed: 2, Melee: 2, Ranged: 0, Ballistics: 0, Defense: 2, Initiative: 0, Investigate: 0, Toughness: 0, Athletics: 0, Stealth: 0, Alertness: 0, Guts: 0 },
+		skills: { 
+			Strength: { Athletics: 0, Unarmed: 3 },
+			Finesse: { Melee: 0, Stealth: 1 },
+			Perception: { Alertness: 0, Ranged: 0 },
+			Stamina: { Toughness: 1 },
+			Agility: { Defense: 1 },
+			Wits: { Initiative: 0, Survival: 1 },
+			Willpower: {Guts: 1 },
+			Intelligence: { Academics: 0, Hardware: 1 },
+			Charisma: { Charm: 0, Manipulate: 1 }
+		},
 		currentAttack: { name: 'Lash', attribute: 'Strength', skill: 'Unarmed',  range: 1, speedCost: 3, damDiceBonus: 0, damSuccBonus: 0, atkDiceBonus: 0, atkSuccBonus: 0 },
 		status: {
 			health: { 0: [4,4], 1: [4,4], 2: [4,4], 3: [4,4], 4: [4,4] },
@@ -103,7 +133,17 @@ export const testCharacters = [
 	},{
 		meta: { charId: 3, name: 'Mike', fullName: 'Michael Collins', isCpuControlled: false },
 		attributes: { Strength: 1, Finesse: 1, Perception: 3, Stamina: 3, Agility: 3, Wits: 2, Willpower: 1, Intelligence: 2, Charisma: 1 },
-		skills: { Unarmed: 0, Melee: 1, Ranged: 2, Ballistics: 1, Defense: 0, Initiative: 0, Investigate: 0, Toughness: 0, Athletics: 2, Stealth: 0, Alertness: 0, Guts: 3 },
+		skills: { 
+			Strength: { Athletics: 0, Unarmed: 0 },
+			Finesse: { Melee: 0, Stealth: 1 },
+			Perception: { Alertness: 0, Ranged: 2 },
+			Stamina: { Toughness: 1 },
+			Agility: { Defense: 1 },
+			Wits: { Initiative: 0, Survival: 1 },
+			Willpower: {Guts: 1 },
+			Intelligence: { Academics: 0, Hardware: 1 },
+			Charisma: { Charm: 0, Manipulate: 1 }
+		},
 		currentAttack: { name: 'Throw Stone', attribute: 'Perception', skill: 'Ranged', range: 4, speedCost: 3, damDiceBonus: 2, damSuccBonus: 1, atkDiceBonus: 0, atkSuccBonus: 0 },
 		status: { 
 			health: { 0: [6,6], 1: [6,6], 2: [6,6], 3: [6,6], 4: [6,6] },
@@ -132,7 +172,17 @@ export const testCharacters = [
 	},{
 		meta: { charId: 4, name: 'Capcom', fullName: 'Capsule Command', isCpuControlled: true, isNonLocal: true },
 		attributes: { Strength: 0, Finesse: 0, Perception: 3, Stamina: 0, Agility: -1, Wits: 3, Willpower: 2, Intelligence: 3, Charisma: 1 },
-		skills: { Unarmed: 0, Melee: 0, Ranged: 0, Ballistics: 0, Defense: 0, Initiative: 0, Investigate: 0, Toughness: 0, Athletics: 0, Stealth: 0, Alertness: 0, Guts: 0 },
+		skills: { 
+			Strength: { Athletics: 0, Unarmed: 0 },
+			Finesse: { Melee: 0, Stealth: 0 },
+			Perception: { Alertness: 0, Ranged: 0 },
+			Stamina: { Toughness: 0 },
+			Agility: { Defense: 0 },
+			Wits: { Initiative: 0, Survival: 1 },
+			Willpower: {Guts: 1 },
+			Intelligence: { Academics: 0, Hardware: 1 },
+			Charisma: { Charm: 0, Manipulate: 1 }
+		},
 		currentAttack: { name: 'Unarmed', attribute: 'Strength', skill: 'Unarmed',  range: 1, speedCost: 2, damDiceBonus: 0, damSuccBonus: 0, atkDiceBonus: 0, atkSuccBonus: 0 },
 		status: {
 			health: { 0: [3,3], 1: [3,3], 2: [3,3], 3: [3,3], 4: [3,3] },
@@ -161,7 +211,17 @@ export const testCharacters = [
 	},{
 		meta: { charId: 5, name: 'A. dessicans', fullName: 'Acyota Dessicans (Dormant)', isCpuControlled: true, isHostile: true, isInscrutable: false },
 		attributes: { Strength: 2, Finesse: 1, Perception: 1, Stamina: 1, Agility: 3, Wits: 2, Willpower: 1, Intelligence: 1, Charisma: 1 },
-		skills: { Unarmed: 0, Melee: 0, Ranged: 0, Ballistics: 0, Defense: 0, Initiative: 0, Investigate: 0, Toughness: 0, Athletics: 0, Stealth: 0, Alertness: 0, Guts: 0 },
+		skills: { 
+			Strength: { Athletics: 0, Unarmed: 3 },
+			Finesse: { Melee: 0, Stealth: 1 },
+			Perception: { Alertness: 0, Ranged: 0 },
+			Stamina: { Toughness: 1 },
+			Agility: { Defense: 1 },
+			Wits: { Initiative: 0, Survival: 1 },
+			Willpower: {Guts: 1 },
+			Intelligence: { Academics: 0, Hardware: 1 },
+			Charisma: { Charm: 0, Manipulate: 1 }
+		},
 		currentAttack: { name: 'Lash', attribute: 'Strength', skill: 'Unarmed',  range: 1, speedCost: 3, damDiceBonus: 0, damSuccBonus: 0, atkDiceBonus: 0, atkSuccBonus: 0 },
 		status: {
 			health: { 0: [4,4], 1: [4,4], 2: [4,4], 3: [4,4], 4: [4,4] },
@@ -190,7 +250,17 @@ export const testCharacters = [
 	},{
 		meta: { charId: 6, name: 'Monolith', fullName: 'Monolith', isCpuControlled: true, isHostile: true, isInscrutable: true },
 		attributes: { Strength: 3, Finesse: 1, Perception: 3, Stamina: 3, Agility: 1, Wits: 3, Willpower: 3, Intelligence: 3, Charisma: 3 },
-		skills: { Unarmed: 0, Melee: 0, Ranged: 0, Ballistics: 0, Defense: 2, Initiative: 0, Investigate: 0, Toughness: 0, Athletics: 0, Stealth: 0, Alertness: 0, Guts: 0 },
+		skills: { 
+			Strength: { Athletics: 0, Unarmed: 3 },
+			Finesse: { Melee: 0, Stealth: 1 },
+			Perception: { Alertness: 0, Ranged: 0 },
+			Stamina: { Toughness: 1 },
+			Agility: { Defense: 1 },
+			Wits: { Initiative: 0, Survival: 1 },
+			Willpower: {Guts: 1 },
+			Intelligence: { Academics: 0, Hardware: 1 },
+			Charisma: { Charm: 0, Manipulate: 1 }
+		},
 		currentAttack: { name: 'Unarmed', attribute: 'Strength', skill: 'Unarmed', range: 1, speedCost: 2, damDiceBonus: 0, damSuccBonus: 0, atkDiceBonus: 0, atkSuccBonus: 0 },
 		status: { 
 			health: { 0: [99,99], 1: [99,99], 2: [99,99], 3: [99,99], 4: [99,99] },
