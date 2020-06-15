@@ -1,0 +1,11 @@
+@import '../../../utils/Palette.scss';
+
+.MenuTrace {
+	width: 200px;
+	height: 20px;
+	background: #ddd;
+	border-top: 20px solid #aaa;
+	box-sizing: border-box;
+	border-right: 20px solid #0000;
+	border-left: 20px solid #0000;
+}
