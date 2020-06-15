@@ -5,7 +5,7 @@ import CharacterMenuTabs from './CharacterMenuTabs/CharacterMenuTabs';
 import CharacterSelectBar from './CharacterSelectBar/CharacterSelectBar';
 import Nonogram from '../CharContent/Nonogram/Nonogram';
 import CharacterScreen from './screens/CharacterScreen/CharacterScreen';
-import CombatScreen from './screens/CombatScreen/CombatScreen';
+import MenuCombatScreen from './screens/MenuCombatScreen/MenuCombatScreen';
 import StylesScreen from './screens/StylesScreen/StylesScreen';
 import ArtifactsScreen from './screens/ArtifactsScreen/ArtifactsScreen';
 import './CharacterMenu.scss';
@@ -51,7 +51,7 @@ export default class CharacterMenu extends PureComponent {
 
 								<div className={'characterMenu_body'} >
 									{ currentTab === 'Character' && <CharacterScreen /> }
-									{ currentTab === 'Combat' && <CombatScreen /> }
+									{ currentTab === 'Combat' && <MenuCombatScreen /> }
 									{ currentTab === 'Styles' && <StylesScreen /> }
 									{ currentTab === 'Artifacts' && <ArtifactsScreen /> }
 								</div>

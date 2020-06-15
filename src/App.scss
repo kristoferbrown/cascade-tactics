@@ -28,3 +28,8 @@ body, html, #root {
 .fill_Willpower { background-color: $willpower; .fill_light { background-color: $willpowerLight;} .fill_dark { background-color: $willpowerDark;} }
 .fill_Intelligence { background-color: $intelligence; .fill_light { background-color: $intelligenceLight;} .fill_dark { background-color: $intelligenceDark;} }
 .fill_Charisma { background-color: $charisma; .fill_light { background-color: $charismaLight;} .fill_dark { background-color: $charismaDark;} }
+
+@keyframes fadeIn {
+	0% {opacity: 0;}
+	100% {opacity: 1;}
+}

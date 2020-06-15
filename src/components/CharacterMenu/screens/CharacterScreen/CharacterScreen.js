@@ -29,7 +29,6 @@ export default class CharacterScreen extends PureComponent {
 					<div className={'CharacterScreen_statusSection'}>
 						<div className={'CharacterScreen_statusHeader headerText'}>Status</div>
 						<div className={'CharacterScreen_statusRow'}>
-							Speed
 							<StatusTrack
 								attribute="Agility"
 								current={menuCharacter.currentSpeed}
@@ -48,8 +47,7 @@ export default class CharacterScreen extends PureComponent {
 								textLabel={'Endurance'}
 							/>
 						</div>
-						<div className={'CharacterScreen_statusRow'}>
-							Entanglement
+						<div className={'CharacterScreen_statusRow CharacterScreen_statusRowSection'}>
 							<StatusTrack
 								attribute="Willpower"
 								current={maxEnt}
