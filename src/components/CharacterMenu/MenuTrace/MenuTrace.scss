@@ -5,18 +5,37 @@
 	position: absolute;
 
 	.MenuTrace_segment {
-		background: #ddd;
-		border-top: 20px solid #aaa;
-		border-right: 20px solid #0000;
-		border-left: 20px solid #0000;
+		background: $lightGray;
 		box-sizing: border-box;
 		height: 20px;
+		position: absolute;
 
 		&.diagonalDown {
 			transform: rotate(45deg);
+			transform-origin: top left;
 		}
 		&.diagonalUp {
-			transform: rotate(-45deg);
+			animation: growUpRight 0.1s 1 linear;
+			animation-fill-mode: both;
+			transform-origin: bottom left;
+		}
+		&.horizontal {
+			animation: growRight 0.1s 1 linear;
+			animation-fill-mode: both;
+			transform-origin: left;
+		}
+		&.vertical {
+			transform: rotate(90deg);
+			transform-origin: top left;
 		}
 	}
+}
+
+@keyframes growRight {
+	0% {transform: scaleX(0);}
+	100% {transform: scaleX(1);}
+}
+@keyframes growUpRight {
+	0% {transform: scaleX(0) rotate(-45deg);}
+	100% {transform: scaleX(1,) rotate(-45deg);}
 }
