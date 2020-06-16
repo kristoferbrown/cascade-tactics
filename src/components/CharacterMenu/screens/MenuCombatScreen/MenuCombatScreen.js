@@ -10,7 +10,13 @@ export default class MenuCombatScreen extends PureComponent {
 		return (
 			<div className={'MenuCombatScreen'}>
 				<div className={'MenuCombatScreen_locDetails MenuCombatScreen_upper'}></div>
-				<MenuTrace coordinates={[{x:100, y: 20}, {x:200, y: 20}]} />
+				<MenuTrace
+					originStyle={{top: 30, left: 100}}
+					segments={[
+						{ isHorizontal: true, length: 200},
+						{ isDiagonalDown: true, length: 50},
+					]} 
+				/>
 				<div className={'MenuCombatScreen_locDetails MenuCombatScreen_lower'}></div>
 				<div className={'MenuCombatScreen_locDetails MenuCombatScreen_left'}></div>
 				<div className={'MenuCombatScreen_locDetails MenuCombatScreen_right'}></div>

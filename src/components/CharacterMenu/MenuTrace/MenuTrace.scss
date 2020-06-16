@@ -1,11 +1,22 @@
 @import '../../../utils/Palette.scss';
 
 .MenuTrace {
-	width: 200px;
-	height: 20px;
-	background: #ddd;
-	border-top: 20px solid #aaa;
 	box-sizing: border-box;
-	border-right: 20px solid #0000;
-	border-left: 20px solid #0000;
+	position: absolute;
+
+	.MenuTrace_segment {
+		background: #ddd;
+		border-top: 20px solid #aaa;
+		border-right: 20px solid #0000;
+		border-left: 20px solid #0000;
+		box-sizing: border-box;
+		height: 20px;
+
+		&.diagonalDown {
+			transform: rotate(45deg);
+		}
+		&.diagonalUp {
+			transform: rotate(-45deg);
+		}
+	}
 }
