@@ -55,8 +55,7 @@ export default class NonogramSquare extends Component {
 								{skill[0]}
 							</div>
 							<div className='NonogramSquare_skillValue'>
-								{/* {`${skill[1]}-${attributeScore+skill[1]}`} */}
-								{`22-26`}
+								{`${skill[1]}-${attributeScore+skill[1]}`}
 							</div>
 						</div>
 					)}

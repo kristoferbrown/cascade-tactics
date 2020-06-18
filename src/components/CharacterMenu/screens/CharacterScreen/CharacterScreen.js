@@ -14,17 +14,17 @@ export default class CharacterScreen extends PureComponent {
 		return (
 			<div className={'CharacterScreen'}>
 
-				{ menuCharacter.portraitRenderer && (
-					<div className={'CharacterScreen_portrait'}>
-						{menuCharacter.portraitRenderer()}
-					</div>
-				)}
+				<div className={'CharacterScreen_skillsSection'}>
+					{/* <div className={'CharacterScreen_skillsHeader headerText'}>Skills</div> */}
+				</div>
 
 				<div className={'CharacterScreen_rightColumn'}>
 
-					<div className={'CharacterScreen_skillsSection'}>
-						<div className={'CharacterScreen_skillsHeader headerText'}>Skills</div>
-					</div>
+					{ menuCharacter.portraitRenderer && (
+						<div className={'CharacterScreen_portrait'}>
+							{menuCharacter.portraitRenderer()}
+						</div>
+					)}
 
 					<div className={'CharacterScreen_statusSection'}>
 						<div className={'CharacterScreen_statusHeader headerText'}>Status</div>
