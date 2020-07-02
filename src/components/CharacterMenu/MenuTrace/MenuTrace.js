@@ -11,10 +11,10 @@ export default class MenuTrace extends PureComponent {
 		this.currentRightPos = 0;
 		this.currentTopPos = 0;
 		this.currentBottomPos = 0;
-		const animationMultiplier = segments.length === 2 ? 3 : 2;
+		const animationMultiplier = segments.length === 2 ? 2 : 1;
 		segments.forEach((segment, index) => {
 			const { isRTL, isBTT } = this.props;
-			const { isDiagonal, isHorizontal, isVertical, length } = segment;
+			const { isDiagonal, isHorizontal, isVertical, length, preOffsetX = 0,  preOffsetY = 0 } = segment;
 			this.segmentList.push(
 				<div 
 					className={classNames({
@@ -30,28 +30,28 @@ export default class MenuTrace extends PureComponent {
 					style={{
 						animationDelay: `0.${index*animationMultiplier}s`,
 						animationDuration: `0.${index*animationMultiplier ? index*animationMultiplier : animationMultiplier}s`,
-						left: isRTL ? 'auto' : this.currentLeftPos,
-						right: isRTL ? this.currentRightPos : 'auto',
-						top: isBTT ? 'auto' : this.currentTopPos,
-						bottom: isBTT ? this.currentBottomPos : 'auto',
+						left: isRTL ? 'auto' : this.currentLeftPos+preOffsetX,
+						right: isRTL ? this.currentRightPos+preOffsetX : 'auto',
+						top: isBTT ? 'auto' : this.currentTopPos+preOffsetY,
+						bottom: isBTT ? this.currentBottomPos+preOffsetY : 'auto',
 						width: length,
 					}}
 				/>
 			);
-			let offsetX = isDiagonal ? (length/2)*1.2 : length;
-			let offsetY = isDiagonal ? (length/2)*1.2 : length;
+			let offsetX = isDiagonal ? length/2 : length;
+			let offsetY = isDiagonal ? length/2 : length;
 			if (isHorizontal || isDiagonal) {
 				if (isRTL) {
-					this.currentRightPos = this.currentRightPos+offsetX;
+					this.currentRightPos = this.currentRightPos+offsetX+preOffsetX;
 				} else {
-					this.currentLeftPos = this.currentLeftPos+offsetX;
+					this.currentLeftPos = this.currentLeftPos+offsetX+preOffsetX;
 				}
 			}
 			if (isVertical || isDiagonal) {
 				if (isBTT) {
-					this.currentBottomPos = this.currentBottomPos+offsetY;
+					this.currentBottomPos = this.currentBottomPos+offsetY+preOffsetY;
 				} else {
-					this.currentTopPos = this.currentTopPos+offsetY;
+					this.currentTopPos = this.currentTopPos+offsetY+preOffsetY;
 				}
 			}
 		});

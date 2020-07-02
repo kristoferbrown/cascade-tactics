@@ -37,10 +37,10 @@ export default class StatusTrack extends Component {
 							</Fragment>
 						)}
 					</div>
-					{ textLabel && (
-							<div className='statusTrack_labelValue'>{`${textLabel} ${current}/${maximum}`}</div>
-					)}
 				</div>
+				{ textLabel && (
+						<div className='statusTrack_labelValue'>{`${textLabel} ${current}/${maximum}`}</div>
+				)}
 			</div>
 		);
 	}

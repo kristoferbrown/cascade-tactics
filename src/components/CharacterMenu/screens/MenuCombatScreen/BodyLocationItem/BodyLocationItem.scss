@@ -1,0 +1,21 @@
+@import '../../../../../utils/Palette.scss';
+
+.BodyLocationItem {
+	box-sizing: border-box;
+	padding: 12px;
+
+	.BodyLocationItem_header {
+		font-size: 20px;
+		margin: 0 0 6px 0;
+	}
+
+	.BodyLocationItem_armorHeader {
+		font-size: 16px;
+		margin: 6px 0 0 0;
+	}
+
+	.BodyLocationItem_armorValue {
+		font-size: 12px;
+		margin: 3px 0;
+	}
+}

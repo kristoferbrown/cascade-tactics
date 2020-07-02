@@ -19,6 +19,7 @@
 			height: 50px;
 			left: 50px;
 			top: 50px;
+			transform: rotate(45deg);
 			width: 50px;
 		}
 		&.nonogram_artifacts {
@@ -54,8 +55,9 @@
 	&.nonogram_combat {
 		height: 500px;
 		width: 500px;
-		left: 37%;
+		left: 50%;
 		top: 175px;
+		transform: rotate(45deg) translate(-25%, 25%);
 		.NonogramSquare{
 			&:nth-child(1){ height:20%; width:20%; }
 			&:nth-child(2){ height:20%; width:20%; }

@@ -3,12 +3,14 @@
 .MenuTrace {
 	box-sizing: border-box;
 	position: absolute;
-
+	z-index: 0;
+	
 	.MenuTrace_segment {
 		background: $lightGray;
 		box-sizing: border-box;
 		height: 20px;
 		position: absolute;
+		z-index: 0;
 
 		&.diagonalDown {
 			animation: growDownRight 1 linear;
@@ -48,8 +50,8 @@
 }
 
 @keyframes growRight {
-	0% {transform: scale(0);}
-	100% {transform: scale(1);}
+	0% {transform: scaleX(0);}
+	100% {transform: scaleX(1);}
 }
 @keyframes growUpRight {
 	0% {transform: scale(0) rotate(-45deg);}
