@@ -11,18 +11,34 @@
 		position: absolute;
 
 		&.diagonalDown {
-			transform: rotate(45deg);
+			animation: growDownRight 1 linear;
+			animation-fill-mode: both;
 			transform-origin: top left;
 		}
 		&.diagonalUp {
-			animation: growUpRight 0.1s 1 linear;
+			animation: growUpRight 1 linear;
 			animation-fill-mode: both;
 			transform-origin: bottom left;
 		}
+		&.diagonalDownRTL {
+			animation: growUpRight 1 linear;
+			animation-fill-mode: both;
+			transform-origin: top right;
+		}
+		&.diagonalUpRTL {
+			animation: growDownRight 1 linear;
+			animation-fill-mode: both;
+			transform-origin: bottom right;
+		}
 		&.horizontal {
-			animation: growRight 0.1s 1 linear;
+			animation: growRight 1 linear;
 			animation-fill-mode: both;
 			transform-origin: left;
+		}
+		&.horizontalRTL {
+			animation: growRight 1 linear;
+			animation-fill-mode: both;
+			transform-origin: right;
 		}
 		&.vertical {
 			transform: rotate(90deg);
@@ -32,10 +48,14 @@
 }
 
 @keyframes growRight {
-	0% {transform: scaleX(0);}
-	100% {transform: scaleX(1);}
+	0% {transform: scale(0);}
+	100% {transform: scale(1);}
 }
 @keyframes growUpRight {
-	0% {transform: scaleX(0) rotate(-45deg);}
-	100% {transform: scaleX(1,) rotate(-45deg);}
+	0% {transform: scale(0) rotate(-45deg);}
+	100% {transform: scale(1) rotate(-45deg);}
+}
+@keyframes growDownRight {
+	0% {transform: scale(0) rotate(45deg);}
+	100% {transform: scale(1) rotate(45deg);}
 }
