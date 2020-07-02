@@ -22,7 +22,7 @@ export default class BodyLocationItem extends PureComponent {
 				/>
 				<div className="BodyLocationItem_armorHeader">{armor.name}</div>
 				{!!armor.value && <div className="BodyLocationItem_armorValue">{armor.value} Armor</div>}
-				{!!armor.penalty && <div className="BodyLocationItem_armorValue">-{armor.penalty} Penalty</div>}
+		{!!armor.penalty && <div className="BodyLocationItem_armorValue penalty">-{armor.penalty} {armor.penaltyType}</div>}
 			</div>
 		);
 	}

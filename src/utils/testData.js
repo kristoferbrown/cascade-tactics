@@ -32,11 +32,11 @@ export const testCharacters = [
 			health: { 0: [6,6], 1: [6,6], 2: [5,6], 3: [6,6], 4: [6,6] },
 		},
 		armor: { 
-			0: {name: 'EVA Suit', value: 2, penalty: 1},
-			1: {name: 'EVA Suit', value: 2, penalty: 1},
-			2: {name: 'EVA Suit', value: 2, penalty: 1},
-			3: {name: 'EVA Suit', value: 2, penalty: 1},
-			4: {name: 'EVA Suit', value: 2, penalty: 1},
+			0: {name: 'EVA Suit', value: 2, penalty: 2, penaltyType: 'Speed'},
+			1: {name: 'EVA Suit', value: 2, penalty: 1, penaltyType: 'Finesse'},
+			2: {name: 'EVA Suit', value: 2, penalty: 1, penaltyType: 'Finesse'},
+			3: {name: 'EVA Suit', value: 2, penalty: 1, penaltyType: 'Agility'},
+			4: {name: 'EVA Suit', value: 2, penalty: 1, penaltyType: 'Perception'},
 		},
 		styles: {
 			floating: {
@@ -78,11 +78,11 @@ export const testCharacters = [
 			health: { 0: [6,6], 1: [6,6], 2: [6,6], 3: [6,6], 4: [6,6] },
 		},
 		armor: { 
-			0: {name: 'EVA Suit', value: 2, penalty: 1},
-			1: {name: 'EVA Suit', value: 2, penalty: 1},
-			2: {name: 'EVA Suit', value: 2, penalty: 1},
-			3: {name: 'EVA Suit', value: 2, penalty: 1},
-			4: {name: 'EVA Suit', value: 2, penalty: 1},
+			0: {name: 'EVA Suit', value: 2, penalty: 2, penaltyType: 'Speed'},
+			1: {name: 'EVA Suit', value: 2, penalty: 1, penaltyType: 'Finesse'},
+			2: {name: 'EVA Suit', value: 2, penalty: 1, penaltyType: 'Finesse'},
+			3: {name: 'EVA Suit', value: 2, penalty: 1, penaltyType: 'Agility'},
+			4: {name: 'EVA Suit', value: 2, penalty: 1, penaltyType: 'Perception'},
 		},
 		styles: {
 			floating: {
@@ -124,11 +124,11 @@ export const testCharacters = [
 			health: { 0: [4,4], 1: [4,4], 2: [4,4], 3: [4,4], 4: [4,4] },
 		},
 		armor: { 
-			0:  {name: 'Unarmored', value: 0, penalty: 0},
-			1:  {name: 'Unarmored', value: 0, penalty: 0},
-			2:  {name: 'Unarmored', value: 0, penalty: 0},
-			3:  {name: 'Unarmored', value: 0, penalty: 0},
-			4:  {name: 'Unarmored', value: 0, penalty: 0},
+			0:  {name: 'Unarmored', value: 0, penalty: 0, penaltyType: 'Speed'},
+			1:  {name: 'Unarmored', value: 0, penalty: 0, penaltyType: 'Finesse'},
+			2:  {name: 'Unarmored', value: 0, penalty: 0, penaltyType: 'Finesse'},
+			3:  {name: 'Unarmored', value: 0, penalty: 0, penaltyType: 'Agility'},
+			4:  {name: 'Unarmored', value: 0, penalty: 0, penaltyType: 'Perception'},
 		},
 		styles: {
 			floating: {
@@ -170,11 +170,11 @@ export const testCharacters = [
 			health: { 0: [6,6], 1: [6,6], 2: [6,6], 3: [6,6], 4: [6,6] },
 		},
 		armor: { 
-			0: {name: 'EVA Suit', value: 2, penalty: 1},
-			1: {name: 'EVA Suit', value: 2, penalty: 1},
-			2: {name: 'EVA Suit', value: 2, penalty: 1},
-			3: {name: 'EVA Suit', value: 2, penalty: 1},
-			4: {name: 'EVA Suit', value: 2, penalty: 1},
+			0: {name: 'EVA Suit', value: 2, penalty: 1, penaltyType: 'Speed'},
+			1: {name: 'EVA Suit', value: 2, penalty: 1, penaltyType: 'Finesse'},
+			2: {name: 'EVA Suit', value: 2, penalty: 1, penaltyType: 'Finesse'},
+			3: {name: 'EVA Suit', value: 2, penalty: 1, penaltyType: 'Agility'},
+			4: {name: 'EVA Suit', value: 2, penalty: 1, penaltyType: 'Perception'},
 		},
 		styles: {
 			floating: {
@@ -216,11 +216,11 @@ export const testCharacters = [
 			health: { 0: [3,3], 1: [3,3], 2: [3,3], 3: [3,3], 4: [3,3] },
 		},
 		armor: { 
-			0:  {name: 'Unarmored', value: 0, penalty: 0},
-			1:  {name: 'Unarmored', value: 0, penalty: 0},
-			2:  {name: 'Unarmored', value: 0, penalty: 0},
-			3:  {name: 'Unarmored', value: 0, penalty: 0},
-			4:  {name: 'Unarmored', value: 0, penalty: 0},
+			0:  {name: 'Unarmored', value: 0, penalty: 0, penaltyType: 'Speed'},
+			1:  {name: 'Unarmored', value: 0, penalty: 0, penaltyType: 'Finesse'},
+			2:  {name: 'Unarmored', value: 0, penalty: 0, penaltyType: 'Finesse'},
+			3:  {name: 'Unarmored', value: 0, penalty: 0, penaltyType: 'Agility'},
+			4:  {name: 'Unarmored', value: 0, penalty: 0, penaltyType: 'Perception'},
 		},
 		styles: {
 			floating: {
@@ -262,11 +262,11 @@ export const testCharacters = [
 			health: { 0: [4,4], 1: [4,4], 2: [4,4], 3: [4,4], 4: [4,4] },
 		},
 		armor: { 
-			0:  {name: 'Unarmored', value: 0, penalty: 0},
-			1:  {name: 'Unarmored', value: 0, penalty: 0},
-			2:  {name: 'Unarmored', value: 0, penalty: 0},
-			3:  {name: 'Unarmored', value: 0, penalty: 0},
-			4:  {name: 'Unarmored', value: 0, penalty: 0},
+			0:  {name: 'Unarmored', value: 0, penalty: 0, penaltyType: 'Speed'},
+			1:  {name: 'Unarmored', value: 0, penalty: 0, penaltyType: 'Finesse'},
+			2:  {name: 'Unarmored', value: 0, penalty: 0, penaltyType: 'Finesse'},
+			3:  {name: 'Unarmored', value: 0, penalty: 0, penaltyType: 'Agility'},
+			4:  {name: 'Unarmored', value: 0, penalty: 0, penaltyType: 'Perception'},
 		},
 		styles: {
 			floating: {
@@ -308,11 +308,11 @@ export const testCharacters = [
 			health: { 0: [99,99], 1: [99,99], 2: [99,99], 3: [99,99], 4: [99,99] },
 		},
 		armor: { 
-			0:  {name: 'Unarmored', value: 0, penalty: 0},
-			1:  {name: 'Unarmored', value: 0, penalty: 0},
-			2:  {name: 'Unarmored', value: 0, penalty: 0},
-			3:  {name: 'Unarmored', value: 0, penalty: 0},
-			4:  {name: 'Unarmored', value: 0, penalty: 0},
+			0:  {name: 'Unarmored', value: 0, penalty: 0, penaltyType: 'Speed'},
+			1:  {name: 'Unarmored', value: 0, penalty: 0, penaltyType: 'Finesse'},
+			2:  {name: 'Unarmored', value: 0, penalty: 0, penaltyType: 'Finesse'},
+			3:  {name: 'Unarmored', value: 0, penalty: 0, penaltyType: 'Agility'},
+			4:  {name: 'Unarmored', value: 0, penalty: 0, penaltyType: 'Perception'},
 		},
 		styles: {
 			floating: {
