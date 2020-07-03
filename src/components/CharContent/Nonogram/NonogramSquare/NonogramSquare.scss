@@ -76,6 +76,17 @@
 		}
 	}
 
+	.NonogramSquare_outerLabel {
+		font-size: 18px;
+		transform: rotate(-45deg);
+	}
+
+	.NonogramSquare_innerValue {
+		color: $white;
+		font-size: 24px;
+		transform: rotate(-45deg);
+	}
+
 	.NonogramSquare_skillRow {
 		align-items: center;
 		animation: skillRowExpand 0.3s 1 linear;

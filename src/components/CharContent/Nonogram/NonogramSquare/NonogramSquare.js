@@ -49,6 +49,8 @@ export default class NonogramSquare extends Component {
 				</React.Fragment>)}
 
 				{ showSkillRow && (<React.Fragment>
+					<div className='NonogramSquare_outerLabel'>{attributeName}</div>
+					<div className='NonogramSquare_innerValue'>{attributeScore}</div>
 					{Object.entries(skills).map(skill => 
 						<div className='NonogramSquare_skillRow'>
 							<div className='NonogramSquare_skillLabel'>
