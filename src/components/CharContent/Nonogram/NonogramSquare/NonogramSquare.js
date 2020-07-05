@@ -49,18 +49,20 @@ export default class NonogramSquare extends Component {
 				</React.Fragment>)}
 
 				{ showSkillRow && (<React.Fragment>
-					<div className='NonogramSquare_outerLabel'>{attributeName}</div>
-					<div className='NonogramSquare_innerValue'>{attributeScore}</div>
-					{Object.entries(skills).map(skill => 
-						<div className='NonogramSquare_skillRow'>
-							<div className='NonogramSquare_skillLabel'>
-								{skill[0]}
+					<div className="NonogramSquare_innerContent">
+						<div className='NonogramSquare_outerLabel'>{attributeName}</div>
+						<div className='NonogramSquare_innerValue'>{attributeScore}</div>
+						{Object.entries(skills).map(skill => 
+							<div className='NonogramSquare_skillRow'>
+								<div className='NonogramSquare_skillLabel'>
+									{skill[0]}
+								</div>
+								<div className='NonogramSquare_skillValueContainer'>
+								<div className='NonogramSquare_skillValue'>{`${skill[1]}-${attributeScore+skill[1]}`}</div>
+								</div>
 							</div>
-							<div className='NonogramSquare_skillValue'>
-								{`${skill[1]}-${attributeScore+skill[1]}`}
-							</div>
-						</div>
-					)}
+						)}
+					</div>
 				</React.Fragment>)}
 			</div>
 		);

@@ -31,24 +31,27 @@
 	}
 
 	&.nonogram_character {
-		height: 350px;
-		left: 22%;
-		top: 170px;
-		width: 350px;
+		height: 450px;
+		left: 23%;
+		top: 175px;
+		width: 450px;
 		.NonogramSquare{
 			align-items: center;
 			height:13%; 
 			justify-content: center;
 			width:13%;
-			//&:nth-child(1){ left:0; top:0; }
-			&:nth-child(2){ transform:translate(50%, 100%); }
-			&:nth-child(3){ transform:translate(200%, 200%); }
-			&:nth-child(4){ transform:translate(100%, 50%); }
-			&:nth-child(5){ transform:translate(150%, 150%) }
-			&:nth-child(6){ transform:translate(300%, 250%); }
-			&:nth-child(7){ transform:translate(200%, 200%); }
-			&:nth-child(8){ transform:translate(250%, 300%);}
-			&:nth-child(9){ transform:translate(400%, 400%); }
+
+			&:nth-child(4){ transform:translate(20%, 10%); }
+			&:nth-child(2){ transform:translate(10%, 20%); }
+
+			&:nth-child(7){ transform:translate(40%, 40%); }
+			&:nth-child(5){ transform:translate(-10%, -10%) }
+			&:nth-child(3){ transform:translate(40%, 40%); }
+
+			&:nth-child(6){ transform:translate(60%, 60%); }
+			&:nth-child(8){ transform:translate(50%, 60%);}
+
+			&:nth-child(9){ transform:translate(80%, 80%); }
 		}
 	}
 
