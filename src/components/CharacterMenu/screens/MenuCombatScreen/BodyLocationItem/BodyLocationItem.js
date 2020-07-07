@@ -10,7 +10,6 @@ export default class BodyLocationItem extends PureComponent {
 		const { menuCharacter } = this.context;
 		const armor = menuCharacter.armor[loc];
 		const health = menuCharacter.status.health[loc];
-		console.log(armor)
 		return (
 			<div className={'BodyLocationItem'}>
 				<div className="BodyLocationItem_header">{label}</div>

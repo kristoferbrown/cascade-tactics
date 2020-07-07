@@ -41,19 +41,21 @@ export default class CharacterMenu extends PureComponent {
 								<CharacterSelectBar />
 								<CharacterMenuTabs changeTab={this.changeTab} currentTab={currentTab} />
 
-								<Nonogram 
-									attributes={menuCharacter.attributes}
-									skills={menuCharacter.skills}
-									currentTab={currentTab}
-									isVisible={true} 
-									//handleAttributeClick={this.selectAttribute}
-								/>
+								<div className={'characterMenu_bodyContainer'} >
+									<Nonogram 
+										attributes={menuCharacter.attributes}
+										skills={menuCharacter.skills}
+										currentTab={currentTab}
+										isVisible={true} 
+										//handleAttributeClick={this.selectAttribute}
+									/>
 
-								<div className={'characterMenu_body'} >
-									{ currentTab === 'Character' && <CharacterScreen /> }
-									{ currentTab === 'Combat' && <MenuCombatScreen /> }
-									{ currentTab === 'Styles' && <StylesScreen /> }
-									{ currentTab === 'Artifacts' && <ArtifactsScreen /> }
+									<div className={'characterMenu_body'} >
+										{ currentTab === 'Character' && <CharacterScreen /> }
+										{ currentTab === 'Combat' && <MenuCombatScreen /> }
+										{ currentTab === 'Styles' && <StylesScreen /> }
+										{ currentTab === 'Artifacts' && <ArtifactsScreen /> }
+									</div>
 								</div>
 							</Fragment>
 						}

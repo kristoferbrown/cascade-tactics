@@ -8,7 +8,9 @@ export default class NonogramSquare extends Component {
 			attributeName,
 			attributeScore,
 			handleClick,
+			index,
 			isHidden,
+			isPreview,
 			isMajorArtifact,
 			isMinorArtifact,
 			showStyleDots,
@@ -63,6 +65,18 @@ export default class NonogramSquare extends Component {
 							</div>
 						)}
 					</div>
+				</React.Fragment>)}
+
+				{ isMajorArtifact && !isPreview && (<React.Fragment>
+					{ index === 1 && <div className="NonogramSquare_majorArtLabel">bio_interface() not installed!</div>}
+					{ index === 4 && <div className="NonogramSquare_majorArtLabel">cpu_interface() not installed!</div>}
+					{ index === 7 && <div className="NonogramSquare_majorArtLabel">noo_interface() not installed!</div>}
+				</React.Fragment>)}
+
+				{ isMinorArtifact && !isPreview && (<React.Fragment>
+					{ index === 3 && <div className="NonogramSquare_minorArtLabel">aperture() not found!</div>}
+					{ index === 6 && <div className="NonogramSquare_minorArtLabel">program() not found!</div>}
+					{ index === 9 && <div className="NonogramSquare_minorArtLabel">shield() not found!</div>}
 				</React.Fragment>)}
 			</div>
 		);

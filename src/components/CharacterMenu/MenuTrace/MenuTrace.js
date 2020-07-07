@@ -28,7 +28,7 @@ export default class MenuTrace extends PureComponent {
 						'diagonalDownRTL': isDiagonal && !isBTT && isRTL,
 					})}
 					style={{
-						animationDelay: `0.${index*animationMultiplier}s`,
+						animationDelay: `0.${index*animationMultiplier+3}s`,
 						animationDuration: `0.${index*animationMultiplier ? index*animationMultiplier : animationMultiplier}s`,
 						left: isRTL ? 'auto' : this.currentLeftPos+preOffsetX,
 						right: isRTL ? this.currentRightPos+preOffsetX : 'auto',

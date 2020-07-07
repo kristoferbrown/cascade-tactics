@@ -25,7 +25,9 @@ export default class Nonogram extends Component {
 					attributeName={isCharacterScreen || isStylesScreen ? 'Strength' : null}
 					attributeScore={isCharacterScreen || isStylesScreen ? attributes.Strength : null}
 					handleClick={handleAttributeClick}
+					index={1}
 					isMajorArtifact={isArtifactsScreen}
+					isPreview={isPreview}
 					showStyleDots={isStylesScreen && !isPreview}
 					showSkillRow={isCharacterScreen && !isPreview}
 					skills={skills['Strength']}
@@ -34,7 +36,9 @@ export default class Nonogram extends Component {
 					attributeName={isCharacterScreen || isStylesScreen ? 'Finesse' : null}
 					attributeScore={isCharacterScreen || isStylesScreen ? attributes.Finesse : null}
 					handleClick={handleAttributeClick}
+					index={2}
 					isMinorArtifact={isArtifactsScreen}
+					isPreview={isPreview}
 					showStyleDots={isStylesScreen && !isPreview}
 					showSkillRow={isCharacterScreen && !isPreview}
 					skills={skills['Finesse']}
@@ -43,7 +47,9 @@ export default class Nonogram extends Component {
 					attributeName={isCharacterScreen || isStylesScreen ? 'Perception' : null}
 					attributeScore={isCharacterScreen || isStylesScreen ? attributes.Perception : null}
 					handleClick={handleAttributeClick}
+					index={3}
 					isMinorArtifact={isArtifactsScreen}
+					isPreview={isPreview}
 					showStyleDots={isStylesScreen && !isPreview}
 					showSkillRow={isCharacterScreen && !isPreview}
 					skills={skills['Perception']}
@@ -53,7 +59,9 @@ export default class Nonogram extends Component {
 					attributeName={isCharacterScreen || isStylesScreen ? 'Stamina' : null}
 					attributeScore={isCharacterScreen || isStylesScreen ? attributes.Stamina : null}
 					handleClick={handleAttributeClick}
+					index={4}
 					isMajorArtifact={isArtifactsScreen}
+					isPreview={isPreview}
 					showStyleDots={isStylesScreen && !isPreview}
 					showSkillRow={isCharacterScreen && !isPreview}
 					skills={skills['Stamina']}
@@ -62,7 +70,9 @@ export default class Nonogram extends Component {
 					attributeName={isCharacterScreen || isStylesScreen ? 'Agility' : null}
 					attributeScore={isCharacterScreen || isStylesScreen ? attributes.Agility : null}
 					handleClick={handleAttributeClick}
+					index={5}
 					isMinorArtifact={isArtifactsScreen}
+					isPreview={isPreview}
 					showStyleDots={isStylesScreen && !isPreview}
 					showSkillRow={isCharacterScreen && !isPreview}
 					skills={skills['Agility']}
@@ -71,8 +81,10 @@ export default class Nonogram extends Component {
 					attributeName={isCharacterScreen || isStylesScreen ? 'Wits' : null}
 					attributeScore={isCharacterScreen || isStylesScreen ? attributes.Wits : null}
 					handleClick={handleAttributeClick}
+					index={6}
 					isHidden={isCombatScreen}
 					isMinorArtifact={isArtifactsScreen}
+					isPreview={isPreview}
 					showStyleDots={isStylesScreen && !isPreview}
 					showSkillRow={isCharacterScreen && !isPreview}
 					skills={skills['Wits']}
@@ -82,7 +94,9 @@ export default class Nonogram extends Component {
 					attributeName={isCharacterScreen || isStylesScreen ? 'Willpower' : null}
 					attributeScore={isCharacterScreen || isStylesScreen ? attributes.Willpower : null}
 					handleClick={handleAttributeClick}
+					index={7}
 					isMajorArtifact={isArtifactsScreen}
+					isPreview={isPreview}
 					showStyleDots={isStylesScreen && !isPreview}
 					showSkillRow={isCharacterScreen && !isPreview}
 					skills={skills['Willpower']}
@@ -91,8 +105,10 @@ export default class Nonogram extends Component {
 					attributeName={isCharacterScreen || isStylesScreen ? 'Intelligence' : null}
 					attributeScore={isCharacterScreen || isStylesScreen ? attributes.Intelligence : null}
 					handleClick={handleAttributeClick}
+					index={8}
 					isHidden={isCombatScreen}
 					isMinorArtifact={isArtifactsScreen}
+					isPreview={isPreview}
 					showStyleDots={isStylesScreen && !isPreview}
 					showSkillRow={isCharacterScreen && !isPreview}
 					skills={skills['Intelligence']}
@@ -101,7 +117,9 @@ export default class Nonogram extends Component {
 					attributeName={isCharacterScreen || isStylesScreen ? 'Charisma' : null}
 					attributeScore={isCharacterScreen || isStylesScreen ? attributes.Charisma : null}
 					handleClick={handleAttributeClick}
+					index={9}
 					isMinorArtifact={isArtifactsScreen}
+					isPreview={isPreview}
 					showStyleDots={isStylesScreen && !isPreview}
 					showSkillRow={isCharacterScreen && !isPreview}
 					skills={skills['Charisma']}

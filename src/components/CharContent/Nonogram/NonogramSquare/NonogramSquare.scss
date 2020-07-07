@@ -43,6 +43,9 @@
 
 	.NonogramSquare_label {
 		align-self: center;
+		animation: fadeIn 0.3s 1 linear;
+		animation-delay: 0.3s;
+		animation-fill-mode: both;
 		color: $white;
 		left: -18%;
 		position: relative;
@@ -52,6 +55,9 @@
 
 	.NonogramSquare_dotTrack {
 		align-content: space-between;
+		animation: fadeIn 0.3s 1 linear;
+		animation-delay: 0.3s;
+		animation-fill-mode: both;
 		box-sizing: border-box;
 		display: flex;
 		flex-direction: row;
@@ -77,6 +83,9 @@
 	}
 
 	.NonogramSquare_innerContent {
+		animation: fadeIn 0.3s 1 linear;
+		animation-delay: 0.5s;
+		animation-fill-mode: both;
 		align-items: center;
 		display: flex;
 		flex-direction: column;
@@ -159,6 +168,29 @@
 		.NonogramSquare_skillValue {
 			z-index: 2;
 		}
+	}
+
+	.NonogramSquare_majorArtLabel {
+		animation: fadeIn 0.3s 1 linear;
+		animation-delay: 0.5s;
+		animation-fill-mode: both;
+		font-size: 16px;
+		position: absolute;
+		right: 150px;
+		width: 250px;
+		transform: rotate(-45deg);
+	}
+
+	.NonogramSquare_minorArtLabel {
+		animation: fadeIn 0.3s 1 linear;
+		animation-delay: 0.5s;
+		animation-fill-mode: both;
+		font-size: 14px;
+		position: absolute;
+		left: 80px;
+		top: -40px;
+		transform: rotate(-45deg);
+		width: 250px;
 	}
 
 	&.NonogramSquare_str { background: $strength;}

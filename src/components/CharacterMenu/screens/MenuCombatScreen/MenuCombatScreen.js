@@ -1,10 +1,18 @@
 import React, { PureComponent } from 'react';
-import MenuTrace from '../../MenuTrace/MenuTrace'
+import CharacterContext from '../../../../context/CharacterContext';
+import AttackItem from '../../../Common/AttackItem/AttackItem'
 import BodyLocationItem from './BodyLocationItem/BodyLocationItem'
+import MenuTrace from '../../MenuTrace/MenuTrace'
+import { getAttackValues } from '../../../../utils/attackUtils'
 import './MenuCombatScreen.scss';
 
 export default class MenuCombatScreen extends PureComponent {
+	static contextType = CharacterContext;
+
 	render() {
+		const { menuCharacter } = this.context;
+		const currentAttack = getAttackValues(menuCharacter);
+		console.log(currentAttack)
 		return (
 			<div className={'MenuCombatScreen'}>
 
@@ -30,7 +38,7 @@ export default class MenuCombatScreen extends PureComponent {
 					isRTL={false}
 					isBTT={false}
 					originX={'50%'}
-					originY={321}
+					originY={320}
 					segments={[
 						{ isDiagonal: true, length: 460},
 						{ isHorizontal: true, length: 200, preOffsetX: 80, preOffsetY: 90},
@@ -74,7 +82,7 @@ export default class MenuCombatScreen extends PureComponent {
 					isRTL={true}
 					isBTT={false}
 					originX={'47%'}
-					originY={609}
+					originY={608}
 					segments={[
 						{ isHorizontal: true, length: 200 },
 						{ isDiagonal: true, length: 54 },
@@ -82,12 +90,16 @@ export default class MenuCombatScreen extends PureComponent {
 					]}
 				/>
 
-				<div className={'MenuCombatScreen_locDetails MenuCombatScreen_leftAttack'}></div>
+				<div className={`MenuCombatScreen_locDetails MenuCombatScreen_leftAttack fill_${currentAttack.attackObj.attribute}`}>
+					<div>Left Attack</div>
+					{currentAttack.attackObj.name}
+					<AttackItem attack={currentAttack} />
+				</div>
 				<MenuTrace
 					isRTL={true}
 					isBTT={false}
 					originX={'29%'}
-					originY={350}
+					originY={330}
 					segments={[
 						{ isDiagonal: true, length: 138 },
 						{ isHorizontal: true, length: 130, preOffsetX: 14, preOffsetY: 22 },
@@ -99,7 +111,7 @@ export default class MenuCombatScreen extends PureComponent {
 					isRTL={false}
 					isBTT={false}
 					originX={'71%'}
-					originY={350}
+					originY={330}
 					segments={[
 						{ isDiagonal: true, length: 138 },
 						{ isHorizontal: true, length: 130, preOffsetX: 14, preOffsetY: 22 },
