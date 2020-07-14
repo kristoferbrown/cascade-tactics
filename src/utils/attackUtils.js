@@ -1,7 +1,8 @@
 import { attackRoll } from './diceUtils';
 
-export function getAttackValues(attacker, target) {
-	const attackObj = attacker.currentAttack;
+export function getAttackValues(attacker, isLeftAttack, target) {
+	const attackObj = isLeftAttack ? attacker.attacks.left : attacker.attacks.right;
+	if (!attackObj) { return null; }
 	const attackDice = attacker.attributes[attackObj.attribute];
 	const attackSucc = attacker.skills[attackObj.attribute][attackObj.skill];
 	const isRanged = attackObj.attribute === 'Perception';
@@ -18,8 +19,8 @@ export function getAttackValues(attacker, target) {
 	return { attackObj, attackDice, attackSucc, damageDice, damageSucc, dodgeDice, dodgeSucc, passiveDef };
 }
 
-export function executeAttack(attacker, target, animateAttack, showAttackResults, dealDamage) {
-	const currentAttack = getAttackValues(attacker, target);
+export function executeAttack(attacker, target, animateAttack, showAttackResults, dealDamage, isLeftAttack) {
+	const currentAttack = getAttackValues(attacker, isLeftAttack, target);
 	const attackResult = attackRoll(currentAttack.attackDice, currentAttack.attackSucc, currentAttack.damageDice, currentAttack.damageSucc);
 	const defenseResult = currentAttack.passiveDef;
 	const didHit = attackResult.toHit.successes >= defenseResult;

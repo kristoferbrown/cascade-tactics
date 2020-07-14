@@ -11,10 +11,28 @@ export default class MenuCombatScreen extends PureComponent {
 
 	render() {
 		const { menuCharacter } = this.context;
-		const currentAttack = getAttackValues(menuCharacter);
-		console.log(currentAttack)
+		const leftAttack = getAttackValues(menuCharacter, true);
+		const rightAttack = getAttackValues(menuCharacter, false);
+		const defSkill = menuCharacter.skills.Agility.Defense;
+		
 		return (
 			<div className={'MenuCombatScreen'}>
+
+				<div className={'MenuCombatScreen_locDetails MenuCombatScreen_defenses'}>
+					<div className="MenuCombatScreen_locHeader">Defenses</div>
+					<div className={'MenuCombatScreen_passiveDef'}>
+						<div>Passive Defense</div>
+						<div>{defSkill ? defSkill : 1}</div>
+					</div>
+					<div className={'MenuCombatScreen_dodge fill_Agility'}>
+						<div>Melee Dodge</div>
+						<div>{ `${defSkill}-${defSkill+menuCharacter.attributes.Agility}` }</div>
+					</div>
+					<div className={'MenuCombatScreen_dodge fill_Wits'}>
+						<div>Ranged Dodge</div>
+						<div>{ `${defSkill}-${defSkill+menuCharacter.attributes.Wits}` }</div>
+					</div>
+				</div>
 
 				<div className={'MenuCombatScreen_locDetails MenuCombatScreen_upper'}>
 					<BodyLocationItem label={"Upper Body"} loc={4} />
@@ -90,11 +108,14 @@ export default class MenuCombatScreen extends PureComponent {
 					]}
 				/>
 
-				<div className={`MenuCombatScreen_locDetails MenuCombatScreen_leftAttack fill_${currentAttack.attackObj.attribute}`}>
-					<div>Left Attack</div>
-					{currentAttack.attackObj.name}
-					<AttackItem attack={currentAttack} />
-				</div>
+				{ leftAttack ? (
+					<div className={`MenuCombatScreen_locDetails MenuCombatScreen_leftAttack fill_${leftAttack.attackObj.attribute}`}>
+						<div className='MenuCombatScreen_attackName'>{leftAttack.attackObj.name}</div>
+						<AttackItem attack={leftAttack} />
+					</div>
+				) : ( 
+					<div className={'MenuCombatScreen_locDetails MenuCombatScreen_leftAttack faded'} /> 
+				)}
 				<MenuTrace
 					isRTL={true}
 					isBTT={false}
@@ -104,9 +125,17 @@ export default class MenuCombatScreen extends PureComponent {
 						{ isDiagonal: true, length: 138 },
 						{ isHorizontal: true, length: 130, preOffsetX: 14, preOffsetY: 22 },
 					]}
+					segmentClass={`fill_${leftAttack ? leftAttack.attackObj.attribute : 'faded'}`}
 				/>
 
-				<div className={'MenuCombatScreen_locDetails MenuCombatScreen_rightAttack'}></div>
+				{ rightAttack ? (
+					<div className={`MenuCombatScreen_locDetails MenuCombatScreen_rightAttack fill_${rightAttack.attackObj.attribute}`}>
+						<div className='MenuCombatScreen_attackName'>{rightAttack.attackObj.name}</div>
+						<AttackItem attack={rightAttack} />
+					</div>
+				) : ( 
+					<div className={'MenuCombatScreen_locDetails MenuCombatScreen_rightAttack faded'} /> 
+				)}
 				<MenuTrace
 					isRTL={false}
 					isBTT={false}
@@ -115,7 +144,8 @@ export default class MenuCombatScreen extends PureComponent {
 					segments={[
 						{ isDiagonal: true, length: 138 },
 						{ isHorizontal: true, length: 130, preOffsetX: 14, preOffsetY: 22 },
-					]} 
+					]}
+					segmentClass={`fill_${rightAttack ? rightAttack.attackObj.attribute : 'faded'}`}
 				/>
 			</div>
 		);

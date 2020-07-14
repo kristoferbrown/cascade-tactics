@@ -6,6 +6,48 @@
 	height: 100%;
 	position: relative;
 	width: 100%;
+
+	.MenuCombatScreen_locHeader {
+		font-size: 20px;
+		margin: 0 12px 6px;
+	}
+
+	.MenuCombatScreen_dodge,
+	.MenuCombatScreen_passiveDef {
+		display: flex;
+		font-size: 14px;
+    justify-content: space-between;
+		margin: 6px;
+		padding: 3px 6px;
+	}
+
+	.MenuCombatScreen_dodge {
+		color: $white;
+	}
+
+	.MenuCombatScreen_passiveDef {
+		background: $lightGray;
+	}
+
+	.MenuCombatScreen_leftAttack,
+	.MenuCombatScreen_rightAttack {
+		box-sizing: border-box;
+		color: $white;
+		padding: 12px;
+
+		&.faded {
+			color: $nearBlack;
+		}
+
+		.attackItem_attackLabel {
+			padding: 0;
+		}
+	}
+
+	.MenuCombatScreen_attackName {
+		font-size: 20px;
+		margin: 6px 0;
+	}
 }
 
 .MenuCombatScreen_locDetails {
@@ -17,6 +59,7 @@
 	position: absolute;
 	width: 20%;
 	z-index: 2;
+	&.MenuCombatScreen_defenses { left: 6%; top: -30px; background: none; width: 30%; }
 	&.MenuCombatScreen_upper { right: 0; top: 0; }
 	&.MenuCombatScreen_lower { right: 0; top: 510px; }
 	&.MenuCombatScreen_left { left: 0; top: 170px; }

@@ -4,7 +4,8 @@ import './NonogramSquare.scss';
 
 export default class NonogramSquare extends Component {
 	render() {
-		const { 
+		const {
+			attackAttribute,
 			attributeName,
 			attributeScore,
 			handleClick,
@@ -33,9 +34,9 @@ export default class NonogramSquare extends Component {
 					'NonogramSquare_preview': !showStyleDots,
 					'NonogramSquare_majorArtifact': isMajorArtifact,
 					'NonogramSquare_minorArtifact': isMinorArtifact,
-					'NonogramSquare_str': attributeName === 'Strength',
-					'NonogramSquare_fin': attributeName === 'Finesse',
-					'NonogramSquare_per': attributeName === 'Perception',
+					'NonogramSquare_str': attributeName === 'Strength' || attackAttribute === 'Strength',
+					'NonogramSquare_fin': attributeName === 'Finesse' || attackAttribute === 'Finesse',
+					'NonogramSquare_per': attributeName === 'Perception' || attackAttribute === 'Perception',
 					'NonogramSquare_stm': attributeName === 'Stamina',
 					'NonogramSquare_agi': attributeName === 'Agility',
 					'NonogramSquare_wit': attributeName === 'Wits',
@@ -55,7 +56,7 @@ export default class NonogramSquare extends Component {
 						<div className='NonogramSquare_outerLabel'>{attributeName}</div>
 						<div className='NonogramSquare_innerValue'>{attributeScore}</div>
 						{Object.entries(skills).map(skill => 
-							<div className='NonogramSquare_skillRow'>
+							<div className='NonogramSquare_skillRow' key={`${skill}_skillRow`}>
 								<div className='NonogramSquare_skillLabel'>
 									{skill[0]}
 								</div>

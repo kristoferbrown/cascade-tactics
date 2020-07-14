@@ -1,8 +1,5 @@
 import React, { PureComponent, Fragment } from 'react';
 import classNames from 'classnames';
-import { CSSTransition } from 'react-transition-group';
-import AttackItem from '../../Common/AttackItem/AttackItem'
-import { getAttackValues } from '../../../utils/attackUtils'
 import HealthStatus from '../../CharContent/Health/HealthStatus';
 import StatusTrack from '../../Common/StatusTrack/StatusTrack';
 import './TurnItem.scss';
@@ -10,7 +7,6 @@ import './TurnItem.scss';
 export default class TurnItem extends PureComponent {
 	render() {
 		const { character, currSpeedCost, isCurrentTurn, isPreviousTurn, toggleCharacterMenu } = this.props;
-		const currentAttack = getAttackValues(character);
 		return (
 			<div 
 				onClick={() => toggleCharacterMenu(true, character)}
@@ -38,30 +34,6 @@ export default class TurnItem extends PureComponent {
 
 				{ !character.meta.isInscrutable && (
 					<div className='turnItem_detailRow'>
-
-					<CSSTransition
-						in={(isCurrentTurn || isPreviousTurn)}
-						timeout={1}
-						classNames="turnItem_fadeIn"
-						appear
-						mountOnEnter
-					>
-						<div className={classNames({
-							'turnItem_detailColumn': true,
-							'turnItem_fadeIn': character.meta.charId > 0,
-						})}>
-							<div className='turnItem_detailLabel turnItem_attributeLabel'>Attack</div>
-							<div className={classNames({
-								'turnItem_attack': true,
-								'turnItem_attack_str': character.currentAttack.attribute === 'Strength',
-								'turnItem_attack_fin': character.currentAttack.attribute === 'Finesse',
-								'turnItem_attack_per': character.currentAttack.attribute === 'Perception'
-							})}>
-								<div className='turnItem_attackLabel'>{character.currentAttack.name}</div>
-								<AttackItem attack={currentAttack} />
-							</div>
-						</div>
-					</CSSTransition>
 
 						<div className='turnItem_detailColumn'>
 							{(isCurrentTurn || isPreviousTurn) && 

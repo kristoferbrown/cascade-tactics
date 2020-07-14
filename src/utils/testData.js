@@ -27,7 +27,10 @@ export const testCharacters = [
 			Intelligence: { Academics: 0, Hardware: 1 },
 			Charisma: { Charm: 0, Manipulate: 1 }
 		},
-		currentAttack: { name: 'Flag Pole', attribute: 'Finesse', skill: 'Melee', range: 1, speedCost: 3, damDiceBonus: 0, damSuccBonus: 3, atkDiceBonus: 0, atkSuccBonus: 0 },
+		attacks: {
+			left: { name: 'Flag Pole', attribute: 'Finesse', skill: 'Melee', range: 1, speedCost: 3, damDiceBonus: 0, damSuccBonus: 3, atkDiceBonus: 0, atkSuccBonus: 0, twoHanded: true },
+			right: null
+		},
 		status: { 
 			health: { 0: [6,6], 1: [6,6], 2: [5,6], 3: [6,6], 4: [6,6] },
 		},
@@ -55,7 +58,7 @@ export const testCharacters = [
 				Charisma: { availableXp: 1, spentXp: 0 }
 			}},
 		},
-		startingHex: { q: 2, r: 2, s: -4},
+		startingHex: { q: 2, r: 1, s: -3},
 		mapOffset: {x: -49, y: -11.5},
 		mapRenderer: (pixelLoc, isSelected) => <NeilMapRenderer isSelected={isSelected} height={14} className={'mapCharacter neilArm'} />,
 		portraitRenderer: () => <NeilPortrait />,
@@ -73,7 +76,10 @@ export const testCharacters = [
 			Intelligence: { Academics: 1, Hardware: 0 },
 			Charisma: { Charm: 0, Manipulate: 1 }
 		},
-		currentAttack: { name: 'Unarmed', attribute: 'Strength', skill: 'Unarmed', range: 1, speedCost: 2, damDiceBonus: 0, damSuccBonus: 0, atkDiceBonus: 0, atkSuccBonus: 0 },
+		attacks: {
+			left: { name: 'Unarmed', attribute: 'Strength', skill: 'Unarmed', range: 1, speedCost: 2, damDiceBonus: 0, damSuccBonus: 0, atkDiceBonus: 0, atkSuccBonus: 0, twoHanded: false },
+			right: { name: 'Throw Stone', attribute: 'Perception', skill: 'Ranged', range: 4, speedCost: 3, damDiceBonus: 2, damSuccBonus: 1, atkDiceBonus: 0, atkSuccBonus: 0, twoHanded: false },
+		},
 		status: { 
 			health: { 0: [6,6], 1: [6,6], 2: [6,6], 3: [6,6], 4: [6,6] },
 		},
@@ -101,7 +107,7 @@ export const testCharacters = [
 				Charisma: { availableXp: 0, spentXp: 0 }
 			}},
 		},
-		startingHex: { q: 3, r: -1, s: -2},
+		startingHex: { q: 4, r: 1, s: -5},
 		mapOffset: {x: -50, y: -12},
 		mapRenderer: (pixelLoc, isSelected)  => <BuzzMapRenderer isSelected={isSelected} height={14} className={'mapCharacter buzzAld'} />,
 		portraitRenderer: () => <BuzzPortrait />,
@@ -119,7 +125,10 @@ export const testCharacters = [
 			Intelligence: { Academics: 0, Hardware: 1 },
 			Charisma: { Charm: 0, Manipulate: 1 }
 		},
-		currentAttack: { name: 'Lash', attribute: 'Strength', skill: 'Unarmed',  range: 1, speedCost: 3, damDiceBonus: 0, damSuccBonus: 0, atkDiceBonus: 0, atkSuccBonus: 0 },
+		attacks: {
+			left: { name: 'Lash', attribute: 'Strength', skill: 'Unarmed',  range: 1, speedCost: 3, damDiceBonus: 0, damSuccBonus: 0, atkDiceBonus: 0, atkSuccBonus: 0 },
+			right: null
+		},
 		status: {
 			health: { 0: [4,4], 1: [4,4], 2: [4,4], 3: [4,4], 4: [4,4] },
 		},
@@ -165,7 +174,10 @@ export const testCharacters = [
 			Intelligence: { Academics: 0, Hardware: 1 },
 			Charisma: { Charm: 0, Manipulate: 1 }
 		},
-		currentAttack: { name: 'Throw Stone', attribute: 'Perception', skill: 'Ranged', range: 4, speedCost: 3, damDiceBonus: 2, damSuccBonus: 1, atkDiceBonus: 0, atkSuccBonus: 0 },
+		attacks: {
+			left: { name: 'Unarmed', attribute: 'Strength', skill: 'Unarmed', range: 1, speedCost: 2, damDiceBonus: 0, damSuccBonus: 0, atkDiceBonus: 0, atkSuccBonus: 0, twoHanded: false },
+			right: { name: 'Throw Stone', attribute: 'Perception', skill: 'Ranged', range: 4, speedCost: 3, damDiceBonus: 2, damSuccBonus: 1, atkDiceBonus: 0, atkSuccBonus: 0, twoHanded: false },
+		},
 		status: { 
 			health: { 0: [6,6], 1: [6,6], 2: [6,6], 3: [6,6], 4: [6,6] },
 		},
@@ -211,7 +223,7 @@ export const testCharacters = [
 			Intelligence: { Academics: 0, Hardware: 1 },
 			Charisma: { Charm: 0, Manipulate: 1 }
 		},
-		currentAttack: { name: 'Unarmed', attribute: 'Strength', skill: 'Unarmed',  range: 1, speedCost: 2, damDiceBonus: 0, damSuccBonus: 0, atkDiceBonus: 0, atkSuccBonus: 0 },
+		attacks: {left: null, right: null},
 		status: {
 			health: { 0: [3,3], 1: [3,3], 2: [3,3], 3: [3,3], 4: [3,3] },
 		},
@@ -257,7 +269,10 @@ export const testCharacters = [
 			Intelligence: { Academics: 0, Hardware: 1 },
 			Charisma: { Charm: 0, Manipulate: 1 }
 		},
-		currentAttack: { name: 'Lash', attribute: 'Strength', skill: 'Unarmed',  range: 1, speedCost: 3, damDiceBonus: 0, damSuccBonus: 0, atkDiceBonus: 0, atkSuccBonus: 0 },
+		attacks: {
+			left: { name: 'Lash', attribute: 'Strength', skill: 'Unarmed',  range: 1, speedCost: 3, damDiceBonus: 0, damSuccBonus: 0, atkDiceBonus: 0, atkSuccBonus: 0 },
+			right: null
+		},
 		status: {
 			health: { 0: [4,4], 1: [4,4], 2: [4,4], 3: [4,4], 4: [4,4] },
 		},
@@ -303,7 +318,7 @@ export const testCharacters = [
 			Intelligence: { Academics: 0, Hardware: 1 },
 			Charisma: { Charm: 0, Manipulate: 1 }
 		},
-		currentAttack: { name: 'Unarmed', attribute: 'Strength', skill: 'Unarmed', range: 1, speedCost: 2, damDiceBonus: 0, damSuccBonus: 0, atkDiceBonus: 0, atkSuccBonus: 0 },
+		attacks: { left: null, right: null },
 		status: { 
 			health: { 0: [99,99], 1: [99,99], 2: [99,99], 3: [99,99], 4: [99,99] },
 		},

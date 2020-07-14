@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react';
+import { HexUtils } from 'react-hexgrid';
 import ActionItem from './ActionItem';
 import CharacterContext from '../../../context/CharacterContext';
 import { executeAttack, getAttackValues } from '../../../utils/attackUtils'
@@ -66,21 +67,43 @@ export default class ActionList extends PureComponent {
 					description: 'Take no actions this turn.',
 					actionMethod: () => {endTurn();}
 				});
-			} else if (targetedHexContains.meta.isHostile && !currentCharacter.hasMovedThisTurn && currentCharacter.currentSpeed >= currentCharacter.currentAttack.speedCost) {
+			} else if (targetedHexContains.meta.isHostile && !currentCharacter.hasMovedThisTurn) {
 				// Target should be an enemy, determine attack params and add attack
-				const currentAttack = getAttackValues(currentCharacter, targetedHexContains);
+				const currentRange = HexUtils.distance(targetedHex, currentCharacter.currentHexLoc);
 
-				newActionList.push({
-					name: currentAttack.attackObj.name,
-					description: `A basic attack.`,
-					attack: currentAttack,
-					speedCost: currentAttack.attackObj.speedCost,
-					actionMethod: () => {
-						executeAttack(currentCharacter, targetedHexContains, animateAttack, showAttackResults, dealDamage);
-						setSpeedCost(0);
-					},
-					hoverMethod: () => {setSpeedCost(currentAttack.attackObj.speedCost)}
-				});
+				const currentLeftAttack = getAttackValues(currentCharacter, true, targetedHexContains);
+				const isLeftAttackAffordable = currentLeftAttack && currentCharacter.currentSpeed >= currentLeftAttack.attackObj.speedCost;
+				const isLeftAttackInRange = currentLeftAttack && currentLeftAttack.attackObj.range >= currentRange;
+				if (currentLeftAttack && isLeftAttackAffordable && isLeftAttackInRange) {
+					newActionList.push({
+						name: currentLeftAttack.attackObj.name,
+						description: `A basic attack.`,
+						attack: currentLeftAttack,
+						speedCost: currentLeftAttack.attackObj.speedCost,
+						actionMethod: () => {
+							executeAttack(currentCharacter, targetedHexContains, animateAttack, showAttackResults, dealDamage, true);
+							setSpeedCost(0);
+						},
+						hoverMethod: () => {setSpeedCost(currentLeftAttack.attackObj.speedCost)}
+					});
+				}
+
+				const currentRightAttack = getAttackValues(currentCharacter, false, targetedHexContains);
+				const isRightAttackAffordable = currentRightAttack && currentCharacter.currentSpeed >= currentRightAttack.attackObj.speedCost;
+				const isRightAttackInRange = currentRightAttack && currentRightAttack.attackObj.range >= currentRange;
+				if (currentRightAttack && isRightAttackAffordable && isRightAttackInRange) {
+					newActionList.push({
+						name: currentRightAttack.attackObj.name,
+						description: `A basic attack.`,
+						attack: currentRightAttack,
+						speedCost: currentRightAttack.attackObj.speedCost,
+						actionMethod: () => {
+							executeAttack(currentCharacter, targetedHexContains, animateAttack, showAttackResults, dealDamage, false);
+							setSpeedCost(0);
+						},
+						hoverMethod: () => {setSpeedCost(currentRightAttack.attackObj.speedCost)}
+					});
+				}
 			}
 		}
 

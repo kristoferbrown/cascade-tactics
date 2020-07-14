@@ -5,7 +5,7 @@ import './Nonogram.scss';
 
 export default class Nonogram extends Component {
 	render() {
-		const { attributes, currentTab, handleAttributeClick, isPreview, skills } = this.props;
+		const { attributes, currentTab, handleAttributeClick, isPreview, leftAttack, rightAttack, skills } = this.props;
 		const isCharacterScreen = currentTab === 'Character';
 		const isCombatScreen = currentTab === 'Combat';
 		const isStylesScreen = currentTab === 'Styles';
@@ -44,6 +44,7 @@ export default class Nonogram extends Component {
 					skills={skills['Finesse']}
 				/>
 				<NonogramSquare
+					attackAttribute={isCombatScreen && rightAttack ? rightAttack.attribute : null}
 					attributeName={isCharacterScreen || isStylesScreen ? 'Perception' : null}
 					attributeScore={isCharacterScreen || isStylesScreen ? attributes.Perception : null}
 					handleClick={handleAttributeClick}
@@ -91,6 +92,7 @@ export default class Nonogram extends Component {
 				/>
 
 				<NonogramSquare
+					attackAttribute={isCombatScreen && leftAttack ? leftAttack.attribute : null}
 					attributeName={isCharacterScreen || isStylesScreen ? 'Willpower' : null}
 					attributeScore={isCharacterScreen || isStylesScreen ? attributes.Willpower : null}
 					handleClick={handleAttributeClick}

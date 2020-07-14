@@ -115,7 +115,7 @@ export default class HexMap extends PureComponent {
 				const targetElement = document.getElementsByClassName(`hexTile_${targetHex.q}_${targetHex.r}_${targetHex.s}`)[0];
 				const fakeEvent = { currentTarget: targetElement };
 				this.computeHover(fakeEvent, null, targetHex, targetCharacter);
-				const attackResults = executeAttack(currentCharacter, targetCharacter, animateAttack, () => {}, dealDamage);
+				const attackResults = executeAttack(currentCharacter, targetCharacter, animateAttack, () => {}, dealDamage, true);
 				this.setState({ 
 					aiAttackResults: attackResults,
 					targetedHex: targetHex,
@@ -265,6 +265,9 @@ export default class HexMap extends PureComponent {
 		const { currSpeedCost, setSpeedCost } = this.props;
 		const { charLocList, aiAttackResults, hexList, hostileMeleeRange,  hoveredHex, hoveredHexLoc, objectList, selectedHex, targetedHex, targetedHexContains, targetedHexIndex, tooltipLabel } = this.state;
 		const { currentCharacter, mapIsAnimating, projectile } = this.context;
+		const leftAttackRange = (currentCharacter && currentCharacter.attacks.left) ? currentCharacter.attacks.left.range : 0;
+		const rightAttackRange = (currentCharacter && currentCharacter.attacks.right) ? currentCharacter.attacks.right.range : 0;
+		const bothAttacksRange =  leftAttackRange > rightAttackRange ? leftAttackRange : rightAttackRange;
 		return (
 			<div className="hexMap" ref={this.hexMapRef}>
 				<div className="hexMap_background">
@@ -280,8 +283,8 @@ export default class HexMap extends PureComponent {
 						<g>
 							{ !!hexList && hexList.map((hex, index) => {
 								const occupiedBy = charLocList.find(charLoc => index === charLoc.hexIndex);
-								const inMovementRange = currentCharacter && !currentCharacter.meta.isCpuControlled && HexUtils.distance(selectedHex, hex) <= currentCharacter.currentRange
-								const inAttackRange = currentCharacter && !currentCharacter.meta.isCpuControlled && HexUtils.distance(selectedHex, hex) <= currentCharacter.currentAttack.range
+								const inMovementRange = currentCharacter && !currentCharacter.meta.isCpuControlled && HexUtils.distance(selectedHex, hex) <= currentCharacter.currentRange;
+								const inAttackRange = currentCharacter && !currentCharacter.meta.isCpuControlled && HexUtils.distance(selectedHex, hex) <= bothAttacksRange;
 								const isHostile = occupiedBy && occupiedBy.character.meta.isHostile;
 								const isUnconscious = occupiedBy && occupiedBy.character.meta.isUnconscious;
 								const blocked = objectList.some(object => index === object.hexIndex);
