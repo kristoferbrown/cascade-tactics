@@ -8,6 +8,7 @@ import CharacterScreen from './screens/CharacterScreen/CharacterScreen';
 import MenuCombatScreen from './screens/MenuCombatScreen/MenuCombatScreen';
 import StylesScreen from './screens/StylesScreen/StylesScreen';
 import ArtifactsScreen from './screens/ArtifactsScreen/ArtifactsScreen';
+import { attackList } from '../../content/weapons/attackList'
 import './CharacterMenu.scss';
 
 export default class CharacterMenu extends PureComponent {
@@ -45,8 +46,8 @@ export default class CharacterMenu extends PureComponent {
 									<Nonogram 
 										armor={menuCharacter.armor}
 										attributes={menuCharacter.attributes}
-										leftAttack={menuCharacter.attacks.left}
-										rightAttack={menuCharacter.attacks.right}
+										leftAttack={attackList[menuCharacter.attacks.left]}
+										rightAttack={attackList[menuCharacter.attacks.right]}
 										skills={menuCharacter.skills}
 										currentTab={currentTab}
 										isVisible={true} 

@@ -34,8 +34,6 @@ export default class CharacterMenuTabs extends PureComponent {
 				>
 					<Nonogram 
 						attributes={menuCharacter.attributes}
-						leftAttack={menuCharacter.attacks.leftAttack}
-						rightAttack={menuCharacter.attacks.rightAttack}
 						skills={menuCharacter.skills}
 						currentTab={'Combat'}
 						isVisible

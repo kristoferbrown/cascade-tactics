@@ -1,7 +1,8 @@
 import { attackRoll } from './diceUtils';
+import { attackList } from '../content/weapons/attackList'
 
 export function getAttackValues(attacker, isLeftAttack, target) {
-	const attackObj = isLeftAttack ? attacker.attacks.left : attacker.attacks.right;
+	const attackObj = isLeftAttack ? attackList[attacker.attacks.left] : attackList[attacker.attacks.right];
 	if (!attackObj) { return null; }
 	const attackDice = attacker.attributes[attackObj.attribute];
 	const attackSucc = attacker.skills[attackObj.attribute][attackObj.skill];

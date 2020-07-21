@@ -27,13 +27,8 @@ export const testCharacters = [
 			Intelligence: { Academics: 0, Hardware: 1 },
 			Charisma: { Charm: 0, Manipulate: 1 }
 		},
-		attacks: {
-			left: { name: 'Flag Pole', attribute: 'Finesse', skill: 'Melee', range: 1, speedCost: 3, damDiceBonus: 0, damSuccBonus: 3, atkDiceBonus: 0, atkSuccBonus: 0, twoHanded: true },
-			right: null
-		},
-		status: { 
-			health: { 0: [6,6], 1: [6,6], 2: [5,6], 3: [6,6], 4: [6,6] },
-		},
+		attacks: { left: 1, right: null },
+		status: { health: { 0: [6,6], 1: [6,6], 2: [5,6], 3: [6,6], 4: [6,6] } },
 		armor: { 0: 1, 1: 1, 2: 1, 3: 1, 4: 1 },
 		styles: {
 			floating: {
@@ -70,13 +65,8 @@ export const testCharacters = [
 			Intelligence: { Academics: 1, Hardware: 0 },
 			Charisma: { Charm: 0, Manipulate: 1 }
 		},
-		attacks: {
-			left: { name: 'Unarmed', attribute: 'Strength', skill: 'Unarmed', range: 1, speedCost: 2, damDiceBonus: 0, damSuccBonus: 0, atkDiceBonus: 0, atkSuccBonus: 0, twoHanded: false },
-			right: { name: 'Throw Stone', attribute: 'Perception', skill: 'Ranged', range: 4, speedCost: 3, damDiceBonus: 2, damSuccBonus: 1, atkDiceBonus: 0, atkSuccBonus: 0, twoHanded: false },
-		},
-		status: { 
-			health: { 0: [6,6], 1: [6,6], 2: [6,6], 3: [6,6], 4: [6,6] },
-		},
+		attacks: { left: 0, right: 2 },
+		status: { health: { 0: [6,6], 1: [6,6], 2: [6,6], 3: [6,6], 4: [6,6] } },
 		armor: { 0: 1, 1: 1, 2: 1, 3: 1, 4: 1 },
 		styles: {
 			floating: {
@@ -113,13 +103,8 @@ export const testCharacters = [
 			Intelligence: { Academics: 0, Hardware: 1 },
 			Charisma: { Charm: 0, Manipulate: 1 }
 		},
-		attacks: {
-			left: { name: 'Lash', attribute: 'Strength', skill: 'Unarmed',  range: 1, speedCost: 3, damDiceBonus: 0, damSuccBonus: 0, atkDiceBonus: 0, atkSuccBonus: 0 },
-			right: null
-		},
-		status: {
-			health: { 0: [4,4], 1: [4,4], 2: [4,4], 3: [4,4], 4: [4,4] },
-		},
+		attacks: { left: 3, right: null },
+		status: { health: { 0: [4,4], 1: [4,4], 2: [4,4], 3: [4,4], 4: [4,4] } },
 		armor: { 0: 0, 1: 0, 2: 0, 3: 0, 4: 0 },
 		styles: {
 			floating: {
@@ -156,13 +141,8 @@ export const testCharacters = [
 			Intelligence: { Academics: 0, Hardware: 1 },
 			Charisma: { Charm: 0, Manipulate: 1 }
 		},
-		attacks: {
-			left: { name: 'Unarmed', attribute: 'Strength', skill: 'Unarmed', range: 1, speedCost: 2, damDiceBonus: 0, damSuccBonus: 0, atkDiceBonus: 0, atkSuccBonus: 0, twoHanded: false },
-			right: { name: 'Throw Stone', attribute: 'Perception', skill: 'Ranged', range: 4, speedCost: 3, damDiceBonus: 2, damSuccBonus: 1, atkDiceBonus: 0, atkSuccBonus: 0, twoHanded: false },
-		},
-		status: { 
-			health: { 0: [6,6], 1: [6,6], 2: [6,6], 3: [6,6], 4: [6,6] },
-		},
+		attacks: { left: 0, right: 2 },
+		status: { health: { 0: [6,6], 1: [6,6], 2: [6,6], 3: [6,6], 4: [6,6] } },
 		armor: { 0: 1, 1: 1, 2: 1, 3: 1, 4: 1 },
 		styles: {
 			floating: {
@@ -200,9 +180,7 @@ export const testCharacters = [
 			Charisma: { Charm: 0, Manipulate: 1 }
 		},
 		attacks: {left: null, right: null},
-		status: {
-			health: { 0: [3,3], 1: [3,3], 2: [3,3], 3: [3,3], 4: [3,3] },
-		},
+		status: { health: { 0: [3,3], 1: [3,3], 2: [3,3], 3: [3,3], 4: [3,3] } },
 		armor: { 0: 0, 1: 0, 2: 0, 3: 0, 4: 0 },
 		styles: {
 			floating: {
@@ -239,13 +217,8 @@ export const testCharacters = [
 			Intelligence: { Academics: 0, Hardware: 1 },
 			Charisma: { Charm: 0, Manipulate: 1 }
 		},
-		attacks: {
-			left: { name: 'Lash', attribute: 'Strength', skill: 'Unarmed',  range: 1, speedCost: 3, damDiceBonus: 0, damSuccBonus: 0, atkDiceBonus: 0, atkSuccBonus: 0 },
-			right: null
-		},
-		status: {
-			health: { 0: [4,4], 1: [4,4], 2: [4,4], 3: [4,4], 4: [4,4] },
-		},
+		attacks: { left: 3, right: null },
+		status: { health: { 0: [4,4], 1: [4,4], 2: [4,4], 3: [4,4], 4: [4,4] } },
 		armor: { 0: 0, 1: 0, 2: 0, 3: 0, 4: 0 },
 		styles: {
 			floating: {
@@ -283,9 +256,7 @@ export const testCharacters = [
 			Charisma: { Charm: 0, Manipulate: 1 }
 		},
 		attacks: { left: null, right: null },
-		status: { 
-			health: { 0: [99,99], 1: [99,99], 2: [99,99], 3: [99,99], 4: [99,99] },
-		},
+		status: { health: { 0: [99,99], 1: [99,99], 2: [99,99], 3: [99,99], 4: [99,99] } },
 		armor: { 0: 0, 1: 0, 2: 0, 3: 0, 4: 0 },
 		styles: {
 			floating: {

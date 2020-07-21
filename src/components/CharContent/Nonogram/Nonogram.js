@@ -49,6 +49,7 @@ export default class Nonogram extends Component {
 				/>
 				<NonogramSquare
 					attackAttribute={isCombatScreen && rightAttack ? rightAttack.attribute : null}
+					AttackRenderer={isCombatScreen && rightAttack ? rightAttack.renderer : null}
 					attributeName={isCharacterScreen || isStylesScreen ? 'Perception' : null}
 					attributeScore={isCharacterScreen || isStylesScreen ? attributes.Perception : null}
 					handleClick={handleAttributeClick}
@@ -101,6 +102,7 @@ export default class Nonogram extends Component {
 
 				<NonogramSquare
 					attackAttribute={isCombatScreen && leftAttack ? leftAttack.attribute : null}
+					AttackRenderer={isCombatScreen && leftAttack ? leftAttack.renderer : null}
 					attributeName={isCharacterScreen || isStylesScreen ? 'Willpower' : null}
 					attributeScore={isCharacterScreen || isStylesScreen ? attributes.Willpower : null}
 					handleClick={handleAttributeClick}

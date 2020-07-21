@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
 import { GridGenerator, HexGrid, HexUtils, Layout, Path } from 'react-hexgrid';
+import { attackList } from '../../content/weapons/attackList'
 import CharacterContext from '../../context/CharacterContext';
 import CraterMapRenderer from '../../svgs/craterMapRenderer';
 import { executeAttack } from '../../utils/attackUtils';
@@ -265,8 +266,8 @@ export default class HexMap extends PureComponent {
 		const { currSpeedCost, setSpeedCost } = this.props;
 		const { charLocList, aiAttackResults, hexList, hostileMeleeRange,  hoveredHex, hoveredHexLoc, objectList, selectedHex, targetedHex, targetedHexContains, targetedHexIndex, tooltipLabel } = this.state;
 		const { currentCharacter, mapIsAnimating, projectile } = this.context;
-		const leftAttackRange = (currentCharacter && currentCharacter.attacks.left) ? currentCharacter.attacks.left.range : 0;
-		const rightAttackRange = (currentCharacter && currentCharacter.attacks.right) ? currentCharacter.attacks.right.range : 0;
+		const leftAttackRange = (currentCharacter && attackList[currentCharacter.attacks.left]) ? attackList[currentCharacter.attacks.left].range : 0;
+		const rightAttackRange = (currentCharacter && attackList[currentCharacter.attacks.right]) ? attackList[currentCharacter.attacks.right].range : 0;
 		const bothAttacksRange =  leftAttackRange > rightAttackRange ? leftAttackRange : rightAttackRange;
 		return (
 			<div className="hexMap" ref={this.hexMapRef}>

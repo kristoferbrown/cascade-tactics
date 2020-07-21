@@ -9,6 +9,7 @@ export default class NonogramSquare extends Component {
 			armorId,
 			armorLocation,
 			attackAttribute,
+			AttackRenderer,
 			attributeName,
 			attributeScore,
 			handleClick,
@@ -83,6 +84,12 @@ export default class NonogramSquare extends Component {
 				{ armorObject && !!armorObject.renderer && (<React.Fragment>
 					<div className="NonogramSquare_equipmentIcon">
 						<armorObject.renderer width={75} height={75} />
+					</div>
+				</React.Fragment>)}
+
+				{ AttackRenderer && (<React.Fragment>
+					<div className="NonogramSquare_equipmentIcon">
+						<AttackRenderer width={75} height={75} />
 					</div>
 				</React.Fragment>)}
 
