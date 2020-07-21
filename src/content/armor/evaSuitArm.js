@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 
-export default class AcyotaActiveMapRenderer extends PureComponent {
+export default class EvaSuitArmRenderer extends PureComponent {
 	render() {
 		const { height, width } = this.props;
 		return (

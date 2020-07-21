@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import CharacterContext from '../../../../../context/CharacterContext';
 import StatusTrack from '../../../../Common/StatusTrack/StatusTrack'
+import { armorList } from '../../../../../content/armor/armorList'
 import './BodyLocationItem.scss';
 
 export default class BodyLocationItem extends PureComponent {
@@ -8,8 +9,10 @@ export default class BodyLocationItem extends PureComponent {
 	render() {
 		const { label, loc } = this.props;
 		const { menuCharacter } = this.context;
-		const armor = menuCharacter.armor[loc];
+		const charArmor = menuCharacter.armor[loc];
+		const armor = armorList[loc][charArmor];
 		const health = menuCharacter.status.health[loc];
+
 		return (
 			<div className={'BodyLocationItem'}>
 				<div className="BodyLocationItem_header">{label}</div>

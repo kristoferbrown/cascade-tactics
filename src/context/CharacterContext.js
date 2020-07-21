@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { testCharacters } from '../utils/testData';
+import { testCharacters } from '../content/characters/testData';
 
 const CharacterContext = React.createContext();
 export default CharacterContext;

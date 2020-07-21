@@ -1,16 +1,16 @@
 import React from 'react';
-import AcyotaMapRenderer from '../svgs/acyotaMapRenderer';
-import AcyotaActiveMapRenderer from '../svgs/acyotaActiveMapRenderer';
-import BuzzMapRenderer from '../svgs/buzzMapRenderer';
-import LemMapRenderer from '../svgs/lemMapRenderer';
-import MikeMapRenderer from '../svgs/mikeMapRenderer';
-import MonoMapRenderer from '../svgs/monoMapRenderer';
-import NeilMapRenderer from '../svgs/neilMapRenderer';
-import BuzzPortrait from '../svgs/portraits/buzzPortrait';
-import CapcomPortrait from '../svgs/portraits/capcomPortrait';
-import MikePortrait from '../svgs/portraits/mikePortrait';
-import MonolithPortrait from '../svgs/portraits/monolithPortrait';
-import NeilPortrait from '../svgs/portraits/neilPortrait';
+import AcyotaMapRenderer from '../../svgs/acyotaMapRenderer';
+import AcyotaActiveMapRenderer from '../../svgs/acyotaActiveMapRenderer';
+import BuzzMapRenderer from '../../svgs/buzzMapRenderer';
+import LemMapRenderer from '../../svgs/lemMapRenderer';
+import MikeMapRenderer from '../../svgs/mikeMapRenderer';
+import MonoMapRenderer from '../../svgs/monoMapRenderer';
+import NeilMapRenderer from '../../svgs/neilMapRenderer';
+import BuzzPortrait from '../../svgs/portraits/buzzPortrait';
+import CapcomPortrait from '../../svgs/portraits/capcomPortrait';
+import MikePortrait from '../../svgs/portraits/mikePortrait';
+import MonolithPortrait from '../../svgs/portraits/monolithPortrait';
+import NeilPortrait from '../../svgs/portraits/neilPortrait';
 
 export const testCharacters = [
 	{
@@ -34,13 +34,7 @@ export const testCharacters = [
 		status: { 
 			health: { 0: [6,6], 1: [6,6], 2: [5,6], 3: [6,6], 4: [6,6] },
 		},
-		armor: { 
-			0: {name: 'EVA Suit', value: 2, penalty: 2, penaltyType: 'Speed'},
-			1: {name: 'EVA Suit', value: 2, penalty: 1, penaltyType: 'Finesse'},
-			2: {name: 'EVA Suit', value: 2, penalty: 1, penaltyType: 'Finesse'},
-			3: {name: 'EVA Suit', value: 2, penalty: 1, penaltyType: 'Agility'},
-			4: {name: 'EVA Suit', value: 2, penalty: 1, penaltyType: 'Perception'},
-		},
+		armor: { 0: 1, 1: 1, 2: 1, 3: 1, 4: 1 },
 		styles: {
 			floating: {
 				available: 1,
@@ -83,13 +77,7 @@ export const testCharacters = [
 		status: { 
 			health: { 0: [6,6], 1: [6,6], 2: [6,6], 3: [6,6], 4: [6,6] },
 		},
-		armor: { 
-			0: {name: 'EVA Suit', value: 2, penalty: 2, penaltyType: 'Speed'},
-			1: {name: 'EVA Suit', value: 2, penalty: 1, penaltyType: 'Finesse'},
-			2: {name: 'EVA Suit', value: 2, penalty: 1, penaltyType: 'Finesse'},
-			3: {name: 'EVA Suit', value: 2, penalty: 1, penaltyType: 'Agility'},
-			4: {name: 'EVA Suit', value: 2, penalty: 1, penaltyType: 'Perception'},
-		},
+		armor: { 0: 1, 1: 1, 2: 1, 3: 1, 4: 1 },
 		styles: {
 			floating: {
 				available: 0,
@@ -132,13 +120,7 @@ export const testCharacters = [
 		status: {
 			health: { 0: [4,4], 1: [4,4], 2: [4,4], 3: [4,4], 4: [4,4] },
 		},
-		armor: { 
-			0:  {name: 'Unarmored', value: 0, penalty: 0, penaltyType: 'Speed'},
-			1:  {name: 'Unarmored', value: 0, penalty: 0, penaltyType: 'Finesse'},
-			2:  {name: 'Unarmored', value: 0, penalty: 0, penaltyType: 'Finesse'},
-			3:  {name: 'Unarmored', value: 0, penalty: 0, penaltyType: 'Agility'},
-			4:  {name: 'Unarmored', value: 0, penalty: 0, penaltyType: 'Perception'},
-		},
+		armor: { 0: 0, 1: 0, 2: 0, 3: 0, 4: 0 },
 		styles: {
 			floating: {
 				available: 3,
@@ -181,13 +163,7 @@ export const testCharacters = [
 		status: { 
 			health: { 0: [6,6], 1: [6,6], 2: [6,6], 3: [6,6], 4: [6,6] },
 		},
-		armor: { 
-			0: {name: 'EVA Suit', value: 2, penalty: 1, penaltyType: 'Speed'},
-			1: {name: 'EVA Suit', value: 2, penalty: 1, penaltyType: 'Finesse'},
-			2: {name: 'EVA Suit', value: 2, penalty: 1, penaltyType: 'Finesse'},
-			3: {name: 'EVA Suit', value: 2, penalty: 1, penaltyType: 'Agility'},
-			4: {name: 'EVA Suit', value: 2, penalty: 1, penaltyType: 'Perception'},
-		},
+		armor: { 0: 1, 1: 1, 2: 1, 3: 1, 4: 1 },
 		styles: {
 			floating: {
 				available: 2,
@@ -227,13 +203,7 @@ export const testCharacters = [
 		status: {
 			health: { 0: [3,3], 1: [3,3], 2: [3,3], 3: [3,3], 4: [3,3] },
 		},
-		armor: { 
-			0:  {name: 'Unarmored', value: 0, penalty: 0, penaltyType: 'Speed'},
-			1:  {name: 'Unarmored', value: 0, penalty: 0, penaltyType: 'Finesse'},
-			2:  {name: 'Unarmored', value: 0, penalty: 0, penaltyType: 'Finesse'},
-			3:  {name: 'Unarmored', value: 0, penalty: 0, penaltyType: 'Agility'},
-			4:  {name: 'Unarmored', value: 0, penalty: 0, penaltyType: 'Perception'},
-		},
+		armor: { 0: 0, 1: 0, 2: 0, 3: 0, 4: 0 },
 		styles: {
 			floating: {
 				available: 3,
@@ -276,13 +246,7 @@ export const testCharacters = [
 		status: {
 			health: { 0: [4,4], 1: [4,4], 2: [4,4], 3: [4,4], 4: [4,4] },
 		},
-		armor: { 
-			0:  {name: 'Unarmored', value: 0, penalty: 0, penaltyType: 'Speed'},
-			1:  {name: 'Unarmored', value: 0, penalty: 0, penaltyType: 'Finesse'},
-			2:  {name: 'Unarmored', value: 0, penalty: 0, penaltyType: 'Finesse'},
-			3:  {name: 'Unarmored', value: 0, penalty: 0, penaltyType: 'Agility'},
-			4:  {name: 'Unarmored', value: 0, penalty: 0, penaltyType: 'Perception'},
-		},
+		armor: { 0: 0, 1: 0, 2: 0, 3: 0, 4: 0 },
 		styles: {
 			floating: {
 				available: 3,
@@ -322,13 +286,7 @@ export const testCharacters = [
 		status: { 
 			health: { 0: [99,99], 1: [99,99], 2: [99,99], 3: [99,99], 4: [99,99] },
 		},
-		armor: { 
-			0:  {name: 'Unarmored', value: 0, penalty: 0, penaltyType: 'Speed'},
-			1:  {name: 'Unarmored', value: 0, penalty: 0, penaltyType: 'Finesse'},
-			2:  {name: 'Unarmored', value: 0, penalty: 0, penaltyType: 'Finesse'},
-			3:  {name: 'Unarmored', value: 0, penalty: 0, penaltyType: 'Agility'},
-			4:  {name: 'Unarmored', value: 0, penalty: 0, penaltyType: 'Perception'},
-		},
+		armor: { 0: 0, 1: 0, 2: 0, 3: 0, 4: 0 },
 		styles: {
 			floating: {
 				available: 3,
