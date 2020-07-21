@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import classNames from 'classnames';
+import { armorList } from '../../../../content/armor/armorList'
 import './NonogramSquare.scss';
 
 export default class NonogramSquare extends Component {
 	render() {
 		const {
+			armorId,
+			armorLocation,
 			attackAttribute,
 			attributeName,
 			attributeScore,
@@ -20,11 +23,20 @@ export default class NonogramSquare extends Component {
 		} = this.props;
 
 		let dotArray = [];
-		for (let i = 0; i < 9; i++) {
-			dotArray.push(i < attributeScore ?
-				<div key={`${attributeName}_dot_${i}`} className='NonogramSquare_dot NonogramSquare_dot_filled'/> :
-				<div key={`${attributeName}_dot_${i}`} className='NonogramSquare_dot'/>
-		)}
+		if (showStyleDots && !isPreview) {
+			for (let i = 0; i < 9; i++) {
+				dotArray.push(i < attributeScore ?
+					<div key={`${attributeName}_dot_${i}`} className='NonogramSquare_dot NonogramSquare_dot_filled'/> :
+					<div key={`${attributeName}_dot_${i}`} className='NonogramSquare_dot'/>
+			)}
+		}
+
+		const hasArmorId = armorId === 0 || armorId > 0;
+		const hasArmorLoc = armorLocation === 0 || armorLocation > 0;
+		let armorObject = null;
+		if (!isPreview && hasArmorId && hasArmorLoc) {
+			armorObject = armorList[armorLocation][armorId];
+		}
 
 		return (
 			<div
@@ -65,6 +77,12 @@ export default class NonogramSquare extends Component {
 								</div>
 							</div>
 						)}
+					</div>
+				</React.Fragment>)}
+
+				{ armorObject && !!armorObject.renderer && (<React.Fragment>
+					<div className="NonogramSquare_equipmentIcon">
+						<armorObject.renderer width={75} height={75} />
 					</div>
 				</React.Fragment>)}
 

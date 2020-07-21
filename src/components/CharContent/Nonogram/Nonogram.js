@@ -5,7 +5,7 @@ import './Nonogram.scss';
 
 export default class Nonogram extends Component {
 	render() {
-		const { attributes, currentTab, handleAttributeClick, isPreview, leftAttack, rightAttack, skills } = this.props;
+		const { armor, attributes, currentTab, handleAttributeClick, isPreview, leftAttack, rightAttack, skills } = this.props;
 		const isCharacterScreen = currentTab === 'Character';
 		const isCombatScreen = currentTab === 'Combat';
 		const isStylesScreen = currentTab === 'Styles';
@@ -22,6 +22,8 @@ export default class Nonogram extends Component {
 			})}>
 
 				<NonogramSquare
+					armorId={isCombatScreen && armor && armor[4]}
+					armorLocation={isCombatScreen && 4}
 					attributeName={isCharacterScreen || isStylesScreen ? 'Strength' : null}
 					attributeScore={isCharacterScreen || isStylesScreen ? attributes.Strength : null}
 					handleClick={handleAttributeClick}
@@ -33,6 +35,8 @@ export default class Nonogram extends Component {
 					skills={skills['Strength']}
 				/>
 				<NonogramSquare
+					armorId={isCombatScreen && armor && armor[2]}
+					armorLocation={isCombatScreen && 2}
 					attributeName={isCharacterScreen || isStylesScreen ? 'Finesse' : null}
 					attributeScore={isCharacterScreen || isStylesScreen ? attributes.Finesse : null}
 					handleClick={handleAttributeClick}
@@ -57,6 +61,8 @@ export default class Nonogram extends Component {
 				/>
 
 				<NonogramSquare
+					armorId={isCombatScreen && armor && armor[1]}
+					armorLocation={isCombatScreen && 1}
 					attributeName={isCharacterScreen || isStylesScreen ? 'Stamina' : null}
 					attributeScore={isCharacterScreen || isStylesScreen ? attributes.Stamina : null}
 					handleClick={handleAttributeClick}
@@ -68,6 +74,8 @@ export default class Nonogram extends Component {
 					skills={skills['Stamina']}
 				/>
 				<NonogramSquare
+					armorId={isCombatScreen && armor && armor[3]}
+					armorLocation={isCombatScreen && 3}
 					attributeName={isCharacterScreen || isStylesScreen ? 'Agility' : null}
 					attributeScore={isCharacterScreen || isStylesScreen ? attributes.Agility : null}
 					handleClick={handleAttributeClick}
@@ -116,6 +124,8 @@ export default class Nonogram extends Component {
 					skills={skills['Intelligence']}
 				/>
 				<NonogramSquare
+					armorId={isCombatScreen && armor && armor[0]}
+					armorLocation={isCombatScreen && 0}
 					attributeName={isCharacterScreen || isStylesScreen ? 'Charisma' : null}
 					attributeScore={isCharacterScreen || isStylesScreen ? attributes.Charisma : null}
 					handleClick={handleAttributeClick}

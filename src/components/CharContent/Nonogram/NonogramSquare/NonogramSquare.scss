@@ -193,6 +193,16 @@
 		width: 250px;
 	}
 
+	.NonogramSquare_equipmentIcon {
+		animation: fadeIn 0.3s 1 linear;
+		animation-delay: 0.3s;
+		animation-fill-mode: both;
+		left: -10px;
+		position: relative;
+		top: -10px;
+		transform: rotate(-45deg);
+	}
+
 	&.NonogramSquare_str { background: $strength;}
 	&.NonogramSquare_fin { background: $finesse;}
 	&.NonogramSquare_per { background: $perception;}

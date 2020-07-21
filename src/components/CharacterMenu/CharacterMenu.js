@@ -43,6 +43,7 @@ export default class CharacterMenu extends PureComponent {
 
 								<div className={'characterMenu_bodyContainer'} >
 									<Nonogram 
+										armor={menuCharacter.armor}
 										attributes={menuCharacter.attributes}
 										leftAttack={menuCharacter.attacks.left}
 										rightAttack={menuCharacter.attacks.right}
