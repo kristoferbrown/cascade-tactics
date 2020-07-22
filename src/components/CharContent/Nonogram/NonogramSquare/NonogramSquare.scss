@@ -20,6 +20,10 @@
 		box-shadow: 0 0 1px 1px $black;
 	}
 
+	&.NonogramSquare_faded {
+		background: $fadedGray;
+	}
+
 	&.NonogramSquare_hidden {
 		opacity: 0;
 	}

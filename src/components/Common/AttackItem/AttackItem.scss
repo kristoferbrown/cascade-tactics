@@ -17,6 +17,13 @@
 	min-height: 30px;
 	position: relative;
 
+	&.attackItem_attackLabel_isExtended {
+		.attackItem_attackDesc,
+		.attackItem_defenseDesc {
+			margin: 0 0 6px 0;
+		}
+	}
+
 	.attackItem_attackDesc,
 	.attackItem_defenseDesc {
 		display: flex;

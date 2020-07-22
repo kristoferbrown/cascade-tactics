@@ -9,6 +9,11 @@ body, html, #root {
 	width: 100%;
 }
 
+.strong {
+	-webkit-text-stroke: 1px;
+	text-stroke: 1px;
+}
+
 .basicText {
 	color: $darkGray;
 	font-size: 12px;

@@ -33,7 +33,7 @@ export const testCharacters = [
 		styles: {
 			floating: {
 				available: 1,
-				assigned: [ {label: 'Finesse Core', attribute: 'Finesse'}, {label: 'Charisma Core', attribute: 'Charisma'}, ]
+				assigned: [ 'Finesse', 'Charisma' ]
 			},
 			permanent: { totalXp: 9, classes: {
 				Strength: { availableXp: 0, spentXp: 0 },
@@ -71,7 +71,7 @@ export const testCharacters = [
 		styles: {
 			floating: {
 				available: 0,
-				assigned: [ {label: 'Strength Core', attribute: 'Strength'}, {label: 'Unarmed Combat', attribute: 'Strength'}, {label: 'Intelligence Core', attribute: 'Intelligence'}, ]
+				assigned: [ 'Strength', 'Stamina', 'Intelligence' ]
 			},
 			permanent: { totalXp: 9, classes: {
 				Strength: { availableXp: 1, spentXp: 0, core: 1, aux1: 1, aux1Label: 'Unarmed Combat' },
@@ -147,7 +147,7 @@ export const testCharacters = [
 		styles: {
 			floating: {
 				available: 2,
-				assigned: [ {label: 'Wits Core', attribute: 'Wits'} ]
+				assigned: [ 'Wits' ]
 			},
 			permanent: { totalXp: 9, classes: {
 				Strength: { availableXp: 0, spentXp: 0 },

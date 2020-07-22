@@ -47,6 +47,10 @@
 			transform-origin: top left;
 		}
 	}
+
+	.fill_faded {
+		background: $fadedGray;
+	}
 }
 
 @keyframes growRight {

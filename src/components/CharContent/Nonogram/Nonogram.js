@@ -54,6 +54,7 @@ export default class Nonogram extends Component {
 					attributeScore={isCharacterScreen || isStylesScreen ? attributes.Perception : null}
 					handleClick={handleAttributeClick}
 					index={3}
+					isFaded={!isPreview && isCombatScreen && !rightAttack}
 					isMinorArtifact={isArtifactsScreen}
 					isPreview={isPreview}
 					showStyleDots={isStylesScreen && !isPreview}
@@ -107,6 +108,7 @@ export default class Nonogram extends Component {
 					attributeScore={isCharacterScreen || isStylesScreen ? attributes.Willpower : null}
 					handleClick={handleAttributeClick}
 					index={7}
+					isFaded={!isPreview && isCombatScreen && !leftAttack}
 					isMajorArtifact={isArtifactsScreen}
 					isPreview={isPreview}
 					showStyleDots={isStylesScreen && !isPreview}

@@ -45,12 +45,13 @@ export default class StylesScreen extends PureComponent {
 									<div className={'StylesScreen_HeaderDetail StylesScreen_AlertText'}>{menuCharacter.styles.floating.available} Available</div>
 								}
 							</div>
-							{ !menuCharacter.styles.floating.assigned.length && 
+							{ menuCharacter.styles.floating.assigned.length ? (
+								menuCharacter.styles.floating.assigned.map( style => (
+									<FloatingRow style={style} key={`char${menuCharacter.meta.charId}-float-${style}`} />
+								))
+							) : (
 								<div className={'StylesScreen_BasicText'}>Select an attribute to start assigning floating styles.</div>
-							}
-							{ menuCharacter.styles.floating.assigned.map( style => (
-								<FloatingRow style={style} key={`char${menuCharacter.meta.charId}-float-${style.label}`} />
-							))}
+							)}
 						</div>
 
 						<div className={'StylesScreen_Section StylesScreen_StyleClasses'}>

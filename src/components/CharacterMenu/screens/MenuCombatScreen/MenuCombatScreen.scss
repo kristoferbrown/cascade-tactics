@@ -15,11 +15,18 @@
 	.MenuCombatScreen_dodge,
 	.MenuCombatScreen_passiveDef {
 		display: flex;
+		flex-wrap: wrap;
 		font-size: 14px;
     justify-content: space-between;
 		margin: 6px;
 		padding: 3px 6px;
 	}
+
+	.MenuCombatScreen_defDesc {
+		font-size: 12px;
+		width: 100%;
+	}
+
 
 	.MenuCombatScreen_dodge {
 		color: $white;
@@ -36,6 +43,7 @@
 		padding: 12px;
 
 		&.faded {
+			background: $fadedGray;
 			color: $nearBlack;
 		}
 

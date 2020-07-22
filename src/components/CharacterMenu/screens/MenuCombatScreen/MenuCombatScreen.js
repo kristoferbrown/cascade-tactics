@@ -23,14 +23,17 @@ export default class MenuCombatScreen extends PureComponent {
 					<div className={'MenuCombatScreen_passiveDef'}>
 						<div>Passive Defense</div>
 						<div>{defSkill ? defSkill : 1}</div>
+						<div className="MenuCombatScreen_defDesc">Enemy attacks must tie this number to hit.</div>
 					</div>
 					<div className={'MenuCombatScreen_dodge fill_Agility'}>
-						<div>Melee Dodge</div>
+						<div>Melee Dodge Reaction</div>
 						<div>{ `${defSkill}-${defSkill+menuCharacter.attributes.Agility}` }</div>
+						<div className="MenuCombatScreen_defDesc">When used, melee attacks miss unless beat this roll.</div>
 					</div>
 					<div className={'MenuCombatScreen_dodge fill_Wits'}>
-						<div>Ranged Dodge</div>
+						<div>Ranged Dodge Reaction</div>
 						<div>{ `${defSkill}-${defSkill+menuCharacter.attributes.Wits}` }</div>
+						<div className="MenuCombatScreen_defDesc">When used, ranged attacks miss unless beat this roll.</div>
 					</div>
 				</div>
 
@@ -111,7 +114,7 @@ export default class MenuCombatScreen extends PureComponent {
 				{ leftAttack ? (
 					<div className={`MenuCombatScreen_locDetails MenuCombatScreen_leftAttack fill_${leftAttack.attackObj.attribute}`}>
 						<div className='MenuCombatScreen_attackName'>{leftAttack.attackObj.name}</div>
-						<AttackItem attack={leftAttack} />
+						<AttackItem attack={leftAttack} extended />
 					</div>
 				) : ( 
 					<div className={'MenuCombatScreen_locDetails MenuCombatScreen_leftAttack faded'} /> 
@@ -131,7 +134,7 @@ export default class MenuCombatScreen extends PureComponent {
 				{ rightAttack ? (
 					<div className={`MenuCombatScreen_locDetails MenuCombatScreen_rightAttack fill_${rightAttack.attackObj.attribute}`}>
 						<div className='MenuCombatScreen_attackName'>{rightAttack.attackObj.name}</div>
-						<AttackItem attack={rightAttack} />
+						<AttackItem attack={rightAttack} extended />
 					</div>
 				) : ( 
 					<div className={'MenuCombatScreen_locDetails MenuCombatScreen_rightAttack faded'} /> 
