@@ -5,11 +5,8 @@ import InitTrack from '../InitTrack/InitTrack';
 import './CombatScreen.scss';
 
 export default class CombatScreen extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			currSpeedCost: 0, // Speed cost of currently selected action
-		}
+	state = {
+		currSpeedCost: 0, // Speed cost of currently selected action
 	}
 
 	render() {

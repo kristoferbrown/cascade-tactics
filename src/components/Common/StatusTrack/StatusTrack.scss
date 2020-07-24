@@ -76,7 +76,7 @@
 		height: 100%;
 		position: relative;
 		transform: skewX(-45deg);
-		transition: 0.3s ease;
+		transition: 0.3s ease;// @TODO add a property to this
 	}
 
 	.statusTrack_costBar {
@@ -85,7 +85,7 @@
 		height: 100%;
 		position: absolute;
 		right: 0;
-		transition: 0.3s ease;
+		transition: 0.3s ease;// @TODO add a property to this
 	}
 
 	.statusTrack_costValue {

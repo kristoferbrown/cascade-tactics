@@ -10,7 +10,7 @@
 	opacity: 0;
 	padding: 90px 20px 20px 160px;
 	position: fixed;
-	transition: 0.5s;
+	transition: 0.5s; // @TODO add a property to this
 	top: 0;
 	transform: scaleY(0);
 	transform-origin: bottom;

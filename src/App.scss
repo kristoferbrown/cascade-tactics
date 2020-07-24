@@ -9,9 +9,35 @@ body, html, #root {
 	width: 100%;
 }
 
+.app_placeholderNav {
+	position: absolute;
+	right: 6px;
+	top: 6px;
+}
+
+//global styles
 .strong {
 	-webkit-text-stroke: 1px;
 	text-stroke: 1px;
+}
+
+.basicButton {
+	background: $nearWhite;
+	border-radius: 3px;
+	box-shadow: 0 0 6px $black;
+	color: $nearBlack;
+	cursor: pointer;
+	display: inline;
+	font-size: 14px;
+	margin: 6px;
+	padding: 6px;
+	&:hover { background: $white; box-shadow: 0 0 6px 3px $black; color: $black; }
+	&:active { box-shadow: 0 0 1px 1px $black; }
+	&.small { 
+		font-size: 9px;
+		margin: 3px;
+		padding: 3px;
+	}
 }
 
 .basicText {

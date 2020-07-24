@@ -83,7 +83,7 @@
 		stroke: $white;
 		stroke-opacity: 0;
 		stroke-width: 0.3px;
-		transition: opacity .3s ease;
+		transition: opacity .3s ease;// @TODO add a property to this
 		transition-delay: opacity .6s;
 	}
 }
