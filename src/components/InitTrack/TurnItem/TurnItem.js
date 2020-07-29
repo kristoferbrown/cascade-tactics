@@ -41,9 +41,13 @@ export default class TurnItem extends PureComponent {
 									<div className='turnItem_detailLabel'>Speed</div>
 									<StatusTrack
 										attribute="Agility"
-										cost={currSpeedCost}
-										current={character.currentSpeed}
+										segments={[
+											{ attribute: 'Agility', label: currSpeedCost ? character.currentSpeed-currSpeedCost : '', value: character.currentSpeed-currSpeedCost,},
+											{ attribute: 'Stamina', isFlashing: true, label: `-${currSpeedCost}`, value: currSpeedCost ? currSpeedCost : '0', },
+											
+										]}
 										maximum={character.attributes.Agility+3}
+										backgroundBar={character.currentSpeed-currSpeedCost+character.attributes.Stamina+3}
 									/>
 								</div>
 							}

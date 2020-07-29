@@ -4,11 +4,13 @@ import './StatusTrack.scss';
 
 export default class StatusTrack extends Component {
 	render() {
-		const { attribute, cost, current, isHalfTrack, maximum, textLabel } = this.props;
+		const { attribute, backgroundBar, current, isHalfTrack, maximum, segments, textLabel } = this.props;
 		const isNegative = current < 0;
 		const absCurrent = Math.abs(current);
-		let currentPercentage = Math.floor(absCurrent/maximum*100);
-		let costPercentage = cost ? Math.floor(cost/absCurrent*100) : 0;
+		const currentPercentage = Math.floor(absCurrent/maximum*100);
+		const absBackgroundBar = Math.abs(backgroundBar);
+		const backgroundBarPercentage = Math.floor(absBackgroundBar/maximum*100);
+		let segmentSum = 0;
 
 		return (
 			<div className={classNames({
@@ -27,16 +29,37 @@ export default class StatusTrack extends Component {
 				'statusTrack_labeled': textLabel
 			})}>
 				<div className='statusTrack_innerBar'>
-					<div className='statusTrack_currentBar' style={{width: `${currentPercentage}%`}}>
-						{ !!cost &&(
+
+					{ !!current && (<div className='statusTrack_currentBar' style={{width: `${currentPercentage}%`}} />)}
+
+					{ !!backgroundBar && (<div className='statusTrack_backgroundBar' style={{width: `${backgroundBarPercentage}%`}} />)}
+
+					{ !!segments && segments.map(segment => {
+						const absValue = Math.abs(segment.value);
+						const segmentPercentage = Math.floor(absValue/maximum*100);
+
+						segmentSum += segment.value;
+						return (
 							<Fragment>
-								{cost !== absCurrent && <div className='statusTrack_currentValue' style={{left: `${(currentPercentage-costPercentage)/2}%`}}>{absCurrent - cost}</div>}
-								<div className='statusTrack_costBar' style={{width: `${costPercentage}%`}}>
-									<div className='statusTrack_costValue'>{cost}</div>
+								{segmentSum <= maximum ? <div 
+									className={classNames({
+										'statusTrack_segmentBar': true,
+										[`fill_${segment.attribute}`]: true,
+										'isFlashing': segment.isFlashing,
+										'fill_dark': segment.isDark,
+										'fill_light': segment.isLight,
+									})}
+									style={{width: `${segmentPercentage}%`}}
+								>
+
+									<div className='statusTrack_segmentLabel'>{segment.label}</div>
+
 								</div>
+								: null}
 							</Fragment>
-						)}
-					</div>
+						)
+					})}
+
 				</div>
 				{ textLabel && (
 						<div className='statusTrack_labelValue'>{`${textLabel} ${current}/${maximum}`}</div>

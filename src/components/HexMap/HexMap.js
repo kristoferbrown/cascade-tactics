@@ -110,7 +110,7 @@ export default class HexMap extends PureComponent {
 			console.log('an ai turn is starting');
 			this.setState({aiTurnInProgress: currentCharacter.meta.charId});
 			const adjacentCharacters = this.getAdjacentCharacters();
-			if (currentCharacter.meta.isHostile && adjacentCharacters.length) {
+			if (currentCharacter.meta.isHostile && adjacentCharacters.length && currentCharacter.attacks.left) {
 				const targetCharacter = adjacentCharacters[0].character;
 				const targetHex = targetCharacter.currentHexLoc;
 				const targetElement = document.getElementsByClassName(`hexTile_${targetHex.q}_${targetHex.r}_${targetHex.s}`)[0];

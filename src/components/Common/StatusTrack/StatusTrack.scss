@@ -9,43 +9,33 @@
 	width: 100%;
 
 	&.statusTrack_strength:not(.statusTrack_malus) {
-		.statusTrack_costBar { background: $strengthDark; }
 		.statusTrack_currentBar { background: $strength; }
 	}
 	&.statusTrack_finesse:not(.statusTrack_malus) {
-		.statusTrack_costBar { background: $finesseDark; }
 		.statusTrack_currentBar { background: $finesse; }
 	}
 	&.statusTrack_perception:not(.statusTrack_malus) {
-		.statusTrack_costBar { background: $perceptionDark; }
 		.statusTrack_currentBar { background: $perception; }
 	}
 	&.statusTrack_stamina:not(.statusTrack_malus) {
-		.statusTrack_costBar { background: $staminaDark; }
 		.statusTrack_currentBar { background: $stamina; }
 	}
 	&.statusTrack_agility:not(.statusTrack_malus) {
-		.statusTrack_costBar { background: $agilityDark; }
 		.statusTrack_currentBar { background: $agility; }
 	}
 	&.statusTrack_wits:not(.statusTrack_malus) {
-		.statusTrack_costBar { background: $witsDark; }
 		.statusTrack_currentBar { background: $wits; }
 	}
 	&.statusTrack_willpower:not(.statusTrack_malus) {
-		.statusTrack_costBar { background: $willpowerDark; }
 		.statusTrack_currentBar { background: $willpower; }
 	}
 	&.statusTrack_intelligence:not(.statusTrack_malus) {
-		.statusTrack_costBar { background: $intelligenceDark; }
 		.statusTrack_currentBar { background: $intelligence; }
 	}
 	&.statusTrack_charisma:not(.statusTrack_malus) {
-		.statusTrack_costBar { background: $charismaDark; }
 		.statusTrack_currentBar { background: $charisma; }
 	}
 	&.statusTrack_malus {
-		.statusTrack_costBar { background: $black; }
 		.statusTrack_currentBar { background: $malusRed; }
 	}
 
@@ -67,8 +57,17 @@
 			position: absolute;
 			text-shadow: 0px 0px 3px #000;
 			top: 0;
-    	transform: translateX(-50%);
+			transform: translateX(-50%);
 		}
+	}
+
+	.statusTrack_backgroundBar {
+		background: $nearWhiteTrans;
+		border-right: 1px solid #0f0;
+		position: absolute;
+		height: 100%;
+		transform: skewX(-45deg);
+		transition: width 0.3s ease;
 	}
 
 	.statusTrack_currentBar {
@@ -76,23 +75,9 @@
 		height: 100%;
 		position: relative;
 		transform: skewX(-45deg);
-		transition: 0.3s ease;// @TODO add a property to this
+		transition: width 0.3s ease;
 	}
 
-	.statusTrack_costBar {
-		animation: opacityPulse 0.6s infinite linear;
-		background: $black;
-		height: 100%;
-		position: absolute;
-		right: 0;
-		transition: 0.3s ease;// @TODO add a property to this
-	}
-
-	.statusTrack_costValue {
-		left: 40%;
-	}
-
-	.statusTrack_costValue,
 	.statusTrack_currentValue {
 		color: $white;
 		font-size: 9px;
@@ -106,8 +91,28 @@
 		transform: scaleX(1.2);
 		width: 100%;
 	}
+
+	.statusTrack_segmentBar {
+		background: $nearBlack;
+		height: 100%;
+		position: relative;
+		transform: skewX(-45deg);
+		transition: width 0.3s ease;
+		&.isFlashing {
+			animation: opacityPulse 0.6s infinite linear;
+		}
+	}
+
+	.statusTrack_segmentLabel {
+		color: $white;
+		font-size: 9px;
+		left: 50%;
+		position: absolute;
+		transform: skewX(45deg) translateX(-50%);
+	}
 }
 
 @keyframes opacityPulse {
-	50% { background: $nearBlack;}
+	50% { background: $fullTrans;}
 }
+

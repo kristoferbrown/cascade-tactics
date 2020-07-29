@@ -17,7 +17,6 @@ export function getAttackValues(attacker, isLeftAttack, target) {
 		dodgeDice = (isRanged ? target.attributes.Wits : target.attributes.Agility)+target.skills.Agility.Defense;
 		dodgeSucc = target.skills.Agility.Defense;
 	}
-	console.log('getit', attackObj)
 	return { attackObj, attackDice, attackSucc, damageDice, damageSucc, dodgeDice, dodgeSucc, passiveDef };
 }
 
