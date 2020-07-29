@@ -1,4 +1,73 @@
+@import '../../utils/Palette.scss';
+
 .projectsScreen {
+	align-items: center;
+	background: $nearWhite;
+	box-sizing: border-box;
+	display: flex;
+	flex-direction: column;
 	height: 100%;
+	padding: 24px;
 	width: 100%;
+
+	.projectsScreen_characterList {
+		display: flex;
+		flex: 1;
+		justify-content: space-around;
+		overflow: hidden;
+		width: 100%;
+	}
+
+	.projectsScreen_characterColumn {
+		flex: 1;
+		margin: 0 1%;
+		overflow: scroll;
+	}
+
+	.projectsScreen_characterName {
+		background: $nearWhite;
+		font-size: 20px;
+		margin: 0 auto;
+		padding: 6px;
+		position: sticky;
+		text-align: center;
+		top: 0;
+		z-index: 2;
+	}
+
+	.projectsScreen_charRow {
+		background: $nearWhite;
+		font-size: 12px;
+		padding: 6px;
+		&.header{
+			font-size: 16px;
+			position: sticky;
+			top: 36px;
+		}
+		&.lightText {
+			color: $white;
+		}
+	}
+
+	.projectsScreen_charSection {
+		margin: 0 0 6px 0;
+	}
+
+	.projectsScreen_portrait {
+		max-width: 250px;
+		margin: 0 auto;
+	}
+
+	.projectsScreen_title {
+		height: 130px;
+		margin: 20px 0 0 0;
+	}
+
+	.projectsScreen_titleWord {
+		color: $nearBlack;
+		display: inline-block;
+		font-size: 40px;
+		padding: 20px;
+		transform: skewY(-9deg);
+	}
 }

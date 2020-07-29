@@ -9,7 +9,7 @@ import './Font.scss';
 
 export default class App extends Component {
 	state = {
-		currentScreen: 'combat',
+		currentScreen: 'projects',
 	}
 
 	render() {
