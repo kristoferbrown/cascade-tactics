@@ -21,6 +21,7 @@
 	.projectsScreen_characterColumn {
 		flex: 1;
 		margin: 0 1%;
+		mask-image: linear-gradient(to bottom, $nearWhite 95%, transparent 100%);
 		overflow: scroll;
 	}
 
@@ -50,7 +51,7 @@
 	}
 
 	.projectsScreen_charSection {
-		margin: 0 0 6px 0;
+		margin: 0 0 12px 0;
 	}
 
 	.projectsScreen_portrait {
@@ -59,8 +60,12 @@
 	}
 
 	.projectsScreen_title {
-		height: 130px;
+		height: 120px;
 		margin: 20px 0 0 0;
+	}
+
+	.projectsScreen_summary {
+		margin: 0 0 12px 0;
 	}
 
 	.projectsScreen_titleWord {

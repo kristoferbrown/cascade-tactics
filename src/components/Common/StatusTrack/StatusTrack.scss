@@ -52,12 +52,12 @@
 		.statusTrack_labelValue {
 			color: $white;
 			font-size: 14px;
-			left: 50%;
 			margin: 5px 0 0 0;
 			position: absolute;
 			text-shadow: 0px 0px 3px #000;
+			text-align: center;
 			top: 0;
-			transform: translateX(-50%);
+			width: 100%;
 		}
 	}
 

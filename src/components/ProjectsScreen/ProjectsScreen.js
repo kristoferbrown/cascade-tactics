@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import CharacterContext from '../../context/CharacterContext';
+import StatusTrack from '../Common/StatusTrack/StatusTrack'
 import './ProjectsScreen.scss';
 
 export default class ProjectsScreen extends Component {
@@ -13,6 +14,9 @@ export default class ProjectsScreen extends Component {
 					<div className="projectsScreen_titleWord">Encounter</div>
 					<div className="projectsScreen_titleWord">Complete</div>
 				</div>
+
+				<div className="projectsScreen_summary">Acquired $1k, 6g Substrate, 2g Flux-Pin Crystal, 1g Dynamic Mass, and 1g Chromatic Matter.</div>
+
 				<div className="projectsScreen_characterList">
 					{ characters.map(character => 
 						character.meta.isHostile ? null :
@@ -23,37 +27,24 @@ export default class ProjectsScreen extends Component {
 							<div className="projectsScreen_charSection">
 								<div className="projectsScreen_charRow header">Experience</div>
 								{ character.styles.floating.assigned.map(floater => 
-									<div className={`projectsScreen_charRow fill_${floater} lightText`} >{`+1 ${floater} XP`}</div>
+									<div className={`projectsScreen_charRow fill_${floater} lightText`} key={`xp-${character.meta.charId}-${floater}`} >{`+1 ${floater} XP`}</div>
 								)}
 							</div>
 
 							<div className="projectsScreen_charSection">
 								<div className="projectsScreen_charRow header">Projects</div>
-								<div className="projectsScreen_charRow">Project 1</div>
-								<div className="projectsScreen_charRow">Project 2</div>
-								<div className="projectsScreen_charRow">Project 3</div>
-								<div className="projectsScreen_charRow">Project 4</div>
-								<div className="projectsScreen_charRow">Project 5</div>
-								<div className="projectsScreen_charRow">Project 6</div>
-								<div className="projectsScreen_charRow">Project 7</div>
-								<div className="projectsScreen_charRow">Project 8</div>
-								<div className="projectsScreen_charRow">Project 9</div>
-								<div className="projectsScreen_charRow">Project 0</div>
-								<div className="projectsScreen_charRow">Project 1</div>
-								<div className="projectsScreen_charRow">Project 2</div>
-								<div className="projectsScreen_charRow">Project 3</div>
-								<div className="projectsScreen_charRow">Project 4</div>
-								<div className="projectsScreen_charRow">Project 5</div>
-								<div className="projectsScreen_charRow">Project 6</div>
-								<div className="projectsScreen_charRow">Project 7</div>
-								<div className="projectsScreen_charRow">Project 8</div>
-								<div className="projectsScreen_charRow">Project 9</div>
-								<div className="projectsScreen_charRow">Project 0</div>
-								<div className="projectsScreen_charRow">Project 1</div>
-								<div className="projectsScreen_charRow">Project 2</div>
-								<div className="projectsScreen_charRow">Project 3</div>
+								{ character.projects.map((project, index) =>
+									<div className={`projectsScreen_charRow`} key={`proj-${character.meta.charId}-${index}`} >
+										<StatusTrack attribute={project.attribute} current={project.currentVal} maximum={project.goal} textLabel={project.label} />
+										
+									</div>
+								)}
+							</div>
+
+							<div className="projectsScreen_charSection">
 								<div className="projectsScreen_charRow header">Start new project...</div>
 							</div>
+
 						</div>
 					)}
 				</div>

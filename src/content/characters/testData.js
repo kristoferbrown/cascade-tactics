@@ -47,6 +47,10 @@ export const testCharacters = [
 				Charisma: { availableXp: 1, spentXp: 0 }
 			}},
 		},
+		projects: [
+			{ attribute: 'Charisma', currentVal: 4, goal: 8, label: 'Networking', skill: 'Charm' },
+			{ attribute: 'Intelligence', currentVal: 4, goal: 14, label: 'Research: Acyota', skill: 'Academics' }
+		],
 		startingHex: { q: 2, r: 1, s: -3},
 		mapOffset: {x: -49, y: -11.5},
 		mapRenderer: (pixelLoc, isSelected) => <NeilMapRenderer isSelected={isSelected} height={14} className={'mapCharacter neilArm'} />,
@@ -85,6 +89,11 @@ export const testCharacters = [
 				Charisma: { availableXp: 0, spentXp: 0 }
 			}},
 		},
+		projects: [
+			{ attribute: 'Intelligence', currentVal: 6, goal: 9, label: 'Craft: Substrate', skill: 'Hardware' },
+			{ attribute: 'Charisma', currentVal: 2, goal: 3, label: 'Hustle', skill: 'Unarmed' },
+			{ attribute: 'Intelligence', currentVal: 10, goal: 12, label: 'Research: Flux-Pin Crystal', skill: 'Academics' }
+		],
 		startingHex: { q: 4, r: 1, s: -5},
 		mapOffset: {x: -50, y: -12},
 		mapRenderer: (pixelLoc, isSelected)  => <BuzzMapRenderer isSelected={isSelected} height={14} className={'mapCharacter buzzAld'} />,
@@ -123,6 +132,7 @@ export const testCharacters = [
 				Charisma: { availableXp: 0, spentXp: 0 }
 			}},
 		},
+		projects: [],
 		startingHex: { q: 3, r: 2, s: -5},
 		mapOffset: {x: -50, y: -16},
 		mapRenderer: (pixelLoc, isSelected) => <AcyotaActiveMapRenderer isSelected={isSelected} height={18} className={'mapCharacter activeAcyota'} />,
@@ -161,6 +171,10 @@ export const testCharacters = [
 				Charisma: { availableXp: 0, spentXp: 0 }
 			}},
 		},
+		projects: [
+			{ attribute: 'Charisma', currentVal: 2, goal: 8, label: 'Networking', skill: 'Charm' },
+			{ attribute: 'Willpower', currentVal: 1, goal: 3, label: 'Hustle', skill: 'Survival' },
+		],
 		startingHex: { q: 0, r: 3, s: -3},
 		mapOffset: {x: -51, y: -12},
 		mapRenderer: (pixelLoc, isSelected) => <MikeMapRenderer isSelected={isSelected} height={14} className={'mapCharacter mikeColl'} />,
@@ -199,6 +213,9 @@ export const testCharacters = [
 				Charisma: { availableXp: 0, spentXp: 0 }
 			}},
 		},
+		projects: [
+			{ attribute: 'Intelligence', currentVal: 6, goal: 20, label: 'Lunar Beacon', skill: 'Academics' },
+		],
 		startingHex: { q: 0, r: 0, s: 0},
 		mapOffset: {x: -50, y: -15},
 		mapRenderer: (pixelLoc, isSelected)  => <LemMapRenderer isSelected={isSelected} height={20} className={'mapCharacter capcom'} />,
@@ -237,6 +254,7 @@ export const testCharacters = [
 				Charisma: { availableXp: 0, spentXp: 0 }
 			}},
 		},
+		projects: [],
 		startingHex: { q: 4, r: 3, s: -7},
 		mapOffset: {x: -50, y: -16},
 		mapRenderer: (pixelLoc, isSelected)  => <AcyotaMapRenderer isSelected={isSelected} height={18} className={'mapCharacter acyota'} />,
@@ -275,6 +293,7 @@ export const testCharacters = [
 				Charisma: { availableXp: 1, spentXp: 0, core: 9, spec1: 1, spec2: 1, spec3: 1 },
 			}},
 		},
+		projects: [],
 		startingHex: { q: 6, r: 3, s: -9},
 		mapOffset: {x: -51, y: -15},
 		mapRenderer: (pixelLoc, isSelected)  => <MonoMapRenderer isSelected={isSelected} height={18} className={'mapCharacter monolith'} />,

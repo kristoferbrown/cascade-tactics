@@ -34,13 +34,13 @@ export default class StatusTrack extends Component {
 
 					{ !!backgroundBar && (<div className='statusTrack_backgroundBar' style={{width: `${backgroundBarPercentage}%`}} />)}
 
-					{ !!segments && segments.map(segment => {
+					{ !!segments && segments.map((segment, index) => {
 						const absValue = Math.abs(segment.value);
 						const segmentPercentage = Math.floor(absValue/maximum*100);
 
 						segmentSum += segment.value;
 						return (
-							<Fragment>
+							<Fragment key={`segment-${index}`}>
 								{segmentSum <= maximum ? <div 
 									className={classNames({
 										'statusTrack_segmentBar': true,

@@ -30,6 +30,7 @@
 		margin: 0 30px 0 750px;
 		overflow-y: auto;
 		width: 100%;
+		mask-image: linear-gradient(to bottom, $nearWhite 98%, transparent 100%);
 	}
 
 	.StylesScreen_Row {
