@@ -48,8 +48,8 @@ export const testCharacters = [
 			}},
 		},
 		projects: [
-			{ attribute: 'Charisma', currentVal: 4, goal: 8, label: 'Networking', skill: 'Charm' },
-			{ attribute: 'Intelligence', currentVal: 4, goal: 14, label: 'Research: Acyota', skill: 'Academics' }
+			{ attribute: 'Charisma', currentVal: 4, goal: 8, label: 'Network: Alder Lake', skill: 'Charm', description: 'Establish contacts with the reclusive academic enclave.' },
+			{ attribute: 'Intelligence', currentVal: 4, goal: 14, label: 'Research: Acyota', skill: 'Academics', description: 'Identify the origins of this bizarre species without cells or DNA.' },
 		],
 		startingHex: { q: 2, r: 1, s: -3},
 		mapOffset: {x: -49, y: -11.5},
@@ -90,9 +90,9 @@ export const testCharacters = [
 			}},
 		},
 		projects: [
-			{ attribute: 'Intelligence', currentVal: 6, goal: 9, label: 'Craft: Substrate', skill: 'Hardware' },
-			{ attribute: 'Charisma', currentVal: 2, goal: 3, label: 'Hustle', skill: 'Unarmed' },
-			{ attribute: 'Intelligence', currentVal: 10, goal: 12, label: 'Research: Flux-Pin Crystal', skill: 'Academics' }
+			{ attribute: 'Intelligence', currentVal: 6, goal: 9, label: 'Craft: Substrate', skill: 'Hardware', description: 'The base material for creating artifact functions. Yields 1 gram.' },
+			{ attribute: 'Charisma', currentVal: 2, goal: 3, label: 'Hustle', skill: 'Unarmed', description: 'Work at a profession. Yields $1k.' },
+			{ attribute: 'Intelligence', currentVal: 10, goal: 12, label: 'Research: Flux-Pin Crystal', skill: 'Academics', description: 'Determine how to use this macroscopic molecule with covalent bonds that strengthen when a current is applied.' },
 		],
 		startingHex: { q: 4, r: 1, s: -5},
 		mapOffset: {x: -50, y: -12},
@@ -172,8 +172,8 @@ export const testCharacters = [
 			}},
 		},
 		projects: [
-			{ attribute: 'Charisma', currentVal: 2, goal: 8, label: 'Networking', skill: 'Charm' },
-			{ attribute: 'Willpower', currentVal: 1, goal: 3, label: 'Hustle', skill: 'Survival' },
+			{ attribute: 'Charisma', currentVal: 2, goal: 8, label: 'Network: The Frontier', skill: 'Charm', description: 'Establish contacts with the post-nationalist movement.' },
+			{ attribute: 'Willpower', currentVal: 1, goal: 3, label: 'Hustle', skill: 'Survival', description: 'Work at a profession. Yields $1k.' },
 		],
 		startingHex: { q: 0, r: 3, s: -3},
 		mapOffset: {x: -51, y: -12},
@@ -214,7 +214,7 @@ export const testCharacters = [
 			}},
 		},
 		projects: [
-			{ attribute: 'Intelligence', currentVal: 6, goal: 20, label: 'Lunar Beacon', skill: 'Academics' },
+			{ attribute: 'Intelligence', currentVal: 6, goal: 20, label: 'Research: Lunar Beacon', skill: 'Academics', description: 'Identify the source of this anomalous signal.' },
 		],
 		startingHex: { q: 0, r: 0, s: 0},
 		mapOffset: {x: -50, y: -15},

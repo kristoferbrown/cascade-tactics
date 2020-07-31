@@ -27,7 +27,7 @@
 
 	.projectsScreen_characterName {
 		background: $nearWhite;
-		font-size: 20px;
+		font-size: 22px;
 		margin: 0 auto;
 		padding: 6px;
 		position: sticky;
@@ -37,16 +37,24 @@
 	}
 
 	.projectsScreen_charRow {
+		align-items: center;
 		background: $nearWhite;
-		font-size: 12px;
+		display: flex;
+		flex-wrap: wrap;
+		font-size: 14px;
+		justify-content: space-between;
 		padding: 6px;
 		&.header{
-			font-size: 16px;
+			font-size: 18px;
 			position: sticky;
 			top: 36px;
 		}
 		&.lightText {
 			color: $white;
+		}
+
+		.statusTrack {
+			flex: 1;
 		}
 	}
 
@@ -54,9 +62,32 @@
 		margin: 0 0 12px 0;
 	}
 
+	.projectsScreen_dayCount {
+		font-size: 14px;
+	}
+
+	.projectsScreen_description {
+		font-size: 12px;
+		width: 100%;
+	}
+
 	.projectsScreen_portrait {
 		max-width: 250px;
 		margin: 0 auto;
+	}
+
+	.projectsScreen_statusRow {
+		align-items: center;
+		display: flex;
+		width: 100%;
+	}
+
+	.projectsScreen_subHeader {
+		width: 100%;
+	}
+
+	.projectsScreen_summary {
+		margin: 0 0 12px 0;
 	}
 
 	.projectsScreen_title {
@@ -64,9 +95,6 @@
 		margin: 20px 0 0 0;
 	}
 
-	.projectsScreen_summary {
-		margin: 0 0 12px 0;
-	}
 
 	.projectsScreen_titleWord {
 		color: $nearBlack;

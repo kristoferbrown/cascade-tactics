@@ -33,6 +33,13 @@ body, html, #root {
 	padding: 6px;
 	&:hover { background: $white; box-shadow: 0 0 6px 3px $black; color: $black; }
 	&:active { box-shadow: 0 0 1px 1px $black; }
+	&.dark {
+		box-shadow: 0 0 6px $white;
+		background: $nearBlack;
+		color: $nearWhite;
+		&:hover { background: $black; box-shadow: 0 0 6px 3px $white; color: $white; }
+		&:active { box-shadow: 0 0 1px 1px $white; }
+	}
 	&.small { 
 		font-size: 9px;
 		margin: 3px;

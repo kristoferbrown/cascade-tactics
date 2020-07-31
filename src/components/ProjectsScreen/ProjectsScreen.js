@@ -25,24 +25,37 @@ export default class ProjectsScreen extends Component {
 							<div className="projectsScreen_characterName">{character.meta.fullName}</div>
 
 							<div className="projectsScreen_charSection">
-								<div className="projectsScreen_charRow header">Experience</div>
+								<div className="projectsScreen_charRow header">
+									<div>Experience</div>
+									<div className="basicButton dark">Use XP...</div>
+								</div>
 								{ character.styles.floating.assigned.map(floater => 
 									<div className={`projectsScreen_charRow fill_${floater} lightText`} key={`xp-${character.meta.charId}-${floater}`} >{`+1 ${floater} XP`}</div>
 								)}
 							</div>
 
 							<div className="projectsScreen_charSection">
-								<div className="projectsScreen_charRow header">Projects</div>
+								<div className="projectsScreen_charRow header">
+									<div>Ongoing Projects</div>
+									<div className="projectsScreen_dayCount"><span className="strong">{character.attributes.Willpower+1}</span> days available</div>
+								</div>
 								{ character.projects.map((project, index) =>
 									<div className={`projectsScreen_charRow`} key={`proj-${character.meta.charId}-${index}`} >
-										<StatusTrack attribute={project.attribute} current={project.currentVal} maximum={project.goal} textLabel={project.label} />
-										
+										<div className="projectsScreen_subHeader">{project.label}</div>
+										<div className="projectsScreen_description">{project.description}</div>
+										<div className="projectsScreen_statusRow">
+											<StatusTrack attribute={project.attribute} current={project.currentVal} maximum={project.goal} textLabel={' '} />
+											<div className="basicButton dark">+1 Day</div>
+										</div>
 									</div>
 								)}
 							</div>
 
 							<div className="projectsScreen_charSection">
-								<div className="projectsScreen_charRow header">Start new project...</div>
+								<div className="projectsScreen_charRow header">
+									<div>New Projects</div>
+									<div className="basicButton dark">Start...</div>
+								</div>
 							</div>
 
 						</div>
