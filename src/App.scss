@@ -9,10 +9,11 @@ body, html, #root {
 	width: 100%;
 }
 
-.app_placeholderNav {
+.app_debugMenu {
 	position: absolute;
 	right: 6px;
 	top: 6px;
+	display: flex;
 }
 
 //global styles

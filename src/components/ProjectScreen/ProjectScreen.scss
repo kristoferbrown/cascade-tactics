@@ -1,4 +1,89 @@
+@import "../../utils/Palette.scss";
+
 .projectScreen {
+	display: flex;
 	height: 100%;
 	width: 100%;
+
+	.projectScreen_contentRow {
+		display: flex;
+		font-size: $h6;
+		justify-content: space-between;
+		padding: 6px 12px;
+	}
+
+	.projectScreen_contentRowTab {
+		cursor: pointer;
+		font-size: $h6;
+		padding: 12px;
+		&:hover {
+			box-shadow: inset 0 0 6px $black;
+		}
+		&.projectScreen_currentLayer {
+			cursor: default;
+			background: $white;
+			&:hover {
+				box-shadow: none;
+			}
+		}
+	}
+
+
+	.projectScreen_header {
+		font-size: $h1;
+		padding: 0 12px;
+	}
+
+	.projectScreen_leftColumn,
+	.projectScreen_rightColumn {
+		height: 100%;
+	}
+
+	.projectScreen_leftColumn {
+		background: $midGray;
+		box-shadow: inset 0 0 6px 0 $black;
+		width: 200px;
+	}
+
+	.projectScreen_mapColumn {
+		padding: 20px;
+		flex: 1;
+		.worldMapSvg {
+			transition: filter 0.3s linear;
+		}
+		.worldMap_land, 
+		.worldMap_ocean {
+			transition: fill 0.3s linear;
+		} 
+		&.physical { .worldMap_land { fill: $midGray; } .worldMap_ocean { fill: $nearWhite; }  }
+		&.yau { .worldMapSvg {filter: blur(6px);} .worldMap_land { fill: $darkGray; } .worldMap_ocean { fill: $nearBlack; }  }
+		&.simulation { .worldMap_land { fill: $intelligenceLight; } .worldMap_ocean { fill: $charismaLight; }  }
+	}
+
+	.projectScreen_mapContainer {
+		position: relative;
+	}
+
+	.projectScreen_mapPoint {
+		background: $nearBlack;
+		border: 3px solid $white;
+		cursor: pointer;
+		height: 6px;
+		position: absolute;
+		transform: rotate(45deg);
+		width: 6px;
+		transition: box-shadow 0.2s ease, transform 0.2s ease;
+		z-index: 3;
+		&:hover { box-shadow: 0 0 6px 3px $black; transform: scale(2) rotate(45deg); }
+		&:active { box-shadow: 0 0 1px 1px $black; border: 2px solid $white;}
+	}
+
+	.projectScreen_rightColumn {
+		background: $nearWhite;
+		width: 300px;
+	}
+
+	.projectScreen_section {
+		margin: 12px 0;
+	}
 }
