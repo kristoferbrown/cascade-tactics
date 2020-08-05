@@ -22,7 +22,7 @@ export default class App extends Component {
 				{ currentScreen === 'encounter' && <EncounterScreen /> }
 				{ currentScreen === 'exploration' && <ExplorationScreen /> }
 				{ currentScreen === 'projects' && <ProjectScreen /> }
-				<div className="app_debugMenu">
+				<div className={`app_debugMenu ${currentScreen}`}>
 					<div>Debug menu:</div>
 					<div className="basicButton small" onClick={() => this.setState({currentScreen: 'combat'})}>Combat</div>
 					<div className="basicButton small" onClick={() => this.setState({currentScreen: 'aftermath'})}>Aftermath</div>
