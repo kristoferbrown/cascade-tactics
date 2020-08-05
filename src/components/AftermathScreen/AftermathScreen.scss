@@ -1,6 +1,6 @@
 @import '../../utils/Palette.scss';
 
-.projectsScreen {
+.aftermathScreen  {
 	align-items: center;
 	background: $nearWhite;
 	box-sizing: border-box;
@@ -10,7 +10,7 @@
 	padding: 24px;
 	width: 100%;
 
-	.projectsScreen_characterList {
+	.aftermathScreen_characterList {
 		display: flex;
 		flex: 1;
 		justify-content: space-around;
@@ -18,14 +18,14 @@
 		width: 100%;
 	}
 
-	.projectsScreen_characterColumn {
+	.aftermathScreen_characterColumn {
 		flex: 1;
 		margin: 0 1%;
 		mask-image: linear-gradient(to bottom, $nearWhite 95%, transparent 100%);
 		overflow: scroll;
 	}
 
-	.projectsScreen_characterName {
+	.aftermathScreen_characterName {
 		background: $nearWhite;
 		font-size: 22px;
 		margin: 0 auto;
@@ -36,7 +36,7 @@
 		z-index: 2;
 	}
 
-	.projectsScreen_charRow {
+	.aftermathScreen_charRow {
 		align-items: center;
 		background: $nearWhite;
 		display: flex;
@@ -58,45 +58,45 @@
 		}
 	}
 
-	.projectsScreen_charSection {
+	.aftermathScreen_charSection {
 		margin: 0 0 12px 0;
 	}
 
-	.projectsScreen_dayCount {
+	.aftermathScreen_dayCount {
 		font-size: 14px;
 	}
 
-	.projectsScreen_description {
+	.aftermathScreen_description {
 		font-size: 12px;
 		width: 100%;
 	}
 
-	.projectsScreen_portrait {
+	.aftermathScreen_portrait {
 		max-width: 250px;
 		margin: 0 auto;
 	}
 
-	.projectsScreen_statusRow {
+	.aftermathScreen_statusRow {
 		align-items: center;
 		display: flex;
 		width: 100%;
 	}
 
-	.projectsScreen_subHeader {
+	.aftermathScreen_subHeader {
 		width: 100%;
 	}
 
-	.projectsScreen_summary {
+	.aftermathScreen_summary {
 		margin: 0 0 12px 0;
 	}
 
-	.projectsScreen_title {
+	.aftermathScreen_title {
 		height: 120px;
 		margin: 20px 0 0 0;
 	}
 
 
-	.projectsScreen_titleWord {
+	.aftermathScreen_titleWord {
 		color: $nearBlack;
 		display: inline-block;
 		font-size: 40px;
