@@ -53,7 +53,12 @@ export default class HexMap extends PureComponent {
 	}
 
 	componentDidMount() {
-		const { characters, setCharacterLocation } = this.context;
+		const { isCharacterMenuOpen } = this.props;
+		const { characters, currentCharacter, setCharacterLocation, toggleCharacterMenu } = this.context;
+
+		if (isCharacterMenuOpen) {
+			toggleCharacterMenu(true, currentCharacter);
+		}
 
 		// Generate map
 		let hexagonList = GridGenerator.orientedRectangle(18,15);
@@ -81,6 +86,8 @@ export default class HexMap extends PureComponent {
 					charactersAssigned++;
 				}
 			});
+
+			
 		});
 
 		// Precompute hostile melee range

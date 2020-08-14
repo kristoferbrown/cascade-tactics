@@ -10,11 +10,12 @@ export default class CombatScreen extends Component {
 	}
 
 	render() {
+		const { isCharacterMenuOpen } = this.props;
 		const { currSpeedCost } = this.state;
 		return (
 			<div className="combatScreen">
 				<CharacterMenu />
-				<HexMap currSpeedCost={currSpeedCost} setSpeedCost={cost => {this.setState({currSpeedCost: cost})}} />
+				<HexMap currSpeedCost={currSpeedCost} isCharacterMenuOpen={isCharacterMenuOpen} setSpeedCost={cost => {this.setState({currSpeedCost: cost})}} />
 				<InitTrack currSpeedCost={currSpeedCost} />
 			</div>
 		);
