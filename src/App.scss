@@ -10,14 +10,17 @@ body, html, #root {
 }
 
 .app_debugMenu {
+	background: #FFFFFF33;
+	display: flex;
+	opacity: 0.7;
 	position: absolute;
 	right: 6px;
 	top: 6px;
-	display: flex;
+	text-shadow: 0 0 4px #fff;
 	&.exploration,
 	&.projects {
-		bottom: 6px;
-		top: auto;
+		// bottom: 6px;
+		// top: auto;
 	}
 }
 

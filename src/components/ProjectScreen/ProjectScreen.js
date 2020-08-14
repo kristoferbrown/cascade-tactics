@@ -1,24 +1,32 @@
 import React, { Component } from 'react';
 import classNames from 'classnames';
+import ExplorationContext from '../../context/ExplorationContext';
 import LocationMap from './LocationMap/LocationMap'
-import getMapData from "../../content/maps/locationList";
 import './ProjectScreen.scss';
 
 export default class ProjectScreen extends Component {
+	static contextType = ExplorationContext;
+
 	state = {
 		currentLayer: 'physical',
 		currentLocation: null
 	}
 
-	setLocation = (location) => {
-		this.setState({currentLocation: location});
+	componentDidMount() {
+		this.context.goToMap(this.props.mapId);
+	}
+
+	componentDidUpdate(prevProps) {
+		const { mapId } = this.props;
+		if (prevProps.mapId !== mapId) {
+			this.context.goToMap(mapId);
+		}
 	}
 
 	render() {
-		const { mapId } = this.props;
-		const { currentLayer, currentLocation } = this.state;
-		const map = getMapData(mapId);
-		const currLoc = currentLocation || map.locations[0];
+		const { currentLocationId, currentMap } = this.context;
+		const { currentLayer  } = this.state;
+		const currLoc = currentMap.locations[currentLocationId];
 		return (
 			<div className="projectScreen">
 				<div className="projectScreen_leftColumn">
@@ -64,7 +72,7 @@ export default class ProjectScreen extends Component {
 					</div>
 				</div>
 
-				<LocationMap currentLayer={currentLayer} map={map} setLocation={this.setLocation} />
+				<LocationMap currentLayer={currentLayer} />
 
 				<div className="projectScreen_rightColumn">
 
@@ -75,22 +83,22 @@ export default class ProjectScreen extends Component {
 
 					{ !!currLoc.expeditions.length && <div className="projectScreen_section">
 						<div className="projectScreen_subHeader">Expeditions</div>
-						{currLoc.expeditions.map(expedition => <div className="projectScreen_contentRow">{expedition}</div>)}
+						{currLoc.expeditions.map(expedition => <div key={`proj_${currentMap.id}_${currLoc.id}_${expedition}`} className="projectScreen_contentRow">{expedition}</div>)}
 					</div>}
 
 					{ !!currLoc.contacts.length && <div className="projectScreen_section">
 						<div className="projectScreen_subHeader">Contacts</div>
-						{currLoc.contacts.map(contact => <div className="projectScreen_contentRow">{contact}</div>)}
+						{currLoc.contacts.map(contact => <div key={`proj_${currentMap.id}_${currLoc.id}_${contact}`} className="projectScreen_contentRow">{contact}</div>)}
 					</div>}
 
 					{ !!currLoc.newProjects.length && <div className="projectScreen_section">
 						<div className="projectScreen_subHeader">New Projects</div>
-						{currLoc.newProjects.map(project => <div className="projectScreen_contentRow">{project}</div>)}
+						{currLoc.newProjects.map(project => <div key={`proj_${currentMap.id}_${currLoc.id}_${project}`} className="projectScreen_contentRow">{project}</div>)}
 					</div>}
 
 					{ !!currLoc.ongoingProjects.length && <div className="projectScreen_section">
 						<div className="projectScreen_subHeader">Ongoing Projects</div>
-						{currLoc.ongoingProjects.map(project => <div className="projectScreen_contentRow">{project}</div>)}
+						{currLoc.ongoingProjects.map(project => <div key={`proj_${currentMap.id}_${currLoc.id}_${project}`} className="projectScreen_contentRow">{project}</div>)}
 					</div>}
 
 				</div>

@@ -27,10 +27,16 @@
 	}
 
 	.locationMap_regionContainer {
-		cursor: pointer;
-		opacity: 0.5;
-		&:hover {
+		opacity: 0.1;
+		&.locationMap_adjacentLocation {
+			cursor: pointer;
+			opacity: 0.5;
+			&:hover {opacity: 1;}
+		}
+		&.locationMap_currentLocation {
+			cursor: pointer;
 			opacity: 0.9;
+			&:hover {opacity: 1;}
 		}
 	}
 
@@ -46,4 +52,3 @@
 		&:active { box-shadow: 0 0 1px 1px $black; border: 2px solid $white; margin: 1px; }
 	}
 }
-
