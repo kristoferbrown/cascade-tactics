@@ -27,15 +27,19 @@
 	}
 
 	.locationMap_regionContainer {
-		opacity: 0.1;
-		&.locationMap_adjacentLocation {
+		pointer-events: none;
+		.svgRoom { pointer-events: none; }
+		.svgRoom path { pointer-events: none; opacity: 0.1;}
+		&.locationMap_adjacentLocation .svgRoom path {
 			cursor: pointer;
-			opacity: 0.5;
+			opacity: 0.4;
+			pointer-events: fill;
 			&:hover {opacity: 1;}
 		}
-		&.locationMap_currentLocation {
+		&.locationMap_currentLocation .svgRoom path {
 			cursor: pointer;
-			opacity: 0.9;
+			opacity: 0.8;
+			pointer-events: fill;
 			&:hover {opacity: 1;}
 		}
 	}

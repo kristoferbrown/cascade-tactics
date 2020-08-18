@@ -14,7 +14,8 @@ export default function LocationMap(props) {
 				'locationMap_mapColumn': true,
 				[currentLayer]: !!currentLayer,
 			})}
-			onClick={() => moveToLocation(currentMap.locations[0].id)}
+			onClick={() => moveToLocation(currentLocationId)}
+			style={{ background: currentMap.background }}
 		>
 			<div className="locationMap_mapContainer">
 				{ currentMap.locations.map(location => (
@@ -35,7 +36,10 @@ export default function LocationMap(props) {
 							width: location.width ? `${location.width}%` : 'auto',
 						}}
 					>
-						{ !!location.renderer ? location.renderer() : <div className="locationMap_mapPoint" /> }
+						{ !!location.renderer ? 
+							location.renderer() :
+							<div className="locationMap_mapPoint" /> 
+						}
 					</div>
 					: null
 				))}

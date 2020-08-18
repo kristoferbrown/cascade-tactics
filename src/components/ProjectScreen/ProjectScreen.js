@@ -25,11 +25,12 @@ export default class ProjectScreen extends Component {
 
 	render() {
 		const { currentLocationId, currentMap } = this.context;
+		const { showLeftColumn } = this.props;
 		const { currentLayer  } = this.state;
 		const currLoc = currentMap.locations[currentLocationId];
 		return (
 			<div className="projectScreen">
-				<div className="projectScreen_leftColumn">
+				{showLeftColumn && <div className="projectScreen_leftColumn">
 
 					<div className="projectScreen_section">
 						<div className="projectScreen_header">Layers</div>
@@ -70,7 +71,7 @@ export default class ProjectScreen extends Component {
 						<div className="projectScreen_contentRow"><div>Flux-Pin Crystal:</div> <div>2g</div></div>
 						<div className="projectScreen_contentRow"><div>Dynamic Mass:</div> <div>0g</div></div>
 					</div>
-				</div>
+				</div>}
 
 				<LocationMap currentLayer={currentLayer} />
 

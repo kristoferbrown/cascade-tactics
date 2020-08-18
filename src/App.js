@@ -10,7 +10,7 @@ import './Font.scss';
 
 export default class App extends Component {
 	state = {
-		currentScreen: 'combat',
+		currentScreen: 'exploration',
 	}
 
 	render() {
@@ -23,7 +23,7 @@ export default class App extends Component {
 					{ currentScreen === 'character' && <CombatScreen isCharacterMenuOpen={true} /> }
 					{ currentScreen === 'encounter' && <EncounterScreen /> }
 					{ currentScreen === 'exploration' && <ProjectScreen mapId={1} /> }
-					{ currentScreen === 'projects' && <ProjectScreen mapId={0} /> }
+					{ currentScreen === 'projects' && <ProjectScreen mapId={0} showLeftColumn /> }
 					<div className={`app_debugMenu ${currentScreen}`}>
 						<div>Debug menu:</div>
 						<div className="basicButton small" onClick={() => this.setState({currentScreen: 'combat'})}>Combat</div>
