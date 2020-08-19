@@ -22,7 +22,7 @@ export default class App extends Component {
 					{ currentScreen === 'combat' && <CombatScreen /> }
 					{ currentScreen === 'character' && <CombatScreen isCharacterMenuOpen={true} /> }
 					{ currentScreen === 'encounter' && <EncounterScreen /> }
-					{ currentScreen === 'exploration' && <ProjectScreen mapId={1} /> }
+					{ currentScreen === 'exploration' && <ProjectScreen mapId={1} showTimeline /> }
 					{ currentScreen === 'projects' && <ProjectScreen mapId={0} showLeftColumn /> }
 					<div className={`app_debugMenu ${currentScreen}`}>
 						<div>Debug menu:</div>

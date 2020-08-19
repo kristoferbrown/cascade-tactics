@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import classNames from 'classnames';
 import ExplorationContext from '../../context/ExplorationContext';
 import LocationMap from './LocationMap/LocationMap'
+import StatusTrack from '../Common/StatusTrack/StatusTrack'
 import './ProjectScreen.scss';
 
 export default class ProjectScreen extends Component {
@@ -25,11 +26,22 @@ export default class ProjectScreen extends Component {
 
 	render() {
 		const { currentLocationId, currentMap } = this.context;
-		const { showLeftColumn } = this.props;
+		const { showLeftColumn, showTimeline } = this.props;
 		const { currentLayer  } = this.state;
 		const currLoc = currentMap.locations[currentLocationId];
 		return (
 			<div className="projectScreen">
+				{showTimeline && 
+				<div className="projectScreen_timeline" >
+					<StatusTrack
+						attribute="Wits"
+						current={18}
+						maximum={30}
+						textLabel={'Minutes until perimeter breach: '}
+					/>
+				</div>
+				}
+
 				{showLeftColumn && <div className="projectScreen_leftColumn">
 
 					<div className="projectScreen_section">

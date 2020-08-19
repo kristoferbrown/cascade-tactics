@@ -2,6 +2,7 @@
 
 .projectScreen {
 	display: flex;
+	flex-wrap: wrap;
 	height: 100%;
 	width: 100%;
 
@@ -89,5 +90,16 @@
 
 	.projectScreen_section {
 		margin: 12px 0;
+	}
+
+	.projectScreen_timeline {
+		width: 100%;
+	}
+
+	.statusTrack{
+		height: 45px;
+		 .statusTrack_labelValue {
+			 top: 8px;
+		 }
 	}
 }
