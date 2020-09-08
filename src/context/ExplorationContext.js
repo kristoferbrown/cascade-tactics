@@ -10,12 +10,16 @@ export class ExplorationProvider extends PureComponent {
 		// Populate maps loaded from data with their transient and derived values
 		const currentMap = this.initializeMap(0);
 		this.state = {
+			adjacentLocations: currentMap.locations.adjacentTo || [], // Ids of adjacent rooms
 			currentLocationId: 0, // Id of current location
 			currentMap: currentMap, // A map loaded from data and injected with transient values
-			adjacentLocations: currentMap.locations.adjacentTo || [], // Ids of adjacent rooms
+			exploredLocations: [0], // Ids of explored rooms
+			selectedLocationId: 0 // Id of targeted location
 		}
 	}
 
+
+	// @todo, consider eliminating this
 	initializeMap = (mapId) => {
 		let currentMap = getMapData(mapId);
 		// modifying map might not be needed if we set the state right
@@ -29,14 +33,23 @@ export class ExplorationProvider extends PureComponent {
 		return currentMap;
 	}
 
+	// change maps and reset all state
 	goToMap = (mapId, locId = 0) => {
 		const newMap = this.initializeMap(mapId);
 		const newAdjacentLocs = newMap.locations[locId].adjacentTo || [];
-		this.setState({currentMap: newMap, currentLocationId: locId, adjacentLocations: newAdjacentLocs});
+		this.setState({
+			adjacentLocations: newAdjacentLocs,
+			currentLocationId: locId, 
+			currentMap: newMap,
+			exploredLocations: [locId],
+			selectedLocationId: 0
+		});
 	}
 
-	exploreLocations = (locIdArray) => {
-		// this.setState({currentMap: newMap});
+	// reveal contents of a list of rooms
+	exploreLocations = (locIdArray = []) => {
+		const newExploredArray = [...this.state.exploredLocations, ...locIdArray];
+		this.setState({exploredLocations: newExploredArray});
 	}
 
 	// Updates currentLocationId and currentMap's current & adjacent flags
@@ -44,6 +57,11 @@ export class ExplorationProvider extends PureComponent {
 		const { currentMap } = this.state;
 		const newAdjacentLocs = currentMap.locations[locId].adjacentTo || [];
 		this.setState({currentLocationId: locId, adjacentLocations: newAdjacentLocs});
+	}
+
+	// change the targeted area
+	selectLocation = (locId = 0) => {
+		this.setState({selectedLocationId: locId});
 	}
 
 	render() {
@@ -54,6 +72,7 @@ export class ExplorationProvider extends PureComponent {
 					exploreLocations: this.exploreLocations,
 					goToMap: this.goToMap,
 					moveToLocation: this.moveToLocation,
+					selectLocation: this.selectLocation,
 				}}
 			>
 				{this.props.children}

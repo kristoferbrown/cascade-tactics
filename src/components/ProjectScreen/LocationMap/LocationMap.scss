@@ -42,6 +42,9 @@
 			pointer-events: fill;
 			&:hover {opacity: 1;}
 		}
+		&.locationMap_selectedLocation {
+			background: $lightGrayTrans;
+		}
 	}
 
 	.locationMap_mapPoint {

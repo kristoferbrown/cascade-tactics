@@ -5,7 +5,14 @@ import './LocationMap.scss';
 
 
 export default function LocationMap(props) {
-	const { adjacentLocations, currentLocationId, currentMap, moveToLocation } = useContext(ExplorationContext);
+	const { 
+		adjacentLocations,
+		currentLocationId,
+		currentMap,
+		exploredLocations,
+		moveToLocation,
+		selectedLocationId
+	} = useContext(ExplorationContext);
 	const { currentLayer } = props;
 
 	return (
@@ -26,6 +33,8 @@ export default function LocationMap(props) {
 							'locationMap_regionContainer': !!location.renderer,
 							'locationMap_currentLocation': location.id === currentLocationId,
 							'locationMap_adjacentLocation': adjacentLocations.includes(location.id),
+							'locationMap_selectedLocation': location.id === selectedLocationId,
+							'locationMap_exploredLocations': exploredLocations.includes(location.id),
 						})}
 						key={`location_${currentMap.id}_${location.id}`}
 						onClick={e => {e.stopPropagation(); moveToLocation(location.id);}}
