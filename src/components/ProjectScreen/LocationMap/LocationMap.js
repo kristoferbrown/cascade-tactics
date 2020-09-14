@@ -10,7 +10,7 @@ export default function LocationMap(props) {
 		currentLocationId,
 		currentMap,
 		exploredLocations,
-		moveToLocation,
+		selectLocation,
 		selectedLocationId
 	} = useContext(ExplorationContext);
 	const { currentLayer } = props;
@@ -21,7 +21,7 @@ export default function LocationMap(props) {
 				'locationMap_mapColumn': true,
 				[currentLayer]: !!currentLayer,
 			})}
-			onClick={() => moveToLocation(currentLocationId)}
+			onClick={() => selectLocation(currentLocationId)}
 			style={{ background: currentMap.background }}
 		>
 			<div className="locationMap_mapContainer">
@@ -37,7 +37,7 @@ export default function LocationMap(props) {
 							'locationMap_exploredLocations': exploredLocations.includes(location.id),
 						})}
 						key={`location_${currentMap.id}_${location.id}`}
-						onClick={e => {e.stopPropagation(); moveToLocation(location.id);}}
+						onClick={e => {e.stopPropagation(); selectLocation(location.id);}}
 						style={{ 
 							left: `${location.left}%`, 
 							top: `${location.top}%`,

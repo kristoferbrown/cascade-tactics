@@ -28,6 +28,7 @@
 
 	.locationMap_regionContainer {
 		pointer-events: none;
+		// box-sizing: border-box;
 		.svgRoom { pointer-events: none; }
 		.svgRoom path { pointer-events: none; opacity: 0.1;}
 		&.locationMap_adjacentLocation .svgRoom path {
@@ -44,6 +45,7 @@
 		}
 		&.locationMap_selectedLocation {
 			background: $lightGrayTrans;
+			outline: 2px solid $allyBlue;
 		}
 	}
 
