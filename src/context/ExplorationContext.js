@@ -59,6 +59,12 @@ export class ExplorationProvider extends PureComponent {
 		this.setState({currentLocationId: locId, adjacentLocations: newAdjacentLocs});
 	}
 
+	// Most often these are done at the same time
+	moveToAndExploreLoc = (locId) => {
+		this.exploreLocations([locId]);
+		this.moveToLocation(locId);
+	}
+
 	// change the targeted area
 	selectLocation = (locId = 0) => {
 		this.setState({selectedLocationId: locId});
@@ -72,6 +78,7 @@ export class ExplorationProvider extends PureComponent {
 					exploreLocations: this.exploreLocations,
 					goToMap: this.goToMap,
 					moveToLocation: this.moveToLocation,
+					moveToAndExploreLoc: this.moveToAndExploreLoc,
 					selectLocation: this.selectLocation,
 				}}
 			>

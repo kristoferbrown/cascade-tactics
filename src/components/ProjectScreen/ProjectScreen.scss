@@ -6,6 +6,22 @@
 	height: 100%;
 	width: 100%;
 
+	.projectScreen_actionItem {
+		background: $white;
+		box-shadow: 0 0 2px $nearBlack;
+		cursor: pointer;
+		margin: 0 12px 6px;
+		min-height: 50px;
+		padding: 6px;
+		transition: box-shadow 0.2s ease;
+		&:hover {
+			box-shadow: 0 0 8px $black;
+			&:active {
+				box-shadow: 0 0 1px $black;
+			}
+		}
+	}
+
 	.projectScreen_contentRow {
 		display: flex;
 		font-size: $h6;
@@ -32,6 +48,17 @@
 	.projectScreen_header {
 		font-size: $h1;
 		padding: 0 12px;
+	}
+
+	.projectScreen_inactiveSection {
+		opacity: 0.5;
+		.projectScreen_actionItem {
+			cursor: default;
+			&:active,
+			&:hover {
+				box-shadow: none;
+			}
+		}
 	}
 
 	.projectScreen_subHeader {
@@ -85,6 +112,7 @@
 	}
 
 	.projectScreen_rightColumn {
+		background: $nearWhite;
 		width: 300px;
 	}
 

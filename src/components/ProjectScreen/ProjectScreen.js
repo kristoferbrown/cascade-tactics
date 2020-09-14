@@ -25,10 +25,13 @@ export default class ProjectScreen extends Component {
 	}
 
 	render() {
-		const { currentLocationId, currentMap, exploredLocations, selectedLocationId, } = this.context;
+		const { currentLocationId, currentMap, exploredLocations, exploreLocations, moveToAndExploreLoc, selectedLocationId, } = this.context;
 		const { showLeftColumn, showTimeline } = this.props;
 		const { currentLayer  } = this.state;
 		const selLoc = currentMap.locations[selectedLocationId];
+		const isSelLocExplored = exploredLocations.includes(selectedLocationId);
+		const isSelLocCurrentLoc = currentLocationId === selectedLocationId;
+		// todo this needs to be broken up...
 		return (
 			<div className="projectScreen">
 				{showTimeline && 
@@ -94,32 +97,40 @@ export default class ProjectScreen extends Component {
 						<div className="projectScreen_contentRow">{selLoc.description}</div>
 					</div>
 
-					{ // if current isn't selected show exploration and movement
-					(currentLocationId !== selectedLocationId) && <div className="projectScreen_section">
-						<div className="projectScreen_subHeader">Exploration</div>
-						{ <div key={`proj_${currentMap.id}_${selLoc.id}_explore`} className="projectScreen_contentRow">Move Here</div>}
-						{ !exploredLocations.includes(selectedLocationId) && <div key={`proj_${currentMap.id}_${selLoc.id}_explore`} className="projectScreen_contentRow">Scout</div>}
-					</div>}
+					{ !isSelLocCurrentLoc && (
+						<div className="projectScreen_section">
+							<div className="projectScreen_subHeader">Exploration</div>
+							<div className="projectScreen_actionItem" onClick={ () => moveToAndExploreLoc(selectedLocationId) }>Move Here</div>
+							{ !exploredLocations.includes(selectedLocationId) && 
+								<div className="projectScreen_actionItem" onClick={ () => exploreLocations([selectedLocationId]) }>Scout</div>
+							}
+						</div>
+					)}
+					{( isSelLocExplored &&
+						<div className={ !isSelLocCurrentLoc ? "projectScreen_inactiveSection" : ''}>
+							{ !!selLoc.expeditions.length && <div className="projectScreen_section">
+								<div className="projectScreen_subHeader">Expeditions</div>
+								{selLoc.expeditions.map(expedition => <div key={`proj_${currentMap.id}_${selLoc.id}_${expedition}`} className="projectScreen_actionItem">{expedition}</div>)}
+							</div>}
 
-					{ !!selLoc.expeditions.length && <div className="projectScreen_section">
-						<div className="projectScreen_subHeader">Expeditions</div>
-						{selLoc.expeditions.map(expedition => <div key={`proj_${currentMap.id}_${selLoc.id}_${expedition}`} className="projectScreen_contentRow">{expedition}</div>)}
-					</div>}
+							{ !!selLoc.contacts.length && <div className="projectScreen_section">
+								<div className="projectScreen_subHeader">Contacts</div>
+								{selLoc.contacts.map(contact => <div key={`proj_${currentMap.id}_${selLoc.id}_${contact}`} className="projectScreen_actionItem">{contact}</div>)}
+							</div>}
 
-					{ !!selLoc.contacts.length && <div className="projectScreen_section">
-						<div className="projectScreen_subHeader">Contacts</div>
-						{selLoc.contacts.map(contact => <div key={`proj_${currentMap.id}_${selLoc.id}_${contact}`} className="projectScreen_contentRow">{contact}</div>)}
-					</div>}
+							{ !!selLoc.newProjects.length && <div className="projectScreen_section">
+								<div className="projectScreen_subHeader">New Projects</div>
+								{selLoc.newProjects.map(project => <div key={`proj_${currentMap.id}_${selLoc.id}_${project}`} className="projectScreen_actionItem">{project}</div>)}
+							</div>}
 
-					{ !!selLoc.newProjects.length && <div className="projectScreen_section">
-						<div className="projectScreen_subHeader">New Projects</div>
-						{selLoc.newProjects.map(project => <div key={`proj_${currentMap.id}_${selLoc.id}_${project}`} className="projectScreen_contentRow">{project}</div>)}
-					</div>}
+							{ !!selLoc.ongoingProjects.length && <div className="projectScreen_section">
+								<div className="projectScreen_subHeader">Ongoing Projects</div>
+								{selLoc.ongoingProjects.map(project => <div key={`proj_${currentMap.id}_${selLoc.id}_${project}`} className="projectScreen_actionItem">{project}</div>)}
+							</div>}
+						</div>
+					)}
 
-					{ !!selLoc.ongoingProjects.length && <div className="projectScreen_section">
-						<div className="projectScreen_subHeader">Ongoing Projects</div>
-						{selLoc.ongoingProjects.map(project => <div key={`proj_${currentMap.id}_${selLoc.id}_${project}`} className="projectScreen_contentRow">{project}</div>)}
-					</div>}
+
 
 				</div>
 			</div>
